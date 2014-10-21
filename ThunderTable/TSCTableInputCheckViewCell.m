@@ -66,7 +66,7 @@
     CGPoint textOffset = CGPointMake(sampleFrame.frame.size.width + sampleFrame.frame.origin.x, sampleFrame.frame.origin.y);
     CGSize textConstrainedSize = CGSizeMake(self.contentView.frame.size.width - textOffset.x - 10, MAXFLOAT);
     
-    CGSize textLabelSize = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:textConstrainedSize lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize textLabelSize = [self.textLabel sizeThatFits:textConstrainedSize];
     
     self.textLabel.frame = CGRectMake(textOffset.x, textOffset.y + 5, textLabelSize.width, textLabelSize.height + 5);
     

@@ -52,6 +52,7 @@
             [switchRow.delegate inputSwitchRow:switchRow didChangeToState:switchRow.isOn];
         }
         
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [switchRow.target performSelector:switchRow.selector withObject:sender];
         
         return;

@@ -408,9 +408,6 @@
     if ([row respondsToSelector:@selector(shouldDisplaySeperator)]) {
         cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
     }
-    
-    #warning Not exactly sure, but this fixes thing. Proper investigation soon...
-//    [cell layoutSubviews];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1001,8 +998,7 @@
     __block NSInteger selectedRowIndex = -1;
         
     if ([cell isKindOfClass:[TSCTableInputTextFieldViewCell class]]) {
-        #warning Where did this method go? We should really take a look at this
-        //[self textFieldDidReturn:[(TSCTableInputTextFieldViewCell *)cell textField]];
+        [self textFieldDidReturn:[(TSCTableInputTextFieldViewCell *)cell textField]];
     }
     
     [self enumerateInputRowsUsingBlock:^(TSCTableInputRow *inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
