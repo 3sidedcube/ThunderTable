@@ -65,7 +65,6 @@
 - (void)enumerateInputRowsUsingBlock:(void (^)(TSCTableInputRow *inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block;
 - (BOOL)TSC_isIndexPathSelectable:(NSIndexPath *)indexPath;
 - (void)TSC_handleTableViewSelectionWithIndexPath:(NSIndexPath *)indexPath;
-- (void)keyboardWillShow:(NSNotification *)notification;
 - (void)textFieldDidReturn:(UITextField *)textField;
 - (void)overideCellAtIndexPath:(NSIndexPath *)indexPath withClass:(Class)overideClass;
 
