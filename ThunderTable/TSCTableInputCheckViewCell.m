@@ -21,11 +21,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
-        
-        self.checkView = [[TSCCheckView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        [self.checkView addTarget:self action:@selector(handleCheck:) forControlEvents:UIControlEventValueChanged];
-        self.checkView.userInteractionEnabled = NO;
-        [self.contentView addSubview:self.checkView];
 
     }
     
@@ -35,13 +30,14 @@
 - (void)prepareForReuse
 {
     [super prepareForReuse];
-    [self.checkView removeTarget:nil action:NULL forControlEvents:UIControlEventValueChanged];
-    [self.checkView setOn:NO animated:NO];
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    [self.checkView removeFromSuperview];
+    [self.contentView addSubview:self.checkView];
     
     if([TSCThemeManager localisedTextDirectionForBaseDirection:NSTextAlignmentLeft] == NSTextAlignmentRight){
         
@@ -81,18 +77,6 @@
         self.textLabel.frame = CGRectMake(textOffset.x, textOffset.y + 5, textLabelSize.width, textLabelSize.height + 5);
         
     }
-}
-
-- (void)handleCheck:(TSCCheckView *)sender
-{
-    self.inputRow.value = [NSNumber numberWithBool:sender.isOn];
-}
-
-- (void)handleCheckFromTableSelection:(TSCTableSelection *)selection
-{
-    TSCTableInputCheckViewCell *checkableItemView = ((TSCCheckableItemBase *)selection.object).cell;
-    [checkableItemView handleCheck:checkableItemView.checkView];
-    [checkableItemView.checkView setOn:!checkableItemView.checkView.isOn animated:YES saveState:YES];
 }
 
 @end

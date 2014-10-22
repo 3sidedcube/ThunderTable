@@ -72,19 +72,10 @@
         
     } else {
         
-        if ([TSCThemeManager isOS7]) {
-            [UIView animateWithDuration:duration * 2 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.5 options:kNilOptions animations:^{
-                self.outerView.backgroundColor = self.tintColor;
-                self.innerView.transform = CGAffineTransformMakeScale(1.0, 1.0);
-            } completion:nil];
-        } else {
-            
-            [UIView animateWithDuration:duration animations:^{
-                self.outerView.backgroundColor = self.tintColor;
-                self.innerView.transform = CGAffineTransformMakeScale(1.0, 1.0);
-            }];
-            
-        }
+        [UIView animateWithDuration:duration * 2 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.5 options:kNilOptions animations:^{
+            self.outerView.backgroundColor = self.tintColor;
+            self.innerView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        } completion:nil];
         
         [self sendActionsForControlEvents:UIControlEventValueChanged];
         
