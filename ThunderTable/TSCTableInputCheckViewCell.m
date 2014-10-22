@@ -14,6 +14,12 @@
 #import "TSCCheckableItemBase.h"
 #import "TSCThemeManager.h"
 
+@interface TSCTableInputCheckViewCell ()
+
+@property (nonatomic, assign) BOOL hasAdded;
+
+@end
+
 @implementation TSCTableInputCheckViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -36,8 +42,10 @@
 {
     [super layoutSubviews];
     
-    [self.checkView removeFromSuperview];
-    [self.contentView addSubview:self.checkView];
+    if (!self.hasAdded) {
+        [self.contentView addSubview:self.checkView];
+        self.hasAdded = YES;
+    }
     
     if([TSCThemeManager localisedTextDirectionForBaseDirection:NSTextAlignmentLeft] == NSTextAlignmentRight){
         
