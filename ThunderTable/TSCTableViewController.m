@@ -36,6 +36,9 @@
 }
 
 @property (nonatomic, strong) NSMutableDictionary *overides;
+@property (nonatomic, strong) NSMutableArray *registeredCellClasses;
+@property (nonatomic, strong) NSMutableDictionary *dynamicHeightCells;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -354,7 +357,7 @@
         cell.imageView.image = [row rowImage];
     }
     
-    if ([self TSC_isIndexPathSelectable:indexPath] && ![row isKindOfClass:[TSCTableInputRow class]]) {
+    if ([self isIndexPathSelectable:indexPath] && ![row isKindOfClass:[TSCTableInputRow class]]) {
         
         NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
         NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
@@ -509,7 +512,7 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    if ([self TSC_isIndexPathSelectable:indexPath]) {
+    if ([self isIndexPathSelectable:indexPath]) {
         [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
     }
 }
@@ -546,7 +549,7 @@
     return index;
 }
 
-- (BOOL)TSC_isIndexPathSelectable:(NSIndexPath *)indexPath
+- (BOOL)isIndexPathSelectable:(NSIndexPath *)indexPath
 {
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
