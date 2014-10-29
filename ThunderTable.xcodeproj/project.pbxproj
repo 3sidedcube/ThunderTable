@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		C2E5099219C839F600350F00 /* ThunderTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E5099119C839F600350F00 /* ThunderTableTests.swift */; };
 		C2E5099C19C83A3500350F00 /* ThunderTable.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E5099B19C83A3500350F00 /* ThunderTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C2E509A819C83A4000350F00 /* TSCCheckableItemBase.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E5099D19C83A4000350F00 /* TSCCheckableItemBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C2E509A919C83A4000350F00 /* TSCCheckableItemBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5099E19C83A4000350F00 /* TSCCheckableItemBase.m */; };
 		C2E509AC19C83A4000350F00 /* TSCTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509A119C83A4000350F00 /* TSCTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2E509AD19C83A4000350F00 /* TSCThemeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509A219C83A4000350F00 /* TSCThemeManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2E509AE19C83A4000350F00 /* TSCThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E509A319C83A4000350F00 /* TSCThemeManager.m */; };
@@ -95,8 +93,6 @@
 		C2E5099019C839F600350F00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2E5099119C839F600350F00 /* ThunderTableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderTableTests.swift; sourceTree = "<group>"; };
 		C2E5099B19C83A3500350F00 /* ThunderTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThunderTable.h; sourceTree = "<group>"; };
-		C2E5099D19C83A4000350F00 /* TSCCheckableItemBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCCheckableItemBase.h; sourceTree = "<group>"; };
-		C2E5099E19C83A4000350F00 /* TSCCheckableItemBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCCheckableItemBase.m; sourceTree = "<group>"; };
 		C2E509A119C83A4000350F00 /* TSCTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCTheme.h; sourceTree = "<group>"; };
 		C2E509A219C83A4000350F00 /* TSCThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCThemeManager.h; sourceTree = "<group>"; };
 		C2E509A319C83A4000350F00 /* TSCThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCThemeManager.m; sourceTree = "<group>"; };
@@ -214,8 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				C2E5099B19C83A3500350F00 /* ThunderTable.h */,
-				C2E5099D19C83A4000350F00 /* TSCCheckableItemBase.h */,
-				C2E5099E19C83A4000350F00 /* TSCCheckableItemBase.m */,
 				C2E509A119C83A4000350F00 /* TSCTheme.h */,
 				C2E509A219C83A4000350F00 /* TSCThemeManager.h */,
 				C2E509A319C83A4000350F00 /* TSCThemeManager.m */,
@@ -395,7 +389,6 @@
 				C2E509F419C83ACA00350F00 /* TSCTableInputSwitchViewCell.h in Headers */,
 				C2E509AD19C83A4000350F00 /* TSCThemeManager.h in Headers */,
 				C2E50A3C19C83B5F00350F00 /* TSCTableSection.h in Headers */,
-				C2E509A819C83A4000350F00 /* TSCCheckableItemBase.h in Headers */,
 				C2E50A0519C83B1700350F00 /* TSCTableRow.h in Headers */,
 				C2E509EC19C83ACA00350F00 /* TSCTableInputTextFieldViewCell.h in Headers */,
 				C2E50A3219C83B4200350F00 /* TSCTableInputRowDataSource.h in Headers */,
@@ -565,7 +558,6 @@
 				C2E509BC19C83A4D00350F00 /* TSCImageRequestOperation.m in Sources */,
 				C2E50A2119C83B2C00350F00 /* TSCTableInputTextViewRow.m in Sources */,
 				C2E509D219C83A9A00350F00 /* TSCTableValue1ViewCell.m in Sources */,
-				C2E509A919C83A4000350F00 /* TSCCheckableItemBase.m in Sources */,
 				C2E50A0819C83B1700350F00 /* TSCTableImageRow.m in Sources */,
 				C2E509ED19C83ACA00350F00 /* TSCTableInputTextFieldViewCell.m in Sources */,
 			);
