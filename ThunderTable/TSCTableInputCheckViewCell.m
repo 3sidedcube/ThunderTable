@@ -11,7 +11,6 @@
 #import "TSCTableSelection.h"
 #import "TSCTableInputRow.h"
 #import "TSCCheckView.h"
-#import "TSCCheckableItemBase.h"
 #import "TSCThemeManager.h"
 
 @interface TSCTableInputCheckViewCell ()
