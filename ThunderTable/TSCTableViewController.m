@@ -418,16 +418,16 @@
     CGSize contentViewSize = CGSizeMake(self.tableView.frame.size.width - [self TSC_cellMargin], MAXFLOAT);
 
     if ([row respondsToSelector:@selector(tableViewCellHeightConstrainedToSize:)]) {
-        float height = [row tableViewCellHeightConstrainedToSize:contentViewSize];
         
+        float height = [row tableViewCellHeightConstrainedToSize:contentViewSize];
         return height;
     } else if ([row respondsToSelector:@selector(tableViewCellHeightConstrainedToContentViewSize:tableViewSize:)]) {
-        float height = [row tableViewCellHeightConstrainedToContentViewSize:contentViewSize tableViewSize:self.tableView.frame.size];
         
+        float height = [row tableViewCellHeightConstrainedToContentViewSize:contentViewSize tableViewSize:self.tableView.frame.size];
         return height;
     } else {
+        
         float height = [self TSC_dynamicCellHeightWithIndexPath:indexPath];
-
         return height;
     }
 }
@@ -439,6 +439,8 @@
     
     if([row respondsToSelector:@selector(tableViewCellEstimatedHeight)]) {
         return [row tableViewCellEstimatedHeight];
+    } else {
+        return [self tableView:tableView heightForRowAtIndexPath:indexPath];
     }
     
     return UITableViewAutomaticDimension;
