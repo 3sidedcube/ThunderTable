@@ -28,10 +28,6 @@
         self.separatorTopView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
         [self.contentView addSubview:self.separatorTopView];
         
-        self.separatorTopView = [UIView new];
-        self.separatorTopView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
-        [self.contentView addSubview:self.separatorTopView];
-        
         self.separatorBottomView = [UIView new];
         self.separatorBottomView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
         [self.contentView addSubview:self.separatorBottomView];
