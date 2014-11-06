@@ -26,12 +26,13 @@
 @class TSCTableSection;
 
 /**
- `TSCTableViewController` is a subclass of UITableViewController that provides convenient methods for quick creation of a `UITableViewController`.
+ `TSCTableViewController` is a subclass of UIViewController that provides convenient methods for quick creation of a `UITableViewController`. This class inherits from `UIViewController` because it provides easier access and cusomisation opportunities than subclassing UITableViewController.
  
- Although a `TSCTableViewController` can be used with the usual delegate methods of a `UITableViewController` it is recommended that you use the following classes;
+ Although a `TSCTableViewController` can be used with the usual delegate and datasource methods of a `UITableViewController` it is recommended that you use the following classes;
  
  - `TSCTableRow` for rows
  - `TSCTableSection` for sections
+ 
  */
 @interface TSCTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSCTableInputViewCellDelegate, UITextFieldDelegate>
 

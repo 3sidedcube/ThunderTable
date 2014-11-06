@@ -46,7 +46,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super init];
+    self = [super initWithStyle:style];
     
     if (self) {
 
