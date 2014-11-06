@@ -80,6 +80,11 @@
  */
 @property (nonatomic, strong) UIColor *textColor;
 
+/**
+ @abstract The link that a row should attempt to push when selected
+ */
+@property (nonatomic, strong) TSCLink *link;
+
 ///---------------------------------------------------------------------------------------
 /// @name Handling selection
 ///---------------------------------------------------------------------------------------
