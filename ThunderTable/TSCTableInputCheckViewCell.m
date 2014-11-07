@@ -23,9 +23,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
-    if (self) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
 
     }
     
@@ -53,7 +51,6 @@
     } else {
         
         self.checkView.frame = CGRectMake(10, self.contentView.bounds.size.height / 2 - 15, 30, 30);
-        
     }
     
     CGRect textLabelFrame = self.textLabel.frame;
@@ -62,6 +59,7 @@
     if ((textLabelFrame.origin.x + textLabelFrame.size.width) > self.contentView.frame.size.width) {
         textLabelFrame.size.width -= ((textLabelFrame.origin.x + textLabelFrame.size.width) - self.contentView.frame.size.width) + 10;
     }
+    
     self.textLabel.frame = textLabelFrame;
     
     UIView *sampleFrame = [[UIView alloc] initWithFrame:CGRectMake(18, 0, 30, 30)];
@@ -82,7 +80,6 @@
     } else {
         
         self.textLabel.frame = CGRectMake(textOffset.x, textOffset.y + 5, textLabelSize.width, textLabelSize.height + 5);
-        
     }
 }
 

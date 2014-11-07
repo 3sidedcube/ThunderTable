@@ -83,25 +83,20 @@
 {
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    //    if (_isPendingSetDataSource) {
-//        _isPendingSetDataSource = NO;
-//        [self setDataSource:_dataSource];
-    //    }
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     if (!_viewHasAppearedBefore && self.shouldMakeFirstTextFieldFirstResponder) {
         [self TSC_makeFirstTextFieldFirstResponder];
         _viewHasAppearedBefore = YES;
     }
     
-    if(self.title){
+    if (self.title) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"TSCStatEventNotification" object:self userInfo:@{@"type":@"screen", @"name":self.title}];
     }
-    
 }
 
 - (void)viewDidLoad
@@ -113,7 +108,8 @@
     }
 }
 
--(void)viewDidLayoutSubviews {
+-(void)viewDidLayoutSubviews
+{
     [super viewDidLayoutSubviews];
     
     if (!_didSetupFrame) {
@@ -136,20 +132,6 @@
     
     self.overides[indexPath] = overideClass;
 }
-
-#pragma mark Keyboard notifications
-
-//- (void)keyboardWillShow:(NSNotification *)notification
-//{
-//    if (!isPad()) {
-//        
-//        self.view.frame = _keyboardPresentedViewFrame;
-//        
-//        if ([self respondsToSelector:@selector(scrollViewDidScroll:)]) {
-//            [self scrollViewDidScroll:self.tableView];
-//        }
-//    }
-//}
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
@@ -244,20 +226,6 @@
     return tableSection.sectionHeader;
 }
 
-//- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-//{
-//    if([TSCThemeManager localisedTextDirectionForBaseDirection:NSTextAlignmentLeft] == NSTextAlignmentRight){
-//
-//        if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
-//            
-//            UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
-//            tableViewHeaderFooterView.textLabel.textAlignment = NSTextAlignmentRight;
-//            
-//        }
-//        
-//    }
-//}
-
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     TSCTableSection *tableSection = self.dataSource[section];
@@ -303,7 +271,6 @@
     Class tableViewCellClass = [self TSC_tableViewCellClassForIndexPath:indexPath];
     
     // Check if class is registered with table view
-    
     if (![self TSC_isCellClassRegistered:tableViewCellClass]) {
         [self TSC_registerCellClass:tableViewCellClass];
     }
@@ -449,7 +416,6 @@
 - (CGFloat)TSC_cellMargin
 {
     // Life would be easier using plain style
-    
     if (self.tableView.style == UITableViewStylePlain) {
         return 0;
     }
@@ -459,23 +425,19 @@
     }
     
     // Grouped
-    
     if (self.tableView.style == UITableViewStyleGrouped) {
         
         // Phone will always have 10
-        
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             return (10 - 1) * 2;
         }
         
         // Less than 400, just use normal
-        
         if (self.view.frame.size.width < 400) {
             return (10 - 1) * 2;
         }
         
         // Bigger than 400, table views have 6% margin of table width
-        
         return (MAX(31, MIN(45, self.view.frame.size.width * 0.06)) - 1) * 2;
     }
 
@@ -525,7 +487,6 @@
             
             NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row -1 inSection:indexPath.section];
             return newPath;
-            
         }
     }
     
@@ -559,14 +520,12 @@
         }
     }
 
-    if([section respondsToSelector:@selector(sectionTarget)] && [section respondsToSelector:@selector(sectionSelector)]){
+    if ([section respondsToSelector:@selector(sectionTarget)] && [section respondsToSelector:@selector(sectionSelector)]) {
         
         if (section.sectionSelector && section.sectionTarget) {
             
             return YES;
-            
         }
-        
     }
     
     return NO;
@@ -585,7 +544,6 @@
     self.selectedIndexPath = indexPath;
     
     // If row has selector and target assigned, it takes priority over the section's
-    
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if (([row respondsToSelector:@selector(rowSelectionTarget)] && [row respondsToSelector:@selector(rowSelectionSelector)]) && (row.rowSelectionTarget && row.rowSelectionSelector)) {
@@ -596,7 +554,6 @@
     #pragma clang diagnostic pop
 
     // If row is an input
-    
     if ([row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
         
         TSCTableInputViewCell *cell = (TSCTableInputViewCell *)[self.tableView cellForRowAtIndexPath:selection.indexPath];
@@ -622,7 +579,6 @@
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
         
-
         if ([cell isKindOfClass:[TSCTableInputDatePickerViewCell class]] || [cell isKindOfClass:[TSCTableInputPickerViewCell class]]) {
             
             NSIndexPath *pickerControlIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
@@ -651,18 +607,16 @@
                     pickerControlRow = [_TSCTableInputPickerControlRow rowWithParentRow:(TSCTableInputPickerRow *)row];
                 }
                 
-                if(pickerControlRow){
+                if (pickerControlRow) {
                     [items insertObject:pickerControlRow atIndex:indexPath.row + 1];
                 }
+                
                 section.items = items;
                 [self.tableView insertRowsAtIndexPaths:@[pickerControlIndexPath] withRowAnimation:UITableViewRowAnimationFade];
                 [self.tableView scrollToRowAtIndexPath:pickerControlIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
                 [cell setEditing:YES animated:YES];
-
             }
-            
         }
-        
     }
     
     if ([row respondsToSelector:@selector(shouldRemainSelected)]) {
@@ -724,7 +678,6 @@
                         
                         NSIndexPath *indexPathOfControlRow = [NSIndexPath indexPathForRow:indexOfControlRow inSection:indexOfSection];
                         [indexPathsToDelete addObject:indexPathOfControlRow];
-
                     }
                 }
             }
@@ -732,7 +685,6 @@
         
         section.items = items;
         [self.tableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:UITableViewRowAnimationFade];
-        
     }
 }
 
@@ -893,12 +845,9 @@
 {
     NSMutableDictionary *inputDictionary = [NSMutableDictionary dictionary];
     
-//    [formDictionary addEntriesFromDictionary:self.formValues];
-    
     for (TSCTableInputRow *row in [self TSC_inputs]) {
         
         if (!row.inputId) {
-            
             
         } else {
      
@@ -960,12 +909,10 @@
         } else {
             [requiredFieldNames appendFormat:@"%@, ", row.title];
         }
-        
     }];
 
     UIAlertView *missingRows = [[UIAlertView alloc] initWithTitle:@"Missing information" message:@"Please complete all the required fields." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [missingRows show];
-    
 }
 
 - (void)enumerateRowsUsingBlock:(void (^)(TSCTableRow *row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
@@ -1017,7 +964,6 @@
             [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
             *stop = YES;
         }
-        
     }];
 }
 
@@ -1027,13 +973,5 @@
 {
     [textField resignFirstResponder];
 }
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField
-//{
-//    if ([self respondsToSelector:@selector(textFieldDidReturn:)]) {
-//        [self textFieldDidReturn:textField];
-//    }
-//
-//    return YES;
-//}
 
 @end

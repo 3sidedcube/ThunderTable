@@ -13,9 +13,7 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    
-    if (self) {
+    if (self = [super initWithFrame:frame]) {
 
         if (!self.onTintColor) {
             self.onTintColor = [[TSCThemeManager sharedTheme] mainColor];
@@ -38,7 +36,6 @@
         [self addGestureRecognizer:tapGesture];
         
         [self setOn:NO animated:NO];
-        
     }
     
     return self;
@@ -78,7 +75,6 @@
         } completion:nil];
         
         [self sendActionsForControlEvents:UIControlEventValueChanged];
-        
     }
     
     if (self.checkIdentifier && save) {

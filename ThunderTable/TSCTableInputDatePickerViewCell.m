@@ -19,9 +19,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
-    if (self) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         self.dateFormatter = [[NSDateFormatter alloc] init];
         
@@ -31,7 +29,6 @@
         [self.contentView addSubview:self.dateLabel];
         
         [self addObserver:self forKeyPath:@"inputRow.value" options:kNilOptions context:nil];
-        
     }
     
     return self;
@@ -91,15 +88,12 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
-    if (self) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         self.datePicker = [[UIDatePicker alloc] init];
         [self.datePicker addTarget:self action:@selector(handleDatePicker:) forControlEvents:UIControlEventValueChanged];
         self.datePicker.minuteInterval = 15;
         [self addSubview:self.datePicker];
-        
     }
     
     return self;
@@ -125,9 +119,9 @@
         self.datePicker.datePickerMode = inputRow.parentRow.datePickerMode;
         self.datePicker.minuteInterval = 15;
     }
+    
     _TSCTableInputDatePickerControlRow *dateRow = (_TSCTableInputDatePickerControlRow *)self.inputRow;
     dateRow.parentRow.value = self.datePicker.date;
-
 }
 
 @end

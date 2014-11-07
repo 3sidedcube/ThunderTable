@@ -11,12 +11,13 @@
 
 @implementation TSCTableRow
 
--(id)init {
-    self = [super init];
-    if (self) {
+-(id)init
+{
+    if (self = [super init]) {
         self.shouldCenterText = NO;
         self.shouldDisplaySelectionIndicator = YES;
     }
+    
     return self;
 }
 

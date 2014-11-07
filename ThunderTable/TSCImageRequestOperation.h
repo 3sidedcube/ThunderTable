@@ -22,7 +22,6 @@ typedef void (^TSCImageRequestOperationCompletion)(UIImage *image, NSError *erro
 @property (nonatomic, assign) BOOL isConcurrent;
 @property (nonatomic, assign) BOOL isFinished;
 
-
 @property (nonatomic, strong) TSCImageRequestOperationCompletion completion;
 
 @end
