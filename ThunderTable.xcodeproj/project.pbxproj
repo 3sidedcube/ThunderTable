@@ -309,9 +309,9 @@
 				C2E509E219C83ACA00350F00 /* TSCTableInputCheckViewCell.h */,
 				C2E509E319C83ACA00350F00 /* TSCTableInputCheckViewCell.m */,
 				C2E509E419C83ACA00350F00 /* TSCCheckView.h */,
-				C2E509E519C83ACA00350F00 /* GCPlaceholderTextView.m */,
 				C2E509E619C83ACA00350F00 /* TSCCheckView.m */,
 				C2E509E719C83ACA00350F00 /* GCPlaceholderTextView.h */,
+				C2E509E519C83ACA00350F00 /* GCPlaceholderTextView.m */,
 				C2E509E819C83ACA00350F00 /* TSCTableInputSliderViewCell.h */,
 				C2E509E919C83ACA00350F00 /* TSCTableInputSliderViewCell.m */,
 			);

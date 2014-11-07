@@ -24,11 +24,11 @@ static TSCImageController *sharedController = nil;
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         self.imageCache = [[NSCache alloc] init];
         self.maxConcurrentOperationCount = 30;
     }
+    
     return self;
 }
 

@@ -17,10 +17,10 @@
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         self.isConcurrent = YES;
     }
+    
     return self;
 }
 
@@ -78,7 +78,8 @@
 {
     self.cached = NO;
     self.image = [self TSC_imageWithData:self.data];
-    if (self.image){
+    
+    if (self.image) {
         [[TSCImageController sharedController] cacheImage:self.image forImageURL:self.imageURL];
         [self completeWithError:nil];
     } else {

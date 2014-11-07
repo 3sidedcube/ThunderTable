@@ -14,9 +14,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
-    if (self) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         self.textField = [[UITextField alloc] init];
         self.textField.textAlignment = NSTextAlignmentRight;
@@ -29,10 +27,6 @@
         self.textField.returnKeyType = UIReturnKeyNext;
         
         [self setEditing:NO animated:NO];
-        
-        if ([TSCThemeManager isOS7]) {
-//            self.textField.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-        }
     }
     
     return self;

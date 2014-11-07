@@ -22,14 +22,7 @@
         self.textView = [[GCPlaceholderTextView alloc] init];
         self.textView.textAlignment = NSTextAlignmentRight;
         self.textView.delegate = self;
-        //self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-        //self.textView.autocorrectionType = UITextAutocorrectionTypeYes;
         self.textView.textColor = [UIColor blackColor];
-        //self.textView.placeholderColor = [UIColor greenColor];
-        //self.textView.placeholder = self.placeholder;
-        //self.textLabel.backgroundColor = [UIColor clearColor];
-        
-
 
         if ([TSCThemeManager isOS7]) {
             self.textView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
@@ -57,18 +50,6 @@
         self.textView.frame = CGRectMake(self.textLabel.bounds.size.width + 20, 0, self.contentView.bounds.size.width - self.textLabel.bounds.size.width - 30, self.contentView.bounds.size.height);
     }
 }
-/*
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    if([text isEqualToString:@"\n"]) {
-        if ([self.delegate respondsToSelector:@selector(tableInputViewCellDidFinish:)]) {
-            [self.delegate tableInputViewCellDidFinish:self];
-        }
-        return NO;
-    }
-    self.inputRow.value = [textView.text stringByReplacingCharactersInRange:range withString:text];
-    return YES;
-}*/
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
