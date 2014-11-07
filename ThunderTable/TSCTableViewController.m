@@ -364,7 +364,7 @@
         [row tableViewCell:cell];
     }
     
-    if([cell respondsToSelector:@selector(setShouldDisplaySeparators:)]){
+    if ([cell respondsToSelector:@selector(setShouldDisplaySeparators:)]) {
         if (self.shouldDisplaySeparatorsOnCells) {
             cell.shouldDisplaySeparators = YES;
         } else {
@@ -479,11 +479,11 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSIndexPath *previousCellIndex = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
-    if([tableView cellForRowAtIndexPath:previousCellIndex]) {
+    if ([tableView cellForRowAtIndexPath:previousCellIndex]) {
         
         UITableViewCell *previousCell = [tableView cellForRowAtIndexPath:previousCellIndex];
         
-        if([previousCell isKindOfClass:[_TSCTableInputPickerControlViewCell class]] || [previousCell isKindOfClass:[_TSCTableInputDatePickerControlViewCell class]]){
+        if ([previousCell isKindOfClass:[_TSCTableInputPickerControlViewCell class]] || [previousCell isKindOfClass:[_TSCTableInputDatePickerControlViewCell class]]) {
             
             NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row -1 inSection:indexPath.section];
             return newPath;
@@ -512,7 +512,7 @@
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
     
-    if([row respondsToSelector:@selector(rowSelectionSelector)] && [row respondsToSelector:@selector(rowSelectionTarget)]){
+    if ([row respondsToSelector:@selector(rowSelectionSelector)] && [row respondsToSelector:@selector(rowSelectionTarget)]) {
     
         if ((row.rowSelectionSelector && row.rowSelectionTarget) || [row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
 
@@ -741,7 +741,7 @@
     
     CGFloat cellHeight;
     
-    if (highestView.frame.size.width == self.view.bounds.size.width || highestView.frame.size.width == self.view.bounds.size.width ) {
+    if (highestView.frame.size.width == self.view.bounds.size.width || highestView.frame.size.width == self.view.bounds.size.width) {
         cellHeight = totalHeight + abs(lowestYValue) + 10;
     } else {
         cellHeight = totalHeight + abs(lowestYValue) + 10;
