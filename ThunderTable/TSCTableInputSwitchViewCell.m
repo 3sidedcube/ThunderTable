@@ -13,9 +13,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
-    if (self) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.primarySwitch = [[UISwitch alloc] init];
         [self.primarySwitch addTarget:self action:@selector(handleSwitch:) forControlEvents:UIControlEventValueChanged];
         [self.contentView addSubview:self.primarySwitch];
@@ -27,7 +25,6 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
     
     CGSize constrainedSize = CGSizeMake(self.contentView.frame.size.width - 78 - 20 - self.imageView.frame.size.width, MAXFLOAT);
     
@@ -52,6 +49,7 @@
             [switchRow.delegate inputSwitchRow:switchRow didChangeToState:switchRow.isOn];
         }
         
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [switchRow.target performSelector:switchRow.selector withObject:sender];
         
         return;

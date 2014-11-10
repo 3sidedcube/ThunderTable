@@ -11,21 +11,19 @@
 #import "TSCTableSelection.h"
 #import "TSCTableInputRow.h"
 #import "TSCCheckView.h"
-#import "TSCCheckableItemBase.h"
 #import "TSCThemeManager.h"
+
+@interface TSCTableInputCheckViewCell ()
+
+@property (nonatomic, assign) BOOL hasAdded;
+
+@end
 
 @implementation TSCTableInputCheckViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
-    if (self) {
-        
-        self.checkView = [[TSCCheckView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        [self.checkView addTarget:self action:@selector(handleCheck:) forControlEvents:UIControlEventValueChanged];
-        self.checkView.userInteractionEnabled = NO;
-        [self.contentView addSubview:self.checkView];
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
 
     }
     
@@ -35,13 +33,16 @@
 - (void)prepareForReuse
 {
     [super prepareForReuse];
-    [self.checkView removeTarget:nil action:NULL forControlEvents:UIControlEventValueChanged];
-    [self.checkView setOn:NO animated:NO];
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    if (!self.hasAdded) {
+        [self.contentView addSubview:self.checkView];
+        self.hasAdded = YES;
+    }
     
     if([TSCThemeManager localisedTextDirectionForBaseDirection:NSTextAlignmentLeft] == NSTextAlignmentRight){
         
@@ -50,7 +51,6 @@
     } else {
         
         self.checkView.frame = CGRectMake(10, self.contentView.bounds.size.height / 2 - 15, 30, 30);
-        
     }
     
     CGRect textLabelFrame = self.textLabel.frame;
@@ -59,6 +59,7 @@
     if ((textLabelFrame.origin.x + textLabelFrame.size.width) > self.contentView.frame.size.width) {
         textLabelFrame.size.width -= ((textLabelFrame.origin.x + textLabelFrame.size.width) - self.contentView.frame.size.width) + 10;
     }
+    
     self.textLabel.frame = textLabelFrame;
     
     UIView *sampleFrame = [[UIView alloc] initWithFrame:CGRectMake(18, 0, 30, 30)];
@@ -66,7 +67,7 @@
     CGPoint textOffset = CGPointMake(sampleFrame.frame.size.width + sampleFrame.frame.origin.x, sampleFrame.frame.origin.y);
     CGSize textConstrainedSize = CGSizeMake(self.contentView.frame.size.width - textOffset.x - 10, MAXFLOAT);
     
-    CGSize textLabelSize = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:textConstrainedSize lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize textLabelSize = [self.textLabel sizeThatFits:textConstrainedSize];
     
     self.textLabel.frame = CGRectMake(textOffset.x, textOffset.y + 5, textLabelSize.width, textLabelSize.height + 5);
     
@@ -79,20 +80,7 @@
     } else {
         
         self.textLabel.frame = CGRectMake(textOffset.x, textOffset.y + 5, textLabelSize.width, textLabelSize.height + 5);
-        
     }
-}
-
-- (void)handleCheck:(TSCCheckView *)sender
-{
-    self.inputRow.value = [NSNumber numberWithBool:sender.isOn];
-}
-
-- (void)handleCheckFromTableSelection:(TSCTableSelection *)selection
-{
-    TSCTableInputCheckViewCell *checkableItemView = ((TSCCheckableItemBase *)selection.object).cell;
-    [checkableItemView handleCheck:checkableItemView.checkView];
-    [checkableItemView.checkView setOn:!checkableItemView.checkView.isOn animated:YES saveState:YES];
 }
 
 @end

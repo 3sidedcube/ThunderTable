@@ -125,11 +125,6 @@
     return YES;
 }
 
-//- (CGFloat)tableViewCellHeightConstrainedToSize:(CGSize)contrainedSize;
-//{
-//    return 44;
-//}
-
 - (UITableViewCell *)tableViewCell:(UITableViewCell *)cell
 {
     TSCTableValue1ViewCell *valueCell = (TSCTableValue1ViewCell *)cell;

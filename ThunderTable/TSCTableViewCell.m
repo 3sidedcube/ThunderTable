@@ -13,9 +13,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-    
-    if (self) {
+    if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier]) {
         
         self.textLabel.numberOfLines = 0;
         self.textLabel.backgroundColor = [UIColor clearColor];
@@ -23,10 +21,6 @@
         self.detailTextLabel.numberOfLines = 0;
         self.detailTextLabel.font = [UIFont systemFontOfSize:14];
         self.detailTextLabel.textColor = [UIColor grayColor];
-        
-        self.separatorTopView = [UIView new];
-        self.separatorTopView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
-        [self.contentView addSubview:self.separatorTopView];
         
         self.separatorTopView = [UIView new];
         self.separatorTopView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];

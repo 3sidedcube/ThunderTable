@@ -20,9 +20,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
-    if (self) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         self.selectionLabel = [[UILabel alloc] init];
         self.selectionLabel.textAlignment = NSTextAlignmentRight;
@@ -79,15 +77,12 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
-    if (self) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         self.pickerView = [[UIPickerView alloc] init];
         self.pickerView.delegate = self;
         self.pickerView.dataSource = self;
         [self.contentView addSubview:self.pickerView];
-        
     }
     
     return self;
