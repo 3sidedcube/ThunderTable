@@ -9,9 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "TSCTableInputRowDataSource.h"
 
+/**
+ The `TSCTableInputSliderRowDataSource` inhertis the `TSCTableInputRowDataSource` protocol and is specific to slider input types.
+ */
 @protocol TSCTableInputSliderRowDataSource <TSCTableInputRowDataSource>
 
+///---------------------------------------------------------------------------------------
+/// @name General setup
+///---------------------------------------------------------------------------------------
+
+/**
+ @abstract The maximum value the slider can reach
+ */
 - (NSNumber *)maximumValue;
+
+/**
+ @abstract The minimum value the slider can reach
+ */
 - (NSNumber *)minimumValue;
 
 @end
