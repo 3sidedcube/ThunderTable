@@ -58,10 +58,30 @@ static id <TSCTheme> sharedController = nil;
 
 + (BOOL)isOS7
 {
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        return NO;
-    } else {
-        return YES;
+    
+    switch ([[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:NSNumericSearch]) {
+        case NSOrderedSame:
+            return true;
+            break;
+        case NSOrderedDescending:
+            return true;
+        default:
+            return false;
+            break;
+    }
+}
+
++ (BOOL)isOS8
+{
+    switch ([[[UIDevice currentDevice] systemVersion] compare:@"8.0.0" options:NSNumericSearch]) {
+        case NSOrderedSame:
+            return true;
+            break;
+        case NSOrderedDescending:
+            return true;
+        default:
+            return false;
+            break;
     }
 }
 

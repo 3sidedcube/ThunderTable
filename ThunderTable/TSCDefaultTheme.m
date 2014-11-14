@@ -15,6 +15,11 @@
     return [UIColor colorWithRed:0.894 green:0.000 blue:0.010 alpha:1.000];
 }
 
+- (UIColor *)secondaryColor
+{
+    return [UIColor colorWithWhite:0.25 alpha:1.0];
+}
+
 - (UIColor *)primaryLabelColor
 {
     return [UIColor blackColor];
