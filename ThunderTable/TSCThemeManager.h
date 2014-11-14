@@ -14,6 +14,7 @@
 + (id <TSCTheme>)sharedTheme;
 + (void)setSharedTheme:(id <TSCTheme>)theme;
 + (BOOL)isOS7;
++ (BOOL)isOS8;
 + (BOOL)isRightToLeft;
 + (NSTextAlignment)localisedTextDirectionForBaseDirection:(NSTextAlignment)textDirection;
 + (void)customizeAppAppearance;
