@@ -12,6 +12,7 @@
 @protocol TSCTheme <NSObject>
 
 - (UIColor *)mainColor;
+- (UIColor *)secondaryColor;
 - (UIColor *)backgroundColor;
 - (UIColor *)freeTextColor;
 - (UIColor *)headerTextColor;
