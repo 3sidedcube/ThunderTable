@@ -38,6 +38,7 @@
 @property (nonatomic, strong) NSMutableDictionary *overides;
 @property (nonatomic, strong) NSMutableArray *registeredCellClasses;
 @property (nonatomic, strong) NSMutableDictionary *dynamicHeightCells;
+@property (nonatomic, assign) BOOL viewHasAppeared;
 
 @end
 
@@ -48,7 +49,7 @@
     self = [super init];
     
     if (self) {
-
+        
         self.style = style;
         self.registeredCellClasses = [NSMutableArray array];
         self.dynamicHeightCells = [NSMutableDictionary dictionary];
@@ -69,8 +70,8 @@
     UIScreen *mainScreen = [UIScreen mainScreen];
     
     self.tableView = [[UITableView alloc] initWithFrame:mainScreen.bounds style:_style];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    //    self.tableView.delegate = self;
+    //    self.tableView.dataSource = self;
     
     self.view = self.tableView;
 }
@@ -79,6 +80,7 @@
 {
     [super viewWillDisappear:animated];
     [self TSC_resignAnyResponders];
+    self.viewHasAppeared = false;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -99,6 +101,8 @@
     if (self.title) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"TSCStatEventNotification" object:self userInfo:@{@"type":@"screen", @"name":self.title}];
     }
+    
+    self.viewHasAppeared = true;
 }
 
 - (void)viewDidLoad
@@ -144,7 +148,7 @@
 - (void)keyboardDidShow:(NSNotification *)notification
 {
     _standardInsets = self.tableView.contentInset;
-
+    
     NSDictionary* info = notification.userInfo;
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
@@ -199,10 +203,13 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    if (animated) {
-        [self.tableView reloadData];
-    } else {
-        [self.tableView reloadData];
+    if (self.viewHasAppeared) {
+        
+        if (animated) {
+            [self.tableView reloadData];
+        } else {
+            [self.tableView reloadData];
+        }
     }
 }
 
@@ -215,7 +222,7 @@
         NSArray *items = [section sectionItems];
         [flattenedDataSource addObjectsFromArray:items];
     }
-
+    
     return flattenedDataSource;
 }
 
@@ -264,7 +271,7 @@
     } else {
         tableViewCellClass = [TSCTableViewCell class];
     }
-
+    
     return tableViewCellClass;
 }
 
@@ -293,7 +300,7 @@
     cell.detailTextLabel.text = nil;
     cell.textLabel.text = nil;
     cell.imageView.image = nil;
-
+    
     // Setup basic defaults
     if ([row respondsToSelector:@selector(textColor)]) {
         cell.textLabel.textColor = ((TSCTableRow *)row).textColor;
@@ -385,7 +392,7 @@
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
     
     CGSize contentViewSize = CGSizeMake(self.tableView.frame.size.width - [self TSC_cellMargin], MAXFLOAT);
-
+    
     if ([row respondsToSelector:@selector(tableViewCellHeightConstrainedToSize:)]) {
         
         float height = [row tableViewCellHeightConstrainedToSize:contentViewSize];
@@ -421,7 +428,7 @@
     if (self.tableView.style == UITableViewStylePlain) {
         return 0;
     }
-
+    
     if ([TSCThemeManager isOS7]) {
         return 0;
     }
@@ -442,7 +449,7 @@
         // Bigger than 400, table views have 6% margin of table width
         return (MAX(31, MIN(45, self.view.frame.size.width * 0.06)) - 1) * 2;
     }
-
+    
     return 0;
 }
 
@@ -472,8 +479,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    
     if ([self isIndexPathSelectable:indexPath]) {
+        
         [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
     }
 }
@@ -503,13 +511,13 @@
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
     
     if ([row respondsToSelector:@selector(rowSelectionSelector)] && [row respondsToSelector:@selector(rowSelectionTarget)]) {
-    
+        
         if ((row.rowSelectionSelector && row.rowSelectionTarget) || [row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
-
+            
             return YES;
         }
     }
-
+    
     if ([section respondsToSelector:@selector(sectionTarget)] && [section respondsToSelector:@selector(sectionSelector)]) {
         
         if (section.sectionSelector && section.sectionTarget) {
@@ -534,15 +542,15 @@
     self.selectedIndexPath = indexPath;
     
     // If row has selector and target assigned, it takes priority over the section's
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if (([row respondsToSelector:@selector(rowSelectionTarget)] && [row respondsToSelector:@selector(rowSelectionSelector)]) && (row.rowSelectionTarget && row.rowSelectionSelector)) {
         [row.rowSelectionTarget performSelector:row.rowSelectionSelector withObject:selection];
     } else {
         [section.target performSelector:section.selector withObject:selection];
     }
-    #pragma clang diagnostic pop
-
+#pragma clang diagnostic pop
+    
     // If row is an input
     if ([row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
         
@@ -625,10 +633,10 @@
 - (CGFloat)TSC_dynamicCellHeightWithIndexPath:(NSIndexPath *)indexPath
 {
     TSCTableViewCell *cell = (TSCTableViewCell *)[self TSC_dequeueDynamicHeightCellProxyWithIndexPath:indexPath];
-
+    
     [self TSC_configureCell:cell withIndexPath:indexPath];
     
-    cell.frame = CGRectMake(0, 0, self.view.bounds.size.width - [self TSC_cellMargin] - (![TSCThemeManager isOS7] ? 2 : 0), 44);
+    cell.frame = CGRectMake(0, 0, self.view.bounds.size.width - [self TSC_cellMargin] - (![TSCThemeManager isOS7] ? 2 : 8), 44);
     [cell layoutSubviews];
     
     CGFloat totalHeight = 0;
@@ -637,7 +645,7 @@
     CGFloat lowestYValue = 0;
     
     UIView *highestView;
-
+    
     for (UIView *view in subviews) {
         
         CGSize size = view.frame.size;
@@ -671,7 +679,7 @@
     }
     
     cellHeight = ceilf(cellHeight);
-        
+    
     return cellHeight;
 }
 
@@ -709,7 +717,7 @@
     NSObject <TSCTableRowDataSource> *row = sectionItems[indexPath.row];
     
     BOOL canEditRow = NO;
-
+    
     if ([row respondsToSelector:@selector(canEditRow)]) {
         canEditRow = [row canEditRow];
     }
@@ -766,7 +774,7 @@
         if (!row.inputId) {
             
         } else {
-     
+            
             if (row.value) {
                 [inputDictionary setObject:row.value forKey:row.inputId];
             } else {
@@ -791,7 +799,7 @@
     NSMutableArray *rows = [NSMutableArray array];
     
     [self enumerateInputRowsUsingBlock:^(TSCTableInputRow *inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
-       
+        
         if (inputRow.required) {
             if (inputRow.value == nil || [inputRow.value isEqual:[NSNull null]]) {
                 [rows addObject:inputRow];
@@ -815,7 +823,7 @@
 {
     NSMutableString *requiredFieldNames = [NSMutableString string];
     NSArray *missingRequiredInputRows = self.missingRequiredInputRows;
-
+    
     [missingRequiredInputRows enumerateObjectsUsingBlock:^(TSCTableInputRow *row, NSUInteger index, BOOL *stop) {
         
         if (missingRequiredInputRows.count == 1) {
@@ -826,7 +834,7 @@
             [requiredFieldNames appendFormat:@"%@, ", row.title];
         }
     }];
-
+    
     UIAlertView *missingRows = [[UIAlertView alloc] initWithTitle:@"Missing information" message:@"Please complete all the required fields." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [missingRows show];
 }
@@ -861,7 +869,7 @@
 - (void)tableInputViewCellDidFinish:(TSCTableViewCell *)cell
 {
     __block NSInteger selectedRowIndex = -1;
-        
+    
     if ([cell isKindOfClass:[TSCTableInputTextFieldViewCell class]]) {
         [self textFieldDidReturn:[(TSCTableInputTextFieldViewCell *)cell textField]];
     }
