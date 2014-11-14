@@ -15,11 +15,3 @@
 + (id)rowWithTitle:(NSString *)title mode:(UIDatePickerMode)mode inputId:(NSString *)inputId required:(BOOL)required;
 
 @end
-
-@interface _TSCTableInputDatePickerControlRow : TSCTableInputRow
-
-@property (nonatomic, strong) TSCTableInputDatePickerRow *parentRow;
-
-+ (id)rowWithParentRow:(TSCTableInputDatePickerRow *)parentRow;
-
-@end

@@ -13,22 +13,23 @@
 
 @implementation TSCTableInputPickerViewCell
 
-- (void)dealloc
-{
-    [self removeObserver:self forKeyPath:@"inputRow.value"];
-}
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
         
-        self.selectionLabel = [[UILabel alloc] init];
+        self.selectionLabel = [[UITextField alloc] init];
         self.selectionLabel.textAlignment = NSTextAlignmentRight;
         self.selectionLabel.backgroundColor = [UIColor clearColor];
         self.selectionLabel.text = nil;
         [self.contentView addSubview:self.selectionLabel];
         
-        [self addObserver:self forKeyPath:@"inputRow.value" options:kNilOptions context:nil];
+        self.pickerView = [[UIPickerView alloc] init];
+        self.pickerView.dataSource = self;
+        self.pickerView.delegate = self;
+        
+        [self.selectionLabel setInputView:self.pickerView];
     }
     
     return self;
@@ -37,7 +38,13 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.selectionLabel.frame = CGRectMake(self.contentView.frame.size.width - 180 - 10, 10, 180, 20);
+    
+    self.selectionLabel.frame = CGRectMake(self.contentView.frame.size.width - 180 - 10, 10, 180, 35);
+    self.selectionLabel.center = CGPointMake(self.selectionLabel.center.x, self.contentView.center.y);
+    
+    if (self.inputRow.value != [NSNull null]) {
+        self.selectionLabel.text = self.inputRow.value;
+    }
 }
 
 - (void)setInputRow:(TSCTableInputRow *)inputRow
@@ -51,66 +58,17 @@
     }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"inputRow.value"]) {
-        if (self.inputRow.value != [NSNull null]) {
-            self.selectionLabel.text = self.inputRow.value;
-        }
-    }
-}
-
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
     
     if (editing) {
         self.selectionLabel.textColor = [[TSCThemeManager sharedTheme] mainColor];
+        
     } else {
         self.selectionLabel.textColor = [[TSCThemeManager sharedTheme] primaryLabelColor];
     }
 }
-
-@end
-
-@implementation _TSCTableInputPickerControlViewCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
-        self.pickerView = [[UIPickerView alloc] init];
-        self.pickerView.delegate = self;
-        self.pickerView.dataSource = self;
-        [self.contentView addSubview:self.pickerView];
-    }
-    
-    return self;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.pickerView.frame = self.contentView.bounds;
-}
-
-- (void)setInputRow:(_TSCTableInputPickerControlRow *)inputRow
-{
-    [super setInputRow:inputRow];
-    self.values = inputRow.parentRow.values;
-    [self.pickerView reloadAllComponents];
-    
-    NSInteger selectedIndex = [inputRow.parentRow.values indexOfObject:inputRow.parentRow.value];
-    
-    if (selectedIndex == NSNotFound) {
-        selectedIndex = 0;
-        inputRow.parentRow.value = self.values[0];
-    }
-    
-    [self.pickerView selectRow:selectedIndex inComponent:0 animated:NO];
-}
-
-#pragma mark Picker view data source
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -119,20 +77,28 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return self.values.count;
+    return self.values.count + 1;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return self.values[row];
+    if (row == 0) {
+        if (self.placeholder) {
+            return [NSString stringWithFormat:@"-- %@ --", self.placeholder];
+        }
+        
+        return @"-- Please Select --";
+    }
+    
+    return self.values[row - 1];
 }
-
-#pragma mark Picker view delegate
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    _TSCTableInputDatePickerControlRow *pickerRow = (_TSCTableInputDatePickerControlRow *)self.inputRow;
-    pickerRow.parentRow.value = self.values[row];
+    if (row != 0) {
+        self.selectionLabel.text = self.values[row - 1];
+        self.inputRow.value = self.values[row - 1];
+    }
 }
 
 @end

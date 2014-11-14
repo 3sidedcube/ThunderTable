@@ -27,26 +27,13 @@
     return [TSCTableInputPickerViewCell class];
 }
 
-@end
-
-@implementation _TSCTableInputPickerControlRow
-
-+ (id)rowWithParentRow:(TSCTableInputPickerRow *)parentRow
+- (UITableViewCell *)tableViewCell:(UITableViewCell *)cell
 {
-    _TSCTableInputPickerControlRow *row = [[_TSCTableInputPickerControlRow alloc] init];
-    row.parentRow = parentRow;
-    
-    return row;
-}
-
-- (Class)tableViewCellClass
-{
-    return [_TSCTableInputPickerControlViewCell class];
-}
-
-- (CGFloat)tableViewCellHeightConstrainedToContentViewSize:(CGSize)contentViewSize tableViewSize:(CGSize)tableViewSize
-{
-    return 162.0;
+    TSCTableInputPickerViewCell *pickerCell = (TSCTableInputPickerViewCell *)cell;
+    pickerCell.inputRow = self;
+    pickerCell.values = self.values;
+    pickerCell.placeholder = self.placeholder;
+    return pickerCell;
 }
 
 @end

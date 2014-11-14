@@ -38,25 +38,3 @@
 }
 
 @end
-
-@implementation _TSCTableInputDatePickerControlRow
-
-+ (id)rowWithParentRow:(TSCTableInputDatePickerRow *)parentRow
-{
-    _TSCTableInputDatePickerControlRow  *row = [[_TSCTableInputDatePickerControlRow alloc] init];
-    row.parentRow = parentRow;
-    
-    return row;
-}
-
-- (Class)tableViewCellClass
-{
-    return [_TSCTableInputDatePickerControlViewCell class];
-}
-
-- (CGFloat)tableViewCellHeightConstrainedToSize:(CGSize)contrainedSize
-{
-    return 180;
-}
-
-@end
