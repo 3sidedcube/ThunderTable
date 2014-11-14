@@ -480,18 +480,6 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSIndexPath *previousCellIndex = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
-    if ([tableView cellForRowAtIndexPath:previousCellIndex]) {
-        
-        UITableViewCell *previousCell = [tableView cellForRowAtIndexPath:previousCellIndex];
-        
-        if ([previousCell isKindOfClass:[_TSCTableInputPickerControlViewCell class]] || [previousCell isKindOfClass:[_TSCTableInputDatePickerControlViewCell class]]) {
-            
-            NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row -1 inSection:indexPath.section];
-            return newPath;
-        }
-    }
-    
     return indexPath;
 }
 
@@ -583,41 +571,9 @@
         
         if ([cell isKindOfClass:[TSCTableInputDatePickerViewCell class]] || [cell isKindOfClass:[TSCTableInputPickerViewCell class]]) {
             
-            NSIndexPath *pickerControlIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
-
-            NSMutableArray *items = [NSMutableArray arrayWithArray:section.items];
-            TSCTableInputViewCell *pickerControlCell = (TSCTableInputViewCell *)[self.tableView cellForRowAtIndexPath:pickerControlIndexPath];
-            
-            [self TSC_collapseOpenPickerCells];
-            
-            if ([pickerControlCell isKindOfClass:[_TSCTableInputDatePickerControlViewCell class]] || [pickerControlCell isKindOfClass:[_TSCTableInputPickerControlViewCell class]]) {
-                
-                [items removeObjectAtIndex:pickerControlIndexPath.row];
-                section.items = items;
-                [self.tableView deleteRowsAtIndexPaths:@[pickerControlIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-                [cell setEditing:NO animated:YES];
-                
-            } else {
-                
-                TSCTableInputRow *pickerControlRow = nil;
-                
-                if ([row isKindOfClass:[TSCTableInputDatePickerRow class]]) {
-                    pickerControlRow = [_TSCTableInputDatePickerControlRow rowWithParentRow:(TSCTableInputDatePickerRow *)row];
-                }
-                
-                if ([row isKindOfClass:[TSCTableInputPickerRow class]]) {
-                    pickerControlRow = [_TSCTableInputPickerControlRow rowWithParentRow:(TSCTableInputPickerRow *)row];
-                }
-                
-                if (pickerControlRow) {
-                    [items insertObject:pickerControlRow atIndex:indexPath.row + 1];
-                }
-                
-                section.items = items;
-                [self.tableView insertRowsAtIndexPaths:@[pickerControlIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-                [self.tableView scrollToRowAtIndexPath:pickerControlIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
-                [cell setEditing:YES animated:YES];
-            }
+            [cell setEditing:YES animated:YES];
+            [[(TSCTableInputPickerViewCell *)cell inputView] becomeFirstResponder];
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
     }
     
@@ -650,44 +606,6 @@
 {
     TSCTableInputViewCell *cell = (TSCTableInputViewCell *)[self.tableView cellForRowAtIndexPath:self.selectedIndexPath];
     [cell setEditing:NO animated:YES];
-    [self TSC_collapseOpenPickerCells];
-}
-
-- (void)TSC_collapseOpenPickerCells
-{
-    for (TSCTableSection *section in self.dataSource) {
-        
-        NSInteger indexOfSection = [self.dataSource indexOfObject:section];
-        NSMutableArray *items = [NSMutableArray arrayWithArray:section.items];
-        NSMutableArray *indexPathsToDelete = [NSMutableArray array];
-        
-        for (TSCTableInputRow *row in section.items) {
-            
-            if ([self TSC_isPickerRow:row]) {
-                
-                NSInteger indexOfRow = [section.items indexOfObject:row];
-                
-                // Control rows are always directly below the row
-                NSInteger indexOfControlRow = indexOfRow + 1;
-                
-                if (indexOfControlRow < section.items.count) {
-                    
-                    TSCTableInputRow *controlRow = section.items[indexOfControlRow];
-                    
-                    if ([self TSC_isControlRow:controlRow]) {
-                        
-                        [items removeObjectAtIndex:indexOfControlRow];
-                        
-                        NSIndexPath *indexPathOfControlRow = [NSIndexPath indexPathForRow:indexOfControlRow inSection:indexOfSection];
-                        [indexPathsToDelete addObject:indexPathOfControlRow];
-                    }
-                }
-            }
-        }
-        
-        section.items = items;
-        [self.tableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:UITableViewRowAnimationFade];
-    }
 }
 
 - (BOOL)TSC_isPickerRow:(TSCTableInputRow *)row
@@ -701,11 +619,7 @@
 
 - (BOOL)TSC_isControlRow:(TSCTableInputRow *)row
 {
-    if ([row isKindOfClass:[_TSCTableInputDatePickerControlRow class]] || [row isKindOfClass:[_TSCTableInputPickerControlRow class]]) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return NO;
 }
 
 - (CGFloat)TSC_dynamicCellHeightWithIndexPath:(NSIndexPath *)indexPath

@@ -8,15 +8,12 @@
 
 #import "TSCTableInputViewCell.h"
 
-@interface TSCTableInputPickerViewCell : TSCTableInputViewCell
+@interface TSCTableInputPickerViewCell : TSCTableInputViewCell <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (nonatomic, strong) UILabel *selectionLabel;
-
-@end
-
-@interface _TSCTableInputPickerControlViewCell : TSCTableInputViewCell <UIPickerViewDelegate, UIPickerViewDataSource>
-
+@property (nonatomic, strong) UITextField *selectionLabel;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSArray *values;
+@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, strong) TSCTableInputRow *inputRow;
 
 @end

@@ -11,12 +11,7 @@
 @interface TSCTableInputDatePickerViewCell : TSCTableInputViewCell
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
-@property (nonatomic, strong) UILabel *dateLabel;
-
-@end
-
-@interface _TSCTableInputDatePickerControlViewCell : TSCTableInputViewCell
-
+@property (nonatomic, strong) UITextField *dateLabel;
 @property (nonatomic, strong) UIDatePicker *datePicker;
 
 @end
