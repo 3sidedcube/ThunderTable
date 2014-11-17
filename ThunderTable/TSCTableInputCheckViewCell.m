@@ -65,7 +65,7 @@
     UIView *sampleFrame = [[UIView alloc] initWithFrame:CGRectMake(18, 0, 30, 30)];
     
     CGPoint textOffset = CGPointMake(sampleFrame.frame.size.width + sampleFrame.frame.origin.x, sampleFrame.frame.origin.y);
-    CGSize textConstrainedSize = CGSizeMake(self.contentView.frame.size.width - textOffset.x - 10, MAXFLOAT);
+    CGSize textConstrainedSize = CGSizeMake(self.contentView.frame.size.width - textOffset.x, MAXFLOAT);
     
     CGSize textLabelSize = [self.textLabel sizeThatFits:textConstrainedSize];
     
