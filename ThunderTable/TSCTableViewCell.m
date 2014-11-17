@@ -40,8 +40,13 @@
 {
     [super layoutSubviews];
     
-    self.separatorTopView.frame = CGRectMake(0, 0, self.bounds.size.width, 0.5);
-    self.separatorBottomView.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 0.5);
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 1.00) {
+        self.separatorTopView.frame = CGRectMake(0, 0, self.bounds.size.width, 1);
+        self.separatorBottomView.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 1);
+    } else {
+        self.separatorTopView.frame = CGRectMake(0, 0, self.bounds.size.width, 0.5);
+        self.separatorBottomView.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 0.5);
+    }
 }
 
 - (void)setShouldDisplaySeparators:(BOOL)shouldDisplaySeparators
