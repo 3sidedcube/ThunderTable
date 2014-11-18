@@ -42,6 +42,7 @@
     } else {
         self.textField.textAlignment = NSTextAlignmentRight;
         self.textField.frame = CGRectMake(self.textLabel.bounds.size.width + 20, 10, self.contentView.bounds.size.width - self.textLabel.bounds.size.width - 30, 24);
+        self.textField.center = CGPointMake(self.textField.center.x, self.textLabel.center.y);
     }
 }
 
