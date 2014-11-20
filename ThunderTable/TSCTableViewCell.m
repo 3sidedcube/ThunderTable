@@ -47,14 +47,16 @@
         self.separatorTopView.frame = CGRectMake(0, 0, self.bounds.size.width, 0.5);
         self.separatorBottomView.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 0.5);
     }
+    
+    self.shouldDisplaySeparators = true;
 }
 
 - (void)setShouldDisplaySeparators:(BOOL)shouldDisplaySeparators
 {
     _shouldDisplaySeparators = shouldDisplaySeparators;
     
-    self.separatorTopView.hidden = !shouldDisplaySeparators;
-    self.separatorBottomView.hidden = !shouldDisplaySeparators;
+    self.separatorTopView.alpha = shouldDisplaySeparators ? 1.0 : 0.0;
+    self.separatorBottomView.alpha = shouldDisplaySeparators ? 1.0 : 0.0;
 }
 
 @end
