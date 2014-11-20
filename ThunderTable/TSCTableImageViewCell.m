@@ -22,7 +22,6 @@
         self.imageView.layer.cornerRadius = 7;
     }
     
-    self.shouldDisplaySeparators = YES;
 }
 
 @end

@@ -48,7 +48,6 @@
     if([TSCThemeManager localisedTextDirectionForBaseDirection:NSTextAlignmentLeft] == NSTextAlignmentRight){
         
         self.checkView.frame = CGRectMake(self.contentView.bounds.size.width - 40, self.contentView.bounds.size.height / 2 - 15, 30, 30);
-        
     } else {
         
         self.checkView.frame = CGRectMake(10, self.contentView.bounds.size.height / 2 - 15, 30, 30);
