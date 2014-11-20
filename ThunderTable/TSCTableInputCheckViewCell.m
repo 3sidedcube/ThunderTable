@@ -24,7 +24,13 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-
+        
+        self.checkView = [[TSCCheckView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+        [self.contentView addSubview:self.checkView];
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self.checkView action:@selector(handleTap:)];
+        [self.contentView addGestureRecognizer:tapGesture];
+        
     }
     
     return self;
@@ -38,11 +44,6 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    if (!self.hasAdded) {
-        [self.contentView addSubview:self.checkView];
-        self.hasAdded = YES;
-    }
     
     if([TSCThemeManager localisedTextDirectionForBaseDirection:NSTextAlignmentLeft] == NSTextAlignmentRight){
         
@@ -81,6 +82,9 @@
         
         self.textLabel.frame = CGRectMake(textOffset.x, textOffset.y + 5, textLabelSize.width, textLabelSize.height + 5);
     }
+    
+    self.textLabel.center = CGPointMake(self.textLabel.center.x, self.contentView.center.y);
+    
 }
 
 @end

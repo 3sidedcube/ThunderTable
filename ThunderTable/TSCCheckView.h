@@ -21,5 +21,6 @@
 
 - (void)setOn:(BOOL)on animated:(BOOL)animated;
 - (void)setOn:(BOOL)on animated:(BOOL)animated saveState:(BOOL)save;
+- (void)handleTap:(id)sender;
 
 @end
