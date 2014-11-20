@@ -112,6 +112,8 @@
     if ([TSCThemeManager isOS7]) {
         self.automaticallyAdjustsScrollViewInsets = YES;
     }
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 -(void)viewDidLayoutSubviews
