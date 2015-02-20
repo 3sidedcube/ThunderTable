@@ -205,14 +205,14 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    if (self.viewHasAppeared) {
-        
+//    if (self.viewHasAppeared) {
+    
         if (animated) {
             [self.tableView reloadData];
         } else {
             [self.tableView reloadData];
         }
-    }
+//    }
 }
 
 - (NSArray *)flattenedDataSource
