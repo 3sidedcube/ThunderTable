@@ -18,7 +18,7 @@
 
 /**
  @abstract The current value of the input row
- @discussion This is set by user input on the row, whether it be a textLabel or picker item e.t.c.
+ @discussion This is set by user input on the row, whether it be a `UITextField` or `UIDatePicker` item e.t.c.
  */
 @property (nonatomic, strong) id value;
 
