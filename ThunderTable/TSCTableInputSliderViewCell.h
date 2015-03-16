@@ -8,9 +8,19 @@
 
 #import "TSCTableInputViewCell.h"
 
+/**
+ `TSCTableInputSliderViewCell` A cell containing a `UISlider`
+ */
 @interface TSCTableInputSliderViewCell : TSCTableInputViewCell
 
+/**
+ @abstract The slider which is shown in the cell
+ */
 @property (nonatomic, strong) UISlider *slider;
+
+/**
+ @abstract a `UILabel` which shows the current value of the slider
+ */
 @property (nonatomic, strong) UILabel *valueLabel;
 
 @end

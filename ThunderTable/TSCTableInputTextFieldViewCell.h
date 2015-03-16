@@ -10,8 +10,14 @@
 
 @class TSCTableInputTextFieldViewCell;
 
+/**
+ `TSCTableInputTextFieldViewCell` A cell containing a right-aligned `UITextField`
+ */
 @interface TSCTableInputTextFieldViewCell : TSCTableInputViewCell <UITextFieldDelegate>
 
+/**
+ @abstract The `UITextField` displayed in the cell
+ */
 @property (nonatomic, strong) UITextField *textField;
 
 @end

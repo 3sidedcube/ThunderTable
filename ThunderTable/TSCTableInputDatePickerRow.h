@@ -10,6 +10,7 @@
 
 /**
  `TSCTableInputTextFieldRow` a row which provides the user with a `UIDatePicker` for entering a date
+ @discussion The selected date is shown in the `detailTextLabel` of the row
  */
 @interface TSCTableInputDatePickerRow : TSCTableInputRow
 
