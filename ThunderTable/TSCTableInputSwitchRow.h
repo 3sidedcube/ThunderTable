@@ -25,7 +25,7 @@
 @end
 
 /**
- `TSCTableInputSwitchRow` a row which displays with a title and `UISwitch`
+ A row which displays with a title and `UISwitch`
  */
 @interface TSCTableInputSwitchRow : TSCTableInputRow <TSCTableRowDataSource>
 

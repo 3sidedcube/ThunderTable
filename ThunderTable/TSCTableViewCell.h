@@ -11,7 +11,7 @@
 @class TSCTableViewCell;
 
 /**
- `TSCTableViewCell` a base subclass of `UITableViewCell` used as the cell for `TSCTableRow`
+ A base subclass of `UITableViewCell` used as the cell for `TSCTableRow`
  */
 @interface TSCTableViewCell : UITableViewCell
 

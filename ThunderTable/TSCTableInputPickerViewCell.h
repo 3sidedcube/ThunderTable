@@ -9,7 +9,7 @@
 #import "TSCTableInputViewCell.h"
 
 /**
- `TSCTableInputTextFieldViewCell` A cell containing a right-aligned `UITextField` which displays a `UIPickerView` upon becoming first responder in place of a keyboard
+ A cell containing a right-aligned `UITextField` which displays a `UIPickerView` upon becoming first responder in place of a keyboard
  */
 @interface TSCTableInputPickerViewCell : TSCTableInputViewCell <UIPickerViewDataSource, UIPickerViewDelegate>
 

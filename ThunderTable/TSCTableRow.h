@@ -100,6 +100,7 @@
 
 /**
  @abstract The placeholder image that is displayed whilst the cell is asynchronously loading the image defined by the `imageURL`
+ @discussion Once the image has loaded from the URL it will be displayed at the same size as the placeholderImage so make sure that placeholderImage is the same size as the returned image. Not doing so causes strange frame behaviour of the cells `imageView`
  */
 @property (nonatomic, strong) UIImage *imagePlaceholder;
 

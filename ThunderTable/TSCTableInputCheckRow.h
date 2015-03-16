@@ -9,7 +9,7 @@
 #import "TSCTableInputRow.h"
 
 /**
- `TSCTableInputCheckRow` a row which provides the user with a check box (`TSCCheckView`) used for example ticking off items in a list
+ A row which provides the user with a check box (`TSCCheckView`) used for example ticking off items in a list
  */
 @interface TSCTableInputCheckRow : TSCTableInputRow
 

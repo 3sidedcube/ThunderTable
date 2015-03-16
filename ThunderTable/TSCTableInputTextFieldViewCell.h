@@ -11,7 +11,7 @@
 @class TSCTableInputTextFieldViewCell;
 
 /**
- `TSCTableInputTextFieldViewCell` A cell containing a right-aligned `UITextField`
+ A cell containing a right-aligned `UITextField`
  */
 @interface TSCTableInputTextFieldViewCell : TSCTableInputViewCell <UITextFieldDelegate>
 

@@ -9,7 +9,7 @@
 #import "TSCTableInputViewCell.h"
 
 /**
- `TSCTableInputSwitchViewCell` A cell containing a `UISwitch`
+ A cell containing a `UISwitch`
  */
 @interface TSCTableInputSwitchViewCell : TSCTableInputViewCell
 

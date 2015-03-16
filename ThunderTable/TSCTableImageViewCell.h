@@ -9,7 +9,7 @@
 #import "TSCTableViewCell.h"
 
 /**
- `TSCTableImageViewCell` a subclass of `TSCTableViewCell` which displays a `UIImage` filling the cell
+ A subclass of `TSCTableViewCell` which displays a `UIImage` filling the cell
  */
 @interface TSCTableImageViewCell : TSCTableViewCell
 

@@ -11,7 +11,7 @@
 @class TSCCheckView;
 
 /**
- `TSCTableInputCheckViewCell` A cell containing a right-aligned check box (Circular by default)
+ A cell containing a right-aligned check box (Circular by default)
  */
 @interface TSCTableInputCheckViewCell : TSCTableInputViewCell
 

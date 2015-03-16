@@ -12,7 +12,7 @@
 @class TSCTableInputSliderRow;
 
 /**
- `TSCTableInputSliderRow` a row which provides the user with a `UISlider` for entering a value
+ A row which provides the user with a `UISlider` for entering a value
  */
 @interface TSCTableInputSliderRow : TSCTableInputRow <TSCTableInputSliderRowDataSource>
 

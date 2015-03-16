@@ -12,7 +12,7 @@
 @class TSCTableInputRow;
 
 /**
- `TSCTableInputViewCellDelegate` a protocol which is used for a cell to communicate when it's value is changed or the user has finished editing it
+ A protocol which is used for a cell to communicate when it's value is changed or the user has finished editing it
  */
 @protocol TSCTableInputViewCellDelegate <NSObject>
 
@@ -27,7 +27,7 @@
 @end
 
 /**
- `TSCTableInputViewCell` is the base class for cells which will contain an input element to display to the user
+ The base class for cells which will contain an input element to display to the user
  */
 @interface TSCTableInputViewCell : TSCTableViewCell
 

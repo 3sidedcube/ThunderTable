@@ -11,7 +11,7 @@
 #import "TSCTableInputRowDataSource.h"
 
 /**
- TSCTableInputRow should be subclassed to provice table rows for data input.
+ `TSCTableInputRow` should be subclassed to provide table rows for data input.
  @discussion A variety of default subclasses are provided by default in ThunderTable
  */
 @interface TSCTableInputRow : TSCTableRow <TSCTableInputRowDataSource>

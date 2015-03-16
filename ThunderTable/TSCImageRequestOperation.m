@@ -9,6 +9,15 @@
 #import "TSCImageRequestOperation.h"
 #import "TSCImageController.h"
 
+@interface TSCImageRequestOperation ()
+
+@property (nonatomic, strong, readwrite) NSURLConnection *connection;
+@property (nonatomic, strong, readwrite) NSMutableData *data;
+@property (nonatomic, strong, readwrite) UIImage *image;
+@property (nonatomic, assign, readwrite, getter = isCached) BOOL cached;
+
+@end
+
 @implementation TSCImageRequestOperation
 
 - (id)init

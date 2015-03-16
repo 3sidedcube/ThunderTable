@@ -9,7 +9,7 @@
 #import "TSCTableInputViewCell.h"
 
 /**
- `TSCTableInputTextFieldViewCell` A cell which displays a `UITextField` which has a `UIDatePicker` in place of it's keyboard when it becomes first responder
+ A cell which displays a `UITextField` which has a `UIDatePicker` in place of it's keyboard when it becomes first responder
  */
 @interface TSCTableInputDatePickerViewCell : TSCTableInputViewCell
 

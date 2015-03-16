@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 /**
- `TSCTableViewCell` a base subclass of `UITableViewCell` used as the cell for `TSCTableRow` with `UITableViewCellStyle` of `UITableViewCellStyleValue1`
+ A base subclass of `UITableViewCell` with a `UITableViewCellStyle` of `UITableViewCellStyleValue1`
  */
 @interface TSCTableValue1ViewCell : UITableViewCell
 

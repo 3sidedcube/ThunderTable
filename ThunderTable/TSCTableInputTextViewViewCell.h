@@ -11,7 +11,7 @@
 @class GCPlaceholderTextView;
 
 /**
- `TSCTableInputTextFieldViewCell` A cell containing an editable `CGPlaceholderTextView`
+ A cell containing an editable `CGPlaceholderTextView`
  */
 @interface TSCTableInputTextViewViewCell : TSCTableInputViewCell <UITextViewDelegate>
 

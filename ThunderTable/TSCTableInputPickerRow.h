@@ -9,7 +9,7 @@
 #import "TSCTableInputRow.h"
 
 /**
- `TSCTableInputTextFieldRow` a row which provides the user with a single column `UIPickerView` for selecting from a list of `NSString` values
+ A row which provides the user with a single column `UIPickerView` for selecting from a list of `NSString` values
  */
 @interface TSCTableInputPickerRow : TSCTableInputRow
 

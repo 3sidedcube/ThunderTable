@@ -8,7 +8,7 @@
 
 #import "TSCTableInputRow.h"
 /**
- `TSCTableInputTextFieldRow` a row which provides the user with a `UITextField` for entering data
+ A row which provides the user with a `UITextField` for entering data
  */
 @interface TSCTableInputTextFieldRow : TSCTableInputRow <TSCTableRowDataSource>
 

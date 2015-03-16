@@ -9,7 +9,7 @@
 #import "TSCTableInputViewCell.h"
 
 /**
- `TSCTableInputSliderViewCell` A cell containing a `UISlider`
+ A cell containing a `UISlider`
  */
 @interface TSCTableInputSliderViewCell : TSCTableInputViewCell
 

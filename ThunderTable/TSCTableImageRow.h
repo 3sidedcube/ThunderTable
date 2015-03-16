@@ -52,6 +52,7 @@
  @abstract Initialises and returns a row with a particular image
  @param url The url to load in the image for the row from
  @param placeholderImage A placeholder image to show until the image has been loaded from the URL provided
+ @discussion Once the image has loaded from the URL it will be displayed at the same size as the placeholderImage so make sure that placeholderImage is the same size as the returned image. Not doing so causes strange frame behaviour of the cells `imageView`
  */
 + (id)rowWithImageURL:(NSURL *)url placeholderImage:(UIImage *)placeholderImage;
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- `TSCCheckView` is a control which acts like a tick-box
+ A subclass of `UIControl` which functions as a tick-box
  */
 @interface TSCCheckView : UIControl
 
