@@ -11,12 +11,12 @@
 
 @implementation TSCTableRow
 
--(id)init
-{
-    if (self = [super init]) {
+-(id)init {
+    self = [super init];
+    if (self) {
+        
         self.shouldDisplaySelectionIndicator = YES;
     }
-    
     return self;
 }
 
@@ -110,6 +110,15 @@
     return self.link;
 }
 
+- (float)rowPadding
+{
+    if (_rowPadding) {
+        return _rowPadding;
+    }
+    
+    return 10;
+}
+
 - (BOOL)shouldDisplaySelectionCell
 {
     return YES;
@@ -126,6 +135,10 @@
     
     if (self.textColor) {
         standardCell.textLabel.textColor = self.textColor;
+    }
+    
+    if (self.accessoryType) {
+        standardCell.accessoryType = self.accessoryType;
     }
     
     return standardCell;

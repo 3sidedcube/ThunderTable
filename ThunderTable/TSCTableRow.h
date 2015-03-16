@@ -23,7 +23,7 @@
  @param title The title to display in the row
  @discussion The title will populate the `textLabel` text property of a `UITableViewCell`
  */
-+ (id)rowWithTitle:(NSString *)title;
++ (instancetype)rowWithTitle:(NSString *)title;
 
 /**
  Initializes the row with a single title in a custom color
@@ -31,7 +31,7 @@
  @param A 'UIColor' to color the text with
  @discussion The title will populate the `textLabel` text property of a `UITableViewCell`. The textColor will be applied to the text.
  */
-+ (id)rowWithTitle:(NSString *)title textColor:(UIColor *)textColor;
++ (instancetype)rowWithTitle:(NSString *)title textColor:(UIColor *)textColor;
 
 /**
  Initializes the row with a single title.
@@ -40,7 +40,7 @@
  @param image The image to be displayed to the left hand side of the cell
  @discussion The title will populate the `textLabel` text property and the subtitle will populate the `detailTextLabel` text property of the `UITableViewCell`
  */
-+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
 
 /**
  Initializes the row with a single title.
@@ -48,7 +48,7 @@
  @param subtitle The URL of the image to be displayed to the left hand side of the cell. Loaded asynchronously
  @discussion The title will populate the `textLabel` text property and the subtitle will populate the `detailTextLabel` text property of the `UITableViewCell`
  @note Please set the `imagePlaceholder` property when using this method. This is required because the image width and height is used at layout to provide appropriate space for your loaded image.
- */+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL;
+ */+ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL;
 
 /**
  @abstract The text to be displayed in the cells `textLabel`
@@ -116,5 +116,16 @@
  @discussion The default value of this property is `YES`
  */
 @property (nonatomic, assign) BOOL shouldDisplaySelectionIndicator;
+
+/**
+ @abstract The accessory type of the row
+ */
+@property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
+
+/**
+ @abstract The amount of padding to add above and below the contents of the cell.
+ @discussion You may find that adjusting this padding value on the cell improves the look and feel of your app
+ */
+@property (nonatomic, assign) float rowPadding;
 
 @end
