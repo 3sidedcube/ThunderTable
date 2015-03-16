@@ -14,14 +14,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
     self.imageView.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
-    
-    if (![TSCThemeManager isOS7]) {
-        self.imageView.layer.masksToBounds = YES;
-        self.imageView.layer.cornerRadius = 7;
-    }
-    
 }
 
 @end

@@ -12,5 +12,8 @@
 
 @property (nonatomic, weak) UIViewController *parentViewController;
 @property (nonatomic, strong) NSIndexPath *currentIndexPath;
+@property (nonatomic, strong) UIView *separatorTopView;
+@property (nonatomic, strong) UIView *separatorBottomView;
+@property (nonatomic, assign) BOOL shouldDisplaySeparators;
 
 @end
