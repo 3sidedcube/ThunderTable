@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "TSCTheme.h"
 
+/**
+ A default theme with some nice custom colours and fonts
+ */
 @interface TSCDefaultTheme : NSObject <TSCTheme>
 
 @end
+
