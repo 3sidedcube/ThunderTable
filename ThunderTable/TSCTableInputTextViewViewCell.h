@@ -10,9 +10,19 @@
 
 @class GCPlaceholderTextView;
 
+/**
+ A cell containing an editable `CGPlaceholderTextView`
+ */
 @interface TSCTableInputTextViewViewCell : TSCTableInputViewCell <UITextViewDelegate>
 
+/**
+ @abstract The `CGPlaceholderTextView` displayed in the cell
+ */
 @property (nonatomic, strong) GCPlaceholderTextView *textView;
+
+/**
+ @abstract The placeholder string to be shown in the `CGPlaceholderTextView`
+ */
 @property (nonatomic, copy) NSString *placeholder;
 
 @end

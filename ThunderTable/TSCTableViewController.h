@@ -56,6 +56,9 @@
  */
 @property (nonatomic, strong) NSArray *dataSource;
 
+/**
+ @abstract The indexPath of the currently selected table row
+ */
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 /**
@@ -191,12 +194,15 @@
 
 /**
  Called when the return key is pressed on the active UITextField
+ @param textField The `UITextField` that has returned
  @discussion Override this method in your own class to perform custom behaviour on the return key
  */
 - (void)textFieldDidReturn:(UITextField *)textField;
 
 /**
  Use this method to register a custom cell type for a particular index path.
+ @param indexPath The index path to override the cell for
+ @param overideClass The class to override the cell at a certain indexPath with
  */
 - (void)overideCellAtIndexPath:(NSIndexPath *)indexPath withClass:(Class)overideClass;
 

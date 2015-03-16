@@ -8,12 +8,36 @@
 
 #import "TSCTableInputViewCell.h"
 
+/**
+ A cell containing a right-aligned `UITextField` which displays a `UIPickerView` upon becoming first responder in place of a keyboard
+ */
 @interface TSCTableInputPickerViewCell : TSCTableInputViewCell <UIPickerViewDataSource, UIPickerViewDelegate>
 
+/**
+ @abstract The text field which displays the current selected item
+ */
 @property (nonatomic, strong) UITextField *selectionLabel;
+
+/**
+ @abstract The picker which is shown when the text field becomes the first responder
+ */
 @property (nonatomic, strong) UIPickerView *pickerView;
+
+/**
+ @abstract The array of NSStrings which are displayed in `pickerView`
+ */
 @property (nonatomic, strong) NSArray *values;
+
+/**
+ @abstract The placeholder for the `UIPickerView`
+ @discussion If non-nil this will be displayed as the first item in `pickerView` surrounded by --- <placeholder> ---
+ */
 @property (nonatomic, copy) NSString *placeholder;
+
+/**
+ @abstract The current row attached to this instance of the cell
+ @discussion This is kept referenced to the value can be updated on the row
+ */
 @property (nonatomic, strong) TSCTableInputRow *inputRow;
 
 @end

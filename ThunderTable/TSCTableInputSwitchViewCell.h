@@ -8,8 +8,14 @@
 
 #import "TSCTableInputViewCell.h"
 
+/**
+ A cell containing a `UISwitch`
+ */
 @interface TSCTableInputSwitchViewCell : TSCTableInputViewCell
 
+/**
+ @abstract The switch which is shown in the cell
+ */
 @property (nonatomic, strong) UISwitch *primarySwitch;
 
 @end

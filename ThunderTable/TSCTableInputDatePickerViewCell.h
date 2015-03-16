@@ -8,10 +8,25 @@
 
 #import "TSCTableInputViewCell.h"
 
+/**
+ A cell which displays a `UITextField` which has a `UIDatePicker` in place of it's keyboard when it becomes first responder
+ */
 @interface TSCTableInputDatePickerViewCell : TSCTableInputViewCell
 
+/**
+ The date formatter for the cell. 
+ @discussion This dateFormatter determines which format the selected date is shown in in the `UITextField`
+ */
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+
+/**
+ @abstract The text field which displays the current date
+ */
 @property (nonatomic, strong) UITextField *dateLabel;
+
+/**
+ @abstract The date picker which is shown when the text field becomes the first responder
+ */
 @property (nonatomic, strong) UIDatePicker *datePicker;
 
 @end

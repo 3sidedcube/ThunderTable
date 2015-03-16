@@ -7,13 +7,34 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/**
+ A base subclass of `UITableViewCell` with a `UITableViewCellStyle` of `UITableViewCellStyleValue1`
+ */
 @interface TSCTableValue1ViewCell : UITableViewCell
 
+/**
+ @abstract The containing `UIViewController` of the cell
+ */
 @property (nonatomic, weak) UIViewController *parentViewController;
+
+/**
+ @abstract Returns the index that the `TSCTableViewCell` is currently at in the `TSCTableViewController`
+ */
 @property (nonatomic, strong) NSIndexPath *currentIndexPath;
+
+/**
+ @abstract The view for the top separator of the cell
+ */
 @property (nonatomic, strong) UIView *separatorTopView;
+
+/**
+ @abstract The view for the bottom separator of the cell
+ */
 @property (nonatomic, strong) UIView *separatorBottomView;
+
+/**
+ @abstract Whether the cell should display separators or not
+ */
 @property (nonatomic, assign) BOOL shouldDisplaySeparators;
 
 @end
