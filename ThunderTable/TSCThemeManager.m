@@ -45,7 +45,6 @@ static id <TSCTheme> sharedController = nil;
     [toolbar setTintColor:[theme mainColor]];
     
     UITabBar *tabBar = [UITabBar appearance];
-    [tabBar setSelectedImageTintColor:[theme mainColor]];
     [tabBar setTintColor:[theme mainColor]];
     
     
