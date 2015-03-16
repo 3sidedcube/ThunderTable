@@ -23,11 +23,7 @@
         self.textView.textAlignment = NSTextAlignmentRight;
         self.textView.delegate = self;
         self.textView.textColor = [UIColor blackColor];
-
-        if ([TSCThemeManager isOS7]) {
-            self.textView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-        }
-        
+        self.textView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         self.textView.returnKeyType = UIReturnKeyNext;
 
         [self.contentView addSubview:self.textView];
@@ -92,7 +88,6 @@
 - (void)setPlaceholder:(NSString *)placeholder
 {
     _placeholder = placeholder;
-    
     self.textView.placeholder = self.placeholder;
 }
 

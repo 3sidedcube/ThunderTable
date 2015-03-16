@@ -14,13 +14,14 @@
 @protocol TSCTableInputViewCellDelegate <NSObject>
 
 @optional
+
 - (void)tableInputViewCellDidFinish:(TSCTableViewCell *)cell;
 
 @end
 
 @interface TSCTableInputViewCell : TSCTableViewCell
 
-@property (nonatomic, weak) id <TSCTableInputRowDataSource> inputRow;
+@property (nonatomic, strong) NSObject <TSCTableInputRowDataSource> *inputRow;
 @property (nonatomic, weak) id <TSCTableInputViewCellDelegate> delegate;
 
 @end

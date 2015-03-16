@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIView *innerView;
 @property (nonatomic, strong) UIView *outerView;
 @property (nonatomic, assign, getter = isOn) BOOL on;
+@property (nonatomic, assign) BOOL allowsUserInteraction;
 
 @property (nonatomic, strong) UIColor *onTintColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *tintColor  UI_APPEARANCE_SELECTOR;

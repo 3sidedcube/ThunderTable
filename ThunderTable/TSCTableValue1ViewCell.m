@@ -7,6 +7,7 @@
 //
 
 #import "TSCTableValue1ViewCell.h"
+#import "TSCThemeManager.h"
 
 @implementation TSCTableValue1ViewCell
 
