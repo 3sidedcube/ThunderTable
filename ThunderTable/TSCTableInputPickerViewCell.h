@@ -34,10 +34,4 @@
  */
 @property (nonatomic, copy) NSString *placeholder;
 
-/**
- @abstract The current row attached to this instance of the cell
- @discussion This is kept referenced to the value can be updated on the row
- */
-@property (nonatomic, strong) TSCTableInputRow *inputRow;
-
 @end

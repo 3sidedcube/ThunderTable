@@ -408,8 +408,11 @@
     
     if ([row respondsToSelector:@selector(tableViewCellHeightConstrainedToSize:)]) {
         
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         float height = [row tableViewCellHeightConstrainedToSize:contentViewSize];
         return height;
+#pragma clang diagnostic pop
     } else if ([row respondsToSelector:@selector(tableViewCellHeightConstrainedToContentViewSize:tableViewSize:)]) {
         
         float height = [row tableViewCellHeightConstrainedToContentViewSize:contentViewSize tableViewSize:self.tableView.frame.size];
