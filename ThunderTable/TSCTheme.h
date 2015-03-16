@@ -24,6 +24,7 @@
 - (UIFont *)secondaryLabelFont;
 - (UIColor *)detailLabelColor;
 - (UIFont *)detailLabelFont;
+- (UIFont *)lightFontOfSize:(CGFloat)size;
 - (UIColor *)defaultTableViewCellBackgroundColor;
 - (UIColor *)titleTextColor;
 - (UIColor *)disabledCellTextColor;
@@ -32,5 +33,7 @@
 - (UIColor *)greenColor;
 - (UIColor *)blueColor;
 - (UIColor *)darkBlueColor;
+- (UIColor *)progressTrackTintColour;
+- (UIColor *)progressTintColour;
 
 @end

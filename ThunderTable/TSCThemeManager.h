@@ -15,8 +15,8 @@
 + (void)setSharedTheme:(id <TSCTheme>)theme;
 + (BOOL)isOS7;
 + (BOOL)isOS8;
-+ (BOOL)isRightToLeft;
-+ (NSTextAlignment)localisedTextDirectionForBaseDirection:(NSTextAlignment)textDirection;
++ (BOOL)isRightToLeft __attribute__((deprecated));
++ (NSTextAlignment)localisedTextDirectionForBaseDirection:(NSTextAlignment)textDirection __attribute__((deprecated));
 + (void)customizeAppAppearance;
 
 BOOL isPad();
