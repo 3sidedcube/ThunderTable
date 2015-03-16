@@ -8,7 +8,7 @@
 
 #import "GCPlaceholderTextView.h"
 
-@interface GCPlaceholderTextView () 
+@interface GCPlaceholderTextView ()
 
 @property (nonatomic, strong) UIColor *realTextColor;
 @property (unsafe_unretained, nonatomic, readonly) NSString *realText;
@@ -121,7 +121,7 @@
 {
     if ([self.realText isEqualToString:self.placeholder]) {
         if ([textColor isEqual:self.placeholderColor]) {
-             [super setTextColor:textColor];
+            [super setTextColor:textColor];
         } else {
             self.realTextColor = textColor;
         }
@@ -137,6 +137,7 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 
 @end

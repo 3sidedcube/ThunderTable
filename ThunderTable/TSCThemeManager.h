@@ -1,6 +1,6 @@
 //
 //  TSCThemeManager.h
-//  American Red Cross Disaster
+//  ThunderTable
 //
 //  Created by Phillip Caudell on 16/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -15,8 +15,8 @@
 + (void)setSharedTheme:(id <TSCTheme>)theme;
 + (BOOL)isOS7;
 + (BOOL)isOS8;
-+ (BOOL)isRightToLeft;
-+ (NSTextAlignment)localisedTextDirectionForBaseDirection:(NSTextAlignment)textDirection;
++ (BOOL)isRightToLeft __attribute__((deprecated));
++ (NSTextAlignment)localisedTextDirectionForBaseDirection:(NSTextAlignment)textDirection __attribute__((deprecated));
 + (void)customizeAppAppearance;
 
 BOOL isPad();

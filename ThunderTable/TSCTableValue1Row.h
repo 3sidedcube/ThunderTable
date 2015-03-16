@@ -1,6 +1,6 @@
 //
 //  TSCTableValue1Row.h
-//  ThunderStorm
+// ThunderTable
 //
 //  Created by Matt Cheetham on 18/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
@@ -11,8 +11,8 @@
 
 @interface TSCTableValue1Row : NSObject <TSCTableRowDataSource>
 
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *subtitle;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, strong) UIColor *detailTextColor;

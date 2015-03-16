@@ -1,6 +1,6 @@
 //
 //  UIImageView+TSCImageView.m
-//  Paperboy
+//  ThunderTable
 //
 //  Created by Phillip Caudell on 08/10/2013.
 //  Copyright (c) 2013 3SIDEDCUBE. All rights reserved.
@@ -24,7 +24,7 @@
         if (image) {
             self.image = image;
         }
-
+        
         if (animated && !isCached) {
             
             CATransition *transition = [CATransition animation];

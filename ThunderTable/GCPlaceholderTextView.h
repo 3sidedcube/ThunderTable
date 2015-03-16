@@ -10,7 +10,7 @@
 
 @interface GCPlaceholderTextView : UITextView 
 
-@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, copy) NSString *placeholder;
 @property (nonatomic, strong) UIColor *placeholderColor;
 
 @end

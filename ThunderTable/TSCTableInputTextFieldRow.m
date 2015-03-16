@@ -1,6 +1,6 @@
 //
 //  TSCTableInputTextFieldRow.m
-//  American Red Cross Disaster
+// ThunderTable
 //
 //  Created by Phillip Caudell on 20/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  TSCTableInputDatePickerRow.h
-//  ThunderStorm
+// ThunderTable
 //
 //  Created by Phillip Caudell on 26/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
@@ -12,6 +12,6 @@
 
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
 
-+ (id)rowWithTitle:(NSString *)title mode:(UIDatePickerMode)mode inputId:(NSString *)inputId required:(BOOL)required;
++ (instancetype)rowWithTitle:(NSString *)title mode:(UIDatePickerMode)mode inputId:(NSString *)inputId required:(BOOL)required;
 
 @end

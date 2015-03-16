@@ -1,6 +1,6 @@
 //
 //  TSCTheme.h
-//  American Red Cross Disaster
+//  ThunderTable
 //
 //  Created by Phillip Caudell on 16/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -24,6 +24,7 @@
 - (UIFont *)secondaryLabelFont;
 - (UIColor *)detailLabelColor;
 - (UIFont *)detailLabelFont;
+- (UIFont *)lightFontOfSize:(CGFloat)size;
 - (UIColor *)defaultTableViewCellBackgroundColor;
 - (UIColor *)titleTextColor;
 - (UIColor *)disabledCellTextColor;
@@ -32,5 +33,7 @@
 - (UIColor *)greenColor;
 - (UIColor *)blueColor;
 - (UIColor *)darkBlueColor;
+- (UIColor *)progressTrackTintColour;
+- (UIColor *)progressTintColour;
 
 @end

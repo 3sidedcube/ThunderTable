@@ -1,6 +1,6 @@
 //
 //  TSCTableInputTextFieldViewCell.m
-//  American Red Cross Disaster
+// ThunderTable
 //
 //  Created by Phillip Caudell on 20/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -37,9 +37,13 @@
     [super layoutSubviews];
     
     if (!self.textLabel.text) {
+        
         self.textField.textAlignment = NSTextAlignmentLeft;
-        self.textField.frame = CGRectMake(10, 10, self.contentView.bounds.size.width - 20, 24);
+        self.textField.frame = CGRectMake(MAX(10,CGRectGetMaxX(self.imageView.frame) + 15), 10, self.contentView.bounds.size.width - 10 - MAX(10,CGRectGetMaxX(self.imageView.frame) + 15), 24);
+        self.textField.center = CGPointMake(self.textField.center.x, self.frame.size.height/2 + 1);
+        
     } else {
+        
         self.textField.textAlignment = NSTextAlignmentRight;
         self.textField.frame = CGRectMake(self.textLabel.bounds.size.width + 20, 10, self.contentView.bounds.size.width - self.textLabel.bounds.size.width - 30, 24);
         self.textField.center = CGPointMake(self.textField.center.x, self.textLabel.center.y);

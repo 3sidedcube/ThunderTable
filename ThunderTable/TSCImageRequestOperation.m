@@ -1,6 +1,6 @@
 //
 //  TSCImageRequest.m
-//  Paperboy
+// ThunderTable
 //
 //  Created by Phillip Caudell on 08/10/2013.
 //  Copyright (c) 2013 3SIDEDCUBE. All rights reserved.
@@ -11,16 +11,12 @@
 
 @implementation TSCImageRequestOperation
 
-- (void)dealloc
-{
-}
-
 - (id)init
 {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
         self.isConcurrent = YES;
     }
-    
     return self;
 }
 
@@ -78,8 +74,7 @@
 {
     self.cached = NO;
     self.image = [self TSC_imageWithData:self.data];
-    
-    if (self.image) {
+    if (self.image){
         [[TSCImageController sharedController] cacheImage:self.image forImageURL:self.imageURL];
         [self completeWithError:nil];
     } else {

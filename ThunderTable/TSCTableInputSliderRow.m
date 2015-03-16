@@ -19,7 +19,7 @@
 
 @implementation TSCTableInputSliderRow
 
-+ (id)rowWithTitle:(NSString *)title inputId:(NSString *)inputId minValue:(NSNumber *)minValue maxValue:(NSNumber *)maxValue currentValue:(NSNumber *)currentValue required:(BOOL)required
++ (instancetype)rowWithTitle:(NSString *)title inputId:(NSString *)inputId minValue:(NSNumber *)minValue maxValue:(NSNumber *)maxValue currentValue:(NSNumber *)currentValue required:(BOOL)required
 {
     TSCTableInputSliderRow *row = [[TSCTableInputSliderRow alloc] init];
     row.title = [title capitalizedString];
@@ -48,8 +48,7 @@
     inputCell.slider.minimumValue = [self.sliderMinValue floatValue];
     inputCell.slider.maximumValue = [self.sliderMaxValue floatValue];
     [inputCell.slider setValue:[self.currentValue floatValue] animated:YES];
-    inputCell.inputRow.value = @0;
-
+    
     return inputCell;
 }
 

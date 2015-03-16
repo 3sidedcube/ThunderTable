@@ -1,6 +1,6 @@
 //
 //  TSCTableViewController.m
-//  American Red Cross Disaster
+//  ThunderTable
 //
 //  Created by Phillip Caudell on 16/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -87,6 +87,7 @@
 {
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -108,11 +109,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if ([TSCThemeManager isOS7]) {
-        self.automaticallyAdjustsScrollViewInsets = YES;
-    }
-    
+    self.automaticallyAdjustsScrollViewInsets = YES;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -149,6 +146,10 @@
 
 - (void)keyboardDidShow:(NSNotification *)notification
 {
+    if (isPad()) {
+        return;
+    }
+    
     _standardInsets = self.tableView.contentInset;
     
     NSDictionary* info = notification.userInfo;
@@ -308,11 +309,21 @@
         cell.textLabel.textColor = ((TSCTableRow *)row).textColor;
     }
     if ([row respondsToSelector:@selector(rowTitle)]) {
-        cell.textLabel.text = [row rowTitle];
+        
+        if ([[row rowTitle] isKindOfClass:[NSAttributedString class]]) {
+            cell.textLabel.attributedText = (NSAttributedString *)[row rowTitle];
+        } else {
+            cell.textLabel.text = [row rowTitle];
+        }
     }
     
     if ([row respondsToSelector:@selector(rowSubtitle)]) {
-        cell.detailTextLabel.text = [row rowSubtitle];
+        
+        if ([[row rowSubtitle] isKindOfClass:[NSAttributedString class]]) {
+            cell.detailTextLabel.attributedText = (NSAttributedString *)[row rowSubtitle];
+        } else {
+            cell.detailTextLabel.text = [row rowSubtitle];
+        }
     }
     
     if ([row respondsToSelector:@selector(indentationLevel)]) {
@@ -393,7 +404,7 @@
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
     
-    CGSize contentViewSize = CGSizeMake(self.tableView.frame.size.width - [self TSC_cellMargin], MAXFLOAT);
+    CGSize contentViewSize = CGSizeMake(self.tableView.frame.size.width, MAXFLOAT);
     
     if ([row respondsToSelector:@selector(tableViewCellHeightConstrainedToSize:)]) {
         
@@ -424,37 +435,6 @@
     return UITableViewAutomaticDimension;
 }
 
-- (CGFloat)TSC_cellMargin
-{
-    // Life would be easier using plain style
-    if (self.tableView.style == UITableViewStylePlain) {
-        return 0;
-    }
-    
-    if ([TSCThemeManager isOS7]) {
-        return 0;
-    }
-    
-    // Grouped
-    if (self.tableView.style == UITableViewStyleGrouped) {
-        
-        // Phone will always have 10
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            return (10 - 1) * 2;
-        }
-        
-        // Less than 400, just use normal
-        if (self.view.frame.size.width < 400) {
-            return (10 - 1) * 2;
-        }
-        
-        // Bigger than 400, table views have 6% margin of table width
-        return (MAX(31, MIN(45, self.view.frame.size.width * 0.06)) - 1) * 2;
-    }
-    
-    return 0;
-}
-
 - (BOOL)TSC_isCellClassRegistered:(Class)class
 {
     BOOL isCellClassRegistered = NO;
@@ -480,8 +460,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     if ([self isIndexPathSelectable:indexPath]) {
         
         [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
@@ -549,7 +527,12 @@
     if (([row respondsToSelector:@selector(rowSelectionTarget)] && [row respondsToSelector:@selector(rowSelectionSelector)]) && (row.rowSelectionTarget && row.rowSelectionSelector)) {
         [row.rowSelectionTarget performSelector:row.rowSelectionSelector withObject:selection];
     } else {
-        [section.target performSelector:section.selector withObject:selection];
+        
+        if ([section respondsToSelector:@selector(sectionTarget)] && [section respondsToSelector:@selector(sectionSelector)]) {
+            [[section sectionTarget] performSelector:[section sectionSelector] withObject:selection];
+        } else {
+            [section.target performSelector:section.selector withObject:selection];
+        }
     }
 #pragma clang diagnostic pop
     
@@ -638,7 +621,7 @@
     
     [self TSC_configureCell:cell withIndexPath:indexPath];
     
-    cell.frame = CGRectMake(0, 0, self.view.bounds.size.width - [self TSC_cellMargin] - (![TSCThemeManager isOS7] ? 2 : 8), 44);
+    cell.frame = CGRectMake(0, 0, self.view.bounds.size.width - 8, 44);
     [cell layoutSubviews];
     
     CGFloat totalHeight = 0;

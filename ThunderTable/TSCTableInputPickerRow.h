@@ -1,6 +1,6 @@
 //
 //  TSCTableInputPickerRow.h
-//  ThunderStorm
+// ThunderTable
 //
 //  Created by Phillip Caudell on 26/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
@@ -11,8 +11,8 @@
 @interface TSCTableInputPickerRow : TSCTableInputRow
 
 @property (nonatomic, strong) NSArray *values;
-@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, copy) NSString *placeholder;
 
-+ (id)rowWithTitle:(NSString *)title inputId:(NSString *)inputId values:(NSArray *)values required:(BOOL)required;
++ (instancetype)rowWithTitle:(NSString *)title inputId:(NSString *)inputId values:(NSArray *)values required:(BOOL)required;
 
 @end

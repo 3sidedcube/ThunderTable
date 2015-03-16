@@ -1,6 +1,6 @@
 //
 //  TSCCheckView.m
-//  ThunderStorm
+// ThunderTable
 //
 //  Created by Phillip Caudell on 27/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
@@ -13,8 +13,10 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    if (self = [super initWithFrame:frame]) {
-
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        
         if (!self.onTintColor) {
             self.onTintColor = [[TSCThemeManager sharedTheme] mainColor];
         }
@@ -36,6 +38,7 @@
         [self addGestureRecognizer:tapGesture];
         
         [self setOn:NO animated:NO];
+        
     }
     
     return self;
@@ -69,12 +72,22 @@
         
     } else {
         
-        [UIView animateWithDuration:duration * 2 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.5 options:kNilOptions animations:^{
-            self.outerView.backgroundColor = self.tintColor;
-            self.innerView.transform = CGAffineTransformMakeScale(1.0, 1.0);
-        } completion:nil];
+        if ([TSCThemeManager isOS7]) {
+            [UIView animateWithDuration:duration * 2 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.5 options:kNilOptions animations:^{
+                self.outerView.backgroundColor = self.tintColor;
+                self.innerView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            } completion:nil];
+        } else {
+            
+            [UIView animateWithDuration:duration animations:^{
+                self.outerView.backgroundColor = self.tintColor;
+                self.innerView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            }];
+            
+        }
         
         [self sendActionsForControlEvents:UIControlEventValueChanged];
+        
     }
     
     if (self.checkIdentifier && save) {
@@ -104,6 +117,15 @@
     
     if (self.isOn) {
         self.outerView.backgroundColor = onTintColor;
+    }
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    if (self.allowsUserInteraction) {
+        return [super pointInside:point withEvent:event];
+    } else {
+        return false;
     }
 }
 

@@ -53,7 +53,7 @@
 - (void)finish
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-
+    
     if (self.completion) {
         self.completion(self.selectedItems);
     }

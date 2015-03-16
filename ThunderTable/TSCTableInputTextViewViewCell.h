@@ -1,6 +1,6 @@
 //
 //  TSCTableInputTextViewViewCell.h
-//  ThunderStorm
+// ThunderTable
 //
 //  Created by Matt Cheetham on 17/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
@@ -13,6 +13,6 @@
 @interface TSCTableInputTextViewViewCell : TSCTableInputViewCell <UITextViewDelegate>
 
 @property (nonatomic, strong) GCPlaceholderTextView *textView;
-@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, copy) NSString *placeholder;
 
 @end

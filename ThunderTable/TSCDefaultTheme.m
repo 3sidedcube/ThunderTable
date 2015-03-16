@@ -1,6 +1,6 @@
 //
 //  TSCDefaultTheme.m
-//  ThunderStorm
+//  ThunderTable
 //
 //  Created by Phillip Caudell on 26/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
@@ -42,7 +42,7 @@
 
 - (UIColor *)freeTextColor
 {
-    return [UIColor blackColor];
+    return [self mainColor];
 }
 
 - (UIColor *)headerTextColor
@@ -73,6 +73,11 @@
 - (UIFont *)detailLabelFont
 {
     return [UIFont systemFontOfSize:[UIFont systemFontSize]];
+}
+
+- (UIFont *)lightFontOfSize:(CGFloat)size
+{
+    return [UIFont fontWithName:@"HelveticaNeue-Light" size:size];
 }
 
 - (UIColor *)defaultTableViewCellBackgroundColor
@@ -113,6 +118,16 @@
 - (UIColor *)disabledCellTextColor
 {
     return [UIColor colorWithWhite:0.6 alpha:0.6];
+}
+
+- (UIColor *)progressTrackTintColour
+{
+    return [UIColor colorWithWhite:0.683 alpha:1.000];
+}
+
+- (UIColor *)progressTintColour
+{
+    return [UIColor whiteColor];
 }
 
 @end

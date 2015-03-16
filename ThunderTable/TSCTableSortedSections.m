@@ -35,7 +35,7 @@
             [sections addObject:section];
         }
     }
-
+    
     self = (TSCTableSortedSections *)sections;
     
     return self;

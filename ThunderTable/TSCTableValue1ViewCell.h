@@ -1,6 +1,6 @@
 //
 //  TSCTableValue1ViewCell.h
-//  ThunderStorm
+// ThunderTable
 //
 //  Created by Matt Cheetham on 18/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
@@ -12,5 +12,8 @@
 
 @property (nonatomic, weak) UIViewController *parentViewController;
 @property (nonatomic, strong) NSIndexPath *currentIndexPath;
+@property (nonatomic, strong) UIView *separatorTopView;
+@property (nonatomic, strong) UIView *separatorBottomView;
+@property (nonatomic, assign) BOOL shouldDisplaySeparators;
 
 @end

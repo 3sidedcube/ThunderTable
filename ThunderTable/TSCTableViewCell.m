@@ -1,6 +1,6 @@
 //
 //  TSCTableViewCell.m
-//  American Red Cross Disaster
+// ThunderTable
 //
 //  Created by Phillip Caudell on 16/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -13,7 +13,9 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier]) {
+    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
         
         self.textLabel.numberOfLines = 0;
         self.textLabel.backgroundColor = [UIColor clearColor];
@@ -25,6 +27,7 @@
         self.separatorTopView = [UIView new];
         self.separatorTopView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
         [self.contentView addSubview:self.separatorTopView];
+        
         
         self.separatorBottomView = [UIView new];
         self.separatorBottomView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
@@ -55,8 +58,8 @@
 {
     _shouldDisplaySeparators = shouldDisplaySeparators;
     
-    self.separatorTopView.alpha = shouldDisplaySeparators ? 1.0 : 0.0;
-    self.separatorBottomView.alpha = shouldDisplaySeparators ? 1.0 : 0.0;
+    self.separatorTopView.hidden = !shouldDisplaySeparators;
+    self.separatorBottomView.hidden = !shouldDisplaySeparators;
 }
 
 @end
