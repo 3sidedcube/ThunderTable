@@ -1,6 +1,6 @@
 //
 //  TSCTableRow.h
-//  American Red Cross Disaster
+// ThunderTable
 //
 //  Created by Phillip Caudell on 16/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -53,12 +53,12 @@
 /**
  @abstract The text to be displayed in the cells `textLabel`
  */
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, copy) NSString *title;
 
 /**
  @abstract The text to be displayed in the cells `detailTextLabel`
  */
-@property (nonatomic, strong) NSString *subtitle;
+@property (nonatomic, copy) NSString *subtitle;
 
 /**
  @abstract The `UIImage` to be displayed in the cell

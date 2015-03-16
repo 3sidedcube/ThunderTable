@@ -1,6 +1,6 @@
 //
 //  TSCTableValue1Row.h
-//  ThunderStorm
+// ThunderTable
 //
 //  Created by Matt Cheetham on 18/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.

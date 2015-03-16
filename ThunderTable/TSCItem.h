@@ -16,8 +16,8 @@
 
 typedef void (^TSCItemHandler)(TSCItem *item);
 
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *subtitle;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, assign, getter = isEnabled) BOOL enabled;
 @property (nonatomic, assign, getter = isSelected) BOOL selected;
 @property (nonatomic, strong) TSCItemHandler handler;
