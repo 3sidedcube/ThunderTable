@@ -56,6 +56,9 @@
  */
 @property (nonatomic, strong) NSArray *dataSource;
 
+/**
+ @abstract The indexPath of the currently selected table row
+ */
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 /**

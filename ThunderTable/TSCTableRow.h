@@ -28,7 +28,7 @@
 /**
  Initializes the row with a single title in a custom color
  @param title The title to display in the row
- @param A 'UIColor' to color the text with
+ @param textColor A 'UIColor' to color the text with
  @discussion The title will populate the `textLabel` text property of a `UITableViewCell`. The textColor will be applied to the text.
  */
 + (instancetype)rowWithTitle:(NSString *)title textColor:(UIColor *)textColor;
@@ -45,10 +45,38 @@
 /**
  Initializes the row with a single title.
  @param title The title to display in the row
- @param subtitle The URL of the image to be displayed to the left hand side of the cell. Loaded asynchronously
+ @param subtitle The subtitle to display beneath the title in row
+ @param imageURL The URL of the image to be displayed to the left hand side of the cell. Loaded asynchronously
  @discussion The title will populate the `textLabel` text property and the subtitle will populate the `detailTextLabel` text property of the `UITableViewCell`
  @note Please set the `imagePlaceholder` property when using this method. This is required because the image width and height is used at layout to provide appropriate space for your loaded image.
- */+ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL;
+ */
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL;
+
+///---------------------------------------------------------------------------------------
+/// @name Handling selection
+///---------------------------------------------------------------------------------------
+
+/**
+ Adds a target and selector to the cell. This makes the row selectable.
+ @param target The object to send the selection event to
+ @param selector The selector to call on the target object
+ @discussion Calling this method makes the cell selectable in the table view, also adding a selection indicator to the cell
+ */
+- (void)addTarget:(id)target selector:(SEL)selector;
+
+/**
+ @abstract The object to be called upon the user selecting the row
+ */
+@property (nonatomic, weak) id target;
+
+/**
+ @abstract The selector to be called on the target upon the user selecting the row
+ */
+@property (nonatomic, assign) SEL selector;
+
+///---------------------------------------------------------------------------------------
+/// @name Row configuration
+///---------------------------------------------------------------------------------------
 
 /**
  @abstract The text to be displayed in the cells `textLabel`
@@ -85,31 +113,6 @@
  */
 @property (nonatomic, strong) TSCLink *link;
 
-///---------------------------------------------------------------------------------------
-/// @name Handling selection
-///---------------------------------------------------------------------------------------
-
-/**
- Adds a target and selector to the cell. This makes the row selectable.
- @param target The object to send the selection event to
- @param selector The selector to call on the target object
- @discussion Calling this method makes the cell selectable in the table view, also adding a selection indicator to the cell
- */
-- (void)addTarget:(id)target selector:(SEL)selector;
-
-/**
- @abstract The object to be called upon the user selecting the row
- */
-@property (nonatomic, weak) id target;
-
-/**
- @abstract The selector to be called on the target upon the user selecting the row
- */
-@property (nonatomic, assign) SEL selector;
-
-///---------------------------------------------------------------------------------------
-/// @name Row configuration
-///---------------------------------------------------------------------------------------
 
 /**
  @abstract A boolean to configure whether the cell shows the selection indicator when it is selectable
