@@ -117,7 +117,7 @@
 
 /**
  @abstract Whether the row is enabled or not
- @discussion This determines styling on the row. If it is set to false the text colour for this row will be set to `[[TSCThemeManager sharedTheme] disabledCellTextColor]` otherwise it will display as normal
+ @discussion This determines styling on the row. If it is set to false the text colour for this row will be set to `TSCThemeManager` `-disabledCellTextColor` otherwise it will display as normal
  */
 @property (nonatomic) BOOL enabled;
 

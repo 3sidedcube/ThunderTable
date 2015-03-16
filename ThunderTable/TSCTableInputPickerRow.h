@@ -19,8 +19,8 @@
 
 /**
  Initializes the row with a title and array of values
- @param title The title to show on the row
- @param inputId The key to save the value of the `UIPickerView` under
+ @param title Title to show on the row
+ @param inputId Key to save the value of the `UIPickerView` under
  @param values An array of NSStrings to be shown within the `UIPickerView`
  @param required Whether or not a value is required for this row
  */
@@ -31,12 +31,12 @@
 ///---------------------------------------------------------------------------------------
 
 /**
- @param The array of NSStrings to be shown within the `UIPickerView`
+ The array of NSStrings to be shown within the `UIPickerView`
  */
 @property (nonatomic, strong) NSArray *values;
 
 /**
- @param A placeholder string which will be shown as the first item in the `UIPickerView` if given
+ A placeholder string which will be shown as the first item in the `UIPickerView` if given
  */
 @property (nonatomic, copy) NSString *placeholder;
 
