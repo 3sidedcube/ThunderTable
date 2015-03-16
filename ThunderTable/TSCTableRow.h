@@ -85,6 +85,8 @@
  */
 @property (nonatomic, strong) TSCLink *link;
 
+@property (nonatomic) BOOL shouldCenterText;
+
 ///---------------------------------------------------------------------------------------
 /// @name Handling selection
 ///---------------------------------------------------------------------------------------
