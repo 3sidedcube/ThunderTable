@@ -21,7 +21,7 @@
 @property (nonatomic, assign, getter = isOn) BOOL on;
 @property (nonatomic, weak) id <TSCTableInputSwitchRowDelegate> delegate;
 
-+ (id)rowWithTitle:(NSString *)title inputId:(NSString *)inputId required:(BOOL)required;
-+ (id)rowWithTitle:(NSString *)title image:(UIImage *)image inputId:(NSString *)inputId required:(BOOL)required;
++ (instancetype)rowWithTitle:(NSString *)title inputId:(NSString *)inputId required:(BOOL)required;
++ (instancetype)rowWithTitle:(NSString *)title image:(UIImage *)image inputId:(NSString *)inputId required:(BOOL)required;
 
 @end

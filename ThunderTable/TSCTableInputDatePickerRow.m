@@ -11,7 +11,7 @@
 
 @implementation TSCTableInputDatePickerRow
 
-+ (id)rowWithTitle:(NSString *)title mode:(UIDatePickerMode)mode inputId:(NSString *)inputId required:(BOOL)required
++ (instancetype)rowWithTitle:(NSString *)title mode:(UIDatePickerMode)mode inputId:(NSString *)inputId required:(BOOL)required
 {
     TSCTableInputDatePickerRow *row = [[TSCTableInputDatePickerRow alloc] init];
     row.title = title;

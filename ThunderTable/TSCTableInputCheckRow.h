@@ -10,6 +10,6 @@
 
 @interface TSCTableInputCheckRow : TSCTableInputRow
 
-+ (id)rowWithTitle:(NSString *)title inputId:(NSString *)inputId required:(BOOL)required;
++ (instancetype)rowWithTitle:(NSString *)title inputId:(NSString *)inputId required:(BOOL)required;
 
 @end

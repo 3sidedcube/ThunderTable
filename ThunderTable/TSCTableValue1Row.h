@@ -11,8 +11,8 @@
 
 @interface TSCTableValue1Row : NSObject <TSCTableRowDataSource>
 
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *subtitle;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, strong) UIColor *detailTextColor;

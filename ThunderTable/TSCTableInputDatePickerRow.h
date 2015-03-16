@@ -12,6 +12,6 @@
 
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
 
-+ (id)rowWithTitle:(NSString *)title mode:(UIDatePickerMode)mode inputId:(NSString *)inputId required:(BOOL)required;
++ (instancetype)rowWithTitle:(NSString *)title mode:(UIDatePickerMode)mode inputId:(NSString *)inputId required:(BOOL)required;
 
 @end

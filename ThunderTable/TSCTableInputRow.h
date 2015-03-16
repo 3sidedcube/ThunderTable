@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) id value;
 @property (nonatomic, assign) BOOL required;
-@property (nonatomic, strong) NSString *inputId;
+@property (nonatomic, copy) NSString *inputId;
 
 @end

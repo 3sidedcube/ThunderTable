@@ -12,7 +12,7 @@
 
 @implementation TSCTableInputTextViewRow
 
-+ (id)rowWithPlaceholder:(NSString *)placeholder inputId:(NSString *)inputId required:(BOOL)required cellHeight:(CGFloat)height
++ (instancetype)rowWithPlaceholder:(NSString *)placeholder inputId:(NSString *)inputId required:(BOOL)required cellHeight:(CGFloat)height
 {
     TSCTableInputTextViewRow *row = [[TSCTableInputTextViewRow alloc] init];
     row.inputId = inputId;

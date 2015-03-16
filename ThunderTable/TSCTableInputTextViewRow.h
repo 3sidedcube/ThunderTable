@@ -11,8 +11,8 @@
 @interface TSCTableInputTextViewRow : TSCTableInputRow <TSCTableRowDataSource>
 
 @property (nonatomic) CGFloat cellHeight;
-@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, copy) NSString *placeholder;
 
-+ (id)rowWithPlaceholder:(NSString *)placeholder inputId:(NSString *)inputId required:(BOOL)required cellHeight:(CGFloat)height;
++ (instancetype)rowWithPlaceholder:(NSString *)placeholder inputId:(NSString *)inputId required:(BOOL)required cellHeight:(CGFloat)height;
 
 @end

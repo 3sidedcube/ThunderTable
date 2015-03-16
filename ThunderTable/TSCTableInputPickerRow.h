@@ -11,8 +11,8 @@
 @interface TSCTableInputPickerRow : TSCTableInputRow
 
 @property (nonatomic, strong) NSArray *values;
-@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, copy) NSString *placeholder;
 
-+ (id)rowWithTitle:(NSString *)title inputId:(NSString *)inputId values:(NSArray *)values required:(BOOL)required;
++ (instancetype)rowWithTitle:(NSString *)title inputId:(NSString *)inputId values:(NSArray *)values required:(BOOL)required;
 
 @end

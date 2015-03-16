@@ -13,6 +13,6 @@
 
 @interface TSCTableInputSliderRow : TSCTableInputRow <TSCTableInputSliderRowDataSource>
 
-+ (id)rowWithTitle:(NSString *)title inputId:(NSString *)inputId minValue:(NSNumber *)minValue maxValue:(NSNumber *)maxValue currentValue:(NSNumber *)currentValue required:(BOOL)required;
++ (instancetype)rowWithTitle:(NSString *)title inputId:(NSString *)inputId minValue:(NSNumber *)minValue maxValue:(NSNumber *)maxValue currentValue:(NSNumber *)currentValue required:(BOOL)required;
 
 @end

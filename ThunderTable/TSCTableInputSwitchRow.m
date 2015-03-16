@@ -11,9 +11,9 @@
 
 @implementation TSCTableInputSwitchRow
 
-+ (id)rowWithTitle:(NSString *)title inputId:(NSString *)inputId required:(BOOL)required
++ (instancetype)rowWithTitle:(NSString *)title inputId:(NSString *)inputId required:(BOOL)required
 {
-    TSCTableInputSwitchRow *row = [[TSCTableInputSwitchRow alloc] init];
+    TSCTableInputSwitchRow *row = [[[self class] alloc] init];
     row.title = title;
     row.inputId = inputId;
     row.required = required;
@@ -21,9 +21,9 @@
     return row;
 }
 
-+ (id)rowWithTitle:(NSString *)title image:(UIImage *)image inputId:(NSString *)inputId required:(BOOL)required
++ (instancetype)rowWithTitle:(NSString *)title image:(UIImage *)image inputId:(NSString *)inputId required:(BOOL)required
 {
-    TSCTableInputSwitchRow *row = [[TSCTableInputSwitchRow alloc] init];
+    TSCTableInputSwitchRow *row = [[[self class] alloc] init];
     row.title = title;
     row.inputId = inputId;
     row.required = required;

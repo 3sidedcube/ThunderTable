@@ -8,7 +8,6 @@
 
 #import "TSCTableValue1Row.h"
 #import "TSCTableValue1ViewCell.h"
-#import "TSCThemeManager.h"
 
 @implementation TSCTableValue1Row
 
