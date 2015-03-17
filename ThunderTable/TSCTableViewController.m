@@ -723,11 +723,11 @@
         
         if (section.sectionItems.count > 0) {
             
-            for (TSCTableInputRow *row in section.items) {
+            for (TSCTableInputRow *row in section.sectionItems) {
                 
                 if ([row isKindOfClass:[TSCTableInputTextFieldRow class]]) {
                     
-                    NSInteger index = [section.items indexOfObject:row];
+                    NSInteger index = [section.sectionItems indexOfObject:row];
                     [self TSC_handleTableViewSelectionWithIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
                     
                     break;
