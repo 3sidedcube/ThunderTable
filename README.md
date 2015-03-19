@@ -58,6 +58,8 @@ And then finally we set our tableView's datasource like so:
 
     self.dataSource = @[userSection];
 
+#Code level documentation
+Documentation is available for the entire library in AppleDoc format. This is available in the framework itself or in the [Hosted Version](http://3sidedcube.github.io/iOS-ThunderTable/)
 	
 #License
 See [LICENSE.md](LICENSE.md)
