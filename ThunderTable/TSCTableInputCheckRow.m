@@ -1,6 +1,6 @@
 //
 //  TSCTableInputCheckRow.m
-//  ThunderStorm
+// ThunderTable
 //
 //  Created by Phillip Caudell on 27/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
@@ -11,7 +11,7 @@
 
 @implementation TSCTableInputCheckRow
 
-+ (id)rowWithTitle:(NSString *)title inputId:(NSString *)inputId required:(BOOL)required
++ (instancetype)rowWithTitle:(NSString *)title inputId:(NSString *)inputId required:(BOOL)required
 {
     TSCTableInputCheckRow *row = [[TSCTableInputCheckRow alloc] init];
     row.title = title;

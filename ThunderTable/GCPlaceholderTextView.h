@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Subclass of `UITextView` which adds placeholder capability
+ */
 @interface GCPlaceholderTextView : UITextView 
 
-@property (nonatomic, strong) NSString *placeholder;
+/**
+ @abstract The placeholder string to be displayed in the `CGPlaceholderTextView`
+ */
+@property (nonatomic, copy) NSString *placeholder;
+
+/**
+ @abstract The colour of the text to be used for the placeholder string when it is displayed
+ */
 @property (nonatomic, strong) UIColor *placeholderColor;
 
 @end

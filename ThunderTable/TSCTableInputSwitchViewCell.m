@@ -1,19 +1,21 @@
 //
 //  TSCTableInputSwitchViewCell.m
-//  American Red Cross Disaster
+// ThunderTable
 //
 //  Created by Phillip Caudell on 27/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
 //
 
 #import "TSCTableInputSwitchViewCell.h"
-#import "TSCTableInputSwitchRow.h"  
+#import "TSCTableInputSwitchRow.h"
 
 @implementation TSCTableInputSwitchViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
         self.primarySwitch = [[UISwitch alloc] init];
         [self.primarySwitch addTarget:self action:@selector(handleSwitch:) forControlEvents:UIControlEventValueChanged];
         [self.contentView addSubview:self.primarySwitch];
@@ -25,6 +27,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
     
     CGSize constrainedSize = CGSizeMake(self.contentView.frame.size.width - 78 - 20 - self.imageView.frame.size.width, MAXFLOAT);
     
@@ -42,17 +45,22 @@
     if ([self.inputRow isKindOfClass:[TSCTableInputSwitchRow class]]) {
         
         TSCTableInputSwitchRow *switchRow = (TSCTableInputSwitchRow *)self.inputRow;
-        switchRow.on = self.primarySwitch.isOn;
-        self.inputRow.value = [NSNumber numberWithBool:switchRow.isOn];
         
-        if ([switchRow.delegate respondsToSelector:@selector(inputSwitchRow:didChangeToState:)]) {
-            [switchRow.delegate inputSwitchRow:switchRow didChangeToState:switchRow.isOn];
+        if(![self.inputRow.value isEqualToNumber:[NSNumber numberWithBool:sender.isOn]]) {
+            
+            switchRow.on = self.primarySwitch.isOn;
+            self.inputRow.value = [NSNumber numberWithBool:switchRow.isOn];
+            
+            if ([switchRow.delegate respondsToSelector:@selector(inputSwitchRow:didChangeToState:)]) {
+                [switchRow.delegate inputSwitchRow:switchRow didChangeToState:switchRow.isOn];
+            }
+            
+            #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [switchRow.target performSelector:switchRow.selector withObject:sender];
+            
+            return;
+            
         }
-        
-        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [switchRow.target performSelector:switchRow.selector withObject:sender];
-        
-        return;
     }
     
     [self.inputRow setValue:@(sender.isOn)];

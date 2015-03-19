@@ -286,8 +286,6 @@
 				C2E509CC19C83A9A00350F00 /* TSCTableValue1ViewCell.m */,
 				C2E509CD19C83A9A00350F00 /* TSCTableImageViewCell.h */,
 				C2E509CE19C83A9A00350F00 /* TSCTableImageViewCell.m */,
-				C2E509D619C83ACA00350F00 /* TSCTableInputViewCell.h */,
-				C2E509D719C83ACA00350F00 /* TSCTableInputViewCell.m */,
 				C2E509FE19C83AF100350F00 /* Input Cells */,
 			);
 			name = Cells;
@@ -296,6 +294,8 @@
 		C2E509FE19C83AF100350F00 /* Input Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C2E509D619C83ACA00350F00 /* TSCTableInputViewCell.h */,
+				C2E509D719C83ACA00350F00 /* TSCTableInputViewCell.m */,
 				C2E509D819C83ACA00350F00 /* TSCTableInputTextFieldViewCell.h */,
 				C2E509D919C83ACA00350F00 /* TSCTableInputTextFieldViewCell.m */,
 				C2E509DA19C83ACA00350F00 /* TSCTableInputTextViewViewCell.h */,
@@ -669,8 +669,9 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ThunderTable/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -686,7 +687,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ThunderTable/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

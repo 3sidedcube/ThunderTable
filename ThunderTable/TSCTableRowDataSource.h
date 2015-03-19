@@ -1,6 +1,6 @@
 //
 //  TSCTableRowDatasource.h
-//  American Red Cross Disaster
+// ThunderTable
 //
 //  Created by Phillip Caudell on 16/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -69,14 +69,14 @@
 
 /**
  @abstract Define a custom height for the cell to be rendered to
- @param constrainedSize The size of the contentView in the cell
+ @param contrainedSize The size of the contentView in the cell
  @warning This method is deprecated, please use `tableViewCellHeightConstrainedToContentViewSize:tableViewSize:`
  */
 - (CGFloat)tableViewCellHeightConstrainedToSize:(CGSize)contrainedSize DEPRECATED_ATTRIBUTE;
 
 /**
  @abstract Define a custom height for the cell to be rendered to
- @param constrainedSize The size of the contentView in the cell
+ @param contentViewSize The size of the contentView in the cell
  @param tableViewSize The size of the tableView that the cell will be rendered in.
  */
 - (CGFloat)tableViewCellHeightConstrainedToContentViewSize:(CGSize)contentViewSize tableViewSize:(CGSize)tableViewSize;

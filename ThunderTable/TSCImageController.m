@@ -1,6 +1,6 @@
 //
 //  TSCImageManager.m
-//  Paperboy
+// ThunderTable
 //
 //  Created by Phillip Caudell on 08/10/2013.
 //  Copyright (c) 2013 3SIDEDCUBE. All rights reserved.
@@ -24,11 +24,11 @@ static TSCImageController *sharedController = nil;
 
 - (id)init
 {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
         self.imageCache = [[NSCache alloc] init];
         self.maxConcurrentOperationCount = 30;
     }
-    
     return self;
 }
 

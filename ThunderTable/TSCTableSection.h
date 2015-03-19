@@ -1,6 +1,6 @@
 //
 //  TSCTableSection.h
-//  American Red Cross Disaster
+// ThunderTable
 //
 //  Created by Phillip Caudell on 16/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -38,12 +38,12 @@
 /**
  @abstract The text to be displayed above the section in the header
  */
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, copy) NSString *title;
 
 /**
  @abstract The text to be displayed below the section in the footer
  */
-@property (nonatomic, strong) NSString *footer;
+@property (nonatomic, copy) NSString *footer;
 
 /**
  @abstract An array of items conforming to the `TSCTableRowDataSource` protocol to be displayed in the section

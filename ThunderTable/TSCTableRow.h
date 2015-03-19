@@ -1,6 +1,6 @@
 //
 //  TSCTableRow.h
-//  American Red Cross Disaster
+// ThunderTable
 //
 //  Created by Phillip Caudell on 16/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -23,15 +23,15 @@
  @param title The title to display in the row
  @discussion The title will populate the `textLabel` text property of a `UITableViewCell`
  */
-+ (id)rowWithTitle:(NSString *)title;
++ (instancetype)rowWithTitle:(NSString *)title;
 
 /**
  Initializes the row with a single title in a custom color
  @param title The title to display in the row
- @param A 'UIColor' to color the text with
+ @param textColor A 'UIColor' to color the text with
  @discussion The title will populate the `textLabel` text property of a `UITableViewCell`. The textColor will be applied to the text.
  */
-+ (id)rowWithTitle:(NSString *)title textColor:(UIColor *)textColor;
++ (instancetype)rowWithTitle:(NSString *)title textColor:(UIColor *)textColor;
 
 /**
  Initializes the row with a single title.
@@ -40,50 +40,17 @@
  @param image The image to be displayed to the left hand side of the cell
  @discussion The title will populate the `textLabel` text property and the subtitle will populate the `detailTextLabel` text property of the `UITableViewCell`
  */
-+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
 
 /**
  Initializes the row with a single title.
  @param title The title to display in the row
- @param subtitle The URL of the image to be displayed to the left hand side of the cell. Loaded asynchronously
+ @param subtitle The subtitle to display beneath the title in row
+ @param imageURL The URL of the image to be displayed to the left hand side of the cell. Loaded asynchronously
  @discussion The title will populate the `textLabel` text property and the subtitle will populate the `detailTextLabel` text property of the `UITableViewCell`
  @note Please set the `imagePlaceholder` property when using this method. This is required because the image width and height is used at layout to provide appropriate space for your loaded image.
- */+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL;
-
-/**
- @abstract The text to be displayed in the cells `textLabel`
  */
-@property (nonatomic, strong) NSString *title;
-
-/**
- @abstract The text to be displayed in the cells `detailTextLabel`
- */
-@property (nonatomic, strong) NSString *subtitle;
-
-/**
- @abstract The `UIImage` to be displayed in the cell
- */
-@property (nonatomic, strong) UIImage *image;
-
-/**
- @abstract The URL of the image to be loaded into the image area of the cell
- */
-@property (nonatomic, strong) NSURL *imageURL;
-
-/**
- @abstract The placeholder image that is displayed whilst the cell is asynchronously loading the image defined by the `imageURL`
- */
-@property (nonatomic, strong) UIImage *imagePlaceholder;
-
-/**
- @abstract The `UIColor` to apply to the text in the cell
- */
-@property (nonatomic, strong) UIColor *textColor;
-
-/**
- @abstract The link that a row should attempt to push when selected
- */
-@property (nonatomic, strong) TSCLink *link;
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL;
 
 ///---------------------------------------------------------------------------------------
 /// @name Handling selection
@@ -112,9 +79,57 @@
 ///---------------------------------------------------------------------------------------
 
 /**
+ @abstract The text to be displayed in the cells `textLabel`
+ */
+@property (nonatomic, copy) NSString *title;
+
+/**
+ @abstract The text to be displayed in the cells `detailTextLabel`
+ */
+@property (nonatomic, copy) NSString *subtitle;
+
+/**
+ @abstract The `UIImage` to be displayed in the cell
+ */
+@property (nonatomic, strong) UIImage *image;
+
+/**
+ @abstract The URL of the image to be loaded into the image area of the cell
+ */
+@property (nonatomic, strong) NSURL *imageURL;
+
+/**
+ @abstract The placeholder image that is displayed whilst the cell is asynchronously loading the image defined by the `imageURL`
+ @discussion Once the image has loaded from the URL it will be displayed at the same size as the placeholderImage so make sure that placeholderImage is the same size as the returned image. Not doing so causes strange frame behaviour of the cells `imageView`
+ */
+@property (nonatomic, strong) UIImage *imagePlaceholder;
+
+/**
+ @abstract The `UIColor` to apply to the text in the cell
+ */
+@property (nonatomic, strong) UIColor *textColor;
+
+/**
+ @abstract The link that a row should attempt to push when selected
+ */
+@property (nonatomic, strong) TSCLink *link;
+
+
+/**
  @abstract A boolean to configure whether the cell shows the selection indicator when it is selectable
  @discussion The default value of this property is `YES`
  */
 @property (nonatomic, assign) BOOL shouldDisplaySelectionIndicator;
+
+/**
+ @abstract The accessory type of the row
+ */
+@property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
+
+/**
+ @abstract The amount of padding to add above and below the contents of the cell.
+ @discussion You may find that adjusting this padding value on the cell improves the look and feel of your app
+ */
+@property (nonatomic, assign) float rowPadding;
 
 @end

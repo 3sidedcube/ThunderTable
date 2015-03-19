@@ -35,6 +35,7 @@
 
 /**
  @abstract Sets the value of the input row
+ @param value The value to set on the row
  */
 - (void)setValue:(id)value;
 

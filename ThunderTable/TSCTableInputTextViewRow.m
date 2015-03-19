@@ -1,6 +1,6 @@
 //
 //  TSCTableInputTextViewRow.m
-//  ThunderStorm
+// ThunderTable
 //
 //  Created by Matt Cheetham on 17/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
@@ -12,7 +12,7 @@
 
 @implementation TSCTableInputTextViewRow
 
-+ (id)rowWithPlaceholder:(NSString *)placeholder inputId:(NSString *)inputId required:(BOOL)required cellHeight:(CGFloat)height
++ (instancetype)rowWithPlaceholder:(NSString *)placeholder inputId:(NSString *)inputId required:(BOOL)required cellHeight:(CGFloat)height
 {
     TSCTableInputTextViewRow *row = [[TSCTableInputTextViewRow alloc] init];
     row.inputId = inputId;

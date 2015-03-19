@@ -1,6 +1,6 @@
 //
 //  TSCTableViewCell.m
-//  American Red Cross Disaster
+// ThunderTable
 //
 //  Created by Phillip Caudell on 16/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -13,7 +13,9 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier]) {
+    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
         
         self.textLabel.numberOfLines = 0;
         self.textLabel.backgroundColor = [UIColor clearColor];
@@ -25,6 +27,7 @@
         self.separatorTopView = [UIView new];
         self.separatorTopView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
         [self.contentView addSubview:self.separatorTopView];
+        
         
         self.separatorBottomView = [UIView new];
         self.separatorBottomView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
@@ -40,8 +43,15 @@
 {
     [super layoutSubviews];
     
-    self.separatorTopView.frame = CGRectMake(0, 0, self.bounds.size.width, 0.5);
-    self.separatorBottomView.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 0.5);
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 1.00) {
+        self.separatorTopView.frame = CGRectMake(0, 0, self.bounds.size.width, 1);
+        self.separatorBottomView.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 1);
+    } else {
+        self.separatorTopView.frame = CGRectMake(0, 0, self.bounds.size.width, 0.5);
+        self.separatorBottomView.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 0.5);
+    }
+    
+    self.shouldDisplaySeparators = true;
 }
 
 - (void)setShouldDisplaySeparators:(BOOL)shouldDisplaySeparators

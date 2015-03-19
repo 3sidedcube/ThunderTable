@@ -1,6 +1,6 @@
 //
 //  TSCTableInputDatePickerRow.m
-//  ThunderStorm
+// ThunderTable
 //
 //  Created by Phillip Caudell on 26/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
@@ -11,7 +11,7 @@
 
 @implementation TSCTableInputDatePickerRow
 
-+ (id)rowWithTitle:(NSString *)title mode:(UIDatePickerMode)mode inputId:(NSString *)inputId required:(BOOL)required
++ (instancetype)rowWithTitle:(NSString *)title mode:(UIDatePickerMode)mode inputId:(NSString *)inputId required:(BOOL)required
 {
     TSCTableInputDatePickerRow *row = [[TSCTableInputDatePickerRow alloc] init];
     row.title = title;
@@ -35,28 +35,6 @@
 - (CGFloat)tableViewCellHeightConstrainedToSize:(CGSize)contrainedSize
 {
     return 44;
-}
-
-@end
-
-@implementation _TSCTableInputDatePickerControlRow
-
-+ (id)rowWithParentRow:(TSCTableInputDatePickerRow *)parentRow
-{
-    _TSCTableInputDatePickerControlRow  *row = [[_TSCTableInputDatePickerControlRow alloc] init];
-    row.parentRow = parentRow;
-    
-    return row;
-}
-
-- (Class)tableViewCellClass
-{
-    return [_TSCTableInputDatePickerControlViewCell class];
-}
-
-- (CGFloat)tableViewCellHeightConstrainedToSize:(CGSize)contrainedSize
-{
-    return 180;
 }
 
 @end

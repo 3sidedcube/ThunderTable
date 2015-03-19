@@ -1,6 +1,6 @@
 //
 //  TSCTableRow.m
-//  American Red Cross Disaster
+// ThunderTable
 //
 //  Created by Phillip Caudell on 16/08/2013.
 //  Copyright (c) 2013 madebyphill.co.uk. All rights reserved.
@@ -11,12 +11,11 @@
 
 @implementation TSCTableRow
 
--(id)init
-{
-    if (self = [super init]) {
+-(id)init {
+    self = [super init];
+    if (self) {
         self.shouldDisplaySelectionIndicator = YES;
     }
-    
     return self;
 }
 
@@ -110,6 +109,15 @@
     return self.link;
 }
 
+- (float)rowPadding
+{
+    if (_rowPadding) {
+        return _rowPadding;
+    }
+    
+    return 10;
+}
+
 - (BOOL)shouldDisplaySelectionCell
 {
     return YES;
@@ -126,6 +134,10 @@
     
     if (self.textColor) {
         standardCell.textLabel.textColor = self.textColor;
+    }
+    
+    if (self.accessoryType) {
+        standardCell.accessoryType = self.accessoryType;
     }
     
     return standardCell;
