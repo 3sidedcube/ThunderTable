@@ -571,6 +571,15 @@
             [[(TSCTableInputPickerViewCell *)cell inputView] becomeFirstResponder];
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
+        
+        if ([cell respondsToSelector:@selector(setEditing:animated:)]) {
+            
+            [cell setEditing:true animated:true];
+            if ([cell respondsToSelector:@selector(becomeFirstResponder)]) {
+                [cell becomeFirstResponder];
+            }
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+        }
     }
     
     if ([row respondsToSelector:@selector(shouldRemainSelected)]) {
@@ -789,8 +798,17 @@
     [self enumerateInputRowsUsingBlock:^(TSCTableInputRow *inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
         
         if (inputRow.required) {
-            if (inputRow.value == nil || [inputRow.value isEqual:[NSNull null]]) {
-                [rows addObject:inputRow];
+            
+            if (inputRow.value == nil || [inputRow.value isEqual:[NSNull null]] || [inputRow.value isKindOfClass:[NSString class]]) {
+                
+                if ([inputRow.value isKindOfClass:[NSString class]]) {
+                    
+                    if ([[inputRow.value stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) {
+                        [rows addObject:inputRow];
+                    }
+                } else {
+                    [rows addObject:inputRow];
+                }
             }
         }
     }];
