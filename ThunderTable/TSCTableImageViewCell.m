@@ -15,6 +15,9 @@
 {
     [super layoutSubviews];
     self.imageView.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
+    
+    self.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+    self.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
 }
 
 @end
