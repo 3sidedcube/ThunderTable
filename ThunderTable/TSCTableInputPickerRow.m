@@ -64,18 +64,10 @@
     pickerCell.components = self.components;
     pickerCell.placeholder = self.placeholder;
     if (self.enabled) {
-        pickerCell.selectionLabel.textColor = [[TSCThemeManager sharedTheme] titleTextColor];
+        pickerCell.selectionLabel.textColor = self.detailTextColor ? : [[TSCThemeManager sharedTheme] cellDetailColor];
     } else {
-        
-        if (!self.detailTextColor) {
-            pickerCell.detailTextColor = [[TSCThemeManager sharedTheme] disabledCellTextColor];
-        } else {
-            pickerCell.detailTextColor = self.detailTextColor ? : [[TSCThemeManager sharedTheme] cellDetailColor];
-        }
-        
-        pickerCell.selectionLabel.textColor = [[TSCThemeManager sharedTheme] disabledCellTextColor];
+        pickerCell.selectionLabel.textColor = self.detailTextColor ? : [[TSCThemeManager sharedTheme] disabledCellTextColor];
     }
-    
 
     return pickerCell;
 }

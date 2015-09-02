@@ -50,10 +50,6 @@
     if (self.inputRow.value != [NSNull null]) {
         self.selectionLabel.text = [self stringValueWithComponents:self.inputRow.value];
     }
-    
-    if (self.detailTextColor) {
-        self.selectionLabel.textColor = self.detailTextColor;
-    }
 }
 
 - (void)setInputRow:(TSCTableInputRow *)inputRow

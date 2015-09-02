@@ -14,18 +14,18 @@
 
 #pragma Table Row Data Source
 
-+ (id)rowWithTitle:(NSString *)title
++ (instancetype)rowWithTitle:(NSString *)title
 {
-    TSCTableValue1Row *row = [[TSCTableValue1Row alloc] init];
+    TSCTableValue1Row *row = [[self alloc] init];
     row.title = title;
     row.enabled = YES;
     
     return row;
 }
 
-+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image
 {
-    TSCTableValue1Row *row = [[TSCTableValue1Row alloc] init];
+    TSCTableValue1Row *row = [[self alloc] init];
     row.title = title;
     row.subtitle = subtitle;
     row.image = image;
@@ -34,9 +34,9 @@
     return row;
 }
 
-+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL
 {
-    TSCTableValue1Row *row = [[TSCTableValue1Row alloc] init];
+    TSCTableValue1Row *row = [[self alloc] init];
     row.title = title;
     row.subtitle = subtitle;
     row.imageURL = imageURL;
@@ -45,14 +45,14 @@
     return row;
 }
 
-+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image detailTextColor:(UIColor *)color
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image detailTextColor:(UIColor *)color
 {
     return [self rowWithTitle:title subtitle:subtitle image:image detailTextColor:color boldLabel:NO];
 }
 
-+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image detailTextColor:(UIColor *)color boldLabel:(BOOL)isBold
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image detailTextColor:(UIColor *)color boldLabel:(BOOL)isBold
 {
-    TSCTableValue1Row *row = [[TSCTableValue1Row alloc] init];
+    TSCTableValue1Row *row = [[self alloc] init];
     row.title = title;
     row.subtitle = subtitle;
     row.image = image;
@@ -125,18 +125,24 @@
     return YES;
 }
 
+- (UIColor *)rowTitleTextColor
+{
+    return self.titleTextColor;
+}
+
+- (UIColor *)rowDetailTextColor
+{
+    return self.detailTextColor;
+}
+
 - (UITableViewCell *)tableViewCell:(UITableViewCell *)cell
 {
     TSCTableValue1ViewCell *valueCell = (TSCTableValue1ViewCell *)cell;
     
-    if (self.enabled) {
+    if (!self.enabled) {
         
-        valueCell.detailTextLabel.textColor = self.detailTextColor;
-        valueCell.textLabel.textColor = [UIColor blackColor];
-    } else {
-        
-        valueCell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] disabledCellTextColor];
-        valueCell.textLabel.textColor = [[TSCThemeManager sharedTheme] disabledCellTextColor];
+        valueCell.detailTextLabel.textColor = self.disabledDetailTextColor ? : [[TSCThemeManager sharedTheme] disabledCellTextColor];
+        valueCell.textLabel.textColor = self.disabledTitleTextColor ? : [[TSCThemeManager sharedTheme] disabledCellTextColor];
     }
     
     if (self.isBold) {

@@ -14,7 +14,9 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
         
         self.textField = [[UITextField alloc] init];
         self.textField.textAlignment = NSTextAlignmentRight;
@@ -22,11 +24,16 @@
         self.textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
         self.textField.autocorrectionType = UITextAutocorrectionTypeYes;
         self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        self.textField.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
+        
+        self.textField.font = [[TSCThemeManager sharedTheme] fontOfSize:17];
+        self.textField.tintColor = [[TSCThemeManager sharedTheme] cellDetailColor];
     
         [self.contentView addSubview:self.textField];
         self.textField.returnKeyType = UIReturnKeyNext;
         
         [self setEditing:NO animated:NO];
+    
     }
     
     return self;
@@ -63,6 +70,10 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.inputRow.value = textField.text;
+    
+    if ([self.delegate respondsToSelector:@selector(tableInputViewCellDidFinish:)]) {
+        [self.delegate tableInputViewCellDidFinish:self];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

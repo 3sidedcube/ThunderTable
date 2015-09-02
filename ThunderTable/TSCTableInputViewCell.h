@@ -35,7 +35,7 @@
  @abstract The input row for the selected cell.
  @discussion This is set so the cell can mutate the value stored on the row when the user changes the input's value
  */
-@property (nonatomic, strong) NSObject <TSCTableInputRowDataSource> *inputRow;
+@property (nonatomic, weak) id <TSCTableInputRowDataSource> inputRow;
 
 /**
  @abstract A delegate which will be notified when the user has finished setting a value for this cell

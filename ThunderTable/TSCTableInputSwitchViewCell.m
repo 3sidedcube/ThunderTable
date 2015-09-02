@@ -16,6 +16,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
+        
         self.primarySwitch = [[UISwitch alloc] init];
         [self.primarySwitch addTarget:self action:@selector(handleSwitch:) forControlEvents:UIControlEventValueChanged];
         [self.contentView addSubview:self.primarySwitch];
