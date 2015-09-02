@@ -7,26 +7,25 @@
 //
 
 #import "TSCThemeManager.h"
-#import "TSCDefaultTheme.h"
 #import "TSCCheckView.h"
 
 @implementation TSCThemeManager
 
-static id <TSCTheme> sharedController = nil;
+static id sharedController = nil;
 
-+ (id <TSCTheme>)sharedTheme
++ (TSCTheme *)sharedTheme
 {
     @synchronized(self) {
         
         if (!sharedController) {
-            sharedController = [[TSCDefaultTheme alloc] init];
+            sharedController = [[TSCTheme alloc] init];
         }
     }
     
     return sharedController;
 }
 
-+ (void)setSharedTheme:(id <TSCTheme>)theme
++ (void)setSharedTheme:(TSCTheme *)theme
 {
     @synchronized(self) {
         sharedController = theme;
@@ -35,7 +34,7 @@ static id <TSCTheme> sharedController = nil;
 
 + (void)customizeAppAppearance
 {
-    id <TSCTheme> theme = [self sharedTheme];
+    TSCTheme *theme = [self sharedTheme];
     
     UINavigationBar *navigationBar = [UINavigationBar appearance];
     

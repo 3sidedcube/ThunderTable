@@ -19,13 +19,13 @@
  @discussion This can be set using `setSharedTheme:`
  @return An NSObject that conforms to the TSCTheme protocol
  */
-+ (id <TSCTheme>)sharedTheme;
++ (TSCTheme *)sharedTheme;
 
 /**
  Use this method to set the shared theme for the app. Accessing the shared theme in future will return the object returned here
  @param theme The new shared theme to be used
  */
-+ (void)setSharedTheme:(id <TSCTheme>)theme;
++ (void)setSharedTheme:(TSCTheme *)theme;
 
 /**
 Can be used to identify if the device is running at least iOS 7
