@@ -8,6 +8,8 @@
 
 #import "TSCTableInputPickerRow.h"
 #import "TSCTableInputPickerViewCell.h"
+#import "TSCPickerRow.h"
+#import "TSCPickerComponent.h"
 
 @interface TSCTableInputPickerRow ()
 
@@ -22,7 +24,27 @@
     TSCTableInputPickerRow *row = [[TSCTableInputPickerRow alloc] init];
     row.title = title;
     row.inputId = inputId;
-    row.values = values;
+    
+    NSMutableArray *rows = [NSMutableArray new];
+    for (NSString *value in values) {
+        
+        TSCPickerRow *row = [TSCPickerRow rowWithTitle:value];
+        [rows addObject:row];
+    }
+    
+    TSCPickerComponent *component = [TSCPickerComponent componentWithItems:rows];
+    row.components = @[component];
+    row.required = required;
+    
+    return row;
+}
+
++ (id)rowWithTitle:(NSString *)title inputId:(NSString *)inputId components:(NSArray *)components required:(BOOL)required
+{
+    TSCTableInputPickerRow *row = [[TSCTableInputPickerRow alloc] init];
+    row.title = title;
+    row.inputId = inputId;
+    row.components = components;
     row.required = required;
     
     return row;
@@ -38,9 +60,32 @@
     TSCTableInputPickerViewCell *pickerCell = (TSCTableInputPickerViewCell *)cell;
     self.cell = pickerCell;
     pickerCell.inputRow = self;
-    pickerCell.values = self.values;
+    pickerCell.components = self.components;
     pickerCell.placeholder = self.placeholder;
+    if (self.enabled) {
+        pickerCell.selectionLabel.textColor = [[TSCThemeManager sharedTheme] titleTextColor];
+    } else {
+        
+        if (!self.detailTextColor) {
+            pickerCell.detailTextColor = [[TSCThemeManager sharedTheme] disabledCellTextColor];
+        } else {
+            pickerCell.detailTextColor = self.detailTextColor ? : [[TSCThemeManager sharedTheme] cellDetailColor];
+        }
+        
+        pickerCell.selectionLabel.textColor = [[TSCThemeManager sharedTheme] disabledCellTextColor];
+    }
+    
+
     return pickerCell;
+}
+
+- (void)setValue:(id)value
+{
+    if ([value isKindOfClass:[NSString class]]) {
+        [super setValue:@[[TSCPickerRow rowWithTitle:value]]];
+    } else {
+        [super setValue:value];
+    }
 }
 
 @end

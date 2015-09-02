@@ -24,6 +24,16 @@
 @property (nonatomic, strong) UIPickerView *pickerView;
 
 /**
+ @abstract The picker components which will be shown in the `UIPickerView`
+*/
+@property (nonatomic, strong) NSArray *components;
+
+/**
+ @abstract The colour of the detail label for the cell
+*/
+@property (nonatomic, strong) UIColor *detailTextColor;
+
+/**
  @abstract The array of NSStrings which are displayed in `pickerView`
  */
 @property (nonatomic, strong) NSArray *values;
