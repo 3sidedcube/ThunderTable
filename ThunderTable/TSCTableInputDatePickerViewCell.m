@@ -8,6 +8,7 @@
 
 #import "TSCTableInputDatePickerViewCell.h"
 #import "TSCTableInputDatePickerRow.h"
+#import "TSCThemeManager.h"
 
 @implementation TSCTableInputDatePickerViewCell
 
