@@ -1,14 +1,14 @@
 //
 //  TSCDefaultTheme.m
-//  ThunderTable
+//  ThunderStorm
 //
 //  Created by Phillip Caudell on 26/09/2013.
 //  Copyright (c) 2013 3 SIDED CUBE. All rights reserved.
 //
 
-#import "TSCDefaultTheme.h"
+#import "TSCTheme.h"
 
-@implementation TSCDefaultTheme
+@implementation TSCTheme
 
 - (UIColor *)mainColor
 {
@@ -23,6 +23,21 @@
 - (UIColor *)primaryLabelColor
 {
     return [UIColor blackColor];
+}
+
+- (UIColor *)cellBackgroundColor
+{
+    return [UIColor whiteColor];
+}
+
+- (UIColor *)cellTitleColor
+{
+    return [UIColor blackColor];
+}
+
+- (UIColor *)cellDetailColor
+{
+    return [UIColor lightGrayColor];
 }
 
 - (UIColor *)detailLabelColor
@@ -50,11 +65,6 @@
     return [UIColor blackColor];
 }
 
-- (UIColor *)tableCellBackgroundColor
-{
-    return [UIColor whiteColor];
-}
-
 - (UIColor *)tableSeperatorColor
 {
     return [UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1];
@@ -80,9 +90,19 @@
     return [UIFont fontWithName:@"HelveticaNeue-Light" size:size];
 }
 
-- (UIColor *)defaultTableViewCellBackgroundColor
+- (UIFont *)fontOfSize:(CGFloat)size
 {
-    return [UIColor whiteColor];
+    return [UIFont systemFontOfSize:size];
+}
+
+- (UIFont *)mediumFontOfSize:(CGFloat)size
+{
+    return [UIFont fontWithName:@"HelveticaNeue-Medium" size:size];
+}
+
+- (UIFont *)boldFontOfSize:(CGFloat)size
+{
+    return [UIFont boldSystemFontOfSize:size];
 }
 
 - (UIColor *)redColor
@@ -126,6 +146,16 @@
 }
 
 - (UIColor *)progressTintColour
+{
+    return [UIColor whiteColor];
+}
+
+- (UIColor *)navigationBarBackgroundColor
+{
+    return [self mainColor];
+}
+
+- (UIColor *)navigationBarTintColor
 {
     return [UIColor whiteColor];
 }
