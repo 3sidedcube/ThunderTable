@@ -12,7 +12,7 @@
 /**
  Defines a theme that can be set as the sharedTheme on `TSCThemeManager`
  */
-@protocol TSCTheme <NSObject>
+@interface TSCTheme : NSObject
 
 ///---------------------------------------------------------------------------------------
 /// @name Colours
@@ -22,6 +22,21 @@
  @return The main tint colour for the app. This colour is generally used as the window tint colour and for tinting any UI elements throughout the app such as images and navigation bars
  */
 - (UIColor *)mainColor;
+
+/**
+ @return The background colour for all table view cells throughout the app
+ */
+- (UIColor *)cellBackgroundColor;
+
+/**
+ @return The title colour to be used for all table view cells throughout the app
+ */
+- (UIColor *)cellTitleColor;
+
+/**
+ @return The detail colour to be used for all table view cells throughout the app
+ */
+- (UIColor *)cellDetailColor;
 
 /**
  @return A secondary colour that compliments the main colour.
@@ -42,11 +57,6 @@
  @return The colour of header text in the app
  */
 - (UIColor *)headerTextColor;
-
-/**
- @return The default colour for UITableViewCell backgrounds
- */
-- (UIColor *)tableCellBackgroundColor;
 
 /**
  @return The colour of UITableViewCell seperators
@@ -113,6 +123,16 @@
  */
 - (UIColor *)progressTintColour;
 
+/**
+ @return The colour to be used as the navigation bar background colour
+ */
+- (UIColor *)navigationBarBackgroundColor;
+
+/**
+ @return The colour to be used as the navigation bar tint colour
+ */
+- (UIColor *)navigationBarTintColor;
+
 ///---------------------------------------------------------------------------------------
 /// @name Fonts
 ///---------------------------------------------------------------------------------------
@@ -128,6 +148,27 @@
  @return A light font in the requested size
  */
 - (UIFont *)lightFontOfSize:(CGFloat)size;
+
+/**
+ @abstract Returns a font of a required size
+ @param size The required font size
+ @return A font in the requested size
+ */
+- (UIFont *)fontOfSize:(CGFloat)size;
+
+/**
+ @abstract Returns a medium font of a required size
+ @param size The required font size
+ @return A medium font in the requested size
+ */
+- (UIFont *)mediumFontOfSize:(CGFloat)size;
+
+/**
+ @abstract Returns a bold font of a required size
+ @param size The required font size
+ @return A bold font in the requested size
+ */
+- (UIFont *)boldFontOfSize:(CGFloat)size;
 
 /**
  @return The font for UILabel's throughout the app
