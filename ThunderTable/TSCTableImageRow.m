@@ -13,7 +13,7 @@
 
 + (id)rowWithImage:(UIImage *)image
 {
-    TSCTableImageRow *row = [[TSCTableImageRow alloc] init];
+    TSCTableImageRow *row = [[self alloc] init];
     row.image = image;
     
     return row;
@@ -21,7 +21,7 @@
 
 + (id)rowWithImageURL:(NSURL *)url placeholderImage:(UIImage *)placeholderImage
 {
-    TSCTableImageRow *row = [[TSCTableImageRow alloc] init];
+    TSCTableImageRow *row = [[self alloc] init];
     row.image = placeholderImage;
     row.imageURL = url;
     
@@ -30,7 +30,7 @@
 
 + (id)rowWithImage:(UIImage *)image contentMode:(UIViewContentMode)contentMode
 {
-    TSCTableImageRow *row = [[TSCTableImageRow alloc] init];
+    TSCTableImageRow *row = [[self alloc] init];
     row.image = image;
     row.contentMode = contentMode;
     
@@ -39,7 +39,7 @@
 
 + (id)rowWithImage:(UIImage *)image backgroundColor:(UIColor *)backgroundColor
 {
-    TSCTableImageRow *row = [[TSCTableImageRow alloc] init];
+    TSCTableImageRow *row = [[self alloc] init];
     row.image = image;
     row.backgroundColor = backgroundColor;
     

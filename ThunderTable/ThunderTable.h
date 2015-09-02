@@ -16,7 +16,7 @@ FOUNDATION_EXPORT const unsigned char ThunderTableVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <ThunderTable/PublicHeader.h>
 #import <ThunderTable/TSCThemeManager.h>
-#import <ThunderTable/TSCDefaultTheme.h>
+#import <ThunderTable/TSCTheme.h>
 
 // View Controllers
 #import <ThunderTable/TSCTableViewController.h>
@@ -59,6 +59,10 @@ FOUNDATION_EXPORT const unsigned char ThunderTableVersionString[];
 #import <ThunderTable/TSCTableInputPickerRow.h>
 #import <ThunderTable/TSCTableInputCheckRow.h>
 #import <ThunderTable/TSCTableInputSliderRow.h>
+#import <ThunderTable/TSCPickerRowDataSource.h>
+#import <ThunderTable/TSCPickerComponent.h>
+#import <ThunderTable/TSCPickerComponentDataSource.h>
+#import <ThunderTable/TSCPickerRow.h>
 
 // Picker
 #import <ThunderTable/TSCItemPickerController.h>

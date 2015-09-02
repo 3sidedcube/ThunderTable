@@ -23,4 +23,14 @@
  */
 @property (nonatomic, strong) UILabel *valueLabel;
 
+/**
+ @abstract The interval which the slider label changes at
+*/
+@property (nonatomic, strong) NSNumber *interval;
+
+/**
+ @abstract The current value of the slider
+*/
+@property (nonatomic, strong) NSNumber *displayNumber;
+
 @end

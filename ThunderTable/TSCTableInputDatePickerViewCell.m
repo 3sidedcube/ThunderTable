@@ -8,6 +8,7 @@
 
 #import "TSCTableInputDatePickerViewCell.h"
 #import "TSCTableInputDatePickerRow.h"
+#import "TSCThemeManager.h"
 
 @implementation TSCTableInputDatePickerViewCell
 
@@ -22,6 +23,8 @@
         self.dateLabel = [[UITextField alloc] init];
         self.dateLabel.textAlignment = NSTextAlignmentRight;
         self.dateLabel.backgroundColor = [UIColor clearColor];
+        self.dateLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
+        self.dateLabel.font = [[TSCThemeManager sharedTheme] fontOfSize:17];
         [self.contentView addSubview:self.dateLabel];
         
         self.datePicker = [[UIDatePicker alloc] init];

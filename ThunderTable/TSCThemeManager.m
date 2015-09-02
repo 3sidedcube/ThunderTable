@@ -7,26 +7,26 @@
 //
 
 #import "TSCThemeManager.h"
-#import "TSCDefaultTheme.h"
+#import "TSCTheme.h"
 #import "TSCCheckView.h"
 
 @implementation TSCThemeManager
 
-static id <TSCTheme> sharedController = nil;
+static id sharedController = nil;
 
-+ (id <TSCTheme>)sharedTheme
++ (TSCTheme *)sharedTheme
 {
     @synchronized(self) {
         
         if (!sharedController) {
-            sharedController = [[TSCDefaultTheme alloc] init];
+            sharedController = [[TSCTheme alloc] init];
         }
     }
     
     return sharedController;
 }
 
-+ (void)setSharedTheme:(id <TSCTheme>)theme
++ (void)setSharedTheme:(TSCTheme *)theme
 {
     @synchronized(self) {
         sharedController = theme;
@@ -35,7 +35,7 @@ static id <TSCTheme> sharedController = nil;
 
 + (void)customizeAppAppearance
 {
-    id <TSCTheme> theme = [self sharedTheme];
+    TSCTheme *theme = [self sharedTheme];
     
     UINavigationBar *navigationBar = [UINavigationBar appearance];
     
@@ -45,6 +45,7 @@ static id <TSCTheme> sharedController = nil;
     [toolbar setTintColor:[theme mainColor]];
     
     UITabBar *tabBar = [UITabBar appearance];
+    [tabBar setSelectedImageTintColor:[theme mainColor]];
     [tabBar setTintColor:[theme mainColor]];
     
     
@@ -53,6 +54,7 @@ static id <TSCTheme> sharedController = nil;
     
     TSCCheckView *checkView = [TSCCheckView appearance];
     [checkView setOnTintColor:[theme mainColor]];
+
 }
 
 + (BOOL)isOS7
@@ -72,12 +74,14 @@ static id <TSCTheme> sharedController = nil;
 
 + (BOOL)isOS8
 {
-    switch ([[[UIDevice currentDevice] systemVersion] compare:@"8.0.0" options:NSNumericSearch]) {
+    switch ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch]) {
         case NSOrderedSame:
-            return true;
-            break;
         case NSOrderedDescending:
             return true;
+            break;
+        case NSOrderedAscending:
+            return false;
+            break;
         default:
             return false;
             break;

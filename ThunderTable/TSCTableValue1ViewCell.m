@@ -33,6 +33,8 @@
         self.separatorBottomView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
         [self.contentView addSubview:self.separatorBottomView];
         
+        self.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+        self.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
     }
     
     return self;

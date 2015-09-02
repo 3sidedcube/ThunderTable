@@ -43,7 +43,7 @@
 {
     [super layoutSubviews];
     
-    NSString *stringValue = [NSString stringWithFormat:@"%.1f", self.slider.value];
+    NSString *stringValue = [NSString stringWithFormat:@"%.1f", self.displayNumber.floatValue ?: self.slider.value];
     self.valueLabel.text = stringValue;
     
     CGSize valueLabelSize = [self.valueLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
@@ -66,14 +66,31 @@
     self.slider.maximumValue = [[inputRow maximumValue] floatValue];
     self.slider.minimumValue = [[inputRow minimumValue] floatValue];
     self.slider.value = [[inputRow value] floatValue];
+    self.interval = [inputRow sliderInterval];
     self.textLabel.text = [inputRow rowTitle];
 }
 
 - (void)handleSliderValueChanged:(UISlider *)slider
 {
-    NSString *stringValue = [NSString stringWithFormat:@"%.1f", slider.value];
+    float finalValue;
+
+    float tempValue = fabsf(fmodf(slider.value, self.interval.floatValue));
     
-    [self.inputRow setValue:@([stringValue floatValue])];
+    //if the remainder is greater than or equal to the half of the interval then return the higher interval, otherwise, return the lower interval
+    if(tempValue >= (self.interval.floatValue / 2.0)) {
+        
+        finalValue = slider.value - tempValue + self.interval.floatValue;
+        
+    } else {
+        
+        finalValue = slider.value - tempValue;
+        
+    }
+    
+    [self.inputRow setValue:@(finalValue)];
+    
+    self.displayNumber = @(finalValue);
+    
     [self layoutSubviews];
 }
 

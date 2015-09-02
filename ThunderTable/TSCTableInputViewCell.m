@@ -8,7 +8,26 @@
 
 #import "TSCTableInputViewCell.h"
 #import "TSCTableInputRow.h"
+#import "TSCThemeManager.h"
 
 @implementation TSCTableInputViewCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
+        
+        self.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+        self.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+    }
+    
+    return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+}
 
 @end

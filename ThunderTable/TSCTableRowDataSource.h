@@ -153,4 +153,18 @@
  */
 - (BOOL)shouldDisplaySeperator;
 
+///---------------------------------------------------------------------------------------
+/// @name Appearance of the row
+///---------------------------------------------------------------------------------------
+
+/**
+ @abstract A value to be used for the colour of the cells title text label
+ */
+- (UIColor *)rowTitleTextColor;
+
+/**
+ @abstract A value to be used for the colour of the cells detail text label
+ */
+- (UIColor *)rowDetailTextColor;
+
 @end

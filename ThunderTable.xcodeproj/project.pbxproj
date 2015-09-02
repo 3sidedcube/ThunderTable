@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1A695521B96F95D001EB098 /* TSCTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A695511B96F95D001EB098 /* TSCTheme.m */; };
+		B1A695591B96FF6F001EB098 /* TSCPickerComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A695531B96FF6F001EB098 /* TSCPickerComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1A6955A1B96FF6F001EB098 /* TSCPickerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A695541B96FF6F001EB098 /* TSCPickerComponent.m */; };
+		B1A6955B1B96FF6F001EB098 /* TSCPickerComponentDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A695551B96FF6F001EB098 /* TSCPickerComponentDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1A6955C1B96FF6F001EB098 /* TSCPickerRow.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A695561B96FF6F001EB098 /* TSCPickerRow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1A6955D1B96FF6F001EB098 /* TSCPickerRow.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A695571B96FF6F001EB098 /* TSCPickerRow.m */; };
+		B1A6955E1B96FF6F001EB098 /* TSCPickerRowDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A695581B96FF6F001EB098 /* TSCPickerRowDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2E5099219C839F600350F00 /* ThunderTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E5099119C839F600350F00 /* ThunderTableTests.swift */; };
 		C2E5099C19C83A3500350F00 /* ThunderTable.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E5099B19C83A3500350F00 /* ThunderTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2E509AC19C83A4000350F00 /* TSCTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509A119C83A4000350F00 /* TSCTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2E509AD19C83A4000350F00 /* TSCThemeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509A219C83A4000350F00 /* TSCThemeManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2E509AE19C83A4000350F00 /* TSCThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E509A319C83A4000350F00 /* TSCThemeManager.m */; };
-		C2E509AF19C83A4000350F00 /* TSCDefaultTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509A419C83A4000350F00 /* TSCDefaultTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C2E509B019C83A4000350F00 /* TSCDefaultTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E509A519C83A4000350F00 /* TSCDefaultTheme.m */; };
 		C2E509B119C83A4000350F00 /* TSCTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509A619C83A4000350F00 /* TSCTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2E509B219C83A4000350F00 /* TSCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E509A719C83A4000350F00 /* TSCTableViewController.m */; };
 		C2E509B919C83A4D00350F00 /* TSCImageController.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509B319C83A4D00350F00 /* TSCImageController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -87,6 +92,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B1A695511B96F95D001EB098 /* TSCTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCTheme.m; sourceTree = "<group>"; };
+		B1A695531B96FF6F001EB098 /* TSCPickerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCPickerComponent.h; sourceTree = "<group>"; };
+		B1A695541B96FF6F001EB098 /* TSCPickerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCPickerComponent.m; sourceTree = "<group>"; };
+		B1A695551B96FF6F001EB098 /* TSCPickerComponentDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCPickerComponentDataSource.h; sourceTree = "<group>"; };
+		B1A695561B96FF6F001EB098 /* TSCPickerRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCPickerRow.h; sourceTree = "<group>"; };
+		B1A695571B96FF6F001EB098 /* TSCPickerRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCPickerRow.m; sourceTree = "<group>"; };
+		B1A695581B96FF6F001EB098 /* TSCPickerRowDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCPickerRowDataSource.h; sourceTree = "<group>"; };
 		C2E5098219C839F600350F00 /* ThunderTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ThunderTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E5098619C839F600350F00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2E5098D19C839F600350F00 /* ThunderTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThunderTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,8 +108,6 @@
 		C2E509A119C83A4000350F00 /* TSCTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCTheme.h; sourceTree = "<group>"; };
 		C2E509A219C83A4000350F00 /* TSCThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCThemeManager.h; sourceTree = "<group>"; };
 		C2E509A319C83A4000350F00 /* TSCThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCThemeManager.m; sourceTree = "<group>"; };
-		C2E509A419C83A4000350F00 /* TSCDefaultTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCDefaultTheme.h; sourceTree = "<group>"; };
-		C2E509A519C83A4000350F00 /* TSCDefaultTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCDefaultTheme.m; sourceTree = "<group>"; };
 		C2E509A619C83A4000350F00 /* TSCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCTableViewController.h; sourceTree = "<group>"; };
 		C2E509A719C83A4000350F00 /* TSCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCTableViewController.m; sourceTree = "<group>"; };
 		C2E509B319C83A4D00350F00 /* TSCImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCImageController.h; sourceTree = "<group>"; };
@@ -188,6 +198,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1A6955F1B96FF7A001EB098 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				C2E50A1419C83B2C00350F00 /* TSCTableInputDatePickerRow.h */,
+				C2E50A1519C83B2C00350F00 /* TSCTableInputDatePickerRow.m */,
+				B1A695551B96FF6F001EB098 /* TSCPickerComponentDataSource.h */,
+				B1A695531B96FF6F001EB098 /* TSCPickerComponent.h */,
+				B1A695541B96FF6F001EB098 /* TSCPickerComponent.m */,
+				B1A695581B96FF6F001EB098 /* TSCPickerRowDataSource.h */,
+				B1A695561B96FF6F001EB098 /* TSCPickerRow.h */,
+				B1A695571B96FF6F001EB098 /* TSCPickerRow.m */,
+				C2E50A1619C83B2C00350F00 /* TSCTableInputPickerRow.h */,
+				C2E50A1719C83B2C00350F00 /* TSCTableInputPickerRow.m */,
+			);
+			name = Pickers;
+			sourceTree = "<group>";
+		};
 		C2E5097819C839F600350F00 = {
 			isa = PBXGroup;
 			children = (
@@ -211,10 +238,9 @@
 			children = (
 				C2E5099B19C83A3500350F00 /* ThunderTable.h */,
 				C2E509A119C83A4000350F00 /* TSCTheme.h */,
+				B1A695511B96F95D001EB098 /* TSCTheme.m */,
 				C2E509A219C83A4000350F00 /* TSCThemeManager.h */,
 				C2E509A319C83A4000350F00 /* TSCThemeManager.m */,
-				C2E509A419C83A4000350F00 /* TSCDefaultTheme.h */,
-				C2E509A519C83A4000350F00 /* TSCDefaultTheme.m */,
 				C2E509A619C83A4000350F00 /* TSCTableViewController.h */,
 				C2E509A719C83A4000350F00 /* TSCTableViewController.m */,
 				C2E50A4219C83B6500350F00 /* Models */,
@@ -343,10 +369,7 @@
 				C2E50A1119C83B2C00350F00 /* TSCTableInputTextViewRow.m */,
 				C2E50A1219C83B2C00350F00 /* TSCTableInputSwitchRow.h */,
 				C2E50A1319C83B2C00350F00 /* TSCTableInputSwitchRow.m */,
-				C2E50A1419C83B2C00350F00 /* TSCTableInputDatePickerRow.h */,
-				C2E50A1519C83B2C00350F00 /* TSCTableInputDatePickerRow.m */,
-				C2E50A1619C83B2C00350F00 /* TSCTableInputPickerRow.h */,
-				C2E50A1719C83B2C00350F00 /* TSCTableInputPickerRow.m */,
+				B1A6955F1B96FF7A001EB098 /* Pickers */,
 				C2E50A1819C83B2C00350F00 /* TSCTableInputCheckRow.h */,
 				C2E50A1919C83B2C00350F00 /* TSCTableInputCheckRow.m */,
 				C2E50A1A19C83B2C00350F00 /* TSCTableInputSliderRow.h */,
@@ -390,6 +413,7 @@
 				C2E509AD19C83A4000350F00 /* TSCThemeManager.h in Headers */,
 				C2E50A3C19C83B5F00350F00 /* TSCTableSection.h in Headers */,
 				C2E50A0519C83B1700350F00 /* TSCTableRow.h in Headers */,
+				B1A6955B1B96FF6F001EB098 /* TSCPickerComponentDataSource.h in Headers */,
 				C2E509EC19C83ACA00350F00 /* TSCTableInputTextFieldViewCell.h in Headers */,
 				C2E50A3219C83B4200350F00 /* TSCTableInputRowDataSource.h in Headers */,
 				C2E509AC19C83A4000350F00 /* TSCTheme.h in Headers */,
@@ -398,6 +422,7 @@
 				C2E509F019C83ACA00350F00 /* TSCTableInputDatePickerViewCell.h in Headers */,
 				C2E509FC19C83ACA00350F00 /* TSCTableInputSliderViewCell.h in Headers */,
 				C2E50A3419C83B4200350F00 /* TSCTableSectionDataSource.h in Headers */,
+				B1A6955E1B96FF6F001EB098 /* TSCPickerRowDataSource.h in Headers */,
 				C2E509B919C83A4D00350F00 /* TSCImageController.h in Headers */,
 				C2E509C619C83A7A00350F00 /* TSCItem.h in Headers */,
 				C2E509CF19C83A9A00350F00 /* TSCTableViewCell.h in Headers */,
@@ -414,14 +439,15 @@
 				C2E509EA19C83ACA00350F00 /* TSCTableInputViewCell.h in Headers */,
 				C2E50A1C19C83B2C00350F00 /* TSCTableInputRow.h in Headers */,
 				C2E509D119C83A9A00350F00 /* TSCTableValue1ViewCell.h in Headers */,
+				B1A695591B96FF6F001EB098 /* TSCPickerComponent.h in Headers */,
 				C2E50A2419C83B2C00350F00 /* TSCTableInputDatePickerRow.h in Headers */,
+				B1A6955C1B96FF6F001EB098 /* TSCPickerRow.h in Headers */,
 				C2E50A0919C83B1700350F00 /* TSCTableValue1Row.h in Headers */,
 				C2E509FB19C83ACA00350F00 /* GCPlaceholderTextView.h in Headers */,
 				C2E50A2219C83B2C00350F00 /* TSCTableInputSwitchRow.h in Headers */,
 				C2E50A3E19C83B5F00350F00 /* TSCTableSelection.h in Headers */,
 				C2E5099C19C83A3500350F00 /* ThunderTable.h in Headers */,
 				C2E509B119C83A4000350F00 /* TSCTableViewController.h in Headers */,
-				C2E509AF19C83A4000350F00 /* TSCDefaultTheme.h in Headers */,
 				C2E50A2819C83B2C00350F00 /* TSCTableInputCheckRow.h in Headers */,
 				C2E509BD19C83A4D00350F00 /* UIImageView+TSCImageView.h in Headers */,
 				C2E50A2619C83B2C00350F00 /* TSCTableInputPickerRow.h in Headers */,
@@ -539,7 +565,6 @@
 				C2E50A0A19C83B1700350F00 /* TSCTableValue1Row.m in Sources */,
 				C2E509AE19C83A4000350F00 /* TSCThemeManager.m in Sources */,
 				C2E50A2719C83B2C00350F00 /* TSCTableInputPickerRow.m in Sources */,
-				C2E509B019C83A4000350F00 /* TSCDefaultTheme.m in Sources */,
 				C2E509B219C83A4000350F00 /* TSCTableViewController.m in Sources */,
 				C2E50A1D19C83B2C00350F00 /* TSCTableInputRow.m in Sources */,
 				C2E509EB19C83ACA00350F00 /* TSCTableInputViewCell.m in Sources */,
@@ -547,12 +572,15 @@
 				C2E50A4119C83B5F00350F00 /* TSCTableSortedSections.m in Sources */,
 				C2E509C719C83A7A00350F00 /* TSCItem.m in Sources */,
 				C2E509EF19C83ACA00350F00 /* TSCTableInputTextViewViewCell.m in Sources */,
+				B1A695521B96F95D001EB098 /* TSCTheme.m in Sources */,
 				C2E509F519C83ACA00350F00 /* TSCTableInputSwitchViewCell.m in Sources */,
 				C2E509BE19C83A4D00350F00 /* UIImageView+TSCImageView.m in Sources */,
 				C2E509F319C83ACA00350F00 /* TSCTableInputPickerViewCell.m in Sources */,
 				C2E509F119C83ACA00350F00 /* TSCTableInputDatePickerViewCell.m in Sources */,
+				B1A6955A1B96FF6F001EB098 /* TSCPickerComponent.m in Sources */,
 				C2E50A3D19C83B5F00350F00 /* TSCTableSection.m in Sources */,
 				C2E509D419C83A9A00350F00 /* TSCTableImageViewCell.m in Sources */,
+				B1A6955D1B96FF6F001EB098 /* TSCPickerRow.m in Sources */,
 				C2E509D019C83A9A00350F00 /* TSCTableViewCell.m in Sources */,
 				C2E509BA19C83A4D00350F00 /* TSCImageController.m in Sources */,
 				C2E509BC19C83A4D00350F00 /* TSCImageRequestOperation.m in Sources */,

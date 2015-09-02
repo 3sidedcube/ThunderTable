@@ -28,4 +28,9 @@
  */
 - (NSNumber *)minimumValue;
 
+/**
+ @abstract The interval between steps of the slider
+*/
+- (NSNumber *)sliderInterval;
+
 @end
