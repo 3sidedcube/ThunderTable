@@ -49,6 +49,11 @@
     
     if (self.inputRow.value != [NSNull null]) {
         self.selectionLabel.text = [self stringValueWithComponents:self.inputRow.value];
+    }
+    
+    if (self.detailTextColor) {
+        self.selectionLabel.textColor = self.detailTextColor;
+    }
 }
 
 - (void)setInputRow:(TSCTableInputRow *)inputRow
@@ -99,7 +104,7 @@
 {
     self.selectionLabel.text = [self stringValueWithComponents:self.components];
     self.inputRow.value = [self rowValues];
-
+    
 }
 
 - (NSString *)stringValueWithComponents:(NSArray *)components

@@ -10,6 +10,7 @@
 #import "TSCTableInputPickerViewCell.h"
 #import "TSCPickerRow.h"
 #import "TSCPickerComponent.h"
+#import "TSCThemeManager.h"
 
 @interface TSCTableInputPickerRow ()
 

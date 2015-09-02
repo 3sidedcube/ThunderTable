@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 3 SIDED CUBE. All rights reserved.
 //
 
+@import UIKit;
 #import "TSCPickerComponent.h"
 #import "TSCPickerRow.h"
 
