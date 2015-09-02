@@ -206,4 +206,21 @@
  */
 - (void)overideCellAtIndexPath:(NSIndexPath *)indexPath withClass:(Class)overideClass;
 
+///---------------------------------------------------------------------------------------
+/// @name Finding row objects
+///---------------------------------------------------------------------------------------
+
+/**
+ Enumerates the rows of the tableView returning the row object, index, indexPath and allowing the user to stop the enumeration
+ @param block The block of code which will be called upon enumerating each row of the dataSource
+ */
+- (void)enumerateRowsUsingBlock:(void (^)(TSCTableRow *row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block;
+
+/**
+ Enumerates the input rows of the tableView returning the row object, index, indexPath and allowing the user to stop the enumeration
+ @param block The block of code which will be called upon enumerating each row of the dataSource
+ @see `-enumerateRowsUsingBlock:` for enumerating all rows
+ */
+- (void)enumerateInputRowsUsingBlock:(void (^)(TSCTableInputRow *inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block;
+
 @end

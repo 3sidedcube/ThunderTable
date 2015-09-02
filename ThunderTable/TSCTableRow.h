@@ -107,7 +107,12 @@
 /**
  @abstract The `UIColor` to apply to the text in the cell
  */
-@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) UIColor *titleTextColor;
+
+/**
+ @abstract The `UIColor` to apply to the detail text in the cell
+ */
+@property (nonatomic, strong) UIColor *detailTextColor;
 
 /**
  @abstract The link that a row should attempt to push when selected
@@ -119,7 +124,17 @@
  @abstract A boolean to configure whether the cell shows the selection indicator when it is selectable
  @discussion The default value of this property is `YES`
  */
-@property (nonatomic, assign) BOOL shouldDisplaySelectionIndicator;
+@property (nonatomic, assign) BOOL rowShouldDisplaySelectionIndicator;
+
+/**
+ @abstract A boolean to configure whether the cell's text should be centered
+ */
+@property (nonatomic) BOOL shouldCenterText;
+
+/**
+ @abstract A boolean to configure whether the cell's text should be inset
+ */
+@property (nonatomic) BOOL shouldInsetTextLabel;
 
 /**
  @abstract The accessory type of the row
@@ -130,6 +145,6 @@
  @abstract The amount of padding to add above and below the contents of the cell.
  @discussion You may find that adjusting this padding value on the cell improves the look and feel of your app
  */
-@property (nonatomic, assign) float rowPadding;
+@property (nonatomic, assign) float padding;
 
 @end

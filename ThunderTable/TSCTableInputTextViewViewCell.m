@@ -20,10 +20,10 @@
     if (self) {
         
         self.textView = [[GCPlaceholderTextView alloc] init];
-        self.textView.textAlignment = NSTextAlignmentRight;
+        self.textView.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
+        self.textView.textAlignment = NSTextAlignmentLeft;
         self.textView.delegate = self;
-        self.textView.textColor = [UIColor blackColor];
-        self.textView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+        self.textView.placeholderColor = [[TSCThemeManager sharedTheme] cellDetailColor];
         self.textView.returnKeyType = UIReturnKeyNext;
 
         [self.contentView addSubview:self.textView];
@@ -38,12 +38,15 @@
 {
     [super layoutSubviews];
     
+    self.textView.font = [[TSCThemeManager sharedTheme] fontOfSize:17];
+    
     if (!self.textLabel.text) {
-        self.textView.textAlignment = NSTextAlignmentLeft;
-        self.textView.frame = CGRectMake(10, 0, self.contentView.bounds.size.width - 20, self.contentView.bounds.size.height);
+        self.textView.frame = CGRectMake(12, 0, self.contentView.bounds.size.width - 24, self.contentView.bounds.size.height);
     } else {
-        self.textView.textAlignment = NSTextAlignmentRight;
-        self.textView.frame = CGRectMake(self.textLabel.bounds.size.width + 20, 0, self.contentView.bounds.size.width - self.textLabel.bounds.size.width - 30, self.contentView.bounds.size.height);
+        
+        CGSize textSize = [self.textLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width - (self.textLabel.frame.origin.x * 2), MAXFLOAT)];
+        self.textLabel.frame = CGRectMake(self.textLabel.frame.origin.x, 12, self.contentView.bounds.size.width - (self.textLabel.frame.origin.x * 2), textSize.height);
+        self.textView.frame = CGRectMake(12, CGRectGetMaxY(self.textLabel.frame) + 6, self.contentView.bounds.size.width - 24, self.contentView.bounds.size.height - (CGRectGetMaxY(self.textLabel.frame) + 6));
     }
 }
 

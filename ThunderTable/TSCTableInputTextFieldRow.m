@@ -8,6 +8,7 @@
 
 #import "TSCTableInputTextFieldRow.h"
 #import "TSCTableInputTextFieldViewCell.h"
+#import "TSCThemeManager.h"
 
 @implementation TSCTableInputTextFieldRow
 
@@ -66,7 +67,7 @@
 - (UITableViewCell *)tableViewCell:(UITableViewCell *)cell
 {
     TSCTableInputTextFieldViewCell *inputCell = (TSCTableInputTextFieldViewCell *)cell;
-    inputCell.textField.placeholder = self.placeholder;
+    inputCell.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder ?: @"" attributes:@{NSForegroundColorAttributeName:self.detailTextColor ? : [[TSCThemeManager sharedTheme] cellDetailColor]}];
     inputCell.textField.keyboardType = self.keyboardType;
     inputCell.textField.returnKeyType = self.returnKeyType;
     inputCell.textField.secureTextEntry = self.isSecure;

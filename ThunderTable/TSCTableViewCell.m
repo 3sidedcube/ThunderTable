@@ -19,10 +19,10 @@
         
         self.textLabel.numberOfLines = 0;
         self.textLabel.backgroundColor = [UIColor clearColor];
+        self.textLabel.font = [[TSCThemeManager sharedTheme] fontOfSize:17];
         
         self.detailTextLabel.numberOfLines = 0;
-        self.detailTextLabel.font = [UIFont systemFontOfSize:14];
-        self.detailTextLabel.textColor = [UIColor grayColor];
+        self.detailTextLabel.font = [[TSCThemeManager sharedTheme] fontOfSize:14];
         
         self.separatorTopView = [UIView new];
         self.separatorTopView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
@@ -32,6 +32,9 @@
         self.separatorBottomView = [UIView new];
         self.separatorBottomView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
         [self.contentView addSubview:self.separatorBottomView];
+        
+        self.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+        self.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
         
         [self.contentView.superview setClipsToBounds:NO];
     }
@@ -51,7 +54,7 @@
         self.separatorBottomView.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 0.5);
     }
     
-    self.shouldDisplaySeparators = true;
+    self.shouldDisplaySeparators = self.shouldDisplaySeparators;
 }
 
 - (void)setShouldDisplaySeparators:(BOOL)shouldDisplaySeparators

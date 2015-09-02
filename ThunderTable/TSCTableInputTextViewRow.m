@@ -49,7 +49,7 @@
 
 - (NSString *)rowTitle;
 {
-    return nil;
+    return self.title;
 }
 
 #pragma Table view data source

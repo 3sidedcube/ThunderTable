@@ -7,6 +7,7 @@
 //
 
 #import "TSCThemeManager.h"
+#import "TSCTheme.h"
 #import "TSCCheckView.h"
 
 @implementation TSCThemeManager
@@ -44,6 +45,7 @@ static id sharedController = nil;
     [toolbar setTintColor:[theme mainColor]];
     
     UITabBar *tabBar = [UITabBar appearance];
+    [tabBar setSelectedImageTintColor:[theme mainColor]];
     [tabBar setTintColor:[theme mainColor]];
     
     
@@ -52,6 +54,7 @@ static id sharedController = nil;
     
     TSCCheckView *checkView = [TSCCheckView appearance];
     [checkView setOnTintColor:[theme mainColor]];
+
 }
 
 + (BOOL)isOS7
@@ -71,12 +74,14 @@ static id sharedController = nil;
 
 + (BOOL)isOS8
 {
-    switch ([[[UIDevice currentDevice] systemVersion] compare:@"8.0.0" options:NSNumericSearch]) {
+    switch ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch]) {
         case NSOrderedSame:
-            return true;
-            break;
         case NSOrderedDescending:
             return true;
+            break;
+        case NSOrderedAscending:
+            return false;
+            break;
         default:
             return false;
             break;

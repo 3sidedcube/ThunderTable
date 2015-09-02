@@ -23,7 +23,7 @@
  @param title The title to display in the row
  @discussion The title will populate the `textLabel` text property of a `UITableViewCell`
  */
-+ (id)rowWithTitle:(NSString *)title;
++ (instancetype)rowWithTitle:(NSString *)title;
 
 /**
  Initializes the row with a single title.
@@ -32,7 +32,7 @@
  @param image The image to be displayed to the left hand side of the cell
  @discussion The title will populate the `textLabel` text property and the subtitle will populate the `detailTextLabel` text property of the `UITableViewCell`
  */
-+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
 
 /**
  Initializes the row with a single title in a custom color
@@ -42,7 +42,7 @@
  @param color A 'UIColor' to color the detail text with
  @discussion The title will populate the `textLabel` text property of a `UITableViewCell`. The detailTextColor will be applied to the detail label text.
  */
-+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image detailTextColor:(UIColor *)color;
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image detailTextColor:(UIColor *)color;
 /**
  Initializes the row with a single title in a custom color
  @param title The title to display in the row
@@ -52,7 +52,7 @@
  @param isBold A boolean which determines whether the textLabel should have a bold font
  @discussion The title will populate the `textLabel` text property of a `UITableViewCell`. The detailTextColor will be applied to the detail label text.
  */
-+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image detailTextColor:(UIColor *)color boldLabel:(BOOL)isBold;
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image detailTextColor:(UIColor *)color boldLabel:(BOOL)isBold;
 
 /**
  Initializes the row with a single title.
@@ -62,7 +62,7 @@
  @discussion The title will populate the `textLabel` text property and the subtitle will populate the `detailTextLabel` text property of the `UITableViewCell`
  @note Please set the `imagePlaceholder` property when using this method. This is required because the image width and height is used at layout to provide appropriate space for your loaded image.
  */
-+ (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL;
++ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL;
 
 ///---------------------------------------------------------------------------------------
 /// @name Handling selection
@@ -114,6 +114,21 @@
  @abstract The colour of the detailTextLabel font
  */
 @property (nonatomic, strong) UIColor *detailTextColor;
+
+/**
+ @abstract The colour of the textLabel font
+ */
+@property (nonatomic, strong) UIColor *titleTextColor;
+
+/**
+ @abstract The colour of the detailTextLabel font when the cell is disabled
+ */
+@property (nonatomic, strong) UIColor *disabledDetailTextColor;
+
+/**
+ @abstract The colour of the textLabel font when the cell is disabled
+ */
+@property (nonatomic, strong) UIColor *disabledTitleTextColor;
 
 /**
  @abstract Whether the row is enabled or not

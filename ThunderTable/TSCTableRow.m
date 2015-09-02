@@ -12,16 +12,20 @@
 @implementation TSCTableRow
 
 -(id)init {
+    
     self = [super init];
+    
     if (self) {
-        self.shouldDisplaySelectionIndicator = YES;
+        
+        self.shouldCenterText = NO;
+        self.rowShouldDisplaySelectionIndicator = YES;
     }
     return self;
 }
 
 + (id)rowWithTitle:(NSString *)title
 {
-    TSCTableRow *row = [[TSCTableRow alloc] init];
+    TSCTableRow *row = [self new];
     row.title = title;
     
     return row;
@@ -29,16 +33,16 @@
 
 + (id)rowWithTitle:(NSString *)title textColor:(UIColor *)textColor
 {
-    TSCTableRow *row = [[TSCTableRow alloc] init];
+    TSCTableRow *row = [self new];
     row.title = title;
-    row.textColor = textColor;
+    row.titleTextColor = textColor;
     
     return row;
 }
 
 + (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image
 {
-    TSCTableRow *row = [[TSCTableRow alloc] init];
+    TSCTableRow *row = [self new];
     row.title = title;
     row.subtitle = subtitle;
     row.image = image;
@@ -48,7 +52,7 @@
 
 + (id)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL
 {
-    TSCTableRow *row = [[TSCTableRow alloc] init];
+    TSCTableRow *row = [self new];
     row.title = title;
     row.subtitle = subtitle;
     row.imageURL = imageURL;
@@ -111,8 +115,8 @@
 
 - (float)rowPadding
 {
-    if (_rowPadding) {
-        return _rowPadding;
+    if (_padding) {
+        return _padding;
     }
     
     return 10;
@@ -125,22 +129,33 @@
 
 - (BOOL)shouldDisplaySelectionIndicator
 {
-    return _shouldDisplaySelectionIndicator;
+    return _rowShouldDisplaySelectionIndicator;
+}
+
+- (BOOL)shouldDisplaySeperator
+{
+    return YES;
 }
 
 - (UITableViewCell *)tableViewCell:(UITableViewCell *)cell;
 {
     TSCTableViewCell *standardCell = (TSCTableViewCell *)cell;
     
-    if (self.textColor) {
-        standardCell.textLabel.textColor = self.textColor;
-    }
-    
     if (self.accessoryType) {
         standardCell.accessoryType = self.accessoryType;
     }
     
     return standardCell;
+}
+
+- (UIColor *)rowTitleTextColor
+{
+    return self.titleTextColor;
+}
+
+- (UIColor *)rowDetailTextColor
+{
+    return self.detailTextColor;
 }
 
 @end
