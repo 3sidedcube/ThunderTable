@@ -16,7 +16,7 @@
 {
     [self TSC_cancelCurrentRequestOperation];
     
-    self.contentMode = UIViewContentModeScaleAspectFill;
+//    self.contentMode = UIViewContentModeScaleAspectFill;
     self.image = placeholderImage;
     
     TSCImageRequestOperation *operation = [[TSCImageController sharedController] imageRequestOperationWithImageURL:imageURL completion:^(UIImage *image, NSError *error, BOOL isCached) {
