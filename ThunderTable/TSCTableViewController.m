@@ -68,6 +68,8 @@
 
 - (void)loadView
 {
+    [super loadView];
+    
     UIScreen *mainScreen = [UIScreen mainScreen];
     
     self.tableView = [[UITableView alloc] initWithFrame:mainScreen.bounds style:_style];
