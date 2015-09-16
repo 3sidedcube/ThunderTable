@@ -477,7 +477,18 @@
 - (void)TSC_registerCellClass:(Class)class
 {
     [self.registeredCellClasses addObject:NSStringFromClass(class)];
-    [self.tableView registerClass:class forCellReuseIdentifier:NSStringFromClass(class)];
+    
+    if ([[NSBundle bundleForClass:class] pathForResource:NSStringFromClass(class) ofType:@"nib"]) {
+        
+        UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(class) bundle:[NSBundle bundleForClass:class]];
+        
+        [self.tableView registerNib:cellNib forCellReuseIdentifier:NSStringFromClass(class)];
+        
+    } else {
+        
+        [self.tableView registerClass:class forCellReuseIdentifier:NSStringFromClass(class)];
+        
+    }
 }
 
 #pragma mark UITableViewDelegate methods
