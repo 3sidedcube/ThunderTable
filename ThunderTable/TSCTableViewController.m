@@ -543,7 +543,7 @@
     
     if ([row respondsToSelector:@selector(rowSelectionSelector)] && [row respondsToSelector:@selector(rowSelectionTarget)]) {
         
-        if (row.rowSelectionSelector && row.rowSelectionTarget) {
+        if ((row.rowSelectionSelector && row.rowSelectionTarget) || [row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
             
             return YES;
         }
