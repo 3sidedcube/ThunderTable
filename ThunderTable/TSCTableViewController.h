@@ -79,12 +79,6 @@
 ///---------------------------------------------------------------------------------------
 
 /**
- @abstract The current `UITableViewStyle` of the `tableView`
- @discussion This property should be initialised by one of the designated initializers below
- */
-@property (nonatomic, assign) UITableViewStyle style;
-
-/**
  @abstract Used to enable Alphabetical index titles down the side of a table view by section
  @discussion Each section should have a title set before enabling this property
  */
