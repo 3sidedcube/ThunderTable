@@ -64,20 +64,12 @@
     return self;
 }
 
-#pragma mark View life cycle
-
 - (void)loadView
 {
     [super loadView];
-    
-//    UIScreen *mainScreen = [UIScreen mainScreen];
-    
-//    self.tableView = [[UITableView alloc] initWithFrame:mainScreen.bounds style:_style];
-    //    self.tableView.delegate = self;
-    //    self.tableView.dataSource = self;
-    
-    self.view = self.tableView;
 }
+
+#pragma mark View life cycle
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -90,7 +82,6 @@
 {
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -113,7 +104,6 @@
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = YES;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 -(void)viewDidLayoutSubviews
@@ -459,17 +449,25 @@
         [row tableViewCell:cell];
     }
     
-    if ([cell respondsToSelector:@selector(setShouldDisplaySeparators:)]) {
+    if ([row respondsToSelector:@selector(shouldDisplaySeperator)] && ![row shouldDisplaySeperator]) {
         
-        if (self.shouldDisplaySeparatorsOnCells) {
-            cell.shouldDisplaySeparators = YES;
-        } else {
-            cell.shouldDisplaySeparators = NO;
+        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+            [cell setSeparatorInset:UIEdgeInsetsMake(0, INFINITY, 0, 0)];
         }
-    }
-    
-    if ([row respondsToSelector:@selector(shouldDisplaySeperator)]) {
-        cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
+        
+        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+            [cell setLayoutMargins:UIEdgeInsetsMake(0, INFINITY, 0, 0)];
+        }
+        
+    } else {
+        
+        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+            [cell setSeparatorInset:UIEdgeInsetsZero];
+        }
+        
+        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+            [cell setLayoutMargins:UIEdgeInsetsZero];
+        }
     }
 }
 

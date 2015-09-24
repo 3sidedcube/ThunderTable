@@ -106,12 +106,6 @@
 ///---------------------------------------------------------------------------------------
 
 /**
- @abstract The refresh control used for "Pull to refresh" on the `tableView`
- @discussion This property will return nil if `refreshEnabled` is set to NO
- */
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
-
-/**
  Called when the `refreshControl` changes it's refresh state
  @discussion Override this method in your own class to perform custom tasks when a pull to refresh action is initiated
  */
