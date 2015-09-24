@@ -25,4 +25,9 @@
  */
 @property (nonatomic, strong) NSIndexPath *currentIndexPath;
 
+/**
+ @abstract Whether the cell should display separators or not
+ */
+@property (nonatomic, assign) BOOL shouldDisplaySeparators;
+
 @end

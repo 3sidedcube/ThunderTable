@@ -50,7 +50,6 @@
     
     if (self) {
         
-        self.style = style;
         self.registeredCellClasses = [NSMutableArray array];
         self.dynamicHeightCells = [NSMutableDictionary dictionary];
         self.shouldMakeFirstTextFieldFirstResponder = YES;
@@ -462,12 +461,15 @@
     } else {
         
         if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-            [cell setSeparatorInset:UIEdgeInsetsZero];
+            [cell setSeparatorInset:UIEdgeInsetsMake(0, self.tableView.separatorInset.left, 0, 0)];
         }
         
-        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-        }
+    }
+    
+    if ([cell respondsToSelector:@selector(setShouldDisplaySeparators:)] && [row respondsToSelector:@selector(shouldDisplaySeperator)]) {
+        
+        cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
+        
     }
 }
 

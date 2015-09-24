@@ -28,9 +28,20 @@
         self.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
         
         [self.contentView.superview setClipsToBounds:NO];
+        self.shouldDisplaySeparators = YES;
     }
     
     return self;
 }
 
+//This is really quite awful but it's the only way to get tableview to remove the 1px line at the top of sections on a group tableview when disabling cell seperators
+- (void)addSubview:(UIView *)view
+{
+    if (!self.shouldDisplaySeparators && CGRectGetHeight(view.frame)*[UIScreen mainScreen].scale == 1)
+    {
+        return;
+    }
+    
+    [super addSubview:view];
+}
 @end
