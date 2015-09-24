@@ -63,6 +63,7 @@ FOUNDATION_EXPORT const unsigned char ThunderTableVersionString[];
 #import <ThunderTable/TSCPickerComponent.h>
 #import <ThunderTable/TSCPickerComponentDataSource.h>
 #import <ThunderTable/TSCPickerRow.h>
+#import <ThunderTable/TSCStoryboardRow.h>
 
 // Picker
 #import <ThunderTable/TSCItemPickerController.h>
