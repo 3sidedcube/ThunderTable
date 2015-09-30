@@ -63,6 +63,6 @@ Applies the shared theme to the app
  Used to detect if the current device is an iPad
  @return YES if the device is an iPad
  */
-BOOL isPad();
+BOOL TSC_isPad();
 
 @end

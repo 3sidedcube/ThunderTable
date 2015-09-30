@@ -152,7 +152,7 @@
     NSDictionary *info = notification.userInfo;
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    if (isPad()) {
+    if (TSC_isPad()) {
         if (self.navigationController.presentingViewController) {
             CGRect rect = [self.view convertRect:self.view.frame toView:[UIApplication sharedApplication].keyWindow];
             kbSize = CGSizeMake(kbSize.width, kbSize.height - rect.origin.y + 44);

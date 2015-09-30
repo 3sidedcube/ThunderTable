@@ -98,7 +98,7 @@ static id sharedController = nil;
     return NO;
 }
 
-BOOL isPad() {
+BOOL TSC_isPad() {
     
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) {
         return YES;
