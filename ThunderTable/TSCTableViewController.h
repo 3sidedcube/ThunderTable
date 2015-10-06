@@ -34,7 +34,7 @@
  - `TSCTableSection` for sections
  
  */
-@interface TSCTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSCTableInputViewCellDelegate, UITextFieldDelegate>
+@interface TSCTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, TSCTableInputViewCellDelegate, UITextFieldDelegate>
 
 ///---------------------------------------------------------------------------------------
 /// @name Initializing a TSCTableView Object
@@ -77,12 +77,6 @@
 ///---------------------------------------------------------------------------------------
 /// @name Configuring the Table View
 ///---------------------------------------------------------------------------------------
-
-/**
- @abstract The current table view
- @discussion Use this property for accessing information about the underlying table view
- */
-@property (nonatomic, strong) UITableView *tableView;
 
 /**
  @abstract The current `UITableViewStyle` of the `tableView`

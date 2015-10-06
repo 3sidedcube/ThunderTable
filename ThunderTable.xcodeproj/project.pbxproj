@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		493EED401BB4086D004FB9A3 /* TSCStoryboardRow.h in Headers */ = {isa = PBXBuildFile; fileRef = 493EED3E1BB4086D004FB9A3 /* TSCStoryboardRow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		493EED411BB4086D004FB9A3 /* TSCStoryboardRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 493EED3F1BB4086D004FB9A3 /* TSCStoryboardRow.m */; settings = {ASSET_TAGS = (); }; };
 		B1A695521B96F95D001EB098 /* TSCTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A695511B96F95D001EB098 /* TSCTheme.m */; };
 		B1A695591B96FF6F001EB098 /* TSCPickerComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A695531B96FF6F001EB098 /* TSCPickerComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1A6955A1B96FF6F001EB098 /* TSCPickerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A695541B96FF6F001EB098 /* TSCPickerComponent.m */; };
@@ -92,6 +94,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		493EED3E1BB4086D004FB9A3 /* TSCStoryboardRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCStoryboardRow.h; sourceTree = "<group>"; };
+		493EED3F1BB4086D004FB9A3 /* TSCStoryboardRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCStoryboardRow.m; sourceTree = "<group>"; };
 		B1A695511B96F95D001EB098 /* TSCTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCTheme.m; sourceTree = "<group>"; };
 		B1A695531B96FF6F001EB098 /* TSCPickerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCPickerComponent.h; sourceTree = "<group>"; };
 		B1A695541B96FF6F001EB098 /* TSCPickerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCPickerComponent.m; sourceTree = "<group>"; };
@@ -347,6 +351,8 @@
 		C2E50A0B19C83B1D00350F00 /* Rows */ = {
 			isa = PBXGroup;
 			children = (
+				493EED3E1BB4086D004FB9A3 /* TSCStoryboardRow.h */,
+				493EED3F1BB4086D004FB9A3 /* TSCStoryboardRow.m */,
 				C2E509FF19C83B1700350F00 /* TSCTableRow.h */,
 				C2E50A0019C83B1700350F00 /* TSCTableRow.m */,
 				C2E50A0119C83B1700350F00 /* TSCTableImageRow.h */,
@@ -411,6 +417,7 @@
 			files = (
 				C2E509F419C83ACA00350F00 /* TSCTableInputSwitchViewCell.h in Headers */,
 				C2E509AD19C83A4000350F00 /* TSCThemeManager.h in Headers */,
+				493EED401BB4086D004FB9A3 /* TSCStoryboardRow.h in Headers */,
 				C2E50A3C19C83B5F00350F00 /* TSCTableSection.h in Headers */,
 				C2E50A0519C83B1700350F00 /* TSCTableRow.h in Headers */,
 				B1A6955B1B96FF6F001EB098 /* TSCPickerComponentDataSource.h in Headers */,
@@ -501,7 +508,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = threesidedcube;
 				TargetAttributes = {
 					C2E5098119C839F600350F00 = {
@@ -584,6 +591,7 @@
 				B1A6955D1B96FF6F001EB098 /* TSCPickerRow.m in Sources */,
 				C2E509D019C83A9A00350F00 /* TSCTableViewCell.m in Sources */,
 				C2E509BA19C83A4D00350F00 /* TSCImageController.m in Sources */,
+				493EED411BB4086D004FB9A3 /* TSCStoryboardRow.m in Sources */,
 				C2E509BC19C83A4D00350F00 /* TSCImageRequestOperation.m in Sources */,
 				C2E50A2119C83B2C00350F00 /* TSCTableInputTextViewRow.m in Sources */,
 				C2E509D219C83A9A00350F00 /* TSCTableValue1ViewCell.m in Sources */,
@@ -624,6 +632,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -640,7 +649,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -701,6 +710,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.threesidedcube.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -718,6 +728,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.threesidedcube.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -736,6 +747,7 @@
 				);
 				INFOPLIST_FILE = ThunderTableTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.threesidedcube.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -749,6 +761,7 @@
 				);
 				INFOPLIST_FILE = ThunderTableTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.threesidedcube.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

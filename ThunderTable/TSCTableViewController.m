@@ -46,7 +46,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super init];
+    self = [super initWithStyle:style];
     
     if (self) {
         
@@ -70,9 +70,9 @@
 {
     [super loadView];
     
-    UIScreen *mainScreen = [UIScreen mainScreen];
+//    UIScreen *mainScreen = [UIScreen mainScreen];
     
-    self.tableView = [[UITableView alloc] initWithFrame:mainScreen.bounds style:_style];
+//    self.tableView = [[UITableView alloc] initWithFrame:mainScreen.bounds style:_style];
     //    self.tableView.delegate = self;
     //    self.tableView.dataSource = self;
     
@@ -274,6 +274,8 @@
     
     if ([row respondsToSelector:@selector(tableViewCellClass)]) {
         tableViewCellClass = [row tableViewCellClass];
+    } else if ([row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)]) {
+        tableViewCellClass = [UITableViewCell class];
     } else {
         tableViewCellClass = [TSCTableViewCell class];
     }
@@ -281,16 +283,38 @@
     return tableViewCellClass;
 }
 
+- (NSString *)TSC_tableViewPrototypeCellIdentifierForIndexPath:(NSIndexPath *)indexPath
+{
+    NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
+    
+    NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
+    
+    if ([row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)]) {
+        
+        return [row tableViewPrototypeCellIdentifier];
+    }
+    
+    return nil;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Class tableViewCellClass = [self TSC_tableViewCellClassForIndexPath:indexPath];
+    NSString *prototypeIdentifier = [self TSC_tableViewPrototypeCellIdentifierForIndexPath:indexPath];
     
     // Check if class is registered with table view
     if (![self TSC_isCellClassRegistered:tableViewCellClass]) {
         [self TSC_registerCellClass:tableViewCellClass];
     }
     
-    TSCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(tableViewCellClass) forIndexPath:indexPath];
+    TSCTableViewCell *cell;
+    
+    if (prototypeIdentifier) {
+        cell = [tableView dequeueReusableCellWithIdentifier:prototypeIdentifier forIndexPath:indexPath];
+
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(tableViewCellClass) forIndexPath:indexPath];
+    }
     
     [self TSC_configureCell:cell withIndexPath:indexPath];
     
@@ -299,10 +323,13 @@
 
 - (void)TSC_configureCell:(TSCTableViewCell *)cell withIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
-    
-    cell.currentIndexPath = indexPath;
+
+    if ([cell respondsToSelector:@selector(currentIndexPath)]) {
+        cell.currentIndexPath = indexPath;
+    }
     cell.detailTextLabel.text = nil;
     cell.textLabel.text = nil;
     cell.imageView.image = nil;
@@ -421,7 +448,11 @@
         cell.accessoryType = [row rowAccessoryType];
     }
     
-    cell.parentViewController = self;
+    if ([cell respondsToSelector:@selector(parentViewController)]) {
+
+        cell.parentViewController = self;
+
+    }
     
     // So model can perform additional changes if it wants
     if ([row respondsToSelector:@selector(tableViewCell:)]) {
@@ -446,6 +477,10 @@
 {
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
+    
+    if ([row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)]) {
+        return UITableViewAutomaticDimension;
+    }
     
     CGSize contentViewSize = CGSizeMake(self.tableView.frame.size.width, MAXFLOAT);
     
