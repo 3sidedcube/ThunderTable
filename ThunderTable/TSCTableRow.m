@@ -158,4 +158,9 @@
     return self.detailTextColor;
 }
 
+- (UIColor *)rowBackgroundColor
+{
+    return self.backgroundColor;
+}
+
 @end

@@ -315,6 +315,7 @@
         } else {
             cell.textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
         }
+        
     } else {
         cell.textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
     }
@@ -326,8 +327,27 @@
         } else {
             cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
         }
+        
     } else {
         cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
+    }
+    
+    if ([row respondsToSelector:@selector(rowBackgroundColor)]) {
+        
+        if ([row rowBackgroundColor]) {
+            
+            cell.backgroundColor = [row rowBackgroundColor];
+            cell.contentView.backgroundColor = [row rowBackgroundColor];
+        } else {
+            
+            cell.backgroundColor = [UIColor whiteColor];
+            cell.contentView.backgroundColor = [UIColor whiteColor];
+        }
+        
+    } else {
+        
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     
     if ([row respondsToSelector:@selector(rowTitle)]) {
