@@ -24,45 +24,24 @@
         self.detailTextLabel.numberOfLines = 0;
         self.detailTextLabel.font = [[TSCThemeManager sharedTheme] fontOfSize:14];
         
-        self.separatorTopView = [UIView new];
-        self.separatorTopView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
-        [self.contentView addSubview:self.separatorTopView];
-        
-        
-        self.separatorBottomView = [UIView new];
-        self.separatorBottomView.backgroundColor = [[TSCThemeManager sharedTheme] tableSeperatorColor];
-        [self.contentView addSubview:self.separatorBottomView];
-        
         self.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
         self.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
         
         [self.contentView.superview setClipsToBounds:NO];
+        self.shouldDisplaySeparators = YES;
     }
     
     return self;
 }
 
-- (void)layoutSubviews
+//This is really quite awful but it's the only way to get tableview to remove the 1px line at the top of sections on a group tableview when disabling cell seperators
+- (void)addSubview:(UIView *)view
 {
-    [super layoutSubviews];
-    
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 1.00) {
-        self.separatorTopView.frame = CGRectMake(0, 0, self.bounds.size.width, 1);
-        self.separatorBottomView.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 1);
-    } else {
-        self.separatorTopView.frame = CGRectMake(0, 0, self.bounds.size.width, 0.5);
-        self.separatorBottomView.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 0.5);
+    if (!self.shouldDisplaySeparators && CGRectGetHeight(view.frame)*[UIScreen mainScreen].scale == 1)
+    {
+        return;
     }
     
-    self.shouldDisplaySeparators = self.shouldDisplaySeparators;
+    [super addSubview:view];
 }
-
-- (void)setShouldDisplaySeparators:(BOOL)shouldDisplaySeparators
-{
-    _shouldDisplaySeparators = shouldDisplaySeparators;
-    
-    self.separatorTopView.hidden = !shouldDisplaySeparators;
-    self.separatorBottomView.hidden = !shouldDisplaySeparators;
-}
-
 @end

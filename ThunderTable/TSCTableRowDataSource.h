@@ -60,6 +60,11 @@
 - (Class)tableViewCellClass;
 
 /**
+ @abstract The Identifier to be used to dequeue and load tableViewCells from a prototype cell in a storyboard. This property will take presidence over the tableViewCellClass property
+ */
+- (NSString *)tableViewPrototypeCellIdentifier;
+
+/**
  @abstract This method delivers the `cell` which has been rendered based on the other methods in the protocol.
  @discussion This is the last chance to further customise the cell before it is rendered in the `TSCTableViewController`
  @param cell The cell that will be rendered, please return this when you are finished customising

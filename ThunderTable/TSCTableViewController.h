@@ -34,7 +34,7 @@
  - `TSCTableSection` for sections
  
  */
-@interface TSCTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSCTableInputViewCellDelegate, UITextFieldDelegate>
+@interface TSCTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, TSCTableInputViewCellDelegate, UITextFieldDelegate>
 
 ///---------------------------------------------------------------------------------------
 /// @name Initializing a TSCTableView Object
@@ -79,18 +79,6 @@
 ///---------------------------------------------------------------------------------------
 
 /**
- @abstract The current table view
- @discussion Use this property for accessing information about the underlying table view
- */
-@property (nonatomic, strong) UITableView *tableView;
-
-/**
- @abstract The current `UITableViewStyle` of the `tableView`
- @discussion This property should be initialised by one of the designated initializers below
- */
-@property (nonatomic, assign) UITableViewStyle style;
-
-/**
  @abstract Used to enable Alphabetical index titles down the side of a table view by section
  @discussion Each section should have a title set before enabling this property
  */
@@ -110,12 +98,6 @@
 ///---------------------------------------------------------------------------------------
 /// @name Managing Refreshing
 ///---------------------------------------------------------------------------------------
-
-/**
- @abstract The refresh control used for "Pull to refresh" on the `tableView`
- @discussion This property will return nil if `refreshEnabled` is set to NO
- */
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 /**
  Called when the `refreshControl` changes it's refresh state

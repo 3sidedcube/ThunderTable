@@ -46,11 +46,10 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super init];
+    self = [super initWithStyle:style];
     
     if (self) {
         
-        self.style = style;
         self.registeredCellClasses = [NSMutableArray array];
         self.dynamicHeightCells = [NSMutableDictionary dictionary];
         self.shouldMakeFirstTextFieldFirstResponder = YES;
@@ -64,20 +63,12 @@
     return self;
 }
 
-#pragma mark View life cycle
-
 - (void)loadView
 {
     [super loadView];
-    
-    UIScreen *mainScreen = [UIScreen mainScreen];
-    
-    self.tableView = [[UITableView alloc] initWithFrame:mainScreen.bounds style:_style];
-    //    self.tableView.delegate = self;
-    //    self.tableView.dataSource = self;
-    
-    self.view = self.tableView;
 }
+
+#pragma mark View life cycle
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -90,7 +81,6 @@
 {
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -113,7 +103,6 @@
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = YES;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 -(void)viewDidLayoutSubviews
@@ -274,6 +263,8 @@
     
     if ([row respondsToSelector:@selector(tableViewCellClass)]) {
         tableViewCellClass = [row tableViewCellClass];
+    } else if ([row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)]) {
+        tableViewCellClass = [UITableViewCell class];
     } else {
         tableViewCellClass = [TSCTableViewCell class];
     }
@@ -281,16 +272,38 @@
     return tableViewCellClass;
 }
 
+- (NSString *)TSC_tableViewPrototypeCellIdentifierForIndexPath:(NSIndexPath *)indexPath
+{
+    NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
+    
+    NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
+    
+    if ([row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)]) {
+        
+        return [row tableViewPrototypeCellIdentifier];
+    }
+    
+    return nil;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Class tableViewCellClass = [self TSC_tableViewCellClassForIndexPath:indexPath];
+    NSString *prototypeIdentifier = [self TSC_tableViewPrototypeCellIdentifierForIndexPath:indexPath];
     
     // Check if class is registered with table view
     if (![self TSC_isCellClassRegistered:tableViewCellClass]) {
         [self TSC_registerCellClass:tableViewCellClass];
     }
     
-    TSCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(tableViewCellClass) forIndexPath:indexPath];
+    TSCTableViewCell *cell;
+    
+    if (prototypeIdentifier) {
+        cell = [tableView dequeueReusableCellWithIdentifier:prototypeIdentifier forIndexPath:indexPath];
+
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(tableViewCellClass) forIndexPath:indexPath];
+    }
     
     [self TSC_configureCell:cell withIndexPath:indexPath];
     
@@ -299,10 +312,13 @@
 
 - (void)TSC_configureCell:(TSCTableViewCell *)cell withIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
-    
-    cell.currentIndexPath = indexPath;
+
+    if ([cell respondsToSelector:@selector(currentIndexPath)]) {
+        cell.currentIndexPath = indexPath;
+    }
     cell.detailTextLabel.text = nil;
     cell.textLabel.text = nil;
     cell.imageView.image = nil;
@@ -315,7 +331,6 @@
         } else {
             cell.textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
         }
-        
     } else {
         cell.textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
     }
@@ -327,27 +342,8 @@
         } else {
             cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
         }
-        
     } else {
         cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
-    }
-    
-    if ([row respondsToSelector:@selector(rowBackgroundColor)]) {
-        
-        if ([row rowBackgroundColor]) {
-            
-            cell.backgroundColor = [row rowBackgroundColor];
-            cell.contentView.backgroundColor = [row rowBackgroundColor];
-        } else {
-            
-            cell.backgroundColor = [UIColor whiteColor];
-            cell.contentView.backgroundColor = [UIColor whiteColor];
-        }
-        
-    } else {
-        
-        cell.backgroundColor = [UIColor whiteColor];
-        cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     
     if ([row respondsToSelector:@selector(rowTitle)]) {
@@ -421,24 +417,39 @@
         cell.accessoryType = [row rowAccessoryType];
     }
     
-    cell.parentViewController = self;
+    if ([cell respondsToSelector:@selector(parentViewController)]) {
+
+        cell.parentViewController = self;
+
+    }
     
     // So model can perform additional changes if it wants
     if ([row respondsToSelector:@selector(tableViewCell:)]) {
         [row tableViewCell:cell];
     }
     
-    if ([cell respondsToSelector:@selector(setShouldDisplaySeparators:)]) {
+    if ([row respondsToSelector:@selector(shouldDisplaySeperator)] && ![row shouldDisplaySeperator]) {
         
-        if (self.shouldDisplaySeparatorsOnCells) {
-            cell.shouldDisplaySeparators = YES;
-        } else {
-            cell.shouldDisplaySeparators = NO;
+        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+            [cell setSeparatorInset:UIEdgeInsetsMake(0, INFINITY, 0, 0)];
         }
+        
+        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+            [cell setLayoutMargins:UIEdgeInsetsMake(0, INFINITY, 0, 0)];
+        }
+        
+    } else {
+        
+        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+            [cell setSeparatorInset:UIEdgeInsetsMake(0, self.tableView.separatorInset.left, 0, 0)];
+        }
+        
     }
     
-    if ([row respondsToSelector:@selector(shouldDisplaySeperator)]) {
+    if ([cell respondsToSelector:@selector(setShouldDisplaySeparators:)] && [row respondsToSelector:@selector(shouldDisplaySeperator)]) {
+        
         cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
+        
     }
 }
 
@@ -446,6 +457,10 @@
 {
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
+    
+    if ([row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)]) {
+        return UITableViewAutomaticDimension;
+    }
     
     CGSize contentViewSize = CGSizeMake(self.tableView.frame.size.width, MAXFLOAT);
     
