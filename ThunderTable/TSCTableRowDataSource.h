@@ -167,4 +167,9 @@
  */
 - (UIColor *)rowDetailTextColor;
 
+/**
+ @abstract A value to be used for the background colour of the cell
+ */
+- (UIColor *)rowBackgroundColor;
+
 @end
