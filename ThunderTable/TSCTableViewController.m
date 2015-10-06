@@ -141,7 +141,7 @@
     NSDictionary *info = notification.userInfo;
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    if (TSC_isPad()) {
+    if (isPad()) {
         if (self.navigationController.presentingViewController) {
             CGRect rect = [self.view convertRect:self.view.frame toView:[UIApplication sharedApplication].keyWindow];
             kbSize = CGSizeMake(kbSize.width, kbSize.height - rect.origin.y + 44);
@@ -331,7 +331,6 @@
         } else {
             cell.textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
         }
-        
     } else {
         cell.textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
     }
@@ -343,27 +342,8 @@
         } else {
             cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
         }
-        
     } else {
         cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
-    }
-    
-    if ([row respondsToSelector:@selector(rowBackgroundColor)]) {
-        
-        if ([row rowBackgroundColor]) {
-            
-            cell.backgroundColor = [row rowBackgroundColor];
-            cell.contentView.backgroundColor = [row rowBackgroundColor];
-        } else {
-            
-            cell.backgroundColor = [UIColor whiteColor];
-            cell.contentView.backgroundColor = [UIColor whiteColor];
-        }
-        
-    } else {
-        
-        cell.backgroundColor = [UIColor whiteColor];
-        cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     
     if ([row respondsToSelector:@selector(rowTitle)]) {
