@@ -346,6 +346,23 @@
         cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
     }
     
+    if ([row respondsToSelector:@selector(rowBackgroundColor)]) {
+        
+        if ([row rowBackgroundColor]) {
+            
+            cell.backgroundColor = [row rowBackgroundColor];
+            cell.contentView.backgroundColor = [row rowBackgroundColor];
+        } else {
+            
+            cell.detailTextLabel.textColor = [UIColor whiteColor];
+            cell.contentView.backgroundColor = [UIColor whiteColor];
+        }
+    } else {
+        
+        cell.detailTextLabel.textColor = [UIColor whiteColor];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+    }
+    
     if ([row respondsToSelector:@selector(rowTitle)]) {
         
         if ([[row rowTitle] isKindOfClass:[NSAttributedString class]]) {
@@ -458,7 +475,17 @@
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
     
-    if ([row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)]) {
+    BOOL thunderTableAutoSizing = ![row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)];
+    
+    if ([row respondsToSelector:@selector(tableViewCellClass)] && [row tableViewCellClass]) {
+        
+        Class class = [row tableViewCellClass];
+        if ([[NSBundle bundleForClass:[row tableViewCellClass]] pathForResource:NSStringFromClass(class) ofType:@"nib"]) {
+            thunderTableAutoSizing = [row respondsToSelector:@selector(tableViewCellHeightConstrainedToContentViewSize:tableViewSize:)] || [row respondsToSelector:@selector(tableViewCellHeightConstrainedToSize:)];
+        }
+    }
+    
+    if (!thunderTableAutoSizing) {
         return UITableViewAutomaticDimension;
     }
     
