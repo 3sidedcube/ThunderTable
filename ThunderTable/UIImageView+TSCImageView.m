@@ -10,38 +10,67 @@
 #import "TSCImageController.h"
 #import <objc/runtime.h>
 
+#define kFinalSizeKey @"finalSize"
+
 @implementation UIImageView (TSCImageView)
 
 - (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage animated:(BOOL)animated
 {
     [self TSC_cancelCurrentRequestOperation];
     
-//    self.contentMode = UIViewContentModeScaleAspectFill;
     self.image = placeholderImage;
     
-    TSCImageRequestOperation *operation = [[TSCImageController sharedController] imageRequestOperationWithImageURL:imageURL completion:^(UIImage *image, NSError *error, BOOL isCached) {
+    if (imageURL) {
         
-        if (image) {
-            self.image = image;
-        }
-        
-        if (animated && !isCached) {
+        TSCImageRequestOperation *operation = [[TSCImageController sharedController] imageRequestOperationWithImageURL:imageURL completion:^(UIImage *image, NSError *error, BOOL isCached) {
             
-            CATransition *transition = [CATransition animation];
-            transition.type = kCATransitionFade;
-            transition.duration = 0.25;
-            [self.layer addAnimation:transition forKey:nil];
-        }
+            if (image) {
+                self.image = image;
+            }
+            
+            if (animated && !isCached) {
+                
+                CATransition *transition = [CATransition animation];
+                transition.type = kCATransitionFade;
+                transition.duration = 0.25;
+                [self.layer addAnimation:transition forKey:nil];
+            }
+            
+            [self TSC_setCurrentImageRequestOperation:nil];
+        }];
         
-        [self TSC_setCurrentImageRequestOperation:nil];
-    }];
-    
-    [self TSC_setCurrentImageRequestOperation:operation];
+        [self TSC_setCurrentImageRequestOperation:operation];
+    }
 }
 
 - (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage
 {
     [self setImageURL:imageURL placeholderImage:placeholderImage animated:NO];
+    [self setFinalSize:CGSizeZero];
+}
+
+- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage imageSize:(CGSize)size
+{
+    [self setImageURL:imageURL placeholderImage:placeholderImage];
+    [self setFinalSize:size];
+}
+
+- (CGSize)finalSize
+{
+    NSValue *sizeValue = objc_getAssociatedObject(self, kFinalSizeKey);
+    
+    if ([sizeValue respondsToSelector:@selector(CGSizeValue)]) {
+        return [sizeValue CGSizeValue];
+    } else {
+        return CGSizeZero;
+    }
+    
+    return CGSizeZero;
+}
+
+- (void)setFinalSize:(CGSize)finalSize
+{
+    objc_setAssociatedObject(self, kFinalSizeKey, [NSValue valueWithCGSize:finalSize], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma Helper methods
@@ -64,6 +93,11 @@
 - (TSCImageRequestOperation *)TSC_currentImageRequestOperation
 {
     return objc_getAssociatedObject(self, kCurrentRequestOperationKey);
+}
+
+- (CGSize)intrinsicContentSize
+{
+    return CGSizeEqualToSize([self finalSize], CGSizeZero) ? [super intrinsicContentSize]: [self finalSize];
 }
 
 @end
