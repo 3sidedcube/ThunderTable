@@ -25,8 +25,8 @@
 		C2E509B219C83A4000350F00 /* TSCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E509A719C83A4000350F00 /* TSCTableViewController.m */; };
 		C2E509B919C83A4D00350F00 /* TSCImageController.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509B319C83A4D00350F00 /* TSCImageController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2E509BA19C83A4D00350F00 /* TSCImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E509B419C83A4D00350F00 /* TSCImageController.m */; };
-		C2E509BB19C83A4D00350F00 /* TSCImageRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509B519C83A4D00350F00 /* TSCImageRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C2E509BC19C83A4D00350F00 /* TSCImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E509B619C83A4D00350F00 /* TSCImageRequestOperation.m */; };
+		C2E509BB19C83A4D00350F00 /* TSCImageRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509B519C83A4D00350F00 /* TSCImageRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2E509BC19C83A4D00350F00 /* TSCImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E509B619C83A4D00350F00 /* TSCImageRequest.m */; };
 		C2E509BD19C83A4D00350F00 /* UIImageView+TSCImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509B719C83A4D00350F00 /* UIImageView+TSCImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2E509BE19C83A4D00350F00 /* UIImageView+TSCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E509B819C83A4D00350F00 /* UIImageView+TSCImageView.m */; };
 		C2E509C419C83A7A00350F00 /* TSCItemPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E509C019C83A7A00350F00 /* TSCItemPickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -116,8 +116,8 @@
 		C2E509A719C83A4000350F00 /* TSCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCTableViewController.m; sourceTree = "<group>"; };
 		C2E509B319C83A4D00350F00 /* TSCImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCImageController.h; sourceTree = "<group>"; };
 		C2E509B419C83A4D00350F00 /* TSCImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCImageController.m; sourceTree = "<group>"; };
-		C2E509B519C83A4D00350F00 /* TSCImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCImageRequestOperation.h; sourceTree = "<group>"; };
-		C2E509B619C83A4D00350F00 /* TSCImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCImageRequestOperation.m; sourceTree = "<group>"; };
+		C2E509B519C83A4D00350F00 /* TSCImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCImageRequest.h; sourceTree = "<group>"; };
+		C2E509B619C83A4D00350F00 /* TSCImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCImageRequest.m; sourceTree = "<group>"; };
 		C2E509B719C83A4D00350F00 /* UIImageView+TSCImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+TSCImageView.h"; sourceTree = "<group>"; };
 		C2E509B819C83A4D00350F00 /* UIImageView+TSCImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+TSCImageView.m"; sourceTree = "<group>"; };
 		C2E509C019C83A7A00350F00 /* TSCItemPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCItemPickerController.h; sourceTree = "<group>"; };
@@ -288,8 +288,8 @@
 			children = (
 				C2E509B319C83A4D00350F00 /* TSCImageController.h */,
 				C2E509B419C83A4D00350F00 /* TSCImageController.m */,
-				C2E509B519C83A4D00350F00 /* TSCImageRequestOperation.h */,
-				C2E509B619C83A4D00350F00 /* TSCImageRequestOperation.m */,
+				C2E509B519C83A4D00350F00 /* TSCImageRequest.h */,
+				C2E509B619C83A4D00350F00 /* TSCImageRequest.m */,
 				C2E509B719C83A4D00350F00 /* UIImageView+TSCImageView.h */,
 				C2E509B819C83A4D00350F00 /* UIImageView+TSCImageView.m */,
 			);
@@ -433,7 +433,7 @@
 				C2E509B919C83A4D00350F00 /* TSCImageController.h in Headers */,
 				C2E509C619C83A7A00350F00 /* TSCItem.h in Headers */,
 				C2E509CF19C83A9A00350F00 /* TSCTableViewCell.h in Headers */,
-				C2E509BB19C83A4D00350F00 /* TSCImageRequestOperation.h in Headers */,
+				C2E509BB19C83A4D00350F00 /* TSCImageRequest.h in Headers */,
 				C2E50A4019C83B5F00350F00 /* TSCTableSortedSections.h in Headers */,
 				C2E509F619C83ACA00350F00 /* TSCTableInputCheckViewCell.h in Headers */,
 				C2E509F219C83ACA00350F00 /* TSCTableInputPickerViewCell.h in Headers */,
@@ -592,7 +592,7 @@
 				C2E509D019C83A9A00350F00 /* TSCTableViewCell.m in Sources */,
 				C2E509BA19C83A4D00350F00 /* TSCImageController.m in Sources */,
 				493EED411BB4086D004FB9A3 /* TSCStoryboardRow.m in Sources */,
-				C2E509BC19C83A4D00350F00 /* TSCImageRequestOperation.m in Sources */,
+				C2E509BC19C83A4D00350F00 /* TSCImageRequest.m in Sources */,
 				C2E50A2119C83B2C00350F00 /* TSCTableInputTextViewRow.m in Sources */,
 				C2E509D219C83A9A00350F00 /* TSCTableValue1ViewCell.m in Sources */,
 				C2E50A0819C83B1700350F00 /* TSCTableImageRow.m in Sources */,

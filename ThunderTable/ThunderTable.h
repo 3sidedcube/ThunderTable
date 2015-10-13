@@ -71,7 +71,7 @@ FOUNDATION_EXPORT const unsigned char ThunderTableVersionString[];
 // Other
 #import "UIImageView+TSCImageView.h"
 #import "TSCImageController.h"
-#import "TSCImageRequestOperation.h"
+#import "TSCImageRequest.h"
 
 
 

@@ -22,7 +22,7 @@
     
     if (imageURL) {
         
-        TSCImageRequestOperation *operation = [[TSCImageController sharedController] imageRequestOperationWithImageURL:imageURL completion:^(UIImage *image, NSError *error, BOOL isCached) {
+        TSCImageRequest *request = [[TSCImageController sharedController] imageRequestOperationWithImageURL:imageURL completion:^(UIImage *image, NSError *error, BOOL isCached) {
             
             if (image) {
                 self.image = image;
@@ -39,7 +39,7 @@
             [self TSC_setCurrentImageRequestOperation:nil];
         }];
         
-        [self TSC_setCurrentImageRequestOperation:operation];
+        [self TSC_setCurrentImageRequestOperation:request];
     }
 }
 
@@ -77,20 +77,22 @@
 
 - (void)TSC_cancelCurrentRequestOperation
 {
-    TSCImageRequestOperation *operation = [self TSC_currentImageRequestOperation];
+    TSCImageRequest *request = [self TSC_currentImageRequestOperation];
     
-    if (operation) {
-        [operation cancel];
+    if (request) {
+        
+        
+        [[TSCImageController sharedController] cancelImageRequest:request];
         [self TSC_setCurrentImageRequestOperation:nil];
     }
 }
 
-- (void)TSC_setCurrentImageRequestOperation:(TSCImageRequestOperation *)operation
+- (void)TSC_setCurrentImageRequestOperation:(TSCImageRequest *)operation
 {
     objc_setAssociatedObject(self, kCurrentRequestOperationKey, operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (TSCImageRequestOperation *)TSC_currentImageRequestOperation
+- (TSCImageRequest *)TSC_currentImageRequestOperation
 {
     return objc_getAssociatedObject(self, kCurrentRequestOperationKey);
 }
