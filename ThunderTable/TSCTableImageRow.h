@@ -14,16 +14,6 @@
 @interface TSCTableImageRow : TSCTableRow
 
 /**
- @abstract The image to be displayed in the row
- */
-@property (nonatomic, strong) UIImage *image;
-
-/**
- @abstract Defines the background colour of the row
- */
-@property (nonatomic, strong) UIColor *backgroundColor;
-
-/**
  @abstract Defines the content mode of the image within the row
  */
 @property (nonatomic) UIViewContentMode contentMode;

@@ -59,9 +59,4 @@
  */
 @property (nonatomic) BOOL enabled;
 
-/**
- Determines the colour of the selected picker item text on the cell
- */
-@property (nonatomic, strong) UIColor *detailTextColor;
-
 @end
