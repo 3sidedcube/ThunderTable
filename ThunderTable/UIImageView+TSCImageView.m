@@ -14,9 +14,10 @@
 
 @implementation UIImageView (TSCImageView)
 
-- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage animated:(BOOL)animated
+- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage animated:(BOOL)animated completion:(TSCImageViewSetImageURLCompletion)completion
 {
     [self TSC_cancelCurrentRequestOperation];
+    [self TSC_setCurrentCompletion:completion];
     
     self.image = placeholderImage;
     
@@ -37,22 +38,49 @@
             }
             
             [self TSC_setCurrentImageRequestOperation:nil];
+            
+            if ([self TSC_currentCompletion]) {
+                [self TSC_currentCompletion](image, error, isCached);
+            }
+            
+            [self TSC_setCurrentCompletion:nil];
         }];
         
         [self TSC_setCurrentImageRequestOperation:request];
+    } else {
+        
+        if ([self TSC_currentCompletion]) {
+            [self TSC_currentCompletion](nil, [NSError errorWithDomain:@"org.threesidedcube.thundertable" code:404 userInfo:@{NSLocalizedDescriptionKey: @"No image url was provided"}], false);
+        }
+        [self TSC_setCurrentCompletion:nil];
     }
+}
+
+- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage animated:(BOOL)animated
+{
+    [self setImageURL:imageURL placeholderImage:placeholderImage animated:animated completion:nil];
+}
+
+- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage completion:(TSCImageViewSetImageURLCompletion)completion
+{
+    [self setImageURL:imageURL placeholderImage:placeholderImage animated:NO completion:completion];
+    [self setFinalSize:CGSizeZero];
 }
 
 - (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage
 {
-    [self setImageURL:imageURL placeholderImage:placeholderImage animated:NO];
-    [self setFinalSize:CGSizeZero];
+    [self setImageURL:imageURL placeholderImage:placeholderImage completion:nil];
+}
+
+- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage imageSize:(CGSize)size completion:(TSCImageViewSetImageURLCompletion)completion
+{
+    [self setImageURL:imageURL placeholderImage:placeholderImage completion:completion];
+    [self setFinalSize:size];
 }
 
 - (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage imageSize:(CGSize)size
 {
-    [self setImageURL:imageURL placeholderImage:placeholderImage];
-    [self setFinalSize:size];
+    [self setImageURL:imageURL placeholderImage:placeholderImage imageSize:size completion:nil];
 }
 
 - (CGSize)finalSize
@@ -95,6 +123,16 @@
 - (TSCImageRequest *)TSC_currentImageRequestOperation
 {
     return objc_getAssociatedObject(self, kCurrentRequestOperationKey);
+}
+
+- (void)TSC_setCurrentCompletion:(TSCImageViewSetImageURLCompletion)completion
+{
+    objc_setAssociatedObject(self, kCurrentCompletionKey, completion, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (TSCImageViewSetImageURLCompletion)TSC_currentCompletion
+{
+    return objc_getAssociatedObject(self, kCurrentCompletionKey);
 }
 
 - (CGSize)intrinsicContentSize
