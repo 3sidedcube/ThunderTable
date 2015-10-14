@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^TSCImageViewSetImageURLCompletion) (UIImage *image, NSError *error, BOOL cached);
+
 #define kCurrentRequestOperationKey @"currentImageRequestOperation"
+#define kCurrentCompletionKey @"currentImageRequestCompletion"
 
 /**
  Category on `UIImageView` which works with `TSCImageController` to dynamically load the `UIImage` for the view from a URL
@@ -40,6 +43,35 @@
  @discussion Once the image has loaded from the URL it will be displayed at the same size as the placeholderImage so make sure that placeholderImage is the same size as the returned image. Not doing so causes strange frame behaviour in `UITableViewCell` subclasses
  */
 - (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage animated:(BOOL)animated;
+
+/**
+ Loads the image from a certain URL and upon completion sets `self.image` to the returned image
+ @param imageURL The URL to load the image from
+ @param placeholderImage The image to use as a placeholder for the loading image
+ @param completion A completion block which is called when the image has been loaded from the URL
+ @discussion Once the image has loaded from the URL it will be displayed at the same size as the placeholderImage so make sure that placeholderImage is the same size as the returned image. Not doing so causes strange frame behaviour in `UITableViewCell` subclasses
+ */
+- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage completion:(TSCImageViewSetImageURLCompletion)completion;
+
+/**
+ Loads the image from a certain URL and upon completion sets `self.image` to the returned image
+ @param imageURL The URL to load the image from
+ @param placeholderImage The image to use as a placeholder for the loading image
+ @param size The size of the final image which will be loaded from the URL
+ @param completion A completion block which is called when the image has been loaded from the URL
+ @discussion Once the image has loaded from the URL it will be displayed at the same size as the placeholderImage so make sure that placeholderImage is the same size as the returned image. Not doing so causes strange frame behaviour in `UITableViewCell` subclasses
+ */
+- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage imageSize:(CGSize)size completion:(TSCImageViewSetImageURLCompletion)completion;
+
+/**
+ Loads the image from a certain URL and upon completion sets `self.image` to the returned image
+ @param imageURL The URL to load the image from
+ @param placeholderImage The image to use as a placeholder for the loading image
+ @param animated If true animates the change between placeholderImage an the image at the given URL using a crossfade
+ @param completion A completion block which is called when the image has been loaded from the URL
+ @discussion Once the image has loaded from the URL it will be displayed at the same size as the placeholderImage so make sure that placeholderImage is the same size as the returned image. Not doing so causes strange frame behaviour in `UITableViewCell` subclasses
+ */
+- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)placeholderImage animated:(BOOL)animated completion:(TSCImageViewSetImageURLCompletion)completion;
 
 /**
  Sets the final size of the image, once it has been loaded from the URL
