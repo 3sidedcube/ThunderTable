@@ -354,12 +354,12 @@
             cell.contentView.backgroundColor = [row rowBackgroundColor];
         } else {
             
-            cell.detailTextLabel.textColor = [UIColor whiteColor];
+            cell.backgroundColor = [UIColor whiteColor];
             cell.contentView.backgroundColor = [UIColor whiteColor];
         }
     } else {
         
-        cell.detailTextLabel.textColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor whiteColor];
         cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     
