@@ -354,13 +354,13 @@
             cell.contentView.backgroundColor = [row rowBackgroundColor];
         } else {
             
-            cell.backgroundColor = [UIColor whiteColor];
-            cell.contentView.backgroundColor = [UIColor whiteColor];
+            cell.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+            cell.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
         }
     } else {
         
-        cell.backgroundColor = [UIColor whiteColor];
-        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+        cell.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
     }
     
     if ([row respondsToSelector:@selector(rowTitle)]) {
