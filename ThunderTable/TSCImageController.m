@@ -47,13 +47,18 @@ static TSCImageController *sharedController = nil;
     self = [super init];
     if (self) {
         
-        self.imageCache = [[NSCache alloc] init];
         self.defaultRequestQueue = [NSOperationQueue new];
         
         NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
         self.defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:self delegateQueue:self.defaultRequestQueue];
         
         self.completionHandlerDictionary = [NSMutableDictionary dictionary];
+        
+        NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:50 * 1024 * 1024
+                                                             diskCapacity:200 * 1024 * 1024
+                                                                 diskPath:@"TSC_cached_images"];
+        self.defaultSession.configuration.URLCache = URLCache;
+        self.defaultSession.configuration.requestCachePolicy = NSURLRequestReturnCacheDataElseLoad;
     }
     return self;
 }
@@ -81,7 +86,7 @@ static TSCImageController *sharedController = nil;
     if (request.image) {
         
         if (completion) {
-            completion(request.image, nil, request.cached);
+            completion(request.image, nil, true);
         }
         return;
     }
@@ -113,22 +118,6 @@ static TSCImageController *sharedController = nil;
     }];
     
     [request.dataTask resume];
-}
-
-
-- (void)cacheImage:(UIImage *)image forImageURL:(NSURL *)imageURL;
-{
-    [self.imageCache setObject:image forKey:[self TSC_cacheKeyWithURL:imageURL]];
-}
-
-- (UIImage *)imageFromCacheWithURL:(NSURL *)imageURL
-{
-    return [self.imageCache objectForKey:[self TSC_cacheKeyWithURL:imageURL]];
-}
-
-- (NSString *)TSC_cacheKeyWithURL:(NSURL *)url
-{
-    return url.absoluteString;
 }
 
 @end

@@ -21,14 +21,6 @@
 - (void)prepareForDispatch
 {
     self.HTTPMethod = @"GET";
-    
-    UIImage *cachedImage = [[TSCImageController sharedController] imageFromCacheWithURL:self.URL];
-    
-    if (cachedImage) {
-        
-        self.cached = true;
-        self.image = cachedImage;
-    }
 }
 
 - (UIImage *)TSC_imageWithData:(NSData *)data

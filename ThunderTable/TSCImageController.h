@@ -28,28 +28,10 @@
 - (TSCImageRequest *)imageRequestOperationWithImageURL:(NSURL *)imageURL completion:(TSCImageRequestCompletion)completion;
 
 /**
- Returns an image from `imageCache` for a certain URL
- @param imageURL The image to pull from cached images
- @discussion If an image for the url passed to this method hasn't been cached will return nil
- */
-- (UIImage *)imageFromCacheWithURL:(NSURL *)imageURL;
-
-/**
- Stores an image in `imageCache` for a certain URL
- @param image The image to store in the cache
- @param imageURL The image url to store in the image cache
- */
-- (void)cacheImage:(UIImage *)image forImageURL:(NSURL *)imageURL;
-
-/**
  Cancels a currently running image request
  @param request The request to cancel
  */
 - (void)cancelImageRequest:(TSCImageRequest *)request;
 
-/**
- @abstract The cache of `UIImage`s currently stored
- */
-@property (nonatomic, strong) NSCache *imageCache;
 
 @end
