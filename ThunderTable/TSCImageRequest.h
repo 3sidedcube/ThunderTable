@@ -25,11 +25,6 @@ typedef void (^TSCImageRequestCompletion)(UIImage *image, NSError *error, BOOL i
 @property (nonatomic, strong, readonly) UIImage *image;
 
 /**
- @abstract Whether or not the image has been saved in the `TSCImageController`'s `imageCache`
- */
-@property (nonatomic, assign, readonly, getter = isCached) BOOL cached;
-
-/**
  @abstract The data task created from a certain request
  */
 @property (nonatomic, weak) NSURLSessionDataTask *dataTask;
