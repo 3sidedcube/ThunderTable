@@ -177,4 +177,9 @@
  */
 - (UIColor *)rowBackgroundColor;
 
+/**
+ @abstract The style of the cell
+ */
+- (UITableViewCellStyle)cellStyle;
+
 @end

@@ -49,9 +49,9 @@
     CGSize valueLabelSize = [self.valueLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
     
     
-    [self.textLabel setFrame:CGRectMake(self.contentView.frame.origin.x + 16, self.textLabel.frame.origin.y, self.textLabel.frame.size.width, self.textLabel.frame.size.height)];
+    [self.cellTextLabel setFrame:CGRectMake(self.contentView.frame.origin.x + 16, self.cellTextLabel.frame.origin.y, self.cellTextLabel.frame.size.width, self.cellTextLabel.frame.size.height)];
     
-    self.valueLabel.frame = CGRectMake(self.textLabel.bounds.size.width + self.textLabel.frame.origin.x + 10, self.contentView.frame.size.height / 2 - (valueLabelSize.height +  2) / 2, valueLabelSize.width + 10, valueLabelSize.height + 5);
+    self.valueLabel.frame = CGRectMake(self.cellTextLabel.bounds.size.width + self.cellTextLabel.frame.origin.x + 10, self.contentView.frame.size.height / 2 - (valueLabelSize.height +  2) / 2, valueLabelSize.width + 10, valueLabelSize.height + 5);
     
     CGFloat sliderOffset = self.valueLabel.frame.origin.x + self.valueLabel.frame.size.width + 10;
     
@@ -67,7 +67,7 @@
     self.slider.minimumValue = [[inputRow minimumValue] floatValue];
     self.slider.value = [[inputRow value] floatValue];
     self.interval = [inputRow sliderInterval];
-    self.textLabel.text = [inputRow rowTitle];
+    self.cellTextLabel.text = [inputRow rowTitle];
 }
 
 - (void)handleSliderValueChanged:(UISlider *)slider

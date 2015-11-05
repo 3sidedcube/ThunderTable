@@ -41,7 +41,7 @@
     [super layoutSubviews];
     self.dateLabel.frame = CGRectMake(self.contentView.frame.size.width - 180 - 10, 10, 180, 20);
     self.dateLabel.adjustsFontSizeToFitWidth = YES;
-    self.dateLabel.center = CGPointMake(self.dateLabel.center.x, self.textLabel.center.y);
+    self.dateLabel.center = CGPointMake(self.dateLabel.center.x, self.cellTextLabel.center.y);
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
