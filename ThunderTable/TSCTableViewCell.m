@@ -143,13 +143,29 @@
 
 //This is really quite awful but it's the only way to get tableview to remove the 1px line at the top of sections on a group tableview when disabling cell seperators
 - (void)addSubview:(UIView *)view
-{
-    if (!self.shouldDisplaySeparators && CGRectGetHeight(view.frame)*[UIScreen mainScreen].scale == 1)
-    {
+{    
+    if (!self.shouldDisplaySeparators && round(CGRectGetHeight(view.frame)*[UIScreen mainScreen].scale) == 1) {
         return;
     }
-    
+
     [super addSubview:view];
+}
+
+- (void)setShouldDisplaySeparators:(BOOL)shouldDisplaySeparators
+{
+    _shouldDisplaySeparators = shouldDisplaySeparators;
+    
+    NSMutableArray *viewsToRemove = [NSMutableArray new];
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (!self.shouldDisplaySeparators && round(CGRectGetHeight(obj.frame)*[UIScreen mainScreen].scale) == 1) {
+            [viewsToRemove addObject:obj];
+        }
+    }];
+    
+    for (UIView *view in viewsToRemove) {
+        [view removeFromSuperview];
+    }
 }
 
 @end
