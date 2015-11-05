@@ -63,10 +63,10 @@
     return [TSCTableImageViewCell class];
 }
 
-- (UITableViewCell *)tableViewCell:(UITableViewCell *)cell
+- (TSCTableViewCell *)tableViewCell:(TSCTableViewCell *)cell
 {
-    cell.imageView.backgroundColor = self.backgroundColor;
-    cell.imageView.contentMode = self.contentMode;
+    cell.cellImageView.backgroundColor = self.backgroundColor;
+    cell.cellImageView.contentMode = self.contentMode;
     
     return cell;
 }

@@ -41,6 +41,11 @@
 @property (nonatomic, strong) UILabel *cellDetailTextLabel;
 
 /**
+ @abstract The custom cell image view
+ */
+@property (nonatomic, strong) UIImageView *cellImageView;
+
+/**
  @abstract The style of the cell
  */
 @property (nonatomic, assign) UITableViewCellStyle cellStyle;

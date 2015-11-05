@@ -30,13 +30,13 @@
     [super layoutSubviews];
     
     
-    CGSize constrainedSize = CGSizeMake(self.contentView.frame.size.width - 78 - 20 - self.imageView.frame.size.width, MAXFLOAT);
+    CGSize constrainedSize = CGSizeMake(self.contentView.frame.size.width - 78 - 20 - self.cellImageView.frame.size.width, MAXFLOAT);
     
     CGSize textLabelSize = [self.cellTextLabel sizeThatFits:constrainedSize];
     
     self.cellTextLabel.frame = CGRectMake(0, 0, textLabelSize.width, textLabelSize.height + 10);
     self.cellTextLabel.center = self.contentView.center;
-    self.cellTextLabel.frame = CGRectMake(15 + self.imageView.frame.origin.x + self.imageView.frame.size.width, self.cellTextLabel.frame.origin.y, self.cellTextLabel.frame.size.width, self.cellTextLabel.frame.size.height);
+    self.cellTextLabel.frame = CGRectMake(15 + self.cellImageView.frame.origin.x + self.cellImageView.frame.size.width, self.cellTextLabel.frame.origin.y, self.cellTextLabel.frame.size.width, self.cellTextLabel.frame.size.height);
     
     self.primarySwitch.frame = CGRectMake(self.contentView.bounds.size.width - 78 - 5, self.contentView.bounds.size.height / 2 - 28 / 2, 78, 28);
 }
