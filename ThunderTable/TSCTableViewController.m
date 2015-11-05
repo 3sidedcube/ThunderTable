@@ -53,7 +53,6 @@
         self.registeredCellClasses = [NSMutableArray array];
         self.dynamicHeightCells = [NSMutableDictionary dictionary];
         self.shouldMakeFirstTextFieldFirstResponder = YES;
-        self.shouldDisplaySeparatorsOnCells = true;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -319,31 +318,35 @@
     if ([cell respondsToSelector:@selector(currentIndexPath)]) {
         cell.currentIndexPath = indexPath;
     }
-    cell.detailTextLabel.text = nil;
-    cell.textLabel.text = nil;
+    
+    UILabel *textLabel = [cell respondsToSelector:@selector(cellTextLabel)] ? cell.cellTextLabel : cell.textLabel;
+    UILabel *detailTextLabel = [cell respondsToSelector:@selector(cellDetailTextLabel)] ? cell.cellDetailTextLabel : cell.detailTextLabel;
+    
+    detailTextLabel.text = nil;
+    textLabel.text = nil;
     cell.imageView.image = nil;
     
     // Setup basic defaults
     if ([row respondsToSelector:@selector(rowTitleTextColor)]) {
         
         if ([row rowTitleTextColor]) {
-            cell.textLabel.textColor = [row rowTitleTextColor];
+            textLabel.textColor = [row rowTitleTextColor];
         } else {
-            cell.textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
+            textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
         }
     } else {
-        cell.textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
+        textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
     }
     
     if ([row respondsToSelector:@selector(rowDetailTextColor)]) {
         
         if ([row rowDetailTextColor]) {
-            cell.detailTextLabel.textColor = [row rowDetailTextColor];
+            detailTextLabel.textColor = [row rowDetailTextColor];
         } else {
-            cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
+            detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
         }
     } else {
-        cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
+        detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
     }
     
     if ([row respondsToSelector:@selector(rowBackgroundColor)]) {
@@ -363,21 +366,33 @@
         cell.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
     }
     
+    if ([row respondsToSelector:@selector(cellStyle)]) {
+        
+        if ([cell respondsToSelector:@selector(setCellStyle:)]) {
+            cell.cellStyle = [row cellStyle];
+        }
+    } else {
+        
+        if ([cell respondsToSelector:@selector(setCellStyle:)]) {
+            cell.cellStyle = UITableViewCellStyleSubtitle;
+        }
+    }
+    
     if ([row respondsToSelector:@selector(rowTitle)]) {
         
         if ([[row rowTitle] isKindOfClass:[NSAttributedString class]]) {
-            cell.textLabel.attributedText = (NSAttributedString *)[row rowTitle];
+            textLabel.attributedText = (NSAttributedString *)[row rowTitle];
         } else {
-            cell.textLabel.text = [row rowTitle];
+            textLabel.text = [row rowTitle];
         }
     }
     
     if ([row respondsToSelector:@selector(rowSubtitle)]) {
         
         if ([[row rowSubtitle] isKindOfClass:[NSAttributedString class]]) {
-            cell.detailTextLabel.attributedText = (NSAttributedString *)[row rowSubtitle];
+            detailTextLabel.attributedText = (NSAttributedString *)[row rowSubtitle];
         } else {
-            cell.detailTextLabel.text = [row rowSubtitle];
+            detailTextLabel.text = [row rowSubtitle];
         }
     }
     
@@ -666,20 +681,17 @@
         if ([cell isKindOfClass:[TSCTableInputTextFieldViewCell class]]) {
             [cell setEditing:YES animated:YES];
             [[(TSCTableInputTextFieldViewCell *)cell textField] becomeFirstResponder];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
         
         if ([cell isKindOfClass:[TSCTableInputTextViewViewCell class]]) {
             [cell setEditing:YES animated:YES];
             [[(TSCTableInputTextViewViewCell *)cell textView] becomeFirstResponder];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
         
         if ([cell isKindOfClass:[TSCTableInputDatePickerViewCell class]] || [cell isKindOfClass:[TSCTableInputPickerViewCell class]]) {
             
             [cell setEditing:YES animated:YES];
             [[(TSCTableInputPickerViewCell *)cell inputView] becomeFirstResponder];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
         
         if ([cell respondsToSelector:@selector(setEditing:animated:)]) {
@@ -740,10 +752,6 @@
 
 - (CGFloat)_contentRightInsetForAccessoryType:(UITableViewCellAccessoryType)accessoryType
 {
-    if (![TSCThemeManager isOS8]) {
-        return 0.0;
-    }
-    
     switch (accessoryType) {
             
         case UITableViewCellAccessoryNone:

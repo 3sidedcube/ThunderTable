@@ -43,7 +43,7 @@
 {
     [super layoutSubviews];
     
-    if (!self.textLabel.text) {
+    if (!self.cellTextLabel.text) {
         
         self.textField.textAlignment = NSTextAlignmentLeft;
         self.textField.frame = CGRectMake(MAX(10,CGRectGetMaxX(self.imageView.frame) + 15), 10, self.contentView.bounds.size.width - 10 - MAX(10,CGRectGetMaxX(self.imageView.frame) + 15), 24);
@@ -52,8 +52,8 @@
     } else {
         
         self.textField.textAlignment = NSTextAlignmentRight;
-        self.textField.frame = CGRectMake(self.textLabel.bounds.size.width + 20, 10, self.contentView.bounds.size.width - self.textLabel.bounds.size.width - 30, 24);
-        self.textField.center = CGPointMake(self.textField.center.x, self.textLabel.center.y);
+        self.textField.frame = CGRectMake(self.cellTextLabel.bounds.size.width + 20, 10, self.contentView.bounds.size.width - self.cellTextLabel.bounds.size.width - 30, 24);
+        self.textField.center = CGPointMake(self.textField.center.x, self.cellTextLabel.center.y);
     }
 }
 

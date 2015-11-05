@@ -85,11 +85,6 @@
 @property (nonatomic, assign) BOOL shouldDisplayAlphabeticalSectionIndexTitles;
 
 /**
- @abstract Enable or disabled seperators between table cells
- */
-@property (nonatomic, assign) BOOL shouldDisplaySeparatorsOnCells;
-
-/**
  @abstract A boolean value indicating if the `tableView` should automatically make the first text field in the `dataSource` the first responder upon load
  @discussion The default value of this property is `YES`. When set to `YES` the first responder will be set in `viewDidAppear` the first time the view appears.
  */

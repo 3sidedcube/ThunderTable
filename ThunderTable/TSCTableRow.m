@@ -163,4 +163,9 @@
     return self.backgroundColor;
 }
 
+- (UITableViewCellStyle)cellStyle
+{
+    return UITableViewCellStyleSubtitle;
+}
+
 @end

@@ -30,4 +30,19 @@
  */
 @property (nonatomic, assign) BOOL shouldDisplaySeparators;
 
+/**
+ @abstract The custom text label for the cell
+ */
+@property (nonatomic, strong) UILabel *cellTextLabel;
+
+/**
+ @abstract The custom detail text label for the cell
+ */
+@property (nonatomic, strong) UILabel *cellDetailTextLabel;
+
+/**
+ @abstract The style of the cell
+ */
+@property (nonatomic, assign) UITableViewCellStyle cellStyle;
+
 @end
