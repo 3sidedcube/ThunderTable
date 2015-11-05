@@ -19,6 +19,9 @@
         
         self.cellStyle = UITableViewCellStyleSubtitle;
         
+        self.cellImageView = [UIImageView new];
+        [self.contentView addSubview:self.cellImageView];
+        
         self.cellTextLabel = [UILabel new];
         self.cellTextLabel.numberOfLines = 0;
         self.cellTextLabel.backgroundColor = [UIColor clearColor];
@@ -44,6 +47,16 @@
 {
     [super layoutSubviews];
     
+    if (self.cellImageView.image) {
+        
+        [self.cellImageView sizeToFit];
+        CGRect imageFrame = self.cellImageView.frame;
+        imageFrame.origin.x = 12;
+        self.cellImageView.frame = imageFrame;
+    } else {
+        self.cellImageView.frame = CGRectZero;
+    }
+    
     switch (self.cellStyle) {
         case UITableViewCellStyleSubtitle:
             [self subtitleLayout];
@@ -53,6 +66,11 @@
             break;
         default:
             break;
+    }
+    
+    // Only set the center if we have superview to avoid breaking automatic cell height calculations
+    if (self.superview) {
+        self.cellImageView.center = CGPointMake(self.cellImageView.center.x, MAX(self.imageView.frame.size.height/2, self.contentView.center.y));
     }
 }
 
@@ -78,8 +96,8 @@
         remainingRect.origin.y = self.contentView.frame.size.height / 2 - remainingRect.size.height / 2;
     }
     
-    self.cellTextLabel.frame = textLabelFrame;
-    self.cellDetailTextLabel.frame = remainingRect;
+    self.cellTextLabel.frame = CGRectIntegral(textLabelFrame);
+    self.cellDetailTextLabel.frame = CGRectIntegral(remainingRect);
 }
 
 - (void)subtitleLayout
@@ -97,7 +115,7 @@
         
         textLabelFrame.origin.y = self.contentView.frame.size.height / 2 - textLabelFrame.size.height / 2;
         
-    } else if (self.imageView.frame.size.height > (CGRectGetMaxY(detailLabelFrame) - CGRectGetMinY(textLabelFrame))) { // If image view is larger than both labels put together then centre them
+    } else if (self.cellImageView.frame.size.height >= (CGRectGetMaxY(detailLabelFrame) - CGRectGetMinY(textLabelFrame))) { // If image view is larger than both labels put together then centre them
         
         // The required compound rect of both the text + detail text labels
         CGRect compoundRect = CGRectMake(textLabelFrame.origin.x, 0, textLabelFrame.size.width, CGRectGetMaxY(detailLabelFrame) - CGRectGetMinY(textLabelFrame));
@@ -107,18 +125,18 @@
         detailLabelFrame.origin.y = CGRectGetMaxY(textLabelFrame);
     }
     
-    self.cellTextLabel.frame = textLabelFrame;
-    self.cellDetailTextLabel.frame = detailLabelFrame;
+    self.cellTextLabel.frame = CGRectIntegral(textLabelFrame);
+    self.cellDetailTextLabel.frame = CGRectIntegral(detailLabelFrame);
 }
 
 - (UIEdgeInsets)edgeInsets
 {
     CGFloat leftIndentation = MAX(self.indentationWidth * (CGFloat)self.indentationLevel, 12);
-    if (self.imageView.image) {
-        leftIndentation = CGRectGetMaxX(self.imageView.frame) + leftIndentation;
+    if (self.cellImageView.image) {
+        leftIndentation = CGRectGetMaxX(self.cellImageView.frame) + leftIndentation;
     }
     
-    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(8, leftIndentation, 0, leftIndentation);
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(8, leftIndentation, 0, 12);
     
     return edgeInsets;
 }

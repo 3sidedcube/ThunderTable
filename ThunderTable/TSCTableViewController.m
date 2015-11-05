@@ -324,7 +324,7 @@
     
     detailTextLabel.text = nil;
     textLabel.text = nil;
-    cell.imageView.image = nil;
+    cell.cellImageView.image = nil;
     
     // Setup basic defaults
     if ([row respondsToSelector:@selector(rowTitleTextColor)]) {
@@ -403,14 +403,14 @@
     if ([row respondsToSelector:@selector(rowImageURL)]) {
         
         if ([row respondsToSelector:@selector(rowImagePlaceholder)]) {
-            [cell.imageView setImageURL:[row rowImageURL] placeholderImage:[row rowImagePlaceholder]];
+            [cell.cellImageView setImageURL:[row rowImageURL] placeholderImage:[row rowImagePlaceholder]];
         } else {
-            [cell.imageView setImageURL:[row rowImageURL] placeholderImage:nil];
+            [cell.cellImageView setImageURL:[row rowImageURL] placeholderImage:nil];
         }
     }
     
     if ([row respondsToSelector:@selector(rowImage)]) {
-        cell.imageView.image = [row rowImage];
+        cell.cellImageView.image = [row rowImage];
     }
     
     if ([self isIndexPathSelectable:indexPath] && ![row isKindOfClass:[TSCTableInputRow class]]) {
@@ -483,6 +483,7 @@
         cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
         
     }
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -775,8 +776,8 @@
     TSCTableViewCell *cell = (TSCTableViewCell *)[self TSC_dequeueDynamicHeightCellProxyWithIndexPath:indexPath];
     
     [self TSC_configureCell:cell withIndexPath:indexPath];
-    
     cell.frame = CGRectMake(0, 0, self.view.bounds.size.width - (MAX(2.0,[UIScreen mainScreen].scale) * [self _contentRightInsetForAccessoryType:cell.accessoryType]), 44);
+    
     [cell layoutSubviews];
     
     CGFloat totalHeight = 0;
@@ -785,37 +786,30 @@
     CGFloat lowestYValue = 0;
     
     UIView *highestView;
+    UIView *lowestView;
     
     for (UIView *view in subviews) {
         
-        CGSize size = view.frame.size;
-        CGPoint origin = view.frame.origin;
-        
-        CGFloat viewTotalHeight = size.height + origin.y;
-        
-        if (viewTotalHeight > totalHeight) {
-            totalHeight = viewTotalHeight;
+        if (CGRectGetMaxY(view.frame) > totalHeight) {
+            
+            totalHeight = CGRectGetMaxY(view.frame);
             highestView = view;
         }
         
         if (view.frame.origin.y < lowestYValue) {
+            
             lowestYValue = view.frame.origin.y;
+            lowestView = view;
         }
     }
     
-    CGFloat cellHeight;
-    
-    if (highestView.frame.size.width == self.view.bounds.size.width || highestView.frame.size.width == self.view.bounds.size.width) {
-        cellHeight = totalHeight + fabs(lowestYValue) + 10;
-    } else {
-        cellHeight = totalHeight + fabs(lowestYValue) + 10;
-    }
+    CGFloat cellHeight = totalHeight + fabs(lowestYValue) + 8;
     
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
     
     if ([row respondsToSelector:@selector(rowPadding)]) {
-        cellHeight = (cellHeight - 10) + (long)[row rowPadding];
+        cellHeight = (cellHeight - 8) + (long)[row rowPadding];
     }
     
     cellHeight = ceilf(cellHeight);

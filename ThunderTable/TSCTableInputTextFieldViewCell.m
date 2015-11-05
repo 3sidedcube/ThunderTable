@@ -46,7 +46,7 @@
     if (!self.cellTextLabel.text) {
         
         self.textField.textAlignment = NSTextAlignmentLeft;
-        self.textField.frame = CGRectMake(MAX(10,CGRectGetMaxX(self.imageView.frame) + 15), 10, self.contentView.bounds.size.width - 10 - MAX(10,CGRectGetMaxX(self.imageView.frame) + 15), 24);
+        self.textField.frame = CGRectMake(MAX(10,CGRectGetMaxX(self.cellImageView.frame) + 15), 10, self.contentView.bounds.size.width - 10 - MAX(10,CGRectGetMaxX(self.cellImageView.frame) + 15), 24);
         self.textField.center = CGPointMake(self.textField.center.x, self.frame.size.height/2 + 1);
         
     } else {
