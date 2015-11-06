@@ -42,4 +42,11 @@
  */
 @property (nonatomic, weak) id <TSCTableInputViewCellDelegate> delegate;
 
+/**
+ @abstract Toggles whether the cell is currently editable
+ @param editable Whether the cell is currently editable
+ @warning This is different from `setEditing:` as that method defines if the user is currently editing the cell, not whether a cell is editable!
+ */
+- (void)setEditable:(BOOL)editable;
+
 @end

@@ -125,8 +125,8 @@
         detailLabelFrame.origin.y = CGRectGetMaxY(textLabelFrame);
     }
     
-    self.cellTextLabel.frame = CGRectIntegral(textLabelFrame);
-    self.cellDetailTextLabel.frame = CGRectIntegral(detailLabelFrame);
+    self.cellTextLabel.frame = (!self.cellTextLabel.text || [[self.cellTextLabel.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) ? CGRectZero : CGRectIntegral(textLabelFrame);
+    self.cellDetailTextLabel.frame = (!self.cellDetailTextLabel.text || [[self.cellDetailTextLabel.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) ? CGRectZero : CGRectIntegral(detailLabelFrame);
 }
 
 - (UIEdgeInsets)edgeInsets

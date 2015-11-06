@@ -52,11 +52,7 @@
         
         self.registeredCellClasses = [NSMutableArray array];
         self.dynamicHeightCells = [NSMutableDictionary dictionary];
-        self.shouldMakeFirstTextFieldFirstResponder = YES;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-        
+        self.shouldMakeFirstTextFieldFirstResponder = true;
     }
     
     return self;
@@ -74,12 +70,19 @@
     [super viewWillDisappear:animated];
     [self TSC_resignAnyResponders];
     self.viewHasAppeared = false;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:true];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -88,20 +91,21 @@
     
     if (!_viewHasAppearedBefore && self.shouldMakeFirstTextFieldFirstResponder) {
         [self TSC_makeFirstTextFieldFirstResponder];
-        _viewHasAppearedBefore = YES;
+        _viewHasAppearedBefore = true;
     }
     
     if (self.title) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"TSCStatEventNotification" object:self userInfo:@{@"type":@"screen", @"name":self.title}];
     }
     
+    _standardInsets = self.tableView.contentInset;
     self.viewHasAppeared = true;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.automaticallyAdjustsScrollViewInsets = true;
 }
 
 -(void)viewDidLayoutSubviews
@@ -114,7 +118,7 @@
         float keyboardHeight = 216;
         
         _keyboardPresentedViewFrame = CGRectMake(_standardViewFrame.origin.x, _standardViewFrame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height - keyboardHeight);
-        _didSetupFrame = YES;
+        _didSetupFrame = true;
     }
 }
 
@@ -141,13 +145,32 @@
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     if (TSC_isPad()) {
+        
         if (self.navigationController.presentingViewController) {
+            
             CGRect rect = [self.view convertRect:self.view.frame toView:[UIApplication sharedApplication].keyWindow];
-            kbSize = CGSizeMake(kbSize.width, kbSize.height - rect.origin.y + 44);
+            kbSize = CGSizeMake(kbSize.width, kbSize.height - rect.origin.y - self.tableView.contentOffset.y + 44);
         }
     }
     
-    _standardInsets = self.tableView.contentInset;
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(_standardInsets.top, 0.0, kbSize.height, 0.0);
+    self.tableView.contentInset = contentInsets;
+    self.tableView.scrollIndicatorInsets = contentInsets;
+}
+
+- (void)keyboardWillChangeFrame:(NSNotification *)notification
+{
+    NSDictionary *info = notification.userInfo;
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    if (TSC_isPad()) {
+        
+        if (self.navigationController.presentingViewController) {
+            
+            CGRect rect = [self.view convertRect:self.view.frame toView:[UIApplication sharedApplication].keyWindow];
+            kbSize = CGSizeMake(kbSize.width, kbSize.height - rect.origin.y - self.tableView.contentOffset.y + 44);
+        }
+    }
     
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(_standardInsets.top, 0.0, kbSize.height, 0.0);
     self.tableView.contentInset = contentInsets;
@@ -190,7 +213,7 @@
 
 - (void)setDataSource:(NSArray *)dataSource
 {
-    [self setDataSource:dataSource animated:NO];
+    [self setDataSource:dataSource animated:false];
 }
 
 - (void)setDataSource:(NSArray *)dataSource animated:(BOOL)animated
@@ -541,12 +564,12 @@
 
 - (BOOL)TSC_isCellClassRegistered:(Class)class
 {
-    BOOL isCellClassRegistered = NO;
+    BOOL isCellClassRegistered = false;
     NSString *queryingClassName = NSStringFromClass(class);
     
     for (NSString *className in self.registeredCellClasses) {
         if ([queryingClassName isEqualToString:className]) {
-            isCellClassRegistered = YES;
+            isCellClassRegistered = true;
             break;
         }
     }
@@ -623,7 +646,7 @@
         
         if ((row.rowSelectionSelector && row.rowSelectionTarget) || [row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
             
-            return YES;
+            return true;
         }
     }
     
@@ -631,11 +654,11 @@
         
         if (section.sectionSelector && section.sectionTarget) {
             
-            return YES;
+            return true;
         }
     }
     
-    return NO;
+    return false;
 }
 
 - (void)TSC_handleTableViewSelectionWithIndexPath:(NSIndexPath *)indexPath
@@ -674,24 +697,26 @@
             
             TSCTableInputCheckViewCell *checkCell = (TSCTableInputCheckViewCell *)cell;
             TSCCheckView *checkView = checkCell.checkView;
-            [checkView setOn:!checkView.isOn animated:YES];
+            [checkView setOn:!checkView.isOn animated:true];
         } else {
             [self TSC_resignAnyResponders];
         }
         
         if ([cell isKindOfClass:[TSCTableInputTextFieldViewCell class]]) {
-            [cell setEditing:YES animated:YES];
+            
+            [cell setEditing:true animated:true];
             [[(TSCTableInputTextFieldViewCell *)cell textField] becomeFirstResponder];
         }
         
         if ([cell isKindOfClass:[TSCTableInputTextViewViewCell class]]) {
-            [cell setEditing:YES animated:YES];
+            
+            [cell setEditing:true animated:true];
             [[(TSCTableInputTextViewViewCell *)cell textView] becomeFirstResponder];
         }
         
         if ([cell isKindOfClass:[TSCTableInputDatePickerViewCell class]] || [cell isKindOfClass:[TSCTableInputPickerViewCell class]]) {
             
-            [cell setEditing:YES animated:YES];
+            [cell setEditing:true animated:true];
             [[(TSCTableInputPickerViewCell *)cell inputView] becomeFirstResponder];
         }
         
@@ -701,16 +726,16 @@
             if ([cell respondsToSelector:@selector(becomeFirstResponder)]) {
                 [cell becomeFirstResponder];
             }
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:false];
         }
     }
     
     if ([row respondsToSelector:@selector(shouldRemainSelected)]) {
         if (![row shouldRemainSelected]) {
-            [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
+            [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:true];
         }
     } else {
-        [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
+        [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:true];
     }
 }
 
@@ -734,21 +759,21 @@
 - (void)TSC_resignAnyResponders
 {
     TSCTableInputViewCell *cell = (TSCTableInputViewCell *)[self.tableView cellForRowAtIndexPath:self.selectedIndexPath];
-    [cell setEditing:NO animated:YES];
+    [cell setEditing:false animated:true];
 }
 
 - (BOOL)TSC_isPickerRow:(TSCTableInputRow *)row
 {
     if ([row isKindOfClass:[TSCTableInputPickerRow class]] || [row isKindOfClass:[TSCTableInputDatePickerRow class]]) {
-        return YES;
+        return true;
     } else {
-        return NO;
+        return false;
     }
 }
 
 - (BOOL)TSC_isControlRow:(TSCTableInputRow *)row
 {
-    return NO;
+    return false;
 }
 
 - (CGFloat)_contentRightInsetForAccessoryType:(UITableViewCellAccessoryType)accessoryType
@@ -833,9 +858,15 @@
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(TSC_handleEdit:)];
 }
 
+- (void)setEditing:(BOOL)editing
+{
+    [super setEditing:editing];
+    [self.tableView setEditing:editing];
+}
+
 - (void)TSC_handleEdit:(id)sender
 {
-    [self.tableView setEditing:!self.tableView.isEditing animated:YES];
+    [self.tableView setEditing:!self.tableView.isEditing animated:true];
     
     if (self.tableView.isEditing) {
         self.navigationItem.rightBarButtonItem = [self editDoneButtonItem];
@@ -850,7 +881,7 @@
     NSArray *sectionItems = [section sectionItems];
     NSObject <TSCTableRowDataSource> *row = sectionItems[indexPath.row];
     
-    BOOL canEditRow = NO;
+    BOOL canEditRow = false;
     
     if ([row respondsToSelector:@selector(canEditRow)]) {
         canEditRow = [row canEditRow];
@@ -956,9 +987,9 @@
 - (BOOL)isMissingRequiredInputRows
 {
     if (self.missingRequiredInputRows.count == 0) {
-        return NO;
+        return false;
     } else {
-        return YES;
+        return true;
     }
 }
 
@@ -1029,7 +1060,7 @@
         
         if (index > selectedRowIndex) {
             [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
-            *stop = YES;
+            *stop = true;
         }
     }];
 }

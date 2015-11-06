@@ -28,7 +28,7 @@
 
         [self.contentView addSubview:self.textView];
         
-        [self setEditing:NO animated:NO];
+        [self setEditing:false animated:false];
     }
     
     return self;
@@ -72,11 +72,16 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    self.textView.userInteractionEnabled = editing;
     
     if (!editing) {
         [self resignKeyboard];
     }
+}
+
+- (void)setEditable:(BOOL)editable
+{
+    [super setEditable:editable];
+    self.textView.userInteractionEnabled = editable;
 }
 
 #pragma mark - Navigation handling
