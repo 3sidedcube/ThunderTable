@@ -32,7 +32,7 @@
         [self.contentView addSubview:self.textField];
         self.textField.returnKeyType = UIReturnKeyNext;
         
-        [self setEditing:NO animated:NO];
+        [self setEditing:false animated:false];
     
     }
     
@@ -88,11 +88,16 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    self.textField.userInteractionEnabled = editing;
     
     if (!editing) {
         [self resignKeyboard];
     }
+}
+
+- (void)setEditable:(BOOL)editable
+{
+    [super setEditable:editable];
+    self.textField.userInteractionEnabled = editable;
 }
 
 #pragma mark - Navigation handling
