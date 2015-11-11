@@ -18,4 +18,10 @@
  */
 @property (nonatomic, strong) UISwitch *primarySwitch;
 
+/**
+ The target action method of the UISwitch shown in the cell
+ @param sender The switch which had it's value changed
+ */
+- (void)handleSwitch:(UISwitch *)sender;
+
 @end
