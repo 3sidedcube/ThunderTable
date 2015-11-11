@@ -71,7 +71,7 @@
     // Only set the center if we have superview to avoid breaking automatic cell height calculations
     if (self.superview) {
         self.cellImageView.center = CGPointMake(self.cellImageView.center.x, MAX(self.imageView.frame.size.height/2, self.contentView.center.y));
-    }
+    }    
 }
 
 - (void)value1Layout
@@ -144,7 +144,7 @@
 //This is really quite awful but it's the only way to get tableview to remove the 1px line at the top of sections on a group tableview when disabling cell seperators
 - (void)addSubview:(UIView *)view
 {    
-    if (!self.shouldDisplaySeparators && round(CGRectGetHeight(view.frame)*[UIScreen mainScreen].scale) == 1) {
+    if (!self.shouldDisplaySeparators && (round(CGRectGetHeight(view.frame)*[UIScreen mainScreen].scale) == 1 || round(CGRectGetHeight(view.frame)) == 1)) {
         return;
     }
 
@@ -158,7 +158,7 @@
     NSMutableArray *viewsToRemove = [NSMutableArray new];
     [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        if (!self.shouldDisplaySeparators && round(CGRectGetHeight(obj.frame)*[UIScreen mainScreen].scale) == 1) {
+        if (!self.shouldDisplaySeparators && (round(CGRectGetHeight(obj.frame)*[UIScreen mainScreen].scale) == 1  || round(CGRectGetHeight(obj.frame)) == 1)) {
             [viewsToRemove addObject:obj];
         }
     }];
