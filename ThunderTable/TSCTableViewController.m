@@ -344,10 +344,11 @@
     
     UILabel *textLabel = [cell respondsToSelector:@selector(cellTextLabel)] ? cell.cellTextLabel : cell.textLabel;
     UILabel *detailTextLabel = [cell respondsToSelector:@selector(cellDetailTextLabel)] ? cell.cellDetailTextLabel : cell.detailTextLabel;
+    UIImageView *imageView = [cell respondsToSelector:@selector(cellImageView)] ? cell.cellImageView : cell.imageView;
     
     detailTextLabel.text = nil;
     textLabel.text = nil;
-    cell.cellImageView.image = nil;
+    imageView.image = nil;
     
     // Setup basic defaults
     if ([row respondsToSelector:@selector(rowTitleTextColor)]) {
@@ -426,14 +427,14 @@
     if ([row respondsToSelector:@selector(rowImageURL)]) {
         
         if ([row respondsToSelector:@selector(rowImagePlaceholder)]) {
-            [cell.cellImageView setImageURL:[row rowImageURL] placeholderImage:[row rowImagePlaceholder]];
+            [imageView setImageURL:[row rowImageURL] placeholderImage:[row rowImagePlaceholder]];
         } else {
-            [cell.cellImageView setImageURL:[row rowImageURL] placeholderImage:nil];
+            [imageView setImageURL:[row rowImageURL] placeholderImage:nil];
         }
     }
     
     if ([row respondsToSelector:@selector(rowImage)]) {
-        cell.cellImageView.image = [row rowImage];
+        imageView.image = [row rowImage];
     }
     
     if ([self isIndexPathSelectable:indexPath] && ![row isKindOfClass:[TSCTableInputRow class]]) {
