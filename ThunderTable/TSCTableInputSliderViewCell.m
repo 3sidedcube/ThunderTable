@@ -47,9 +47,9 @@
     self.valueLabel.text = stringValue;
     
     CGSize valueLabelSize = [self.valueLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
-    
-    
-    [self.cellTextLabel setFrame:CGRectMake(self.contentView.frame.origin.x + 16, self.cellTextLabel.frame.origin.y, self.cellTextLabel.frame.size.width, self.cellTextLabel.frame.size.height)];
+    CGSize textLabelSize = [self.cellTextLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
+
+    [self.cellTextLabel setFrame:CGRectMake(self.contentView.frame.origin.x + 16, self.cellTextLabel.frame.origin.y, textLabelSize.width, self.cellTextLabel.frame.size.height)];
     
     self.valueLabel.frame = CGRectMake(self.cellTextLabel.bounds.size.width + self.cellTextLabel.frame.origin.x + 10, self.contentView.frame.size.height / 2 - (valueLabelSize.height +  2) / 2, valueLabelSize.width + 10, valueLabelSize.height + 5);
     
