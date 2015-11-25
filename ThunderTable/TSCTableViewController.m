@@ -520,8 +520,14 @@
     if ([row respondsToSelector:@selector(tableViewCellClass)] && [row tableViewCellClass]) {
         
         Class class = [row tableViewCellClass];
-        if ([[NSBundle bundleForClass:[row tableViewCellClass]] pathForResource:NSStringFromClass(class) ofType:@"nib"]) {
-            thunderTableAutoSizing = [row respondsToSelector:@selector(tableViewCellHeightConstrainedToContentViewSize:tableViewSize:)] || [row respondsToSelector:@selector(tableViewCellHeightConstrainedToSize:)];
+        
+        if (NSStringFromClass(class)) {
+            
+            NSString *className = [[NSStringFromClass(class) componentsSeparatedByString:@"."] lastObject];
+            
+            if ([[NSBundle bundleForClass:[row tableViewCellClass]] pathForResource:className ofType:@"nib"]) {
+                thunderTableAutoSizing = [row respondsToSelector:@selector(tableViewCellHeightConstrainedToContentViewSize:tableViewSize:)] || [row respondsToSelector:@selector(tableViewCellHeightConstrainedToSize:)];
+            }
         }
     }
     
@@ -582,9 +588,12 @@
 {
     [self.registeredCellClasses addObject:NSStringFromClass(class)];
     
-    if ([[NSBundle bundleForClass:class] pathForResource:NSStringFromClass(class) ofType:@"nib"]) {
+    NSString *className = NSStringFromClass(class);
+    className = [[className componentsSeparatedByString:@"."] lastObject];
+    
+    if ([[NSBundle bundleForClass:class] pathForResource:className ofType:@"nib"]) {
         
-        UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(class) bundle:[NSBundle bundleForClass:class]];
+        UINib *cellNib = [UINib nibWithNibName:className bundle:[NSBundle bundleForClass:class]];
         
         [self.tableView registerNib:cellNib forCellReuseIdentifier:NSStringFromClass(class)];
         
