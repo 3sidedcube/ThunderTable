@@ -17,7 +17,7 @@
     
     if (self) {
         
-        self.cellStyle = UITableViewCellStyleSubtitle;
+        self.cellStyle = style;
         
         self.cellImageView = [UIImageView new];
         [self.contentView addSubview:self.cellImageView];
@@ -90,7 +90,7 @@
     remainingRect.size.height = detailLabelSize.height;
     NSInteger detailNumberOfLines = MAX((int)(remainingRect.size.height/self.cellDetailTextLabel.font.lineHeight),0);
     
-    if (textNumberOfLines == detailNumberOfLines) {
+    if (textNumberOfLines == detailNumberOfLines || !self.detailTextLabel.text) {
         
         textLabelFrame.origin.y = self.contentView.frame.size.height / 2 - textLabelFrame.size.height / 2;
         remainingRect.origin.y = self.contentView.frame.size.height / 2 - remainingRect.size.height / 2;
