@@ -1,6 +1,6 @@
 # Thunder Table
 
-[![Build Status](https://travis-ci.org/3sidedcube/iOS-ThunderTable.svg?branch=feature%2Ftravis)](https://travis-ci.org/3sidedcube/iOS-ThunderTable)
+[![Build Status](https://travis-ci.org/3sidedcube/iOS-ThunderTable.svg)](https://travis-ci.org/3sidedcube/iOS-ThunderTable)
 
 Thunder Table is a useful framework which enables quick and easy creation of table views in iOS, making the process of creating complex tables as simple as a few lines of code; and removing the necessity for having long chains of index paths and if statements.
 
