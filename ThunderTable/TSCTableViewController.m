@@ -24,10 +24,72 @@
 #import "UIImageView+TSCImageView.h"
 #import "TSCThemeManager.h"
 
+/**
+ A category on UIWindow which allows easy accesss to the currently visible view controller
+ */
+@interface UIWindow (VisibleViewController)
+
+@property (nonatomic, weak, readonly) UIViewController *visibleViewController;
+
+@end
+
+@implementation UIWindow (VisibleViewController)
+
+- (UIViewController *)visibleViewController
+{
+    UIViewController *rootViewController = self.rootViewController;
+    
+    if (rootViewController.splitViewController) {
+        
+        // If any of the split view controller's viewControllers are presnting work up their view hierarcy
+        for (UIViewController *splitViewController in rootViewController.splitViewController.viewControllers) {
+            
+            if (splitViewController.presentedViewController) {
+                return [self visibleViewControllerForViewController:splitViewController.presentedViewController];
+            }
+        }
+        
+        // Otherwise navigate through the last view controller on the splitViewController
+        return [self visibleViewControllerForViewController:rootViewController.splitViewController.viewControllers.lastObject];
+    }
+    
+    return [self visibleViewControllerForViewController:rootViewController];
+}
+
+- (UIViewController *)visibleViewControllerForViewController:(UIViewController *)viewController
+{
+    // Work up the view hierarchy if presented
+    if (viewController.presentedViewController) {
+        return [self visibleViewControllerForViewController:viewController.presentedViewController];
+    }
+    
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        
+        UINavigationController *navigationController = (UINavigationController *)viewController;
+        UIViewController *lastViewController = navigationController.viewControllers.lastObject;
+        
+        return [self visibleViewControllerForViewController:lastViewController];
+        
+    } else if ([viewController isKindOfClass:[UITabBarController class]]) {
+        
+        UITabBarController *tabBarController = (UITabBarController *)viewController;
+        return [self visibleViewControllerForViewController:tabBarController.selectedViewController];
+        
+    } else if ([viewController isKindOfClass:[UIViewController class]]) {
+        
+        return viewController;
+        
+    }
+    
+    return viewController;
+}
+
+@end
+
+
 @interface TSCTableViewController ()
 {
     UIBarButtonItem *TSC_editItem;
-    CGRect _keyboardPresentedViewFrame;
     CGRect _standardViewFrame;
     UIEdgeInsets _standardInsets;
     BOOL _isPendingSetDataSource;
@@ -113,11 +175,8 @@
     [super viewDidLayoutSubviews];
     
     if (!_didSetupFrame) {
+        
         _standardViewFrame = self.view.frame;
-        
-        float keyboardHeight = 216;
-        
-        _keyboardPresentedViewFrame = CGRectMake(_standardViewFrame.origin.x, _standardViewFrame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height - keyboardHeight);
         _didSetupFrame = true;
     }
 }
@@ -135,12 +194,20 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
+    if ([UIApplication sharedApplication].windows.firstObject && [UIApplication sharedApplication].windows.firstObject.visibleViewController != self) {
+        return;
+    }
+    
     self.tableView.contentInset = _standardInsets;
     self.tableView.scrollIndicatorInsets = _standardInsets;
 }
 
 - (void)keyboardDidShow:(NSNotification *)notification
 {
+    if ([UIApplication sharedApplication].windows.firstObject && [UIApplication sharedApplication].windows.firstObject.visibleViewController != self) {
+        return;
+    }
+    
     NSDictionary *info = notification.userInfo;
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
@@ -160,6 +227,10 @@
 
 - (void)keyboardWillChangeFrame:(NSNotification *)notification
 {
+    if ([UIApplication sharedApplication].windows.firstObject && [UIApplication sharedApplication].windows.firstObject.visibleViewController != self) {
+        return;
+    }
+    
     NSDictionary *info = notification.userInfo;
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
