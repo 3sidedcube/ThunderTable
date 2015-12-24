@@ -24,10 +24,72 @@
 #import "UIImageView+TSCImageView.h"
 #import "TSCThemeManager.h"
 
+/**
+ A category on UIWindow which allows easy accesss to the currently visible view controller
+ */
+@interface UIWindow (VisibleViewController)
+
+@property (nonatomic, weak, readonly) UIViewController *visibleViewController;
+
+@end
+
+@implementation UIWindow (VisibleViewController)
+
+- (UIViewController *)visibleViewController
+{
+    UIViewController *rootViewController = self.rootViewController;
+    
+    if (rootViewController.splitViewController) {
+        
+        // If any of the split view controller's viewControllers are presnting work up their view hierarcy
+        for (UIViewController *splitViewController in rootViewController.splitViewController.viewControllers) {
+            
+            if (splitViewController.presentedViewController) {
+                return [self visibleViewControllerForViewController:splitViewController.presentedViewController];
+            }
+        }
+        
+        // Otherwise navigate through the last view controller on the splitViewController
+        return [self visibleViewControllerForViewController:rootViewController.splitViewController.viewControllers.lastObject];
+    }
+    
+    return [self visibleViewControllerForViewController:rootViewController];
+}
+
+- (UIViewController *)visibleViewControllerForViewController:(UIViewController *)viewController
+{
+    // Work up the view hierarchy if presented
+    if (viewController.presentedViewController) {
+        return [self visibleViewControllerForViewController:viewController.presentedViewController];
+    }
+    
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        
+        UINavigationController *navigationController = (UINavigationController *)viewController;
+        UIViewController *lastViewController = navigationController.viewControllers.lastObject;
+        
+        return [self visibleViewControllerForViewController:lastViewController];
+        
+    } else if ([viewController isKindOfClass:[UITabBarController class]]) {
+        
+        UITabBarController *tabBarController = (UITabBarController *)viewController;
+        return [self visibleViewControllerForViewController:tabBarController.selectedViewController];
+        
+    } else if ([viewController isKindOfClass:[UIViewController class]]) {
+        
+        return viewController;
+        
+    }
+    
+    return viewController;
+}
+
+@end
+
+
 @interface TSCTableViewController ()
 {
     UIBarButtonItem *TSC_editItem;
-    CGRect _keyboardPresentedViewFrame;
     CGRect _standardViewFrame;
     UIEdgeInsets _standardInsets;
     BOOL _isPendingSetDataSource;
@@ -46,49 +108,43 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super init];
+    self = [super initWithStyle:style];
     
     if (self) {
         
-        self.style = style;
         self.registeredCellClasses = [NSMutableArray array];
         self.dynamicHeightCells = [NSMutableDictionary dictionary];
-        self.shouldMakeFirstTextFieldFirstResponder = YES;
-        self.shouldDisplaySeparatorsOnCells = true;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-        
+        self.shouldMakeFirstTextFieldFirstResponder = true;
     }
     
     return self;
 }
 
-#pragma mark View life cycle
-
 - (void)loadView
 {
-    UIScreen *mainScreen = [UIScreen mainScreen];
-    
-    self.tableView = [[UITableView alloc] initWithFrame:mainScreen.bounds style:_style];
-    //    self.tableView.delegate = self;
-    //    self.tableView.dataSource = self;
-    
-    self.view = self.tableView;
+    [super loadView];
 }
+
+#pragma mark View life cycle
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self TSC_resignAnyResponders];
     self.viewHasAppeared = false;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:true];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -97,21 +153,21 @@
     
     if (!_viewHasAppearedBefore && self.shouldMakeFirstTextFieldFirstResponder) {
         [self TSC_makeFirstTextFieldFirstResponder];
-        _viewHasAppearedBefore = YES;
+        _viewHasAppearedBefore = true;
     }
     
     if (self.title) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"TSCStatEventNotification" object:self userInfo:@{@"type":@"screen", @"name":self.title}];
     }
     
+    _standardInsets = self.tableView.contentInset;
     self.viewHasAppeared = true;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = YES;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.automaticallyAdjustsScrollViewInsets = true;
 }
 
 -(void)viewDidLayoutSubviews
@@ -119,12 +175,9 @@
     [super viewDidLayoutSubviews];
     
     if (!_didSetupFrame) {
+        
         _standardViewFrame = self.view.frame;
-        
-        float keyboardHeight = 216;
-        
-        _keyboardPresentedViewFrame = CGRectMake(_standardViewFrame.origin.x, _standardViewFrame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height - keyboardHeight);
-        _didSetupFrame = YES;
+        _didSetupFrame = true;
     }
 }
 
@@ -141,23 +194,54 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
+    if ([UIApplication sharedApplication].windows.firstObject && [UIApplication sharedApplication].windows.firstObject.visibleViewController != self) {
+        return;
+    }
+    
     self.tableView.contentInset = _standardInsets;
     self.tableView.scrollIndicatorInsets = _standardInsets;
 }
 
 - (void)keyboardDidShow:(NSNotification *)notification
 {
+    if ([UIApplication sharedApplication].windows.firstObject && [UIApplication sharedApplication].windows.firstObject.visibleViewController != self) {
+        return;
+    }
+    
     NSDictionary *info = notification.userInfo;
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    if (isPad()) {
+    if (TSC_isPad()) {
+        
         if (self.navigationController.presentingViewController) {
+            
             CGRect rect = [self.view convertRect:self.view.frame toView:[UIApplication sharedApplication].keyWindow];
-            kbSize = CGSizeMake(kbSize.width, kbSize.height - rect.origin.y + 44);
+            kbSize = CGSizeMake(kbSize.width, kbSize.height - rect.origin.y - self.tableView.contentOffset.y + 44);
         }
     }
     
-    _standardInsets = self.tableView.contentInset;
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(_standardInsets.top, 0.0, kbSize.height, 0.0);
+    self.tableView.contentInset = contentInsets;
+    self.tableView.scrollIndicatorInsets = contentInsets;
+}
+
+- (void)keyboardWillChangeFrame:(NSNotification *)notification
+{
+    if ([UIApplication sharedApplication].windows.firstObject && [UIApplication sharedApplication].windows.firstObject.visibleViewController != self) {
+        return;
+    }
+    
+    NSDictionary *info = notification.userInfo;
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    if (TSC_isPad()) {
+        
+        if (self.navigationController.presentingViewController) {
+            
+            CGRect rect = [self.view convertRect:self.view.frame toView:[UIApplication sharedApplication].keyWindow];
+            kbSize = CGSizeMake(kbSize.width, kbSize.height - rect.origin.y - self.tableView.contentOffset.y + 44);
+        }
+    }
     
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(_standardInsets.top, 0.0, kbSize.height, 0.0);
     self.tableView.contentInset = contentInsets;
@@ -200,7 +284,7 @@
 
 - (void)setDataSource:(NSArray *)dataSource
 {
-    [self setDataSource:dataSource animated:NO];
+    [self setDataSource:dataSource animated:false];
 }
 
 - (void)setDataSource:(NSArray *)dataSource animated:(BOOL)animated
@@ -272,6 +356,8 @@
     
     if ([row respondsToSelector:@selector(tableViewCellClass)]) {
         tableViewCellClass = [row tableViewCellClass];
+    } else if ([row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)]) {
+        tableViewCellClass = [UITableViewCell class];
     } else {
         tableViewCellClass = [TSCTableViewCell class];
     }
@@ -279,16 +365,38 @@
     return tableViewCellClass;
 }
 
+- (NSString *)TSC_tableViewPrototypeCellIdentifierForIndexPath:(NSIndexPath *)indexPath
+{
+    NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
+    
+    NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
+    
+    if ([row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)]) {
+        
+        return [row tableViewPrototypeCellIdentifier];
+    }
+    
+    return nil;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Class tableViewCellClass = [self TSC_tableViewCellClassForIndexPath:indexPath];
+    NSString *prototypeIdentifier = [self TSC_tableViewPrototypeCellIdentifierForIndexPath:indexPath];
     
     // Check if class is registered with table view
     if (![self TSC_isCellClassRegistered:tableViewCellClass]) {
         [self TSC_registerCellClass:tableViewCellClass];
     }
     
-    TSCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(tableViewCellClass) forIndexPath:indexPath];
+    TSCTableViewCell *cell;
+    
+    if (prototypeIdentifier) {
+        cell = [tableView dequeueReusableCellWithIdentifier:prototypeIdentifier forIndexPath:indexPath];
+
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(tableViewCellClass) forIndexPath:indexPath];
+    }
     
     [self TSC_configureCell:cell withIndexPath:indexPath];
     
@@ -297,52 +405,89 @@
 
 - (void)TSC_configureCell:(TSCTableViewCell *)cell withIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
+
+    if ([cell respondsToSelector:@selector(currentIndexPath)]) {
+        cell.currentIndexPath = indexPath;
+    }
     
-    cell.currentIndexPath = indexPath;
-    cell.detailTextLabel.text = nil;
-    cell.textLabel.text = nil;
-    cell.imageView.image = nil;
+    UILabel *textLabel = [cell respondsToSelector:@selector(cellTextLabel)] ? cell.cellTextLabel : cell.textLabel;
+    UILabel *detailTextLabel = [cell respondsToSelector:@selector(cellDetailTextLabel)] ? cell.cellDetailTextLabel : cell.detailTextLabel;
+    UIImageView *imageView = [cell respondsToSelector:@selector(cellImageView)] ? cell.cellImageView : cell.imageView;
+    
+    detailTextLabel.text = nil;
+    textLabel.text = nil;
+    imageView.image = nil;
     
     // Setup basic defaults
     if ([row respondsToSelector:@selector(rowTitleTextColor)]) {
         
         if ([row rowTitleTextColor]) {
-            cell.textLabel.textColor = [row rowTitleTextColor];
+            textLabel.textColor = [row rowTitleTextColor];
         } else {
-            cell.textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
+            textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
         }
     } else {
-        cell.textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
+        textLabel.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
     }
     
     if ([row respondsToSelector:@selector(rowDetailTextColor)]) {
         
         if ([row rowDetailTextColor]) {
-            cell.detailTextLabel.textColor = [row rowDetailTextColor];
+            detailTextLabel.textColor = [row rowDetailTextColor];
         } else {
-            cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
+            detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
         }
     } else {
-        cell.detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
+        detailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
+    }
+    
+    if ([row respondsToSelector:@selector(rowBackgroundColor)]) {
+        
+        if ([row rowBackgroundColor]) {
+            
+            cell.backgroundColor = [row rowBackgroundColor];
+            cell.contentView.backgroundColor = [row rowBackgroundColor];
+        } else {
+            
+            cell.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+            cell.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+        }
+    } else {
+        
+        cell.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+        cell.contentView.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
+    }
+    
+    if ([row respondsToSelector:@selector(cellStyle)]) {
+        
+        if ([cell respondsToSelector:@selector(setCellStyle:)]) {
+            cell.cellStyle = [row cellStyle];
+        }
+    } else {
+        
+        if ([cell respondsToSelector:@selector(setCellStyle:)]) {
+            cell.cellStyle = UITableViewCellStyleSubtitle;
+        }
     }
     
     if ([row respondsToSelector:@selector(rowTitle)]) {
         
         if ([[row rowTitle] isKindOfClass:[NSAttributedString class]]) {
-            cell.textLabel.attributedText = (NSAttributedString *)[row rowTitle];
+            textLabel.attributedText = (NSAttributedString *)[row rowTitle];
         } else {
-            cell.textLabel.text = [row rowTitle];
+            textLabel.text = [row rowTitle];
         }
     }
     
     if ([row respondsToSelector:@selector(rowSubtitle)]) {
         
         if ([[row rowSubtitle] isKindOfClass:[NSAttributedString class]]) {
-            cell.detailTextLabel.attributedText = (NSAttributedString *)[row rowSubtitle];
+            detailTextLabel.attributedText = (NSAttributedString *)[row rowSubtitle];
         } else {
-            cell.detailTextLabel.text = [row rowSubtitle];
+            detailTextLabel.text = [row rowSubtitle];
         }
     }
     
@@ -353,14 +498,14 @@
     if ([row respondsToSelector:@selector(rowImageURL)]) {
         
         if ([row respondsToSelector:@selector(rowImagePlaceholder)]) {
-            [cell.imageView setImageURL:[row rowImageURL] placeholderImage:[row rowImagePlaceholder]];
+            [imageView setImageURL:[row rowImageURL] placeholderImage:[row rowImagePlaceholder]];
         } else {
-            [cell.imageView setImageURL:[row rowImageURL] placeholderImage:nil];
+            [imageView setImageURL:[row rowImageURL] placeholderImage:nil];
         }
     }
     
     if ([row respondsToSelector:@selector(rowImage)]) {
-        cell.imageView.image = [row rowImage];
+        imageView.image = [row rowImage];
     }
     
     if ([self isIndexPathSelectable:indexPath] && ![row isKindOfClass:[TSCTableInputRow class]]) {
@@ -399,31 +544,67 @@
         cell.accessoryType = [row rowAccessoryType];
     }
     
-    cell.parentViewController = self;
+    if ([cell respondsToSelector:@selector(parentViewController)]) {
+
+        cell.parentViewController = self;
+
+    }
     
     // So model can perform additional changes if it wants
     if ([row respondsToSelector:@selector(tableViewCell:)]) {
         [row tableViewCell:cell];
     }
     
-    if ([cell respondsToSelector:@selector(setShouldDisplaySeparators:)]) {
+    if ([row respondsToSelector:@selector(shouldDisplaySeperator)] && ![row shouldDisplaySeperator]) {
         
-        if (self.shouldDisplaySeparatorsOnCells) {
-            cell.shouldDisplaySeparators = YES;
-        } else {
-            cell.shouldDisplaySeparators = NO;
+        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+            [cell setSeparatorInset:UIEdgeInsetsMake(0, INFINITY, 0, 0)];
         }
+        
+        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+            [cell setLayoutMargins:UIEdgeInsetsMake(0, INFINITY, 0, 0)];
+        }
+        
+    } else {
+        
+        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+            [cell setSeparatorInset:UIEdgeInsetsMake(0, self.tableView.separatorInset.left, 0, 0)];
+        }
+        
     }
     
-    if ([row respondsToSelector:@selector(shouldDisplaySeperator)]) {
+    if ([cell respondsToSelector:@selector(setShouldDisplaySeparators:)] && [row respondsToSelector:@selector(shouldDisplaySeperator)]) {
+        
         cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
+        
     }
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
+    
+    BOOL thunderTableAutoSizing = ![row respondsToSelector:@selector(tableViewPrototypeCellIdentifier)];
+    
+    if ([row respondsToSelector:@selector(tableViewCellClass)] && [row tableViewCellClass]) {
+        
+        Class class = [row tableViewCellClass];
+        
+        if (NSStringFromClass(class)) {
+            
+            NSString *className = [[NSStringFromClass(class) componentsSeparatedByString:@"."] lastObject];
+            
+            if ([[NSBundle bundleForClass:[row tableViewCellClass]] pathForResource:className ofType:@"nib"]) {
+                thunderTableAutoSizing = [row respondsToSelector:@selector(tableViewCellHeightConstrainedToContentViewSize:tableViewSize:)] || [row respondsToSelector:@selector(tableViewCellHeightConstrainedToSize:)];
+            }
+        }
+    }
+    
+    if (!thunderTableAutoSizing) {
+        return UITableViewAutomaticDimension;
+    }
     
     CGSize contentViewSize = CGSizeMake(self.tableView.frame.size.width, MAXFLOAT);
     
@@ -461,12 +642,12 @@
 
 - (BOOL)TSC_isCellClassRegistered:(Class)class
 {
-    BOOL isCellClassRegistered = NO;
+    BOOL isCellClassRegistered = false;
     NSString *queryingClassName = NSStringFromClass(class);
     
     for (NSString *className in self.registeredCellClasses) {
         if ([queryingClassName isEqualToString:className]) {
-            isCellClassRegistered = YES;
+            isCellClassRegistered = true;
             break;
         }
     }
@@ -477,7 +658,21 @@
 - (void)TSC_registerCellClass:(Class)class
 {
     [self.registeredCellClasses addObject:NSStringFromClass(class)];
-    [self.tableView registerClass:class forCellReuseIdentifier:NSStringFromClass(class)];
+    
+    NSString *className = NSStringFromClass(class);
+    className = [[className componentsSeparatedByString:@"."] lastObject];
+    
+    if ([[NSBundle bundleForClass:class] pathForResource:className ofType:@"nib"]) {
+        
+        UINib *cellNib = [UINib nibWithNibName:className bundle:[NSBundle bundleForClass:class]];
+        
+        [self.tableView registerNib:cellNib forCellReuseIdentifier:NSStringFromClass(class)];
+        
+    } else {
+        
+        [self.tableView registerClass:class forCellReuseIdentifier:NSStringFromClass(class)];
+        
+    }
 }
 
 #pragma mark UITableViewDelegate methods
@@ -532,7 +727,7 @@
         
         if ((row.rowSelectionSelector && row.rowSelectionTarget) || [row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
             
-            return YES;
+            return true;
         }
     }
     
@@ -540,11 +735,11 @@
         
         if (section.sectionSelector && section.sectionTarget) {
             
-            return YES;
+            return true;
         }
     }
     
-    return NO;
+    return false;
 }
 
 - (void)TSC_handleTableViewSelectionWithIndexPath:(NSIndexPath *)indexPath
@@ -583,28 +778,27 @@
             
             TSCTableInputCheckViewCell *checkCell = (TSCTableInputCheckViewCell *)cell;
             TSCCheckView *checkView = checkCell.checkView;
-            [checkView setOn:!checkView.isOn animated:YES];
+            [checkView setOn:!checkView.isOn animated:true];
         } else {
             [self TSC_resignAnyResponders];
         }
         
         if ([cell isKindOfClass:[TSCTableInputTextFieldViewCell class]]) {
-            [cell setEditing:YES animated:YES];
+            
+            [cell setEditing:true animated:true];
             [[(TSCTableInputTextFieldViewCell *)cell textField] becomeFirstResponder];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
         
         if ([cell isKindOfClass:[TSCTableInputTextViewViewCell class]]) {
-            [cell setEditing:YES animated:YES];
+            
+            [cell setEditing:true animated:true];
             [[(TSCTableInputTextViewViewCell *)cell textView] becomeFirstResponder];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
         
         if ([cell isKindOfClass:[TSCTableInputDatePickerViewCell class]] || [cell isKindOfClass:[TSCTableInputPickerViewCell class]]) {
             
-            [cell setEditing:YES animated:YES];
+            [cell setEditing:true animated:true];
             [[(TSCTableInputPickerViewCell *)cell inputView] becomeFirstResponder];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
         
         if ([cell respondsToSelector:@selector(setEditing:animated:)]) {
@@ -613,16 +807,16 @@
             if ([cell respondsToSelector:@selector(becomeFirstResponder)]) {
                 [cell becomeFirstResponder];
             }
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:false];
         }
     }
     
     if ([row respondsToSelector:@selector(shouldRemainSelected)]) {
         if (![row shouldRemainSelected]) {
-            [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
+            [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:true];
         }
     } else {
-        [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
+        [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:true];
     }
 }
 
@@ -646,29 +840,25 @@
 - (void)TSC_resignAnyResponders
 {
     TSCTableInputViewCell *cell = (TSCTableInputViewCell *)[self.tableView cellForRowAtIndexPath:self.selectedIndexPath];
-    [cell setEditing:NO animated:YES];
+    [cell setEditing:false animated:true];
 }
 
 - (BOOL)TSC_isPickerRow:(TSCTableInputRow *)row
 {
     if ([row isKindOfClass:[TSCTableInputPickerRow class]] || [row isKindOfClass:[TSCTableInputDatePickerRow class]]) {
-        return YES;
+        return true;
     } else {
-        return NO;
+        return false;
     }
 }
 
 - (BOOL)TSC_isControlRow:(TSCTableInputRow *)row
 {
-    return NO;
+    return false;
 }
 
 - (CGFloat)_contentRightInsetForAccessoryType:(UITableViewCellAccessoryType)accessoryType
 {
-    if (![TSCThemeManager isOS8]) {
-        return 0.0;
-    }
-    
     switch (accessoryType) {
             
         case UITableViewCellAccessoryNone:
@@ -692,8 +882,8 @@
     TSCTableViewCell *cell = (TSCTableViewCell *)[self TSC_dequeueDynamicHeightCellProxyWithIndexPath:indexPath];
     
     [self TSC_configureCell:cell withIndexPath:indexPath];
-    
     cell.frame = CGRectMake(0, 0, self.view.bounds.size.width - (MAX(2.0,[UIScreen mainScreen].scale) * [self _contentRightInsetForAccessoryType:cell.accessoryType]), 44);
+    
     [cell layoutSubviews];
     
     CGFloat totalHeight = 0;
@@ -702,37 +892,30 @@
     CGFloat lowestYValue = 0;
     
     UIView *highestView;
+    UIView *lowestView;
     
     for (UIView *view in subviews) {
         
-        CGSize size = view.frame.size;
-        CGPoint origin = view.frame.origin;
-        
-        CGFloat viewTotalHeight = size.height + origin.y;
-        
-        if (viewTotalHeight > totalHeight) {
-            totalHeight = viewTotalHeight;
+        if (CGRectGetMaxY(view.frame) > totalHeight) {
+            
+            totalHeight = CGRectGetMaxY(view.frame);
             highestView = view;
         }
         
         if (view.frame.origin.y < lowestYValue) {
+            
             lowestYValue = view.frame.origin.y;
+            lowestView = view;
         }
     }
     
-    CGFloat cellHeight;
-    
-    if (highestView.frame.size.width == self.view.bounds.size.width || highestView.frame.size.width == self.view.bounds.size.width) {
-        cellHeight = totalHeight + fabs(lowestYValue) + 10;
-    } else {
-        cellHeight = totalHeight + fabs(lowestYValue) + 10;
-    }
+    CGFloat cellHeight = totalHeight + fabs(lowestYValue) + 8;
     
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
     
     if ([row respondsToSelector:@selector(rowPadding)]) {
-        cellHeight = (cellHeight - 10) + (long)[row rowPadding];
+        cellHeight = (cellHeight - 8) + (long)[row rowPadding];
     }
     
     cellHeight = ceilf(cellHeight);
@@ -756,9 +939,15 @@
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(TSC_handleEdit:)];
 }
 
+- (void)setEditing:(BOOL)editing
+{
+    [super setEditing:editing];
+    [self.tableView setEditing:editing];
+}
+
 - (void)TSC_handleEdit:(id)sender
 {
-    [self.tableView setEditing:!self.tableView.isEditing animated:YES];
+    [self.tableView setEditing:!self.tableView.isEditing animated:true];
     
     if (self.tableView.isEditing) {
         self.navigationItem.rightBarButtonItem = [self editDoneButtonItem];
@@ -773,7 +962,7 @@
     NSArray *sectionItems = [section sectionItems];
     NSObject <TSCTableRowDataSource> *row = sectionItems[indexPath.row];
     
-    BOOL canEditRow = NO;
+    BOOL canEditRow = false;
     
     if ([row respondsToSelector:@selector(canEditRow)]) {
         canEditRow = [row canEditRow];
@@ -879,9 +1068,9 @@
 - (BOOL)isMissingRequiredInputRows
 {
     if (self.missingRequiredInputRows.count == 0) {
-        return NO;
+        return false;
     } else {
-        return YES;
+        return true;
     }
 }
 
@@ -905,7 +1094,7 @@
     [missingRows show];
 }
 
-- (void)enumerateRowsUsingBlock:(void (^)(TSCTableRow *row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
+- (void)enumerateRowsUsingBlock:(void (^)(id <TSCTableRowDataSource> row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
 {
     __block NSInteger index = 0;
     [self.dataSource enumerateObjectsUsingBlock:^(TSCTableSection *section, NSUInteger sectionIndex, BOOL *stopSection) {
@@ -921,11 +1110,11 @@
     }];
 }
 
-- (void)enumerateInputRowsUsingBlock:(void (^)(TSCTableInputRow *inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
+- (void)enumerateInputRowsUsingBlock:(void (^)(id <TSCTableInputRowDataSource> inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
 {
-    [self enumerateRowsUsingBlock:^(TSCTableRow *row, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
-        if ([row isKindOfClass:[TSCTableInputRow class]]) {
-            block((TSCTableInputRow *)row, index, indexPath, stop);
+    [self enumerateRowsUsingBlock:^(id <TSCTableRowDataSource> row, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
+        if ([row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
+            block((id <TSCTableInputRowDataSource>)row, index, indexPath, stop);
         }
     }];
 }
@@ -940,7 +1129,7 @@
         [self textFieldDidReturn:[(TSCTableInputTextFieldViewCell *)cell textField]];
     }
     
-    [self enumerateInputRowsUsingBlock:^(TSCTableInputRow *inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
+    [self enumerateInputRowsUsingBlock:^(id <TSCTableInputRowDataSource> inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
         
         if ([indexPath isEqual:self.selectedIndexPath]) {
             selectedRowIndex = index;
@@ -952,7 +1141,7 @@
         
         if (index > selectedRowIndex) {
             [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
-            *stop = YES;
+            *stop = true;
         }
     }];
 }

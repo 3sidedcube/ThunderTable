@@ -158,4 +158,14 @@
     return self.detailTextColor;
 }
 
+- (UIColor *)rowBackgroundColor
+{
+    return self.backgroundColor;
+}
+
+- (UITableViewCellStyle)cellStyle
+{
+    return UITableViewCellStyleSubtitle;
+}
+
 @end

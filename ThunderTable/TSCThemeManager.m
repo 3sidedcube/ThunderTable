@@ -45,16 +45,13 @@ static id sharedController = nil;
     [toolbar setTintColor:[theme mainColor]];
     
     UITabBar *tabBar = [UITabBar appearance];
-    [tabBar setSelectedImageTintColor:[theme mainColor]];
     [tabBar setTintColor:[theme mainColor]];
-    
     
     UISwitch *switchView = [UISwitch appearance];
     [switchView setOnTintColor:[theme mainColor]];
     
     TSCCheckView *checkView = [TSCCheckView appearance];
     [checkView setOnTintColor:[theme mainColor]];
-
 }
 
 + (BOOL)isOS7
@@ -98,7 +95,7 @@ static id sharedController = nil;
     return NO;
 }
 
-BOOL isPad() {
+BOOL TSC_isPad() {
     
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) {
         return YES;

@@ -14,7 +14,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
     
     if (self) {
         
@@ -31,8 +31,8 @@
     
         [self.contentView addSubview:self.textField];
         self.textField.returnKeyType = UIReturnKeyNext;
-        
-        [self setEditing:NO animated:NO];
+                
+        [self setEditing:false animated:false];
     
     }
     
@@ -43,17 +43,17 @@
 {
     [super layoutSubviews];
     
-    if (!self.textLabel.text) {
+    if (!self.cellTextLabel.text) {
         
         self.textField.textAlignment = NSTextAlignmentLeft;
-        self.textField.frame = CGRectMake(MAX(10,CGRectGetMaxX(self.imageView.frame) + 15), 10, self.contentView.bounds.size.width - 10 - MAX(10,CGRectGetMaxX(self.imageView.frame) + 15), 24);
+        self.textField.frame = CGRectMake(MAX(10,CGRectGetMaxX(self.cellImageView.frame) + 15), 10, self.contentView.bounds.size.width - 10 - MAX(10,CGRectGetMaxX(self.cellImageView.frame) + 15), 24);
         self.textField.center = CGPointMake(self.textField.center.x, self.frame.size.height/2 + 1);
         
     } else {
         
         self.textField.textAlignment = NSTextAlignmentRight;
-        self.textField.frame = CGRectMake(self.textLabel.bounds.size.width + 20, 10, self.contentView.bounds.size.width - self.textLabel.bounds.size.width - 30, 24);
-        self.textField.center = CGPointMake(self.textField.center.x, self.textLabel.center.y);
+        self.textField.frame = CGRectMake(self.cellTextLabel.bounds.size.width + 20, 10, self.contentView.bounds.size.width - self.cellTextLabel.bounds.size.width - 30, 24);
+        self.textField.center = CGPointMake(self.textField.center.x, self.cellTextLabel.center.y);
     }
 }
 
@@ -88,11 +88,16 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    self.textField.userInteractionEnabled = editing;
     
     if (!editing) {
         [self resignKeyboard];
     }
+}
+
+- (void)setEditable:(BOOL)editable
+{
+    [super setEditable:editable];
+    self.textField.userInteractionEnabled = editable;
 }
 
 #pragma mark - Navigation handling

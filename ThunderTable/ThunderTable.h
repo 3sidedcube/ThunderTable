@@ -14,63 +14,64 @@ FOUNDATION_EXPORT double ThunderTableVersionNumber;
 //! Project version string for ThunderTable.
 FOUNDATION_EXPORT const unsigned char ThunderTableVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <ThunderTable/PublicHeader.h>
-#import <ThunderTable/TSCThemeManager.h>
-#import <ThunderTable/TSCTheme.h>
+// In this header, you should import all the public headers of your framework using statements like #import "PublicHeader.h"
+#import "TSCThemeManager.h"
+#import "TSCTheme.h"
 
 // View Controllers
-#import <ThunderTable/TSCTableViewController.h>
+#import "TSCTableViewController.h"
 
 // Protocols
-#import <ThunderTable/TSCTableRowDataSource.h>
-#import <ThunderTable/TSCTableSectionDataSource.h>
-#import <ThunderTable/TSCTableInputSliderRowDataSource.h>
+#import "TSCTableRowDataSource.h"
+#import "TSCTableSectionDataSource.h"
+#import "TSCTableInputSliderRowDataSource.h"
 
 // Models
-#import <ThunderTable/TSCTableSection.h>
-#import <ThunderTable/TSCTableSelection.h>
-#import <ThunderTable/TSCTableSortedSections.h>
+#import "TSCTableSection.h"
+#import "TSCTableSelection.h"
+#import "TSCTableSortedSections.h"
 
-#import <ThunderTable/GCPlaceholderTextView.h>
+#import "GCPlaceholderTextView.h"
 
 // Cells
-#import <ThunderTable/TSCTableViewCell.h>
-#import <ThunderTable/TSCTableValue1ViewCell.h>
-#import <ThunderTable/TSCTableImageViewCell.h>
-#import <ThunderTable/TSCTableInputViewCell.h>
-#import <ThunderTable/TSCTableInputTextViewViewCell.h>
-#import <ThunderTable/TSCTableInputTextFieldViewCell.h>
-#import <ThunderTable/TSCTableInputDatePickerViewCell.h>
-#import <ThunderTable/TSCTableInputPickerViewCell.h>
-#import <ThunderTable/TSCTableInputSwitchViewCell.h>
-#import <ThunderTable/TSCTableInputCheckViewCell.h>
-#import <ThunderTable/TSCTableInputSliderViewCell.h>
-#import <ThunderTable/TSCCheckView.h>
+#import "TSCTableViewCell.h"
+#import "TSCTableValue1ViewCell.h"
+#import "TSCTableImageViewCell.h"
+#import "TSCTableInputViewCell.h"
+#import "TSCTableInputTextViewViewCell.h"
+#import "TSCTableInputTextFieldViewCell.h"
+#import "TSCTableInputDatePickerViewCell.h"
+#import "TSCTableInputPickerViewCell.h"
+#import "TSCTableInputSwitchViewCell.h"
+#import "TSCTableInputCheckViewCell.h"
+#import "TSCTableInputSliderViewCell.h"
+#import "TSCCheckView.h"
 
 // Rows
-#import <ThunderTable/TSCTableRow.h>
-#import <ThunderTable/TSCTableImageRow.h>
-#import <ThunderTable/TSCTableValue1Row.h>
-#import <ThunderTable/TSCTableInputRow.h>
-#import <ThunderTable/TSCTableInputTextFieldRow.h>
-#import <ThunderTable/TSCTableInputTextViewRow.h>
-#import <ThunderTable/TSCTableInputSwitchRow.h>
-#import <ThunderTable/TSCTableInputDatePickerRow.h>
-#import <ThunderTable/TSCTableInputPickerRow.h>
-#import <ThunderTable/TSCTableInputCheckRow.h>
-#import <ThunderTable/TSCTableInputSliderRow.h>
-#import <ThunderTable/TSCPickerRowDataSource.h>
-#import <ThunderTable/TSCPickerComponent.h>
-#import <ThunderTable/TSCPickerComponentDataSource.h>
-#import <ThunderTable/TSCPickerRow.h>
+#import "TSCTableRow.h"
+#import "TSCTableImageRow.h"
+#import "TSCTableValue1Row.h"
+#import "TSCTableInputRow.h"
+#import "TSCTableInputTextFieldRow.h"
+#import "TSCTableInputTextViewRow.h"
+#import "TSCTableInputSwitchRow.h"
+#import "TSCTableInputDatePickerRow.h"
+#import "TSCTableInputPickerRow.h"
+#import "TSCTableInputCheckRow.h"
+#import "TSCTableInputSliderRow.h"
+#import "TSCPickerRowDataSource.h"
+#import "TSCPickerComponent.h"
+#import "TSCPickerComponentDataSource.h"
+#import "TSCPickerRow.h"
+#import "TSCStoryboardRow.h"
 
 // Picker
-#import <ThunderTable/TSCItemPickerController.h>
+#import "TSCItemPickerController.h"
 
 // Other
-#import <ThunderTable/UIImageView+TSCImageView.h>
-#import <ThunderTable/TSCImageController.h>
-#import <ThunderTable/TSCImageRequestOperation.h>
+#import "UIImageView+TSCImageView.h"
+#import "TSCImageController.h"
+#import "TSCImageRequest.h"
 
 
 

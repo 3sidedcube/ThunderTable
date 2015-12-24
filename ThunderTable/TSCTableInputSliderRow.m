@@ -11,9 +11,10 @@
 
 @interface TSCTableInputSliderRow ()
 
-@property (nonatomic, strong) NSNumber *sliderMinValue;
-@property (nonatomic, strong) NSNumber *sliderMaxValue;
-@property (nonatomic, strong) NSNumber *currentValue;
+@property (nonatomic, copy) NSNumber *sliderMinValue;
+@property (nonatomic, copy) NSNumber *sliderMaxValue;
+@property (nonatomic, copy) NSNumber *currentValue;
+@property (nonatomic, copy) NSNumber *sliderIntervalValue;
 
 @end
 
@@ -60,6 +61,11 @@
 - (NSNumber *)minimumValue
 {
     return self.sliderMinValue;
+}
+
+- (NSNumber *)sliderInterval
+{
+    return self.sliderIntervalValue;
 }
 
 @end

@@ -115,6 +115,11 @@
 @property (nonatomic, strong) UIColor *detailTextColor;
 
 /**
+ @abstract The `UIColor` to apply to the background of the cell
+ */
+@property (nonatomic, strong) UIColor *backgroundColor;
+
+/**
  @abstract The link that a row should attempt to push when selected
  */
 @property (nonatomic, strong) TSCLink *link;

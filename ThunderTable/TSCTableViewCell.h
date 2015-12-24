@@ -26,18 +26,28 @@
 @property (nonatomic, strong) NSIndexPath *currentIndexPath;
 
 /**
- @abstract The view for the top separator of the cell
- */
-@property (nonatomic, strong) UIView *separatorTopView;
-
-/**
- @abstract The view for the bottom separator of the cell
- */
-@property (nonatomic, strong) UIView *separatorBottomView;
-
-/**
  @abstract Whether the cell should display separators or not
  */
 @property (nonatomic, assign) BOOL shouldDisplaySeparators;
+
+/**
+ @abstract The custom text label for the cell
+ */
+@property (nonatomic, strong) UILabel *cellTextLabel;
+
+/**
+ @abstract The custom detail text label for the cell
+ */
+@property (nonatomic, strong) UILabel *cellDetailTextLabel;
+
+/**
+ @abstract The custom cell image view
+ */
+@property (nonatomic, strong) UIImageView *cellImageView;
+
+/**
+ @abstract The style of the cell
+ */
+@property (nonatomic, assign) UITableViewCellStyle cellStyle;
 
 @end

@@ -28,7 +28,7 @@
 
         [self.contentView addSubview:self.textView];
         
-        [self setEditing:NO animated:NO];
+        [self setEditing:false animated:false];
     }
     
     return self;
@@ -40,13 +40,13 @@
     
     self.textView.font = [[TSCThemeManager sharedTheme] fontOfSize:17];
     
-    if (!self.textLabel.text) {
+    if (!self.cellTextLabel.text) {
         self.textView.frame = CGRectMake(12, 0, self.contentView.bounds.size.width - 24, self.contentView.bounds.size.height);
     } else {
         
-        CGSize textSize = [self.textLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width - (self.textLabel.frame.origin.x * 2), MAXFLOAT)];
-        self.textLabel.frame = CGRectMake(self.textLabel.frame.origin.x, 12, self.contentView.bounds.size.width - (self.textLabel.frame.origin.x * 2), textSize.height);
-        self.textView.frame = CGRectMake(12, CGRectGetMaxY(self.textLabel.frame) + 6, self.contentView.bounds.size.width - 24, self.contentView.bounds.size.height - (CGRectGetMaxY(self.textLabel.frame) + 6));
+        CGSize textSize = [self.cellTextLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width - (self.cellTextLabel.frame.origin.x * 2), MAXFLOAT)];
+        self.cellTextLabel.frame = CGRectMake(self.cellTextLabel.frame.origin.x, 12, self.contentView.bounds.size.width - (self.cellTextLabel.frame.origin.x * 2), textSize.height);
+        self.textView.frame = CGRectMake(12, CGRectGetMaxY(self.cellTextLabel.frame) + 6, self.contentView.bounds.size.width - 24, self.contentView.bounds.size.height - (CGRectGetMaxY(self.cellTextLabel.frame) + 6));
     }
 }
 
@@ -72,11 +72,16 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    self.textView.userInteractionEnabled = editing;
     
     if (!editing) {
         [self resignKeyboard];
     }
+}
+
+- (void)setEditable:(BOOL)editable
+{
+    [super setEditable:editable];
+    self.textView.userInteractionEnabled = editable;
 }
 
 #pragma mark - Navigation handling

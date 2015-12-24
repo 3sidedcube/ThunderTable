@@ -87,4 +87,9 @@
     return inputCell;
 }
 
+- (UITableViewCellStyle)cellStyle
+{
+    return UITableViewCellStyleValue1;
+}
+
 @end

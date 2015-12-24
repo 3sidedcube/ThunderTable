@@ -52,7 +52,7 @@
 
 - (UIColor *)backgroundColor
 {
-    return [UIColor whiteColor];
+    return [UIColor groupTableViewBackgroundColor];
 }
 
 - (UIColor *)freeTextColor

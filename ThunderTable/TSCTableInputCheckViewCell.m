@@ -47,24 +47,24 @@
     
     self.checkView.frame = CGRectMake(10, self.contentView.bounds.size.height / 2 - 15, 30, 30);
     
-    CGRect textLabelFrame = self.textLabel.frame;
+    CGRect textLabelFrame = self.cellTextLabel.frame;
     textLabelFrame.origin.x = self.checkView.frame.size.width + 20;
     
     if ((textLabelFrame.origin.x + textLabelFrame.size.width) > self.contentView.frame.size.width) {
         textLabelFrame.size.width -= ((textLabelFrame.origin.x + textLabelFrame.size.width) - self.contentView.frame.size.width) + 10;
     }
     
-    self.textLabel.frame = textLabelFrame;
+    self.cellTextLabel.frame = textLabelFrame;
     
     UIView *sampleFrame = [[UIView alloc] initWithFrame:CGRectMake(18, 0, 30, 30)];
     
     CGPoint textOffset = CGPointMake(sampleFrame.frame.size.width + sampleFrame.frame.origin.x, sampleFrame.frame.origin.y);
     CGSize textConstrainedSize = CGSizeMake(self.contentView.frame.size.width - textOffset.x, MAXFLOAT);
-    CGSize textLabelSize = [self.textLabel sizeThatFits:textConstrainedSize];
+    CGSize textLabelSize = [self.cellTextLabel sizeThatFits:textConstrainedSize];
     
-    self.textLabel.frame = CGRectMake(textOffset.x, textOffset.y + 5, textLabelSize.width, textLabelSize.height + 5);
-    self.textLabel.frame = CGRectMake(textOffset.x, textOffset.y + 5, textLabelSize.width, textLabelSize.height + 5);
-    self.textLabel.center = CGPointMake(self.textLabel.center.x, self.contentView.center.y);
+    self.cellTextLabel.frame = CGRectMake(textOffset.x, textOffset.y + 5, textLabelSize.width, textLabelSize.height + 5);
+    self.cellTextLabel.frame = CGRectMake(textOffset.x, textOffset.y + 5, textLabelSize.width, textLabelSize.height + 5);
+    self.cellTextLabel.center = CGPointMake(self.cellTextLabel.center.x, self.contentView.center.y);
 }
 
 @end

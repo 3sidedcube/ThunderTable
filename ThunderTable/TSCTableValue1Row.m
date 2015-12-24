@@ -71,6 +71,11 @@
 
 #pragma Table Row Data Source
 
+- (float)rowPadding
+{
+    return 10;
+}
+
 - (NSString *)rowTitle
 {
     return _title;
@@ -141,16 +146,21 @@
     
     if (!self.enabled) {
         
-        valueCell.detailTextLabel.textColor = self.disabledDetailTextColor ? : [[TSCThemeManager sharedTheme] disabledCellTextColor];
-        valueCell.textLabel.textColor = self.disabledTitleTextColor ? : [[TSCThemeManager sharedTheme] disabledCellTextColor];
+        valueCell.cellDetailTextLabel.textColor = self.disabledDetailTextColor ? : [[TSCThemeManager sharedTheme] disabledCellTextColor];
+        valueCell.cellTextLabel.textColor = self.disabledTitleTextColor ? : [[TSCThemeManager sharedTheme] disabledCellTextColor];
     }
     
     if (self.isBold) {
-        valueCell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17];
-        valueCell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+        valueCell.cellTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17];
+        valueCell.cellDetailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     }
     
     return valueCell;
+}
+
+- (UITableViewCellStyle)cellStyle
+{
+    return UITableViewCellStyleValue1;
 }
 
 @end

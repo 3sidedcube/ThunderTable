@@ -34,7 +34,7 @@
  - `TSCTableSection` for sections
  
  */
-@interface TSCTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSCTableInputViewCellDelegate, UITextFieldDelegate>
+@interface TSCTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, TSCTableInputViewCellDelegate, UITextFieldDelegate>
 
 ///---------------------------------------------------------------------------------------
 /// @name Initializing a TSCTableView Object
@@ -79,27 +79,10 @@
 ///---------------------------------------------------------------------------------------
 
 /**
- @abstract The current table view
- @discussion Use this property for accessing information about the underlying table view
- */
-@property (nonatomic, strong) UITableView *tableView;
-
-/**
- @abstract The current `UITableViewStyle` of the `tableView`
- @discussion This property should be initialised by one of the designated initializers below
- */
-@property (nonatomic, assign) UITableViewStyle style;
-
-/**
  @abstract Used to enable Alphabetical index titles down the side of a table view by section
  @discussion Each section should have a title set before enabling this property
  */
 @property (nonatomic, assign) BOOL shouldDisplayAlphabeticalSectionIndexTitles;
-
-/**
- @abstract Enable or disabled seperators between table cells
- */
-@property (nonatomic, assign) BOOL shouldDisplaySeparatorsOnCells;
 
 /**
  @abstract A boolean value indicating if the `tableView` should automatically make the first text field in the `dataSource` the first responder upon load
@@ -110,12 +93,6 @@
 ///---------------------------------------------------------------------------------------
 /// @name Managing Refreshing
 ///---------------------------------------------------------------------------------------
-
-/**
- @abstract The refresh control used for "Pull to refresh" on the `tableView`
- @discussion This property will return nil if `refreshEnabled` is set to NO
- */
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 /**
  Called when the `refreshControl` changes it's refresh state
@@ -214,13 +191,13 @@
  Enumerates the rows of the tableView returning the row object, index, indexPath and allowing the user to stop the enumeration
  @param block The block of code which will be called upon enumerating each row of the dataSource
  */
-- (void)enumerateRowsUsingBlock:(void (^)(TSCTableRow *row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block;
+- (void)enumerateRowsUsingBlock:(void (^)(id <TSCTableRowDataSource> row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block;
 
 /**
  Enumerates the input rows of the tableView returning the row object, index, indexPath and allowing the user to stop the enumeration
  @param block The block of code which will be called upon enumerating each row of the dataSource
  @see `-enumerateRowsUsingBlock:` for enumerating all rows
  */
-- (void)enumerateInputRowsUsingBlock:(void (^)(TSCTableInputRow *inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block;
+- (void)enumerateInputRowsUsingBlock:(void (^)(id <TSCTableInputRowDataSource> inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block;
 
 @end
