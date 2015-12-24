@@ -1094,7 +1094,7 @@
     [missingRows show];
 }
 
-- (void)enumerateRowsUsingBlock:(void (^)(TSCTableRow *row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
+- (void)enumerateRowsUsingBlock:(void (^)(id <TSCTableRowDataSource> row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
 {
     __block NSInteger index = 0;
     [self.dataSource enumerateObjectsUsingBlock:^(TSCTableSection *section, NSUInteger sectionIndex, BOOL *stopSection) {
@@ -1110,11 +1110,11 @@
     }];
 }
 
-- (void)enumerateInputRowsUsingBlock:(void (^)(TSCTableInputRow *inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
+- (void)enumerateInputRowsUsingBlock:(void (^)(id <TSCTableInputRowDataSource> inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
 {
-    [self enumerateRowsUsingBlock:^(TSCTableRow *row, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
-        if ([row isKindOfClass:[TSCTableInputRow class]]) {
-            block((TSCTableInputRow *)row, index, indexPath, stop);
+    [self enumerateRowsUsingBlock:^(id <TSCTableRowDataSource> row, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
+        if ([row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
+            block((id <TSCTableInputRowDataSource>)row, index, indexPath, stop);
         }
     }];
 }
@@ -1129,7 +1129,7 @@
         [self textFieldDidReturn:[(TSCTableInputTextFieldViewCell *)cell textField]];
     }
     
-    [self enumerateInputRowsUsingBlock:^(TSCTableInputRow *inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
+    [self enumerateInputRowsUsingBlock:^(id <TSCTableInputRowDataSource> inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop) {
         
         if ([indexPath isEqual:self.selectedIndexPath]) {
             selectedRowIndex = index;
