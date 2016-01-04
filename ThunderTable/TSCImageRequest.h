@@ -9,10 +9,12 @@
 @import Foundation;
 @import UIKit;
 
+@class TSCImageRequest;
+
 /**
  A completion block used when an image request operation has completed
  */
-typedef void (^TSCImageRequestCompletion)(UIImage *image, NSError *error, BOOL isCached);
+typedef void (^TSCImageRequestCompletion)(UIImage *image, NSError *error, BOOL isCached, TSCImageRequest *request);
 
 /**
  A subclass of NSOperation for making image requests from a URL
