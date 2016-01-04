@@ -151,7 +151,7 @@
                 
                 // Replace the current image
                 if (image.size.width > welf.image.size.width || welf.showingPlaceholder) {
-                    NSLog(@"image is placeholder : %i", welf.showingPlaceholder);
+                    
                     welf.showingPlaceholder = false;
                     welf.image = image;
                 }
