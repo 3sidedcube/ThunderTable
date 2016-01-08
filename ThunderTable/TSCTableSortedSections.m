@@ -21,8 +21,8 @@
 
 - (NSMutableArray<TSCTableSection *> *)initWithItems:(NSArray *)items target:(id)target selector:(SEL)selector
 {
-    NSArray *sectionTitles = [[UILocalizedIndexedCollation currentCollation] sectionTitles];
     NSDictionary *sortedDictionary = [self alphabeticallySortedRowItems:items];
+    NSArray *sectionTitles = [sortedDictionary.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     NSMutableArray *sections = [NSMutableArray array];
     
     for (NSString *sectionTitle in sectionTitles) {
