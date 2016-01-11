@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		493EED401BB4086D004FB9A3 /* TSCStoryboardRow.h in Headers */ = {isa = PBXBuildFile; fileRef = 493EED3E1BB4086D004FB9A3 /* TSCStoryboardRow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		493EED411BB4086D004FB9A3 /* TSCStoryboardRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 493EED3F1BB4086D004FB9A3 /* TSCStoryboardRow.m */; settings = {ASSET_TAGS = (); }; };
+		493EED411BB4086D004FB9A3 /* TSCStoryboardRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 493EED3F1BB4086D004FB9A3 /* TSCStoryboardRow.m */; };
+		B140B0101C44023E00F108CE /* TSCDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B140B00F1C44023E00F108CE /* TSCDatePickerView.xib */; };
+		B140B0121C44034200F108CE /* TSCDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B140B0111C44034100F108CE /* TSCDatePickerView.swift */; };
 		B1A695521B96F95D001EB098 /* TSCTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A695511B96F95D001EB098 /* TSCTheme.m */; };
 		B1A695591B96FF6F001EB098 /* TSCPickerComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A695531B96FF6F001EB098 /* TSCPickerComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1A6955A1B96FF6F001EB098 /* TSCPickerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A695541B96FF6F001EB098 /* TSCPickerComponent.m */; };
@@ -96,6 +98,8 @@
 /* Begin PBXFileReference section */
 		493EED3E1BB4086D004FB9A3 /* TSCStoryboardRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCStoryboardRow.h; sourceTree = "<group>"; };
 		493EED3F1BB4086D004FB9A3 /* TSCStoryboardRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCStoryboardRow.m; sourceTree = "<group>"; };
+		B140B00F1C44023E00F108CE /* TSCDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSCDatePickerView.xib; sourceTree = "<group>"; };
+		B140B0111C44034100F108CE /* TSCDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSCDatePickerView.swift; sourceTree = "<group>"; };
 		B1A695511B96F95D001EB098 /* TSCTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCTheme.m; sourceTree = "<group>"; };
 		B1A695531B96FF6F001EB098 /* TSCPickerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCPickerComponent.h; sourceTree = "<group>"; };
 		B1A695541B96FF6F001EB098 /* TSCPickerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCPickerComponent.m; sourceTree = "<group>"; };
@@ -202,6 +206,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B140B0131C44040100F108CE /* Picker Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C2E509DC19C83ACA00350F00 /* TSCTableInputDatePickerViewCell.h */,
+				C2E509DD19C83ACA00350F00 /* TSCTableInputDatePickerViewCell.m */,
+				B140B00F1C44023E00F108CE /* TSCDatePickerView.xib */,
+				B140B0111C44034100F108CE /* TSCDatePickerView.swift */,
+				C2E509DE19C83ACA00350F00 /* TSCTableInputPickerViewCell.h */,
+				C2E509DF19C83ACA00350F00 /* TSCTableInputPickerViewCell.m */,
+			);
+			name = "Picker Cells";
+			sourceTree = "<group>";
+		};
 		B1A6955F1B96FF7A001EB098 /* Pickers */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,16 +341,13 @@
 		C2E509FE19C83AF100350F00 /* Input Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B140B0131C44040100F108CE /* Picker Cells */,
 				C2E509D619C83ACA00350F00 /* TSCTableInputViewCell.h */,
 				C2E509D719C83ACA00350F00 /* TSCTableInputViewCell.m */,
 				C2E509D819C83ACA00350F00 /* TSCTableInputTextFieldViewCell.h */,
 				C2E509D919C83ACA00350F00 /* TSCTableInputTextFieldViewCell.m */,
 				C2E509DA19C83ACA00350F00 /* TSCTableInputTextViewViewCell.h */,
 				C2E509DB19C83ACA00350F00 /* TSCTableInputTextViewViewCell.m */,
-				C2E509DC19C83ACA00350F00 /* TSCTableInputDatePickerViewCell.h */,
-				C2E509DD19C83ACA00350F00 /* TSCTableInputDatePickerViewCell.m */,
-				C2E509DE19C83ACA00350F00 /* TSCTableInputPickerViewCell.h */,
-				C2E509DF19C83ACA00350F00 /* TSCTableInputPickerViewCell.m */,
 				C2E509E019C83ACA00350F00 /* TSCTableInputSwitchViewCell.h */,
 				C2E509E119C83ACA00350F00 /* TSCTableInputSwitchViewCell.m */,
 				C2E509E219C83ACA00350F00 /* TSCTableInputCheckViewCell.h */,
@@ -507,7 +521,7 @@
 		C2E5097919C839F600350F00 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = threesidedcube;
 				TargetAttributes = {
@@ -542,6 +556,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B140B0101C44023E00F108CE /* TSCDatePickerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +577,7 @@
 				C2E509C519C83A7A00350F00 /* TSCItemPickerController.m in Sources */,
 				C2E50A2919C83B2C00350F00 /* TSCTableInputCheckRow.m in Sources */,
 				C2E50A2519C83B2C00350F00 /* TSCTableInputDatePickerRow.m in Sources */,
+				B140B0121C44034200F108CE /* TSCDatePickerView.swift in Sources */,
 				C2E509F719C83ACA00350F00 /* TSCTableInputCheckViewCell.m in Sources */,
 				C2E509F919C83ACA00350F00 /* GCPlaceholderTextView.m in Sources */,
 				C2E50A3F19C83B5F00350F00 /* TSCTableSelection.m in Sources */,
@@ -700,6 +716,7 @@
 		C2E5099619C839F600350F00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -713,12 +730,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.threesidedcube.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		C2E5099719C839F600350F00 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

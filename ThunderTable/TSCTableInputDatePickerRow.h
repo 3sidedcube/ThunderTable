@@ -26,7 +26,7 @@
  @param required Whether or not a value is required for this row
  */
 
-+ (instancetype)rowWithTitle:(NSString *)title mode:(UIDatePickerMode)mode inputId:(NSString *)inputId required:(BOOL)required;
++ (_Nonnull instancetype)rowWithTitle:(NSString * _Nullable)title mode:(UIDatePickerMode)mode inputId:(NSString * _Nonnull )inputId required:(BOOL)required;
 
 ///---------------------------------------------------------------------------------------
 /// @name Row configuration
@@ -36,5 +36,20 @@
  @abstract The date picker mode to use on the `UIDatePicker`
  */
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
+
+/**
+ @abstract The earliest allowed date on the `UIDatePicker`
+ */
+@property (nonatomic, strong) NSDate * _Nullable minimumDate;
+
+/**
+ @abstract The latest allowed date on the `UIDatePicker`
+ */
+@property (nonatomic, strong) NSDate * _Nullable maximumDate;
+
+/**
+ @abstract The handler for when the user is done selecting a date
+ */
+@property (nonatomic, copy) void (^_Nullable doneHandler)(NSDate  * _Nullable date);
 
 @end
