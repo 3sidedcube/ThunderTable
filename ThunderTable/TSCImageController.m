@@ -86,7 +86,7 @@ static TSCImageController *sharedController = nil;
     if (request.image) {
         
         if (completion) {
-            completion(request.image, nil, true);
+            completion(request.image, nil, true, request);
         }
         return;
     }
@@ -100,7 +100,7 @@ static TSCImageController *sharedController = nil;
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     
-                    completion([UIImage imageWithData:data], nil, false);
+                    completion([UIImage imageWithData:data], nil, false, request);
                     
                 }];
             }
@@ -110,7 +110,7 @@ static TSCImageController *sharedController = nil;
             if (completion) {
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    completion(nil, [NSError errorWithDomain:@"org.threesidedcube.thundertable" code:1001 userInfo:@{NSLocalizedDescriptionKey: @"The server did not return a valid image"}], false);
+                    completion(nil, [NSError errorWithDomain:@"org.threesidedcube.thundertable" code:1001 userInfo:@{NSLocalizedDescriptionKey: @"The server did not return a valid image"}], false, request);
                 }];
             }
         }
