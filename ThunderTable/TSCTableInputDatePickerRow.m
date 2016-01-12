@@ -37,4 +37,22 @@
     return 44;
 }
 
+- (TSCTableInputDatePickerViewCell *)tableViewCell:(TSCTableInputDatePickerViewCell *)cell
+{
+    cell = (TSCTableInputDatePickerViewCell *)[super tableViewCell:cell];
+    
+    cell.datePicker.minimumDate = self.minimumDate;
+    cell.datePicker.maximumDate = self.maximumDate;
+    
+    [cell setDoneHandler:^(TSCTableInputDatePickerViewCell *pickerCell) {
+       
+        if (self.doneHandler) {
+            self.doneHandler(self.value);
+        }
+        
+    }];
+    
+    return cell;
+}
+
 @end

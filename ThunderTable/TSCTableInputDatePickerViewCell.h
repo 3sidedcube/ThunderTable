@@ -29,4 +29,9 @@
  */
 @property (nonatomic, strong) UIDatePicker *datePicker;
 
+/**
+ @abstract The handler for when the user is done selecting a date
+ */
+@property (nonatomic, copy) void (^doneHandler)(TSCTableInputDatePickerViewCell *cell);
+
 @end
