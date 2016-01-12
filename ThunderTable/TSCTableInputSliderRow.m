@@ -50,6 +50,9 @@
     inputCell.slider.maximumValue = [self.sliderMaxValue floatValue];
     [inputCell.slider setValue:[self.currentValue floatValue] animated:YES];
     
+    [self updateTargetsAndActionsForControl:inputCell.slider];
+    [inputCell.slider addTarget:inputCell action:@selector(handleSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
     return inputCell;
 }
 

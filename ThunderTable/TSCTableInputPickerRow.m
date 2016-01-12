@@ -60,6 +60,7 @@
 {
     TSCTableInputPickerViewCell *pickerCell = (TSCTableInputPickerViewCell *)cell;
     self.cell = pickerCell;
+        
     pickerCell.inputRow = self;
     pickerCell.components = self.components;
     pickerCell.placeholder = self.placeholder;
@@ -78,6 +79,15 @@
         [super setValue:@[[TSCPickerRow rowWithTitle:value]]];
     } else {
         [super setValue:value];
+    }
+}
+
+- (void)setValue:(id)value sender:(id)sender
+{
+    if ([value isKindOfClass:[NSString class]]) {
+        [super setValue:@[[TSCPickerRow rowWithTitle:value]] sender:sender];
+    } else {
+        [super setValue:value sender:sender];
     }
 }
 

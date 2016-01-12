@@ -74,6 +74,8 @@
     inputCell.textField.autocapitalizationType = self.autocapitalizationType;
     inputCell.textField.autocorrectionType = self.autocorrectionType;
     
+    [self updateTargetsAndActionsForControl:inputCell.textField];
+    
     if (inputCell.inputRow.value != [NSNull null]) {
         if ([inputCell.inputRow.value isKindOfClass:[NSNumber class]]) {
             inputCell.textField.text = [inputCell.inputRow.value stringValue];

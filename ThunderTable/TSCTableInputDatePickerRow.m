@@ -44,6 +44,8 @@
     cell.datePicker.minimumDate = self.minimumDate;
     cell.datePicker.maximumDate = self.maximumDate;
     
+    [self updateTargetsAndActionsForControl:cell.datePicker];
+    
     [cell setDoneHandler:^(TSCTableInputDatePickerViewCell *pickerCell) {
        
         if (self.doneHandler) {

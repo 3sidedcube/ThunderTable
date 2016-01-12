@@ -62,8 +62,12 @@
     textField.text = [textField.text stringByReplacingCharactersInRange:range withString:string];
     textField.text = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@"\u00a0"];
     
-    self.inputRow.value = [textField.text stringByReplacingOccurrencesOfString:@"\u00a0" withString:@" "];
-    
+    if ([self.inputRow respondsToSelector:@selector(setValue:sender:)]) {
+        [self.inputRow setValue:[textField.text stringByReplacingOccurrencesOfString:@"\u00a0" withString:@" "] sender:textField];
+    } else {
+        self.inputRow.value = [textField.text stringByReplacingOccurrencesOfString:@"\u00a0" withString:@" "];
+    }
+        
     return NO;
 }
 

@@ -52,6 +52,7 @@
 - (void)handleDone:(UINavigationItem *)sender
 {
     [self.dateLabel resignFirstResponder];
+    [self handleDatePicker:self.datePicker];
     if (self.doneHandler) {
         self.doneHandler(self);
     }
@@ -101,7 +102,12 @@
 - (void)handleDatePicker:(UIDatePicker *)sender
 {
     self.dateLabel.text = [self.dateFormatter stringFromDate:sender.date];
-    self.inputRow.value = sender.date;
+    
+    if ([self.inputRow respondsToSelector:@selector(setValue:sender:)]) {
+        [self.inputRow setValue:sender.date sender:sender];
+    } else {
+        self.inputRow.value = sender.date;
+    }
 }
 
 @end

@@ -99,8 +99,12 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     self.selectionLabel.text = [self stringValueWithComponents:self.components];
-    self.inputRow.value = [self rowValues];
     
+    if ([self.inputRow respondsToSelector:@selector(setValue:sender:)]) {
+        [self.inputRow setValue:[self rowValues] sender:pickerView];
+    } else {
+        [self.inputRow setValue:[self rowValues]];
+    }
 }
 
 - (NSString *)stringValueWithComponents:(NSArray *)components
