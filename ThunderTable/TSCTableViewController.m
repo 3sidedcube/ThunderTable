@@ -707,7 +707,27 @@
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if (self.shouldDisplayAlphabeticalSectionIndexTitles) {
-        return [[UILocalizedIndexedCollation currentCollation] sectionTitles];
+        
+        NSMutableArray <NSString *> *sectionItems = [NSMutableArray new];
+        
+        if (self.dataSource) {
+            
+            for (TSCTableSection *section in self.dataSource) {
+                
+                if (section.title && ![[section.title stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""] && section.title.length > 0) {
+                    
+                    if (![[section.title substringToIndex:1] isEqualToString:@""]) {
+                        [sectionItems addObject:[section.title substringToIndex:1]];
+                    }
+                }
+            }
+            
+            return sectionItems;
+            
+        } else {
+            return nil;
+        }
+        
     } else {
         return nil;
     }
