@@ -34,4 +34,10 @@
  */
 @property (nonatomic, copy) void (^doneHandler)(TSCTableInputDatePickerViewCell *cell);
 
+/**
+ @abstract The method called when the date picker's value changes
+ @param sender The date picker who's value changed
+ */
+- (void)handleDatePicker:(UIDatePicker *)sender;
+
 @end

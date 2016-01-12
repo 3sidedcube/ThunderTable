@@ -45,6 +45,7 @@
     cell.datePicker.maximumDate = self.maximumDate;
     
     [self updateTargetsAndActionsForControl:cell.datePicker];
+    [cell.datePicker addTarget:cell action:@selector(handleDatePicker:) forControlEvents:UIControlEventValueChanged];
     
     [cell setDoneHandler:^(TSCTableInputDatePickerViewCell *pickerCell) {
        
