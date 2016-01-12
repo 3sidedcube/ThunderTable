@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class TSCTableSection;
 
 /**
  The `TSCTableSortedSections` class sorts `TSCTableSection`s into alphabetic order
@@ -24,7 +25,7 @@ Initializes the array with an array of `TSCTableRows` and sorts them into alphab
 @param selector The selector to call on the `target` when a row is selected
 @discussion `target` and `selector` can be set to nil if you wish to add a target to each individual row or object. The row object will be passsed to the method given in the `selector` if `selector` and `target` are specified
 */
-- (id)initWithItems:(NSArray *)items target:(id)target selector:(SEL)selector;
+- (NSMutableArray<TSCTableSection *> *)initWithItems:(NSArray *)items target:(id)target selector:(SEL)selector;
 
 /**
 Returns an array of `TSCTableRow`s sorted in alphabetic order
@@ -33,6 +34,6 @@ Returns an array of `TSCTableRow`s sorted in alphabetic order
 @param selector The selector to call on the `target` when a row is selected
 @discussion `target` and `selector` can be set to nil if you wish to add a target to each individual row or object. The row object will be passsed to the method given in the `selector` if `selector` and `target` are specified
 */
-+ (id)sortedSectionsWithItems:(NSArray *)items target:(id)target selector:(SEL)selector;
++ (NSMutableArray<TSCTableSection *> *)sortedSectionsWithItems:(NSArray *)items target:(id)target selector:(SEL)selector;
 
 @end

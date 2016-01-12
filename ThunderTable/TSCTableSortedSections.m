@@ -12,22 +12,22 @@
 
 @implementation TSCTableSortedSections
 
-+ (id)sortedSectionsWithItems:(NSArray *)items target:(id)target selector:(SEL)selector
++ (NSMutableArray<TSCTableSection *> *)sortedSectionsWithItems:(NSArray *)items target:(id)target selector:(SEL)selector
 {
     TSCTableSortedSections *sections = [[TSCTableSortedSections alloc] initWithItems:items target:target selector:selector];
     
     return sections;
 }
 
-- (id)initWithItems:(NSArray *)items target:(id)target selector:(SEL)selector
+- (NSMutableArray<TSCTableSection *> *)initWithItems:(NSArray *)items target:(id)target selector:(SEL)selector
 {
-    NSArray *sectionTitles = [[UILocalizedIndexedCollation currentCollation] sectionTitles];
-    NSDictionary *artistDictionary = [self alphabeticallySortedRowItems:items];
+    NSDictionary *sortedDictionary = [self alphabeticallySortedRowItems:items];
+    NSArray *sectionTitles = [sortedDictionary.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     NSMutableArray *sections = [NSMutableArray array];
     
     for (NSString *sectionTitle in sectionTitles) {
         
-        NSMutableArray *artists = artistDictionary[sectionTitle];
+        NSMutableArray *artists = sortedDictionary[sectionTitle];
         
         if (artists) {
             
@@ -53,13 +53,9 @@
         
         if (firstLetter) {
             
-            NSMutableArray *subItems = sortedDictionary[firstLetter];
-            
-            if (!subItems) {
-                sortedDictionary[firstLetter] = [NSMutableArray array];
-            }
-            
+            NSMutableArray *subItems = sortedDictionary[firstLetter] ? : [NSMutableArray new];
             [subItems addObject:item];
+            sortedDictionary[firstLetter] = subItems;
         }
     }
     
