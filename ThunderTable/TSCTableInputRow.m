@@ -193,11 +193,13 @@
 
 - (void)setValue:(id)value
 {
-    
+    _value = value;
 }
 
 - (void)setValue:(id)value sender:(id)sender
 {
+    _value = value;
+    
     UIControlEvents events = UIControlEventValueChanged;
     
     NSArray *targets = [self targetsForControlEvents:events];
