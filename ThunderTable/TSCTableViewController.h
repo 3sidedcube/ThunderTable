@@ -200,4 +200,14 @@
  */
 - (void)enumerateInputRowsUsingBlock:(void (^)(id <TSCTableInputRowDataSource> inputRow, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block;
 
+///---------------------------------------------------------------------------------------
+/// @name Laying out headers
+///---------------------------------------------------------------------------------------
+
+/**
+ Resizes the header to fit it's applied constraints
+ @discussion This should be called from the method updateViewConstraints:
+ */
+- (void)sizeHeaderToFit;
+
 @end
