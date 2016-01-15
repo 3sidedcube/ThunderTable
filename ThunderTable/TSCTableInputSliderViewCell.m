@@ -24,7 +24,6 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         self.slider = [[UISlider alloc] init];
-        [self.slider addTarget:self action:@selector(handleSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         [self.contentView addSubview:self.slider];
         
         self.valueLabel = [UILabel new];

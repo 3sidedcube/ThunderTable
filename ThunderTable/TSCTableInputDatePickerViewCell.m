@@ -38,7 +38,6 @@
         
         
         self.datePicker = self.datePickerView.datePicker;
-        [self.datePicker addTarget:self action:@selector(handleDatePicker:) forControlEvents:UIControlEventValueChanged];
         
         self.datePickerView.doneButton.target = self;
         self.datePickerView.doneButton.action = @selector(handleDone:);
@@ -52,6 +51,7 @@
 - (void)handleDone:(UINavigationItem *)sender
 {
     [self.dateLabel resignFirstResponder];
+    [self handleDatePicker:self.datePicker];
     if (self.doneHandler) {
         self.doneHandler(self);
     }
@@ -101,7 +101,6 @@
 - (void)handleDatePicker:(UIDatePicker *)sender
 {
     self.dateLabel.text = [self.dateFormatter stringFromDate:sender.date];
-    self.inputRow.value = sender.date;
 }
 
 @end

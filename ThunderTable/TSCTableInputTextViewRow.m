@@ -33,7 +33,7 @@
     TSCTableInputTextViewViewCell *inputCell = (TSCTableInputTextViewViewCell *)cell;
     inputCell.textView.text = self.placeholder;
     inputCell.placeholder = self.placeholder;
-    
+        
     if (inputCell.inputRow.value != [NSNull null]) {
         if ([inputCell.inputRow.value isKindOfClass:[NSNumber class]]) {
             inputCell.textView.text = [inputCell.inputRow.value stringValue];

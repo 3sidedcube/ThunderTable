@@ -33,4 +33,10 @@
 */
 @property (nonatomic, strong) NSNumber *displayNumber;
 
+/**
+ @abstract The method called when the slider value changes
+ @param slider The slider which's value changed
+ */
+- (void)handleSliderValueChanged:(UISlider *)slider;
+
 @end

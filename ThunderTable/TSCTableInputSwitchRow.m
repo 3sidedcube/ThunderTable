@@ -57,6 +57,9 @@
         inputCell.inputRow.value = @(0);
     }
     
+    [self updateTargetsAndActionsForControl:inputCell.primarySwitch];
+    [inputCell.primarySwitch addTarget:inputCell action:@selector(handleSwitch:) forControlEvents:UIControlEventValueChanged];
+
     inputCell.primarySwitch.on = [self.value boolValue];
     
     return inputCell;

@@ -74,12 +74,16 @@
     inputCell.textField.autocapitalizationType = self.autocapitalizationType;
     inputCell.textField.autocorrectionType = self.autocorrectionType;
     
-    if (inputCell.inputRow.value != [NSNull null]) {
+    [self updateTargetsAndActionsForControl:inputCell.textField];
+    
+    if (self.value && self.value != [NSNull null]) {
+        
         if ([inputCell.inputRow.value isKindOfClass:[NSNumber class]]) {
-            inputCell.textField.text = [inputCell.inputRow.value stringValue];
+            inputCell.textField.text = [self.value stringValue];
         } else {
-            inputCell.textField.text = inputCell.inputRow.value;
+            inputCell.textField.text = self.value;
         }
+        
     } else {
         inputCell.textField.text = nil;
     }

@@ -39,4 +39,13 @@
  */
 - (void)setValue:(id)value;
 
+@optional
+
+/**
+ @abstract Sets the value on the row with an optional sender
+ @param value The new value for the row
+ @param sender The sender that changed the value
+ */
+- (void)setValue:(id)value sender:(id)sender;
+
 @end

@@ -52,7 +52,11 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    self.inputRow.value = textView.text;
+    if ([self.inputRow respondsToSelector:@selector(setValue:sender:)]) {
+        [self.inputRow setValue:textView.text sender:textView];
+    } else {
+        self.inputRow.value = textView.text;
+    }
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -65,7 +69,12 @@
     if (self.textView.text.length == 0) {
         [self.textView resignFirstResponder];
     } else {
-        self.inputRow.value = textView.text;
+        
+        if ([self.inputRow respondsToSelector:@selector(setValue:sender:)]) {
+            [self.inputRow setValue:textView.text sender:textView];
+        } else {
+            self.inputRow.value = textView.text;
+        }
     }
 }
 
