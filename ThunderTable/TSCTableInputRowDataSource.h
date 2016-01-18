@@ -21,12 +21,12 @@
 /**
  @abstract The unique id of the input row. Required for extracting a value
  */
-- (NSString *)inputId;
+- (NSString * _Nonnull)inputId;
 
 /**
  @abstract The value of the input row
  */
-- (id)value;
+- (id _Nullable)value;
 
 /**
  @abstract If the input row needs to have a value entered
@@ -37,7 +37,7 @@
  @abstract Sets the value of the input row
  @param value The value to set on the row
  */
-- (void)setValue:(id)value;
+- (void)setValue:(id _Nullable)value;
 
 @optional
 
@@ -46,6 +46,6 @@
  @param value The new value for the row
  @param sender The sender that changed the value
  */
-- (void)setValue:(id)value sender:(id)sender;
+- (void)setValue:(id _Nullable)value sender:(id _Nullable)sender;
 
 @end

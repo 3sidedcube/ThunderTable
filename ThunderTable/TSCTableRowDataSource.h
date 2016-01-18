@@ -25,29 +25,29 @@
 /**
  @abstract The text to be displayed in the cells `textLabel`
  */
-- (NSString *)rowTitle;
+- (NSString * _Nullable)rowTitle;
 
 @optional
 
 /**
  @abstract The text to be displayed in the cells `detailTextLabel`
  */
-- (NSString *)rowSubtitle;
+- (NSString * _Nullable)rowSubtitle;
 
 /**
  @abstract The `UIImage` to be displayed in the cell
  */
-- (UIImage *)rowImage;
+- (UIImage * _Nullable)rowImage;
 
 /**
  @abstract The URL of the image to be loaded into the image area of the cell
  */
-- (NSURL *)rowImageURL;
+- (NSURL * _Nullable)rowImageURL;
 
 /**
  @abstract The placeholder image that is displayed whilst the cell is asynchronously loading the image defined by the `imageURL`
  */
-- (UIImage *)rowImagePlaceholder;
+- (UIImage * _Nullable)rowImagePlaceholder;
 
 ///---------------------------------------------------------------------------------------
 /// @name Overriding cell layout behaviour
@@ -57,12 +57,12 @@
  @abstract The `Class` to override the UITableViewCell with when displaying the row.
  @discussion Provide a custom class to have `TSCTableViewController` use this class when rendering the row in the table view
  */
-- (Class)tableViewCellClass;
+- (Class _Nonnull)tableViewCellClass;
 
 /**
  @abstract The Identifier to be used to dequeue and load tableViewCells from a prototype cell in a storyboard. This property will take presidence over the tableViewCellClass property
  */
-- (NSString *)tableViewPrototypeCellIdentifier;
+- (NSString * _Nonnull)tableViewPrototypeCellIdentifier;
 
 /**
  @abstract This method delivers the `cell` which has been rendered based on the other methods in the protocol.
@@ -70,7 +70,7 @@
  @param cell The cell that will be rendered, please return this when you are finished customising
  @note If you have overidden the class used by the row, this method will return a cell of that class type
  */
-- (UITableViewCell *)tableViewCell:(UITableViewCell *)cell;
+- (UITableViewCell * _Nonnull)tableViewCell:(UITableViewCell * _Nonnull)cell;
 
 /**
  @abstract Define a custom height for the cell to be rendered to
@@ -124,17 +124,17 @@
 /**
  @abstract The object to be called upon the user selecting the row
  */
-- (id)rowSelectionTarget;
+- (id _Nullable)rowSelectionTarget;
 
 /**
  @abstract The selector to be called on the target upon the user selecting the row
  */
-- (SEL)rowSelectionSelector;
+- (SEL _Nullable)rowSelectionSelector;
 
 /**
  @abstract The link that a row should attempt to push when selected
  */
-- (TSCLink *)rowLink;
+- (TSCLink * _Nullable)rowLink;
 
 /**
  @abstract A boolean indicating if the cell should display the accessory view.
@@ -165,17 +165,17 @@
 /**
  @abstract A value to be used for the colour of the cells title text label
  */
-- (UIColor *)rowTitleTextColor;
+- (UIColor * _Nullable)rowTitleTextColor;
 
 /**
  @abstract A value to be used for the colour of the cells detail text label
  */
-- (UIColor *)rowDetailTextColor;
+- (UIColor * _Nullable)rowDetailTextColor;
 
 /**
  @abstract A value to be used for the background colour of the cell
  */
-- (UIColor *)rowBackgroundColor;
+- (UIColor * _Nullable)rowBackgroundColor;
 
 /**
  @abstract The style of the cell

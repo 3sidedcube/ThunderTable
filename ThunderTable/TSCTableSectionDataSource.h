@@ -20,26 +20,26 @@
 /**
  @abstract The items displayed in the section. Items must conform to `TSCTableRowDataSource`.
  */
-- (NSArray *)sectionItems;
+- (NSArray <id <TSCTableRowDataSource>> * _Nonnull)sectionItems;
 
 /**
  @abstract The header title of the section
  */
-- (NSString *)sectionHeader;
+- (NSString * _Nullable)sectionHeader;
 
 /**
  @abstract The footer title of the section
  */
-- (NSString *)sectionFooter;
+- (NSString * _Nullable)sectionFooter;
 
 /**
  @abstract The object to send all selection events for rows inside the section
  */
-- (id)sectionTarget;
+- (id _Nullable)sectionTarget;
 
 /**
  @abstract The selector to call on the `target` when a row is selected
  */
-- (SEL)sectionSelector;
+- (SEL _Nullable)sectionSelector;
 
 @end

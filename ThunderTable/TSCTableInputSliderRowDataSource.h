@@ -21,16 +21,16 @@
 /**
  @abstract The maximum value the slider can reach
  */
-- (NSNumber *)maximumValue;
+- (NSNumber * _Nonnull)maximumValue;
 
 /**
  @abstract The minimum value the slider can reach
  */
-- (NSNumber *)minimumValue;
+- (NSNumber * _Nullable)minimumValue;
 
 /**
  @abstract The interval between steps of the slider
 */
-- (NSNumber *)sliderInterval;
+- (NSNumber * _Nullable)sliderInterval;
 
 @end
