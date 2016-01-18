@@ -50,7 +50,7 @@
 /**
  @abstract An array of items conforming to the `TSCTableRowDataSource` protocol to be displayed in the section
  */
-@property (nonatomic, strong) NSArray * _Nonnull items;
+@property (nonatomic, strong) NSArray <id <TSCTableRowDataSource>> * _Nonnull items;
 
 /**
  @abstract The object to send all selection events for rows inside the section

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol TSCTableRowDataSource;
+
 /**
  All sections that can be added in a `TSCTableViewController` must conform to the `TSCTableSectionDataSource` protocol. This protocol is for defining what is added to a table section and the table sections common properties
   */

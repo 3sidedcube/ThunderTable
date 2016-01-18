@@ -1118,9 +1118,10 @@
 - (void)enumerateRowsUsingBlock:(void (^)(id <TSCTableRowDataSource> row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
 {
     __block NSInteger index = 0;
-    [self.dataSource enumerateObjectsUsingBlock:^(TSCTableSection *section, NSUInteger sectionIndex, BOOL *stopSection) {
+    
+    [self.dataSource enumerateObjectsUsingBlock:^(id <TSCTableSectionDataSource> section, NSUInteger sectionIndex, BOOL *stopSection) {
         
-        [section.items enumerateObjectsUsingBlock:^(TSCTableRow *row, NSUInteger rowIndex, BOOL *stopRow) {
+        [section.sectionItems enumerateObjectsUsingBlock:^(id <TSCTableRowDataSource> row, NSUInteger rowIndex, BOOL *stopRow) {
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
             block(row, index, indexPath, stopRow);
