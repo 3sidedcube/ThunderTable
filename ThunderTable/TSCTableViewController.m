@@ -632,7 +632,7 @@
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
     
-    if([row respondsToSelector:@selector(tableViewCellEstimatedHeight)]) {
+    if ([row respondsToSelector:@selector(tableViewCellEstimatedHeight)]) {
         return [row tableViewCellEstimatedHeight];
     } else {
         return [self tableView:tableView heightForRowAtIndexPath:indexPath];

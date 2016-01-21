@@ -69,25 +69,28 @@
         
         TSCImageRequest *request = [[TSCImageController sharedController] imageRequestOperationWithImageURL:imageURL completion:^(UIImage *image, NSError *error, BOOL isCached, TSCImageRequest *imageRequest) {
             
-            if (image) {
-                welf.image = image;
-            }
-            
-            if (animated && !isCached) {
+            if (imageRequest == [welf TSC_currentImageRequestOperation]) {
                 
-                CATransition *transition = [CATransition animation];
-                transition.type = kCATransitionFade;
-                transition.duration = 0.25;
-                [welf.layer addAnimation:transition forKey:nil];
-            }
-            
-            [welf TSC_setCurrentImageRequestOperation:nil];
-            
-            if ([welf TSC_currentCompletion]) {
-                [welf TSC_currentCompletion](image, error, isCached);
-            }
-            
-            [welf TSC_setCurrentCompletion:nil];
+                if (image) {
+                    welf.image = image;
+                }
+                
+                if (animated && !isCached) {
+                    
+                    CATransition *transition = [CATransition animation];
+                    transition.type = kCATransitionFade;
+                    transition.duration = 0.25;
+                    [welf.layer addAnimation:transition forKey:nil];
+                }
+                
+                [welf TSC_setCurrentImageRequestOperation:nil];
+                
+                if ([welf TSC_currentCompletion]) {
+                    [welf TSC_currentCompletion](image, error, isCached);
+                }
+                
+                [welf TSC_setCurrentCompletion:nil];
+            }            
         }];
         
         [self TSC_setCurrentImageRequestOperation:request];
@@ -149,22 +152,23 @@
             
             TSCImageRequest *request = [[TSCImageController sharedController] imageRequestOperationWithImageURL:imageURL completion:^(UIImage *image, NSError *error, BOOL isCached, TSCImageRequest *imageRequest) {
                 
-                // Replace the current image
-                if (image.size.width > welf.image.size.width || welf.showingPlaceholder) {
+                if ([welf.imageRequests containsObject:imageRequest]) { // Only replace the image if the image request is actually still there! If it's not the user has cancelled all requests by setting imageURLs to nils
                     
-                    welf.showingPlaceholder = false;
-                    welf.image = image;
-                }
-                
-                if (animated && !isCached) {
+                    // Replace the current image
+                    if (image.size.width > welf.image.size.width || welf.showingPlaceholder) {
+                        
+                        welf.showingPlaceholder = false;
+                        welf.image = image;
+                    }
                     
-                    CATransition *transition = [CATransition animation];
-                    transition.type = kCATransitionFade;
-                    transition.duration = 0.25;
-                    [welf.layer addAnimation:transition forKey:nil];
-                }
-                
-                if ([welf.imageRequests containsObject:imageRequest]) {
+                    if (animated && !isCached) {
+                        
+                        CATransition *transition = [CATransition animation];
+                        transition.type = kCATransitionFade;
+                        transition.duration = 0.25;
+                        [welf.layer addAnimation:transition forKey:nil];
+                    }
+
                 
                     NSUInteger requestIndex = [welf.imageRequests indexOfObject:imageRequest];
                     
