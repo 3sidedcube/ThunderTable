@@ -155,7 +155,7 @@
                 if ([welf.imageRequests containsObject:imageRequest]) { // Only replace the image if the image request is actually still there! If it's not the user has cancelled all requests by setting imageURLs to nils
                     
                     // Replace the current image
-                    if (image.size.width > welf.image.size.width || welf.showingPlaceholder) {
+                    if (image.size.width > welf.image.size.width || (welf.showingPlaceholder && image)) {
                         
                         welf.showingPlaceholder = false;
                         welf.image = image;
