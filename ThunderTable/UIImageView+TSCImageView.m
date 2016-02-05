@@ -159,16 +159,15 @@
                         
                         welf.showingPlaceholder = false;
                         welf.image = image;
-                    }
-                    
-                    if (animated && !isCached) {
                         
-                        CATransition *transition = [CATransition animation];
-                        transition.type = kCATransitionFade;
-                        transition.duration = 0.25;
-                        [welf.layer addAnimation:transition forKey:nil];
+                        if (animated && !isCached) {
+                            
+                            CATransition *transition = [CATransition animation];
+                            transition.type = kCATransitionFade;
+                            transition.duration = 0.25;
+                            [welf.layer addAnimation:transition forKey:nil];
+                        }
                     }
-
                 
                     NSUInteger requestIndex = [welf.imageRequests indexOfObject:imageRequest];
                     
