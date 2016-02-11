@@ -912,21 +912,16 @@
     NSArray *subviews = cell.contentView.subviews;
     CGFloat lowestYValue = 0;
     
-    UIView *highestView;
-    UIView *lowestView;
-    
     for (UIView *view in subviews) {
         
         if (CGRectGetMaxY(view.frame) > totalHeight) {
             
             totalHeight = CGRectGetMaxY(view.frame);
-            highestView = view;
         }
         
         if (view.frame.origin.y < lowestYValue) {
             
             lowestYValue = view.frame.origin.y;
-            lowestView = view;
         }
     }
     
