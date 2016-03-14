@@ -24,6 +24,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         self.slider = [[UISlider alloc] init];
+        [self.slider addTarget:self action:@selector(handleSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         [self.contentView addSubview:self.slider];
         
         self.valueLabel = [UILabel new];
@@ -64,9 +65,10 @@
     
     self.slider.maximumValue = [[inputRow maximumValue] floatValue];
     self.slider.minimumValue = [[inputRow minimumValue] floatValue];
-    self.slider.value = [[inputRow value] floatValue];
+    [self.slider setValue:[[inputRow value] floatValue] animated:true];
     self.interval = [inputRow sliderInterval];
     self.cellTextLabel.text = [inputRow rowTitle];
+    [self handleSliderValueChanged:self.slider];
 }
 
 - (void)handleSliderValueChanged:(UISlider *)slider
