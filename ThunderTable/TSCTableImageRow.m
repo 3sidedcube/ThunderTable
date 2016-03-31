@@ -9,6 +9,12 @@
 #import "TSCTableImageRow.h"
 #import "TSCTableImageViewCell.h"
 
+@interface TSCTableImageRow ()
+
+@property (nonatomic, assign) float scale;
+
+@end
+
 @implementation TSCTableImageRow
 
 + (id)rowWithImage:(UIImage *)image
@@ -37,6 +43,16 @@
     return row;
 }
 
++ (id)rowWithImage:(UIImage *)image contentMode:(UIViewContentMode)contentMode scale:(float)scale
+{
+    TSCTableImageRow *row = [[self alloc] init];
+    row.image = image;
+    row.contentMode = contentMode;
+    row.scale = scale;
+    
+    return row;
+}
+
 + (id)rowWithImage:(UIImage *)image backgroundColor:(UIColor *)backgroundColor
 {
     TSCTableImageRow *row = [[self alloc] init];
@@ -54,6 +70,10 @@
 - (CGFloat)tableViewCellHeightConstrainedToContentViewSize:(CGSize)contentViewSize tableViewSize:(CGSize)tableViewSize
 {
     CGFloat scaleFactor = self.image.size.width / tableViewSize.width;
+    
+    if (self.scale) {
+        return (self.image.size.height / self.scale) / scaleFactor;
+    }
     
     return self.image.size.height / scaleFactor;
 }
