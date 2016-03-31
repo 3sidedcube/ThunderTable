@@ -32,6 +32,14 @@
 + (id)rowWithImage:(UIImage *)image contentMode:(UIViewContentMode)contentMode;
 
 /**
+ @abstract Initialises and returns a row with a particular image, content mode and scale
+ @param image The image to be displayed in the row
+ @param contentMode The content mode to display the image with
+ @param scale The scale at which to display the image
+ */
++ (id)rowWithImage:(UIImage *)image contentMode:(UIViewContentMode)contentMode scale:(float)scale;
+
+/**
  @abstract Initialises and returns a row with a particular image and background colour
  @param image The image to be displayed in the row
  @param backgroundColor The background colour of the row
