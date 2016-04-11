@@ -632,7 +632,7 @@
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
     
-    if([row respondsToSelector:@selector(tableViewCellEstimatedHeight)]) {
+    if ([row respondsToSelector:@selector(tableViewCellEstimatedHeight)]) {
         return [row tableViewCellEstimatedHeight];
     } else {
         return [self tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -912,21 +912,16 @@
     NSArray *subviews = cell.contentView.subviews;
     CGFloat lowestYValue = 0;
     
-    UIView *highestView;
-    UIView *lowestView;
-    
     for (UIView *view in subviews) {
         
         if (CGRectGetMaxY(view.frame) > totalHeight) {
             
             totalHeight = CGRectGetMaxY(view.frame);
-            highestView = view;
         }
         
         if (view.frame.origin.y < lowestYValue) {
             
             lowestYValue = view.frame.origin.y;
-            lowestView = view;
         }
     }
     
@@ -1118,9 +1113,10 @@
 - (void)enumerateRowsUsingBlock:(void (^)(id <TSCTableRowDataSource> row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
 {
     __block NSInteger index = 0;
-    [self.dataSource enumerateObjectsUsingBlock:^(TSCTableSection *section, NSUInteger sectionIndex, BOOL *stopSection) {
+    
+    [self.dataSource enumerateObjectsUsingBlock:^(id <TSCTableSectionDataSource> section, NSUInteger sectionIndex, BOOL *stopSection) {
         
-        [section.items enumerateObjectsUsingBlock:^(TSCTableRow *row, NSUInteger rowIndex, BOOL *stopRow) {
+        [section.sectionItems enumerateObjectsUsingBlock:^(id <TSCTableRowDataSource> row, NSUInteger rowIndex, BOOL *stopRow) {
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
             block(row, index, indexPath, stopRow);

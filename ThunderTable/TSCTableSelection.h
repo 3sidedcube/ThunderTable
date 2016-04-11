@@ -21,17 +21,17 @@
 /**
 @abstract The selected object from the table view
 */
-@property (nonatomic, strong) id <TSCTableRowDataSource> object;
+@property (nonatomic, strong) id <TSCTableRowDataSource> _Nonnull object;
 
 /**
  @abstract The index path of the selected object
  */
-@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, strong) NSIndexPath * _Nonnull indexPath;
 
 /**
- @abstract The index path of the selected object
+ @abstract The containing table view of the selected object
  */
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView * _Nullable tableView;
 
 @end
  

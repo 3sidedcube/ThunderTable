@@ -23,7 +23,7 @@
  @param title The title to display in the row
  @discussion The title will populate the `textLabel` text property of a `UITableViewCell`
  */
-+ (instancetype)rowWithTitle:(NSString *)title;
++ (instancetype _Nonnull)rowWithTitle:(NSString * _Nullable)title;
 
 /**
  Initializes the row with a single title in a custom color
@@ -31,7 +31,7 @@
  @param textColor A 'UIColor' to color the text with
  @discussion The title will populate the `textLabel` text property of a `UITableViewCell`. The textColor will be applied to the text.
  */
-+ (instancetype)rowWithTitle:(NSString *)title textColor:(UIColor *)textColor;
++ (instancetype _Nonnull)rowWithTitle:(NSString * _Nullable)title textColor:(UIColor * _Nullable)textColor;
 
 /**
  Initializes the row with a single title.
@@ -40,7 +40,7 @@
  @param image The image to be displayed to the left hand side of the cell
  @discussion The title will populate the `textLabel` text property and the subtitle will populate the `detailTextLabel` text property of the `UITableViewCell`
  */
-+ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
++ (instancetype _Nonnull)rowWithTitle:(NSString * _Nullable)title subtitle:(NSString * _Nullable)subtitle image:(UIImage * _Nullable)image;
 
 /**
  Initializes the row with a single title.
@@ -50,7 +50,7 @@
  @discussion The title will populate the `textLabel` text property and the subtitle will populate the `detailTextLabel` text property of the `UITableViewCell`
  @note Please set the `imagePlaceholder` property when using this method. This is required because the image width and height is used at layout to provide appropriate space for your loaded image.
  */
-+ (instancetype)rowWithTitle:(NSString *)title subtitle:(NSString *)subtitle imageURL:(NSURL *)imageURL;
++ (instancetype _Nonnull)rowWithTitle:(NSString * _Nullable)title subtitle:(NSString * _Nullable)subtitle imageURL:(NSURL * _Nullable)imageURL;
 
 ///---------------------------------------------------------------------------------------
 /// @name Handling selection
@@ -62,17 +62,17 @@
  @param selector The selector to call on the target object
  @discussion Calling this method makes the cell selectable in the table view, also adding a selection indicator to the cell
  */
-- (void)addTarget:(id)target selector:(SEL)selector;
+- (void)addTarget:(id _Nullable)target selector:(SEL _Nullable)selector;
 
 /**
  @abstract The object to be called upon the user selecting the row
  */
-@property (nonatomic, weak) id target;
+@property (nonatomic, weak) id _Nullable target;
 
 /**
  @abstract The selector to be called on the target upon the user selecting the row
  */
-@property (nonatomic, assign) SEL selector;
+@property (nonatomic, assign) SEL _Nullable selector;
 
 ///---------------------------------------------------------------------------------------
 /// @name Row configuration
@@ -81,48 +81,48 @@
 /**
  @abstract The text to be displayed in the cells `textLabel`
  */
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString * _Nullable title;
 
 /**
  @abstract The text to be displayed in the cells `detailTextLabel`
  */
-@property (nonatomic, copy) NSString *subtitle;
+@property (nonatomic, copy) NSString * _Nullable subtitle;
 
 /**
  @abstract The `UIImage` to be displayed in the cell
  */
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage * _Nullable image;
 
 /**
  @abstract The URL of the image to be loaded into the image area of the cell
  */
-@property (nonatomic, strong) NSURL *imageURL;
+@property (nonatomic, strong) NSURL * _Nullable imageURL;
 
 /**
  @abstract The placeholder image that is displayed whilst the cell is asynchronously loading the image defined by the `imageURL`
  @discussion Once the image has loaded from the URL it will be displayed at the same size as the placeholderImage so make sure that placeholderImage is the same size as the returned image. Not doing so causes strange frame behaviour of the cells `imageView`
  */
-@property (nonatomic, strong) UIImage *imagePlaceholder;
+@property (nonatomic, strong) UIImage * _Nullable imagePlaceholder;
 
 /**
  @abstract The `UIColor` to apply to the text in the cell
  */
-@property (nonatomic, strong) UIColor *titleTextColor;
+@property (nonatomic, strong) UIColor * _Nullable titleTextColor;
 
 /**
  @abstract The `UIColor` to apply to the detail text in the cell
  */
-@property (nonatomic, strong) UIColor *detailTextColor;
+@property (nonatomic, strong) UIColor * _Nullable detailTextColor;
 
 /**
  @abstract The `UIColor` to apply to the background of the cell
  */
-@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) UIColor * _Nullable backgroundColor;
 
 /**
  @abstract The link that a row should attempt to push when selected
  */
-@property (nonatomic, strong) TSCLink *link;
+@property (nonatomic, strong) TSCLink * _Nullable link;
 
 
 /**
