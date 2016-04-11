@@ -210,7 +210,12 @@
         [targets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             NSString *selectorString = selectors[idx];
-            [obj performSelector:NSSelectorFromString(selectorString) withObject:sender];
+            SEL selector = NSSelectorFromString(selectorString);
+            IMP imp = [obj methodForSelector:selector];
+            void (*func)(id, SEL, id) = (void *)imp;
+            if (obj) {
+                func(obj, selector, sender);
+            }
         }];
     }
 }

@@ -33,7 +33,7 @@
  @abstract The id of the input row value
  @discussion This will determine which key the value is stored under when calling the method `inputDictionary` on `TSCTableViewController`
  */
-@property (nonatomic, copy) NSString  * _Nullable inputId;
+@property (nonatomic, copy) NSString  * _Nonnull inputId;
 
 /**
  @abstract Adds a target and selector for different control events
