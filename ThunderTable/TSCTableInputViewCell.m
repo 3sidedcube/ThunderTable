@@ -30,4 +30,9 @@
     [super layoutSubviews];
 }
 
+- (void)setEditable:(BOOL)editable
+{
+    
+}
+
 @end
