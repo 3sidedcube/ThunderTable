@@ -110,7 +110,7 @@ static TSCImageController *sharedController = nil;
             if (completion) {
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    completion(nil, [NSError errorWithDomain:@"org.threesidedcube.thundertable" code:1001 userInfo:@{NSLocalizedDescriptionKey: @"The server did not return a valid image"}], false, request);
+                    completion(nil, error ? : [NSError errorWithDomain:@"org.threesidedcube.thundertable" code:1001 userInfo:@{NSLocalizedDescriptionKey: @"The server did not return a valid image"}], false, request);
                 }];
             }
         }
