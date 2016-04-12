@@ -12,18 +12,11 @@
 
 @implementation TSCTableSortedSections
 
-+ (NSMutableArray<TSCTableSection *> *)sortedSectionsWithItems:(NSArray *)items target:(id)target selector:(SEL)selector
-{
-    TSCTableSortedSections *sections = [[TSCTableSortedSections alloc] initWithItems:items target:target selector:selector];
-    
-    return sections;
-}
-
-- (NSMutableArray<TSCTableSection *> *)initWithItems:(NSArray *)items target:(id)target selector:(SEL)selector
++ (NSArray<__kindof NSObject<TSCTableSectionDataSource> *> * _Nonnull)sortedSectionsWithItems:(NSArray * _Nonnull)items target:(id _Nullable)target selector:(SEL _Nullable)selector
 {
     NSDictionary *sortedDictionary = [self alphabeticallySortedRowItems:items];
     NSArray *sectionTitles = [sortedDictionary.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-    NSMutableArray *sections = [NSMutableArray array];
+    NSMutableArray<__kindof NSObject <TSCTableSectionDataSource> *> *sections = [NSMutableArray array];
     
     for (NSString *sectionTitle in sectionTitles) {
         
@@ -36,14 +29,12 @@
         }
     }
     
-    self = (TSCTableSortedSections *)sections;
-    
-    return self;
+    return sections;
 }
 
 #pragma mark - Helpers
 
-- (NSDictionary *)alphabeticallySortedRowItems:(NSArray *)items
++ (NSDictionary *)alphabeticallySortedRowItems:(NSArray *)items
 {
     NSMutableDictionary *sortedDictionary = [NSMutableDictionary dictionary];
     
