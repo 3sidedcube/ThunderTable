@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TSCTableSectionDataSource.h"
 @class TSCTableSection;
 
 /**
@@ -19,21 +20,12 @@
 ///---------------------------------------------------------------------------------------
 
 /**
-Initializes the array with an array of `TSCTableRows` and sorts them into alphabetic order
-@param items The array of `TSCTableRow`s or objects that conform to the `TSCTableRowDataSource` protocol to be sorted
-@param target The object to send all selection events for rows inside the section
-@param selector The selector to call on the `target` when a row is selected
-@discussion `target` and `selector` can be set to nil if you wish to add a target to each individual row or object. The row object will be passsed to the method given in the `selector` if `selector` and `target` are specified
-*/
-- (NSMutableArray<TSCTableSection *>  * _Nonnull)initWithItems:(NSArray * _Nonnull)items target:(id _Nullable)target selector:(SEL _Nullable)selector;
-
-/**
 Returns an array of `TSCTableRow`s sorted in alphabetic order
 @param items The array of `TSCTableRow`s or objects that conform to the `TSCTableRowDataSource` protocol to be sorted
 @param target The object to send all selection events for rows inside the section
 @param selector The selector to call on the `target` when a row is selected
 @discussion `target` and `selector` can be set to nil if you wish to add a target to each individual row or object. The row object will be passsed to the method given in the `selector` if `selector` and `target` are specified
 */
-+ (NSMutableArray<TSCTableSection *> * _Nonnull)sortedSectionsWithItems:(NSArray * _Nonnull)items target:(id _Nullable)target selector:(SEL _Nullable)selector;
++ (NSArray<__kindof NSObject<TSCTableSectionDataSource> *> * _Nonnull)sortedSectionsWithItems:(NSArray * _Nonnull)items target:(id _Nullable)target selector:(SEL _Nullable)selector;
 
 @end
