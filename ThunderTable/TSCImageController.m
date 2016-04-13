@@ -7,6 +7,7 @@
 //
 
 #import "TSCImageController.h"
+#import <ThunderTable/ThunderTable-Swift.h>
 
 @interface TSCImageController () <NSURLSessionTaskDelegate>
 
@@ -81,6 +82,8 @@ static TSCImageController *sharedController = nil;
 {
     // Check OAuth status before making the request
     __weak typeof(self) welf = self;
+    
+    [ApplicationLoadingIndicatorManager.sharedManager showActivityIndicator];
     [request prepareForDispatch];
     
     if (request.image) {
@@ -93,6 +96,8 @@ static TSCImageController *sharedController = nil;
     
     request.dataTask = [welf.defaultSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
+        [ApplicationLoadingIndicatorManager.sharedManager hideActivityIndicator];
+
         //Notify of errors
         if (data && [UIImage imageWithData:data]) {
             

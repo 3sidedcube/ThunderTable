@@ -11,6 +11,7 @@
 		493EED411BB4086D004FB9A3 /* TSCStoryboardRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 493EED3F1BB4086D004FB9A3 /* TSCStoryboardRow.m */; };
 		B140B0101C44023E00F108CE /* TSCDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B140B00F1C44023E00F108CE /* TSCDatePickerView.xib */; };
 		B140B0121C44034200F108CE /* TSCDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B140B0111C44034100F108CE /* TSCDatePickerView.swift */; };
+		B15560FE1CBE49B400834825 /* ApplicationLoadingIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15560FD1CBE49B400834825 /* ApplicationLoadingIndicatorManager.swift */; };
 		B1A695521B96F95D001EB098 /* TSCTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A695511B96F95D001EB098 /* TSCTheme.m */; };
 		B1A695591B96FF6F001EB098 /* TSCPickerComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A695531B96FF6F001EB098 /* TSCPickerComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1A6955A1B96FF6F001EB098 /* TSCPickerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A695541B96FF6F001EB098 /* TSCPickerComponent.m */; };
@@ -100,6 +101,7 @@
 		493EED3F1BB4086D004FB9A3 /* TSCStoryboardRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCStoryboardRow.m; sourceTree = "<group>"; };
 		B140B00F1C44023E00F108CE /* TSCDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSCDatePickerView.xib; sourceTree = "<group>"; };
 		B140B0111C44034100F108CE /* TSCDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSCDatePickerView.swift; sourceTree = "<group>"; };
+		B15560FD1CBE49B400834825 /* ApplicationLoadingIndicatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationLoadingIndicatorManager.swift; sourceTree = "<group>"; };
 		B1A695511B96F95D001EB098 /* TSCTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCTheme.m; sourceTree = "<group>"; };
 		B1A695531B96FF6F001EB098 /* TSCPickerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCPickerComponent.h; sourceTree = "<group>"; };
 		B1A695541B96FF6F001EB098 /* TSCPickerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCPickerComponent.m; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		C2E509BF19C83A5300350F00 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B15560FD1CBE49B400834825 /* ApplicationLoadingIndicatorManager.swift */,
 				C2E509B319C83A4D00350F00 /* TSCImageController.h */,
 				C2E509B419C83A4D00350F00 /* TSCImageController.m */,
 				C2E509B519C83A4D00350F00 /* TSCImageRequest.h */,
@@ -611,6 +614,7 @@
 				C2E509BC19C83A4D00350F00 /* TSCImageRequest.m in Sources */,
 				C2E50A2119C83B2C00350F00 /* TSCTableInputTextViewRow.m in Sources */,
 				C2E509D219C83A9A00350F00 /* TSCTableValue1ViewCell.m in Sources */,
+				B15560FE1CBE49B400834825 /* ApplicationLoadingIndicatorManager.swift in Sources */,
 				C2E50A0819C83B1700350F00 /* TSCTableImageRow.m in Sources */,
 				C2E509ED19C83ACA00350F00 /* TSCTableInputTextFieldViewCell.m in Sources */,
 			);
