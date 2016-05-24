@@ -86,6 +86,7 @@
     CGRect slice;
     CGRectDivide(self.contentView.frame, &slice, &remainingRect, textLabelSize.width + edgeInsets.right, CGRectMinXEdge);
     
+    remainingRect.size.width = remainingRect.size.width - edgeInsets.right;
     CGSize detailLabelSize = [self.cellDetailTextLabel sizeThatFits:CGSizeMake(remainingRect.size.width, MAXFLOAT)];
     remainingRect.size.height = detailLabelSize.height;
     NSInteger detailNumberOfLines = MAX((int)(remainingRect.size.height/self.cellDetailTextLabel.font.lineHeight),0);
