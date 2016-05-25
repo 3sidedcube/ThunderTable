@@ -33,17 +33,17 @@
 /**
  @abstract The custom text label for the cell
  */
-@property (nonatomic, strong) UILabel *cellTextLabel;
+@property (nonatomic, strong) IBOutlet UILabel *cellTextLabel;
 
 /**
  @abstract The custom detail text label for the cell
  */
-@property (nonatomic, strong) UILabel *cellDetailTextLabel;
+@property (nonatomic, strong) IBOutlet UILabel *cellDetailTextLabel;
 
 /**
  @abstract The custom cell image view
  */
-@property (nonatomic, strong) UIImageView *cellImageView;
+@property (nonatomic, strong) IBOutlet UIImageView *cellImageView;
 
 /**
  @abstract The style of the cell
