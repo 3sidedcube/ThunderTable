@@ -1138,7 +1138,7 @@
 
 #pragma mark Table view cell input delegate
 
-- (void)tableInputViewCellDidFinish:(TSCTableViewCell *)cell
+- (void)tableInputViewCellWillFinish:(TSCTableViewCell *)cell
 {
     __block NSInteger selectedRowIndex = -1;
     
@@ -1161,6 +1161,11 @@
             *stop = true;
         }
     }];
+}
+
+- (void)tableInputViewCellDidStart:(TSCTableViewCell *)cell
+{
+    self.selectedIndexPath = cell.currentIndexPath;
 }
 
 #pragma mark - UITextField delegate

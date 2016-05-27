@@ -54,6 +54,14 @@
     return row;
 }
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.returnKeyType = UIReturnKeyNext;
+    }
+    return self;
+}
+
 - (NSString *)rowTitle
 {
     return self.title;
