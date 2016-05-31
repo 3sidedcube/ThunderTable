@@ -82,11 +82,18 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if ([self.delegate respondsToSelector:@selector(tableInputViewCellDidFinish:)]) {
-        [self.delegate tableInputViewCellDidFinish:self];
+    if ([self.delegate respondsToSelector:@selector(tableInputViewCellWillFinish:)]) {
+        [self.delegate tableInputViewCellWillFinish:self];
     }
-    
+        
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(tableInputViewCellDidStart:)]) {
+        [self.delegate tableInputViewCellDidStart:self];
+    }
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated

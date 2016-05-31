@@ -1140,6 +1140,11 @@
 
 - (void)tableInputViewCellDidFinish:(TSCTableViewCell *)cell
 {
+    // Default implementation to avoid crashes with subclasses calling super
+}
+
+- (void)tableInputViewCellWillFinish:(TSCTableViewCell *)cell
+{
     __block NSInteger selectedRowIndex = -1;
     
     if ([cell isKindOfClass:[TSCTableInputTextFieldViewCell class]]) {
@@ -1161,6 +1166,11 @@
             *stop = true;
         }
     }];
+}
+
+- (void)tableInputViewCellDidStart:(TSCTableViewCell *)cell
+{
+    self.selectedIndexPath = cell.currentIndexPath;
 }
 
 #pragma mark - UITextField delegate

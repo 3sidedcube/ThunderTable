@@ -24,6 +24,18 @@
  */
 - (void)tableInputViewCellDidFinish:(TSCTableViewCell *)cell;
 
+/**
+ This method is called when the user will finish editing the value of the current cell
+ @param cell The cell which the user will finish editing
+ */
+- (void)tableInputViewCellWillFinish:(TSCTableViewCell *)cell;
+
+/**
+ This method is called when the user starts editing the value of the current cell
+ @param cell The cell which the user has started editing
+ */
+- (void)tableInputViewCellDidStart:(TSCTableViewCell *)cell;
+
 @end
 
 /**
