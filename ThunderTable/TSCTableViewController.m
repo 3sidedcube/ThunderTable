@@ -1138,6 +1138,11 @@
 
 #pragma mark Table view cell input delegate
 
+- (void)tableInputViewCellDidFinish:(TSCTableViewCell *)cell
+{
+    // Default implementation to avoid crashes with subclasses calling super
+}
+
 - (void)tableInputViewCellWillFinish:(TSCTableViewCell *)cell
 {
     __block NSInteger selectedRowIndex = -1;
