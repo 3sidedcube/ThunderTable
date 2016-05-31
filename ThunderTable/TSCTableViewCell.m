@@ -47,6 +47,10 @@
 {
     [super layoutSubviews];
     
+    if (self.cellTextLabel.constraints.count > 0) {
+        return;
+    }
+    
     if (self.cellImageView.image) {
         
         [self.cellImageView sizeToFit];
