@@ -33,5 +33,10 @@
  */
 @property (nonatomic, strong) UITableView * _Nullable tableView;
 
+/**
+ @abstract Whether or not the selection was a selection, or a de-selection
+ */
+@property (nonatomic, assign) BOOL wasSelection;
+
 @end
  
