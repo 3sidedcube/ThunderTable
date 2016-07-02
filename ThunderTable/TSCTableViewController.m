@@ -551,11 +551,6 @@
 
     }
     
-    // So model can perform additional changes if it wants
-    if ([row respondsToSelector:@selector(tableViewCell:)]) {
-        [row tableViewCell:cell];
-    }
-    
     if ([row respondsToSelector:@selector(shouldDisplaySeperator)] && ![row shouldDisplaySeperator]) {
         
         if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -579,7 +574,11 @@
         cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
         
     }
-
+    
+    // So model can perform additional changes if it wants
+    if ([row respondsToSelector:@selector(tableViewCell:)]) {
+        [row tableViewCell:cell];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
