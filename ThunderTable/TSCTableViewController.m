@@ -1011,48 +1011,40 @@
     }
 }
 
-- (NSArray *)TSC_inputs
-{
-    NSMutableArray *inputs = [NSMutableArray array];
-    
-    for (TSCTableSection *section in self.dataSource) {
-        
-        for (TSCTableInputRow *row in [section sectionItems]) {
-            if ([row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
-                [inputs addObject:row];
-            }
-        }
-    }
-    
-    return inputs;
-}
-
 - (NSDictionary *)inputDictionary
 {
     NSMutableDictionary *inputDictionary = [NSMutableDictionary dictionary];
     
-    for (TSCTableInputRow *row in [self TSC_inputs]) {
+    [self enumerateInputRowsUsingBlock:^(id<TSCTableInputRowDataSource>  _Nonnull inputRow, NSInteger index, NSIndexPath * _Nonnull indexPath, BOOL * _Nonnull stop) {
         
-        if (!row.inputId) {
+        if (!inputRow.inputId) {
             
         } else {
             
-            if (row.value) {
-                [inputDictionary setObject:row.value forKey:row.inputId];
+            if (inputRow.value) {
+                [inputDictionary setObject:inputRow.value forKey:inputRow.inputId];
             } else {
-                [inputDictionary setObject:[NSNull null] forKey:row.inputId];
+                [inputDictionary setObject:[NSNull null] forKey:inputRow.inputId];
             }
         }
-    }
+    }];
     
     return inputDictionary;
 }
 
 - (void)setInputDictionary:(NSDictionary *)inputDictionary
 {
-    for (TSCTableInputRow *row in [self TSC_inputs]) {
+    NSMutableArray <NSIndexPath *> * reloadIndexPaths = [NSMutableArray new];
+    [self enumerateInputRowsUsingBlock:^(id<TSCTableInputRowDataSource>  _Nonnull inputRow, NSInteger index, NSIndexPath * _Nonnull indexPath, BOOL * _Nonnull stop) {
         
-        row.value = inputDictionary[row.inputId];
+        if ([self.tableView.indexPathsForVisibleRows containsObject:indexPath]) {
+            [reloadIndexPaths addObject:indexPath];
+        }
+        [inputRow setValue:inputDictionary[inputRow.inputId]];
+    }];
+    
+    if (reloadIndexPaths.count > 0) {
+        [self.tableView reloadRowsAtIndexPaths:reloadIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
