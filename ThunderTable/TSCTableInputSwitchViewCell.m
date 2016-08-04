@@ -29,7 +29,7 @@
     [super layoutSubviews];
     
     
-    CGSize constrainedSize = CGSizeMake(self.contentView.frame.size.width - 78 - 20 - self.cellImageView.frame.size.width, MAXFLOAT);
+    CGSize constrainedSize = CGSizeMake(self.contentView.frame.size.width - 78 - 30 - self.cellImageView.frame.size.width, MAXFLOAT);
     
     CGSize textLabelSize = [self.cellTextLabel sizeThatFits:constrainedSize];
     
