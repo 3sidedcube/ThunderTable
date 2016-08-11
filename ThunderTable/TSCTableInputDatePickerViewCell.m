@@ -9,11 +9,8 @@
 #import "TSCTableInputDatePickerViewCell.h"
 #import "TSCTableInputDatePickerRow.h"
 #import "TSCThemeManager.h"
-#import <ThunderTable/ThunderTable-Swift.h>
 
 @interface TSCTableInputDatePickerViewCell ()
-
-@property (nonatomic, strong) TSCDatePickerView *datePickerView;
 
 @end
 
@@ -34,15 +31,17 @@
         self.dateLabel.font = [[TSCThemeManager sharedTheme] fontOfSize:17];
         [self.contentView addSubview:self.dateLabel];
         
-        self.datePickerView = [[NSBundle bundleForClass:[self class]] loadNibNamed:@"TSCDatePickerView" owner:self options:nil].firstObject;
+        self.datePicker = [[UIDatePicker alloc] init];
         
+        UIToolbar *doneToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        doneToolbar.items = @[
+                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL],
+                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(handleDone:)]];
+        [doneToolbar sizeToFit];
         
-        self.datePicker = self.datePickerView.datePicker;
+        self.dateLabel.inputAccessoryView = doneToolbar;
         
-        self.datePickerView.doneButton.target = self;
-        self.datePickerView.doneButton.action = @selector(handleDone:);
-        
-        [self.dateLabel setInputView:self.datePickerView];
+        [self.dateLabel setInputView:self.datePicker];
     }
     
     return self;
