@@ -56,8 +56,8 @@ static TSCImageController *sharedController = nil;
         self.completionHandlerDictionary = [NSMutableDictionary dictionary];
         
         NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:50 * 1024 * 1024
-                                                             diskCapacity:200 * 1024 * 1024
-                                                                 diskPath:@"TSC_cached_images"];
+                                                             diskCapacity:500 * 1024 * 1024
+                                                                 diskPath:nil];
         self.defaultSession.configuration.URLCache = URLCache;
         self.defaultSession.configuration.requestCachePolicy = NSURLRequestReturnCacheDataElseLoad;
     }
