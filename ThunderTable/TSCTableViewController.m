@@ -1177,32 +1177,36 @@
 - (void)sizeHeaderToFit {
     
     // Disable autoresizing mask into constraints to stop the view from being constrained to the height defined in IB
-    [self disableAutoresizeMaskConstraints];
-    
     UIView *headerView = self.tableView.tableHeaderView;
     
-    // Because we've disabled translatesAutoresizingMaskIntoConstraints we need to add a temporary constraint for the width of the header
-    CGFloat headerWidth = self.tableView.tableHeaderView.bounds.size.width;
-    NSArray *temporaryWidthConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"[headerView(width)]" options:0 metrics:@{@"width": @(headerWidth)} views:@{@"headerView": headerView}];
-    [headerView addConstraints:temporaryWidthConstraints];
+    if (headerView) {
+        
+        [self disableAutoresizeMaskConstraints];
     
-    // Now do the header view height calculation
-    [headerView setNeedsLayout];
-    [headerView layoutIfNeeded];
-    
-    CGSize headerSize = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    CGFloat height = headerSize.height;
-    CGRect frame = headerView.frame;
-    
-    frame.size.height = height;
-    headerView.frame = frame;
-    
-    self.tableView.tableHeaderView = headerView;
-    
-    [headerView removeConstraints:temporaryWidthConstraints];
-    
-    // Re-enable autoresizing mask into constraints
-    [self reenableAutoresizeMaskConstraints];
+        // Because we've disabled translatesAutoresizingMaskIntoConstraints we need to add a temporary constraint for the width of the header
+        CGFloat headerWidth = self.tableView.tableHeaderView.bounds.size.width;
+        NSArray *temporaryWidthConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"[headerView(width)]" options:0 metrics:@{@"width": @(headerWidth)} views:@{@"headerView": headerView}];
+        [headerView addConstraints:temporaryWidthConstraints];
+        
+        // Now do the header view height calculation
+        [headerView setNeedsLayout];
+        [headerView layoutIfNeeded];
+        
+        CGSize headerSize = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        CGFloat height = headerSize.height;
+        CGRect frame = headerView.frame;
+        
+        frame.size.height = height;
+        headerView.frame = frame;
+        
+        self.tableView.tableHeaderView = headerView;
+        
+        [headerView removeConstraints:temporaryWidthConstraints];
+        
+        // Re-enable autoresizing mask into constraints
+        [self reenableAutoresizeMaskConstraints];
+        
+    }
 }
 
 - (void)disableAutoresizeMaskConstraints {
