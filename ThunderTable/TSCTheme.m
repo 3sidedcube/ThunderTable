@@ -80,6 +80,11 @@
     return [UIFont systemFontOfSize:[UIFont systemFontSize]];
 }
 
+- (UIFont *)titleLabelFont
+{
+    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
+}
+
 - (UIFont *)detailLabelFont
 {
     return [UIFont systemFontOfSize:[UIFont systemFontSize]];

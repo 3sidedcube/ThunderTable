@@ -25,12 +25,13 @@
         self.cellTextLabel = [UILabel new];
         self.cellTextLabel.numberOfLines = 0;
         self.cellTextLabel.backgroundColor = [UIColor clearColor];
-        self.cellTextLabel.font = [[TSCThemeManager sharedTheme] fontOfSize:17];
+        self.cellTextLabel.font = [[TSCThemeManager sharedTheme] titleLabelFont];
         [self.contentView addSubview:self.cellTextLabel];
         
         self.cellDetailTextLabel = [UILabel new];
+        self.cellDetailTextLabel.textColor = [[TSCThemeManager sharedTheme] detailLabelColor];
         self.cellDetailTextLabel.numberOfLines = 0;
-        self.cellDetailTextLabel.font = [[TSCThemeManager sharedTheme] fontOfSize:14];
+        self.cellDetailTextLabel.font = [[TSCThemeManager sharedTheme] detailLabelFont];
         [self.contentView addSubview:self.cellDetailTextLabel];
         
         self.backgroundColor = [[TSCThemeManager sharedTheme] cellBackgroundColor];
