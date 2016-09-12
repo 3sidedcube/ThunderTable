@@ -47,7 +47,7 @@
 {
     [super layoutSubviews];
     
-    if (self.cellTextLabel.constraints.count > 0) {
+    if (self.cellTextLabel.constraints.count > 0 || self.cellDetailTextLabel.constraints.count > 0 || self.cellImageView.constraints.count > 0) {
         return;
     }
     

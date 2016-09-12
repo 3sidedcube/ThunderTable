@@ -551,11 +551,6 @@
 
     }
     
-    // So model can perform additional changes if it wants
-    if ([row respondsToSelector:@selector(tableViewCell:)]) {
-        [row tableViewCell:cell];
-    }
-    
     if ([row respondsToSelector:@selector(shouldDisplaySeperator)] && ![row shouldDisplaySeperator]) {
         
         if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -579,7 +574,11 @@
         cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
         
     }
-
+    
+    // So model can perform additional changes if it wants
+    if ([row respondsToSelector:@selector(tableViewCell:)]) {
+        [row tableViewCell:cell];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -696,7 +695,15 @@
 {
     if ([self isIndexPathSelectable:indexPath]) {
         
-        [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
+        [self TSC_handleTableViewSelectionWithIndexPath:indexPath selection:true];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self isIndexPathSelectable:indexPath]) {
+        
+        [self TSC_handleTableViewSelectionWithIndexPath:indexPath selection:false];
     }
 }
 
@@ -763,7 +770,11 @@
     return false;
 }
 
-- (void)TSC_handleTableViewSelectionWithIndexPath:(NSIndexPath *)indexPath
+/**
+ Perform a selection here!
+ @param selection Determines whether the selection was a selection or a de-selection
+ */
+- (void)TSC_handleTableViewSelectionWithIndexPath:(NSIndexPath *)indexPath selection:(BOOL)wasSelection
 {
     TSCTableSection *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = section.sectionItems[indexPath.row];
@@ -772,6 +783,7 @@
     selection.indexPath = indexPath;
     selection.object = row;
     selection.tableView = self.tableView;
+    selection.wasSelection = wasSelection;
     
     self.selectedIndexPath = indexPath;
     
@@ -1002,7 +1014,7 @@
                 if ([row isKindOfClass:[TSCTableInputTextFieldRow class]]) {
                     
                     NSInteger index = [section.sectionItems indexOfObject:row];
-                    [self TSC_handleTableViewSelectionWithIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+                    [self TSC_handleTableViewSelectionWithIndexPath:[NSIndexPath indexPathForRow:index inSection:0] selection:true];
                     
                     break;
                 }
@@ -1011,48 +1023,40 @@
     }
 }
 
-- (NSArray *)TSC_inputs
-{
-    NSMutableArray *inputs = [NSMutableArray array];
-    
-    for (TSCTableSection *section in self.dataSource) {
-        
-        for (TSCTableInputRow *row in [section sectionItems]) {
-            if ([row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
-                [inputs addObject:row];
-            }
-        }
-    }
-    
-    return inputs;
-}
-
 - (NSDictionary *)inputDictionary
 {
     NSMutableDictionary *inputDictionary = [NSMutableDictionary dictionary];
     
-    for (TSCTableInputRow *row in [self TSC_inputs]) {
+    [self enumerateInputRowsUsingBlock:^(id<TSCTableInputRowDataSource>  _Nonnull inputRow, NSInteger index, NSIndexPath * _Nonnull indexPath, BOOL * _Nonnull stop) {
         
-        if (!row.inputId) {
+        if (!inputRow.inputId) {
             
         } else {
             
-            if (row.value) {
-                [inputDictionary setObject:row.value forKey:row.inputId];
+            if (inputRow.value) {
+                [inputDictionary setObject:inputRow.value forKey:inputRow.inputId];
             } else {
-                [inputDictionary setObject:[NSNull null] forKey:row.inputId];
+                [inputDictionary setObject:[NSNull null] forKey:inputRow.inputId];
             }
         }
-    }
+    }];
     
     return inputDictionary;
 }
 
 - (void)setInputDictionary:(NSDictionary *)inputDictionary
 {
-    for (TSCTableInputRow *row in [self TSC_inputs]) {
+    NSMutableArray <NSIndexPath *> * reloadIndexPaths = [NSMutableArray new];
+    [self enumerateInputRowsUsingBlock:^(id<TSCTableInputRowDataSource>  _Nonnull inputRow, NSInteger index, NSIndexPath * _Nonnull indexPath, BOOL * _Nonnull stop) {
         
-        row.value = inputDictionary[row.inputId];
+        if ([self.tableView.indexPathsForVisibleRows containsObject:indexPath]) {
+            [reloadIndexPaths addObject:indexPath];
+        }
+        [inputRow setValue:inputDictionary[inputRow.inputId]];
+    }];
+    
+    if (reloadIndexPaths.count > 0) {
+        [self.tableView reloadRowsAtIndexPaths:reloadIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -1162,7 +1166,7 @@
         }
         
         if (index > selectedRowIndex) {
-            [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
+            [self TSC_handleTableViewSelectionWithIndexPath:indexPath selection:true];
             *stop = true;
         }
     }];
@@ -1185,32 +1189,36 @@
 - (void)sizeHeaderToFit {
     
     // Disable autoresizing mask into constraints to stop the view from being constrained to the height defined in IB
-    [self disableAutoresizeMaskConstraints];
-    
     UIView *headerView = self.tableView.tableHeaderView;
     
-    // Because we've disabled translatesAutoresizingMaskIntoConstraints we need to add a temporary constraint for the width of the header
-    CGFloat headerWidth = self.tableView.tableHeaderView.bounds.size.width;
-    NSArray *temporaryWidthConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"[headerView(width)]" options:0 metrics:@{@"width": @(headerWidth)} views:@{@"headerView": headerView}];
-    [headerView addConstraints:temporaryWidthConstraints];
+    if (headerView) {
+        
+        [self disableAutoresizeMaskConstraints];
     
-    // Now do the header view height calculation
-    [headerView setNeedsLayout];
-    [headerView layoutIfNeeded];
-    
-    CGSize headerSize = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    CGFloat height = headerSize.height;
-    CGRect frame = headerView.frame;
-    
-    frame.size.height = height;
-    headerView.frame = frame;
-    
-    self.tableView.tableHeaderView = headerView;
-    
-    [headerView removeConstraints:temporaryWidthConstraints];
-    
-    // Re-enable autoresizing mask into constraints
-    [self reenableAutoresizeMaskConstraints];
+        // Because we've disabled translatesAutoresizingMaskIntoConstraints we need to add a temporary constraint for the width of the header
+        CGFloat headerWidth = self.tableView.tableHeaderView.bounds.size.width;
+        NSArray *temporaryWidthConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"[headerView(width)]" options:0 metrics:@{@"width": @(headerWidth)} views:@{@"headerView": headerView}];
+        [headerView addConstraints:temporaryWidthConstraints];
+        
+        // Now do the header view height calculation
+        [headerView setNeedsLayout];
+        [headerView layoutIfNeeded];
+        
+        CGSize headerSize = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        CGFloat height = headerSize.height;
+        CGRect frame = headerView.frame;
+        
+        frame.size.height = height;
+        headerView.frame = frame;
+        
+        self.tableView.tableHeaderView = headerView;
+        
+        [headerView removeConstraints:temporaryWidthConstraints];
+        
+        // Re-enable autoresizing mask into constraints
+        [self reenableAutoresizeMaskConstraints];
+        
+    }
 }
 
 - (void)disableAutoresizeMaskConstraints {
