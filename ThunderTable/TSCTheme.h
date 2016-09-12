@@ -138,6 +138,11 @@
 ///---------------------------------------------------------------------------------------
 
 /**
+ @return The font for title labels
+ */
+- (UIFont * _Nonnull)titleLabelFont;
+
+/**
  @return The font for detail labels
  */
 - (UIFont * _Nonnull)detailLabelFont;
