@@ -551,11 +551,6 @@
 
     }
     
-    // So model can perform additional changes if it wants
-    if ([row respondsToSelector:@selector(tableViewCell:)]) {
-        [row tableViewCell:cell];
-    }
-    
     if ([row respondsToSelector:@selector(shouldDisplaySeperator)] && ![row shouldDisplaySeperator]) {
         
         if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -579,7 +574,11 @@
         cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
         
     }
-
+    
+    // So model can perform additional changes if it wants
+    if ([row respondsToSelector:@selector(tableViewCell:)]) {
+        [row tableViewCell:cell];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -696,7 +695,15 @@
 {
     if ([self isIndexPathSelectable:indexPath]) {
         
-        [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
+        [self TSC_handleTableViewSelectionWithIndexPath:indexPath selection:true];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self isIndexPathSelectable:indexPath]) {
+        
+        [self TSC_handleTableViewSelectionWithIndexPath:indexPath selection:false];
     }
 }
 
@@ -763,7 +770,11 @@
     return false;
 }
 
-- (void)TSC_handleTableViewSelectionWithIndexPath:(NSIndexPath *)indexPath
+/**
+ Perform a selection here!
+ @param selection Determines whether the selection was a selection or a de-selection
+ */
+- (void)TSC_handleTableViewSelectionWithIndexPath:(NSIndexPath *)indexPath selection:(BOOL)wasSelection
 {
     TSCTableSection *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = section.sectionItems[indexPath.row];
@@ -772,6 +783,7 @@
     selection.indexPath = indexPath;
     selection.object = row;
     selection.tableView = self.tableView;
+    selection.wasSelection = wasSelection;
     
     self.selectedIndexPath = indexPath;
     
@@ -1002,7 +1014,7 @@
                 if ([row isKindOfClass:[TSCTableInputTextFieldRow class]]) {
                     
                     NSInteger index = [section.sectionItems indexOfObject:row];
-                    [self TSC_handleTableViewSelectionWithIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+                    [self TSC_handleTableViewSelectionWithIndexPath:[NSIndexPath indexPathForRow:index inSection:0] selection:true];
                     
                     break;
                 }
@@ -1154,7 +1166,7 @@
         }
         
         if (index > selectedRowIndex) {
-            [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
+            [self TSC_handleTableViewSelectionWithIndexPath:indexPath selection:true];
             *stop = true;
         }
     }];
