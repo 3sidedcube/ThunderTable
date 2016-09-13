@@ -25,6 +25,21 @@
     return [UIColor blackColor];
 }
 
+- (UIColor *)secondaryLabelColor
+{
+    return [UIColor lightGrayColor];
+}
+
+- (UIFont *)primaryLabelFont
+{
+    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
+}
+
+- (UIFont *)secondaryLabelFont
+{
+    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
+}
+
 - (UIColor *)cellBackgroundColor
 {
     return [UIColor whiteColor];
@@ -37,17 +52,17 @@
 
 - (UIColor *)cellDetailColor
 {
-    return [UIColor lightGrayColor];
+    return [UIColor darkTextColor];
 }
 
-- (UIColor *)detailLabelColor
+- (UIFont *)cellTitleFont
 {
-    return [UIColor darkGrayColor];
+    return [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 }
 
-- (UIColor *)secondaryLabelColor
+- (UIFont *)cellDetailFont
 {
-    return [UIColor lightGrayColor];
+    return [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 }
 
 - (UIColor *)backgroundColor
@@ -68,26 +83,6 @@
 - (UIColor *)tableSeperatorColor
 {
     return [UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1];
-}
-
-- (UIFont *)primaryLabelFont
-{
-    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
-}
-
-- (UIFont *)secondaryLabelFont
-{
-    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
-}
-
-- (UIFont *)titleLabelFont
-{
-    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
-}
-
-- (UIFont *)detailLabelFont
-{
-    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
 }
 
 - (UIFont *)lightFontOfSize:(CGFloat)size

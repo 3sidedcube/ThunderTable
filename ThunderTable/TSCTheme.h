@@ -74,11 +74,6 @@
 - (UIColor * _Nonnull)secondaryLabelColor;
 
 /**
- @return The text colour for detail labels
- */
-- (UIColor * _Nonnull)detailLabelColor;
-
-/**
  @return The colour to be used for title text in a UINavigationBar
  */
 - (UIColor * _Nonnull)titleTextColor;
@@ -138,16 +133,6 @@
 ///---------------------------------------------------------------------------------------
 
 /**
- @return The font for title labels
- */
-- (UIFont * _Nonnull)titleLabelFont;
-
-/**
- @return The font for detail labels
- */
-- (UIFont * _Nonnull)detailLabelFont;
-
-/**
  @abstract Where a lighter font is required, this method will return a light font with the given size
  @param size The required font size
  @return A light font in the requested size
@@ -184,5 +169,15 @@
  @return The font for alternative style UILabel's throught the app
  */
 - (UIFont * _Nonnull)secondaryLabelFont;
+
+/**
+ @return The font for the title label of cells throughout the app
+ */
+- (UIFont * _Nonnull)cellTitleFont;
+
+/**
+ @return The font for the detail label of cells throughout the app
+ */
+- (UIFont * _Nonnull)cellDetailFont;
 
 @end
