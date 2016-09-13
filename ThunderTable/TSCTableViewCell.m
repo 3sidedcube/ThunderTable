@@ -30,6 +30,7 @@
         [self.contentView addSubview:self.cellTextLabel];
         
         self.cellDetailTextLabel = [UILabel new];
+        self.cellDetailTextLabel.numberOfLines = 0;
         self.cellDetailTextLabel.font = [[TSCThemeManager sharedTheme] cellDetailFont];
         self.cellDetailTextLabel.textColor = [[TSCThemeManager sharedTheme] cellDetailColor];
         [self.contentView addSubview:self.cellDetailTextLabel];
