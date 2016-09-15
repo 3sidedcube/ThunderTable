@@ -14,6 +14,10 @@
 		B17BAA561D8963BB00844421 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BAA551D8963BB00844421 /* TableViewController.swift */; };
 		B17BAA581D89643800844421 /* TableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BAA571D89643800844421 /* TableSection.swift */; };
 		B17BAA5A1D89645000844421 /* TableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BAA591D89645000844421 /* TableRow.swift */; };
+		B19C531F1D8B00E900B30A35 /* InputTextFieldRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C531E1D8B00E900B30A35 /* InputTextFieldRow.swift */; };
+		B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */; };
+		B19C53251D8B033E00B30A35 /* InputTextFieldViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */; };
+		B19C53271D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */; };
 		B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */; };
 		B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B679601D89807A00B66FD8 /* TableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -39,6 +43,10 @@
 		B17BAA551D8963BB00844421 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B17BAA571D89643800844421 /* TableSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSection.swift; sourceTree = "<group>"; };
 		B17BAA591D89645000844421 /* TableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableRow.swift; sourceTree = "<group>"; };
+		B19C531E1D8B00E900B30A35 /* InputTextFieldRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextFieldRow.swift; sourceTree = "<group>"; };
+		B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextFieldViewCell.swift; sourceTree = "<group>"; };
+		B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextFieldViewCell.xib; sourceTree = "<group>"; };
+		B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationLoadingIndicatorManager.swift; sourceTree = "<group>"; };
 		B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B1B679601D89807A00B66FD8 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				B11264F31D8A9AE800224FB2 /* InputTableRow.swift */,
+				B19C53211D8B02F600B30A35 /* Cells */,
+				B19C53201D8B02EA00B30A35 /* Rows */,
 			);
 			name = Input;
 			sourceTree = "<group>";
@@ -91,6 +101,7 @@
 		B17BAA341D89639100844421 /* ThunderTable */ = {
 			isa = PBXGroup;
 			children = (
+				B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */,
 				B11264F21D8A9A9900224FB2 /* Input */,
 				B17BAA351D89639100844421 /* ThunderTable.h */,
 				B17BAA361D89639100844421 /* Info.plist */,
@@ -110,6 +121,23 @@
 				B17BAA421D89639200844421 /* Info.plist */,
 			);
 			path = ThunderTableTests;
+			sourceTree = "<group>";
+		};
+		B19C53201D8B02EA00B30A35 /* Rows */ = {
+			isa = PBXGroup;
+			children = (
+				B19C531E1D8B00E900B30A35 /* InputTextFieldRow.swift */,
+			);
+			name = Rows;
+			sourceTree = "<group>";
+		};
+		B19C53211D8B02F600B30A35 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */,
+				B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */,
+				B19C53251D8B033E00B30A35 /* InputTextFieldViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,8 +258,11 @@
 				B17BAA581D89643800844421 /* TableSection.swift in Sources */,
 				B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */,
 				B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */,
+				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
 				B17BAA561D8963BB00844421 /* TableViewController.swift in Sources */,
+				B19C53271D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift in Sources */,
 				B17BAA5A1D89645000844421 /* TableRow.swift in Sources */,
+				B19C531F1D8B00E900B30A35 /* InputTextFieldRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

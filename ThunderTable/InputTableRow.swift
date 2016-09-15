@@ -80,6 +80,12 @@ open class InputTableRow: InputRow {
     
     open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableView: UITableView) {
         
+        if let cell = cell as? TableViewCell, let imageView = cell.cellImageView {
+            
+            if image == nil {
+                imageView.isHidden = true
+            }
+        }
     }
     
     public func set(value: Any?, sender: UIControl) {
