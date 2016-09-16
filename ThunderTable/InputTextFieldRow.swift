@@ -49,6 +49,7 @@ open class InputTextFieldRow: InputTableRow {
         textCell.textField.autocorrectionType = autocorrectionType
         textCell.textField.autocapitalizationType = autocapitalizationType
         
+        textCell.textField.text = value as? String
         textCell.textField.delegate = self
         
         updateTargetsAndSelectors(for: textCell.textField)
@@ -58,6 +59,8 @@ open class InputTextFieldRow: InputTableRow {
         } else if let _value = value, _value as? NSNull == nil {
             textCell.textField.text = String(describing: _value)
         }
+        
+        textCell.cellTextLabel.isHidden = title == nil
     }
 }
 
@@ -73,14 +76,10 @@ extension InputTextFieldRow: UITextFieldDelegate {
         return true
     }
     
-    public func textFieldDidEndEditing(_ textField: UITextField) {
-        
-    }
-    
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        // Jump to next cell
-        
-        return true
+        textField.resignFirstResponder()
+        nextHandler?(textField)
+        return false
     }
 }

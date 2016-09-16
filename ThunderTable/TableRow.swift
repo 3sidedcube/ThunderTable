@@ -110,6 +110,8 @@ open class TableRow: Row {
             
             if image == nil {
                 imageView.isHidden = true
+            } else {
+                imageView.isHidden = false
             }
         }
     }

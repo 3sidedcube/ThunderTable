@@ -24,10 +24,10 @@ public protocol InputRow: Row {
     ///
     /// - parameter value:  The value which self.value should be updated to
     /// - parameter sender: The control which changed the value
-    func set(value: Any?, sender: UIControl)
+    func set(value: Any?, sender: UIControl?)
 }
 
-public typealias InputCallback = (_ sender: UIControl) -> (Void)
+public typealias InputCallback = (_ sender: UIControl?) -> (Void)
 
 public struct Callback {
     
@@ -78,30 +78,25 @@ open class InputTableRow: NSObject, InputRow {
         return false
     }
     
-    private var selfCallback: Callback?
+    var nextHandler: InputCallback?
     
     open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
-        if let selfCallback = selfCallback {
-            remove(callback: selfCallback, for: .editingDidEnd)
-        }
-        
-        selfCallback = Callback(identifier: "self", callback: { (textField) -> (Void) in
-            
+        nextHandler = { (control) -> (Void) in
             tableViewController.moveToInputCell(after: indexPath)
-        })
-        
-        add(callback: selfCallback!, for: .editingDidEnd)
-        
+        }
+                
         if let cell = cell as? TableViewCell, let imageView = cell.cellImageView {
             
             if image == nil {
                 imageView.isHidden = true
+            } else {
+                imageView.isHidden = false
             }
         }
     }
     
-    public func set(value: Any?, sender: UIControl) {
+    public func set(value: Any?, sender: UIControl?) {
         
         let events = UIControlEvents.valueChanged
         self.value = value

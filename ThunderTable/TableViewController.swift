@@ -66,6 +66,19 @@ open class TableViewController: UITableViewController {
         tableView.register(defaultNib, forCellReuseIdentifier: "Cell")
     }
     
+    public var inputDictionary: [String: Any?]? {
+        
+        guard let inputRows = data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return nil }
+        
+        var dictionary: [String: Any?] = [:]
+        
+        inputRows.forEach { (row) in
+            dictionary[row.id] = row.value
+        }
+        
+        return dictionary
+    }
+    
     private var registeredClasses: [String] = []
 
     // MARK: - Helper functions!
@@ -319,7 +332,7 @@ public extension TableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
         
-        if let _ = row as? InputRow {
+        if let _ = row as? InputRow, selected {
             let cell = tableView.cellForRow(at: indexPath)
             cell?.becomeFirstResponder()
         }

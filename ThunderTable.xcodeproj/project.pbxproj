@@ -18,6 +18,12 @@
 		B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */; };
 		B19C53251D8B033E00B30A35 /* InputTextFieldViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */; };
 		B19C53271D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */; };
+		B1AD7EBD1D8BFB8F00BFCA34 /* InputTextViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EBC1D8BFB8F00BFCA34 /* InputTextViewRow.swift */; };
+		B1AD7EC01D8BFC9D00BFCA34 /* InputTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EBE1D8BFC9D00BFCA34 /* InputTextViewCell.swift */; };
+		B1AD7EC11D8BFC9D00BFCA34 /* InputTextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1AD7EBF1D8BFC9D00BFCA34 /* InputTextViewCell.xib */; };
+		B1AD7EC31D8C194400BFCA34 /* InputSwitchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EC21D8C194400BFCA34 /* InputSwitchRow.swift */; };
+		B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EC41D8C198F00BFCA34 /* InputSwitchViewCell.swift */; };
+		B1AD7EC71D8C198F00BFCA34 /* InputSwitchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */; };
 		B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */; };
 		B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B679601D89807A00B66FD8 /* TableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -47,6 +53,12 @@
 		B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextFieldViewCell.swift; sourceTree = "<group>"; };
 		B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextFieldViewCell.xib; sourceTree = "<group>"; };
 		B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationLoadingIndicatorManager.swift; sourceTree = "<group>"; };
+		B1AD7EBC1D8BFB8F00BFCA34 /* InputTextViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextViewRow.swift; sourceTree = "<group>"; };
+		B1AD7EBE1D8BFC9D00BFCA34 /* InputTextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextViewCell.swift; sourceTree = "<group>"; };
+		B1AD7EBF1D8BFC9D00BFCA34 /* InputTextViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextViewCell.xib; sourceTree = "<group>"; };
+		B1AD7EC21D8C194400BFCA34 /* InputSwitchRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSwitchRow.swift; sourceTree = "<group>"; };
+		B1AD7EC41D8C198F00BFCA34 /* InputSwitchViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSwitchViewCell.swift; sourceTree = "<group>"; };
+		B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSwitchViewCell.xib; sourceTree = "<group>"; };
 		B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B1B679601D89807A00B66FD8 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +138,8 @@
 		B19C53201D8B02EA00B30A35 /* Rows */ = {
 			isa = PBXGroup;
 			children = (
+				B1AD7EC21D8C194400BFCA34 /* InputSwitchRow.swift */,
+				B1AD7EBC1D8BFB8F00BFCA34 /* InputTextViewRow.swift */,
 				B19C531E1D8B00E900B30A35 /* InputTextFieldRow.swift */,
 			);
 			name = Rows;
@@ -136,6 +150,10 @@
 			children = (
 				B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */,
 				B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */,
+				B1AD7EBE1D8BFC9D00BFCA34 /* InputTextViewCell.swift */,
+				B1AD7EBF1D8BFC9D00BFCA34 /* InputTextViewCell.xib */,
+				B1AD7EC41D8C198F00BFCA34 /* InputSwitchViewCell.swift */,
+				B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -237,7 +255,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */,
+				B1AD7EC71D8C198F00BFCA34 /* InputSwitchViewCell.xib in Resources */,
 				B19C53251D8B033E00B30A35 /* InputTextFieldViewCell.xib in Resources */,
+				B1AD7EC11D8BFC9D00BFCA34 /* InputTextViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,13 +275,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1AD7EC31D8C194400BFCA34 /* InputSwitchRow.swift in Sources */,
 				B17BAA581D89643800844421 /* TableSection.swift in Sources */,
 				B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */,
 				B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */,
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
+				B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */,
 				B17BAA561D8963BB00844421 /* TableViewController.swift in Sources */,
 				B19C53271D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift in Sources */,
+				B1AD7EBD1D8BFB8F00BFCA34 /* InputTextViewRow.swift in Sources */,
 				B17BAA5A1D89645000844421 /* TableRow.swift in Sources */,
+				B1AD7EC01D8BFC9D00BFCA34 /* InputTextViewCell.swift in Sources */,
 				B19C531F1D8B00E900B30A35 /* InputTextFieldRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
