@@ -101,7 +101,7 @@ open class TableViewController: UITableViewController {
             imageView?.image = nil
         }
         
-        row.configure(cell: cell, at: indexPath, in: tableView)
+        row.configure(cell: cell, at: indexPath, in: self)
     }
     
     private func register(row: Row) {
@@ -292,14 +292,14 @@ open class TableViewController: UITableViewController {
 
 
 //MARK - Selection
-extension TableViewController {
+public extension TableViewController {
     
     internal func selectable(_ indexPath: IndexPath) -> Bool {
         
         let section = data[indexPath.section]
         let row = section.rows[indexPath.row]
         
-        return row.selectionHandler != nil || section.selectionHandler != nil
+        return row.selectionHandler != nil || section.selectionHandler != nil || (row as? InputRow) != nil || !row.remainSelected
     }
     
     internal func set(indexPath: IndexPath, selected: Bool) {
@@ -318,5 +318,36 @@ extension TableViewController {
         if selected && !row.remainSelected {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+        
+        if let _ = row as? InputRow {
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.becomeFirstResponder()
+        }
     }
+    
+    public func moveToInputCell(after indexPath: IndexPath) {
+        
+        outerLoop: for (sectionIndex, section) in data.enumerated() {
+            
+            if sectionIndex >= indexPath.section {
+                
+                for (rowIndex, row) in section.rows.enumerated() {
+                    
+                    if let _ = row as? InputRow, rowIndex > indexPath.row {
+                        
+                        let indexPath = IndexPath(row: rowIndex, section: sectionIndex)
+                        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                        set(indexPath: indexPath, selected: true)
+                        
+                        break outerLoop
+                    }
+                }
+            }
+        }
+    }
+}
+
+public extension TableViewController {
+    
+
 }

@@ -28,7 +28,7 @@ public protocol Row {
     
     var padding: CGFloat? { get }
     
-    func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableView: UITableView)
+    func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController)    
 }
 
 extension Row {
@@ -69,7 +69,7 @@ extension Row {
         return nil
     }
     
-    public func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableView: UITableView) {
+    public func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
     }
 }
@@ -104,7 +104,7 @@ open class TableRow: Row {
         return false
     }
     
-    open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableView: UITableView) {
+    open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
         if let cell = cell as? TableViewCell, let imageView = cell.cellImageView {
             

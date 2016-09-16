@@ -12,4 +12,11 @@ class InputTextFieldViewCell: TableViewCell {
 
     @IBOutlet weak var textField: UITextField!
     
+    override func becomeFirstResponder() -> Bool {
+        return textField.becomeFirstResponder()
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        return textField.resignFirstResponder()
+    }
 }

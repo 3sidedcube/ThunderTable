@@ -42,7 +42,7 @@ public struct Callback {
     }
 }
 
-open class InputTableRow: InputRow {
+open class InputTableRow: NSObject, InputRow {
     
     open var id: String
     
@@ -55,7 +55,7 @@ open class InputTableRow: InputRow {
     open var subtitle: String?
     
     open var image: UIImage?
-    
+        
     open var prototypeIdentifier: String? {
         return nil
     }
@@ -78,7 +78,20 @@ open class InputTableRow: InputRow {
         return false
     }
     
-    open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableView: UITableView) {
+    private var selfCallback: Callback?
+    
+    open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+        
+        if let selfCallback = selfCallback {
+            remove(callback: selfCallback, for: .editingDidEnd)
+        }
+        
+        selfCallback = Callback(identifier: "self", callback: { (textField) -> (Void) in
+            
+            tableViewController.moveToInputCell(after: indexPath)
+        })
+        
+        add(callback: selfCallback!, for: .editingDidEnd)
         
         if let cell = cell as? TableViewCell, let imageView = cell.cellImageView {
             
@@ -91,6 +104,7 @@ open class InputTableRow: InputRow {
     public func set(value: Any?, sender: UIControl) {
         
         let events = UIControlEvents.valueChanged
+        self.value = value
         
         callbacks(for: events).forEach { (callback) in
             callback.callback(sender)
@@ -108,9 +122,11 @@ open class InputTableRow: InputRow {
     private var callbacks: [UInt : [Callback]] = [:]
     
     public func add(callback: Callback, for controlEvents: UIControlEvents) {
+        
         for i in 0...19 {
             
-            let controlEvent = UIControlEvents(rawValue: UInt(i))
+            let controlEvent = UIControlEvents(rawValue: UInt(1 << i))
+            
             if controlEvents.contains(controlEvent) {
                 
                 if var eventCallbacks = callbacks[controlEvent.rawValue] {
@@ -127,7 +143,7 @@ open class InputTableRow: InputRow {
         // If provide a target and a selector, only remove events for that target and selector
         for i in 0...19 {
             
-            let controlEvent = UIControlEvents(rawValue: UInt(i))
+            let controlEvent = UIControlEvents(rawValue: UInt(1 << i))
             
             if controlEvents.contains(controlEvent) {
                 
@@ -149,9 +165,9 @@ open class InputTableRow: InputRow {
         
         for i in 0...19 {
             
-            let controlEvent = UIControlEvents(rawValue: UInt(i))
+            let controlEvent = UIControlEvents(rawValue: UInt(1 << i))
             
-            if let eventCallbacks = callbacks[UInt(i)], controlEvents.contains(controlEvent) {
+            if let eventCallbacks = callbacks[controlEvent.rawValue], controlEvents.contains(controlEvent) {
                 
                 returnCallbacks.append(contentsOf: eventCallbacks)
             }
@@ -216,77 +232,77 @@ open class InputTableRow: InputRow {
     
     @objc private func touchDragEnter(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .touchDragEnter).forEach { (callback) in
             callback.callback(control)
         }
     }
     
     @objc private func touchDragExit(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .touchDragExit).forEach { (callback) in
             callback.callback(control)
         }
     }
     
     @objc private func touchUpInside(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .touchUpInside).forEach { (callback) in
             callback.callback(control)
         }
     }
     
     @objc private func touchUpOutside(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .touchUpOutside).forEach { (callback) in
             callback.callback(control)
         }
     }
     
     @objc private func touchCancel(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .touchCancel).forEach { (callback) in
             callback.callback(control)
         }
     }
     
     @objc private func valueChanged(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .valueChanged).forEach { (callback) in
             callback.callback(control)
         }
     }
     
     @objc private func primaryActionTriggered(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .primaryActionTriggered).forEach { (callback) in
             callback.callback(control)
         }
     }
     
     @objc private func editingDidBegin(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .editingDidBegin).forEach { (callback) in
             callback.callback(control)
         }
     }
     
     @objc private func editingChanged(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .editingChanged).forEach { (callback) in
             callback.callback(control)
         }
     }
     
     @objc private func editingDidEnd(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .editingDidEnd).forEach { (callback) in
             callback.callback(control)
         }
     }
     
     @objc private func editingDidEndOnExit(control: UIControl) {
         
-        callbacks(for: .touchDragOutside).forEach { (callback) in
+        callbacks(for: .editingDidEndOnExit).forEach { (callback) in
             callback.callback(control)
         }
     }
