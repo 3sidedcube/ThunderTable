@@ -65,6 +65,17 @@
     return [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 }
 
+- (NSParagraphStyle * _Nullable)cellTitleParagraphStyle
+{
+    return nil;
+}
+
+
+- (NSParagraphStyle * _Nullable)cellDetailParagraphStyle
+{
+    return nil;
+}
+
 - (UIColor *)backgroundColor
 {
     return [UIColor groupTableViewBackgroundColor];
