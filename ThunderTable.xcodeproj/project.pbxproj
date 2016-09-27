@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11264F31D8A9AE800224FB2 /* InputTableRow.swift */; };
+		B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D821D8C3A60007358EA /* InputSliderRow.swift */; };
+		B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */; };
+		B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */; };
 		B17BAA3C1D89639200844421 /* ThunderTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; };
 		B17BAA411D89639200844421 /* ThunderTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BAA401D89639200844421 /* ThunderTableTests.swift */; };
 		B17BAA431D89639200844421 /* ThunderTable.h in Headers */ = {isa = PBXBuildFile; fileRef = B17BAA351D89639100844421 /* ThunderTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,6 +43,9 @@
 
 /* Begin PBXFileReference section */
 		B11264F31D8A9AE800224FB2 /* InputTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableRow.swift; sourceTree = "<group>"; };
+		B1784D821D8C3A60007358EA /* InputSliderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderRow.swift; sourceTree = "<group>"; };
+		B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderViewCell.swift; sourceTree = "<group>"; };
+		B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSliderViewCell.xib; sourceTree = "<group>"; };
 		B17BAA321D89639100844421 /* ThunderTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ThunderTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B17BAA351D89639100844421 /* ThunderTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThunderTable.h; sourceTree = "<group>"; };
 		B17BAA361D89639100844421 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 				B1AD7EC21D8C194400BFCA34 /* InputSwitchRow.swift */,
 				B1AD7EBC1D8BFB8F00BFCA34 /* InputTextViewRow.swift */,
 				B19C531E1D8B00E900B30A35 /* InputTextFieldRow.swift */,
+				B1784D821D8C3A60007358EA /* InputSliderRow.swift */,
 			);
 			name = Rows;
 			sourceTree = "<group>";
@@ -154,6 +161,8 @@
 				B1AD7EBF1D8BFC9D00BFCA34 /* InputTextViewCell.xib */,
 				B1AD7EC41D8C198F00BFCA34 /* InputSwitchViewCell.swift */,
 				B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */,
+				B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */,
+				B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -257,6 +266,7 @@
 				B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */,
 				B1AD7EC71D8C198F00BFCA34 /* InputSwitchViewCell.xib in Resources */,
 				B19C53251D8B033E00B30A35 /* InputTextFieldViewCell.xib in Resources */,
+				B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */,
 				B1AD7EC11D8BFC9D00BFCA34 /* InputTextViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,7 +287,9 @@
 			files = (
 				B1AD7EC31D8C194400BFCA34 /* InputSwitchRow.swift in Sources */,
 				B17BAA581D89643800844421 /* TableSection.swift in Sources */,
+				B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */,
 				B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */,
+				B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */,
 				B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */,
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
 				B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */,
