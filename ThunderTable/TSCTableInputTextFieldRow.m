@@ -19,7 +19,7 @@
 
 + (id)rowWithTitle:(NSString *)title placeholder:(NSString *)placeholder inputId:(NSString *)inputId keyboardType:(UIKeyboardType)keyboardType required:(BOOL)required
 {
-    TSCTableInputTextFieldRow *row = [[TSCTableInputTextFieldRow alloc] init];
+    TSCTableInputTextFieldRow *row = [[[self class] alloc] init];
     row.title = title;
     row.placeholder = placeholder;
     row.inputId = inputId;
@@ -31,7 +31,7 @@
 
 + (id)rowWithTitle:(NSString *)title placeholder:(NSString *)placeholder inputId:(NSString *)inputId returnKeyType:(UIReturnKeyType)returnKeyType required:(BOOL)required
 {
-    TSCTableInputTextFieldRow *row = [[TSCTableInputTextFieldRow alloc] init];
+    TSCTableInputTextFieldRow *row = [[[self class] alloc] init];
     row.title = title;
     row.placeholder = placeholder;
     row.inputId = inputId;
@@ -43,7 +43,7 @@
 
 + (id)rowWithTitle:(NSString *)title placeholder:(NSString *)placeholder inputId:(NSString *)inputId returnKeyType:(UIReturnKeyType)returnKeyType required:(BOOL)required isSecure:(BOOL)isSecure
 {
-    TSCTableInputTextFieldRow *row = [[TSCTableInputTextFieldRow alloc] init];
+    TSCTableInputTextFieldRow *row = [[[self class] alloc] init];
     row.title = title;
     row.placeholder = placeholder;
     row.inputId = inputId;

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 3 SIDED CUBE. All rights reserved.
 //
 
+#import "TSCPickerRowDataSource.h"
 
 /**
  A protocol which enables an object to be shown as a column in the `UIPicker` of a `TSCTableInputPickerRow`
@@ -15,7 +16,7 @@
 /**
  An array of `<TSCPickerRowDataSource>` objects to be displayed in the component
  */
-- (NSArray *)componentItems;
+- (NSArray<id<TSCPickerRowDataSource>> *)componentItems;
 
 @optional
 
