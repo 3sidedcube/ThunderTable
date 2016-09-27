@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TSCPickerComponentDataSource.h"
+@class TSCPickerRow;
 
 /**
  A Picker Component is used to represent the data one column in a `TSCPicker` by conforming to `TSCPickerComponentDataSource`
@@ -17,7 +18,7 @@
 /**
  An array of `TSCPickerRow` objects which will be shown in the column of the picker
  */
-@property (nonatomic, strong, nonnull) NSArray *items;
+@property (nonatomic, strong, nonnull) NSArray<TSCPickerRow *> *items;
 
 /**
  A spacer to be used between this column and the next
@@ -29,14 +30,14 @@
  Creates a new instance using an array of `TSCPickerRow` objects
  @param items The `TSCPickerRow` items to be shown in the component
  */
-+ (nonnull instancetype)componentWithItems:(nonnull NSArray *)items;
++ (nonnull instancetype)componentWithItems:(nonnull NSArray<TSCPickerRow *> *)items;
 
 /**
  Creates a new instance using an array of `TSCPickerRow` objects and a custom spacer
  @param items The `TSCPickerRow` items to be shown in the component
  @param spacer The spacer to be used after this component
  */
-+ (nonnull instancetype)componentWithItems:(nonnull NSArray *)items spacer:(nullable NSString *)spacer;
++ (nonnull instancetype)componentWithItems:(nonnull NSArray<TSCPickerRow *> *)items spacer:(nullable NSString *)spacer;
 
 /**
  Creates a new instance using bounds and an increment
