@@ -18,6 +18,6 @@
 /**
  @abstract The `UITextField` displayed in the cell
  */
-@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) IBOutlet UITextField *textField;
 
 @end

@@ -17,12 +17,12 @@
 /**
  The title to be shown on the row
  */
-@property (nonatomic, copy) NSString * title;
+@property (nonatomic, copy, nullable) NSString * title;
 
 /**
  Initialises and returns a new instance with a given title
  @param title The title to display on the row
  */
-+ (instancetype)rowWithTitle:(NSString *)title;
++ (nonnull instancetype)rowWithTitle:(nullable NSString *)title;
 
 @end
