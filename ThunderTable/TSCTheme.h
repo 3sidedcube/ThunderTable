@@ -39,6 +39,16 @@
 - (UIColor * _Nonnull)cellDetailColor;
 
 /**
+ @return The paragraph style for cell title label
+ */
+- (NSParagraphStyle * _Nullable)cellTitleParagraphStyle;
+
+/**
+ @return The paragraph style for cell detail label
+ */
+- (NSParagraphStyle * _Nullable)cellDetailParagraphStyle;
+
+/**
  @return A secondary colour that compliments the main colour.
  */
 - (UIColor * _Nonnull)secondaryColor;

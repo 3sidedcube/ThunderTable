@@ -24,6 +24,37 @@
 #import "UIImageView+TSCImageView.h"
 #import "TSCThemeManager.h"
 
+@implementation UILabel (ParagraphStyle)
+
+- (void)setParagraphStyle:(NSParagraphStyle *)style
+{
+    NSMutableParagraphStyle *mutableParagraphStyle = [style mutableCopy];
+    mutableParagraphStyle.alignment = self.textAlignment;
+    
+    if (self.text && mutableParagraphStyle) {
+        
+        NSMutableDictionary *attributes = [NSMutableDictionary new];
+        
+        if (self.font) {
+            attributes[NSFontAttributeName] = self.font;
+        }
+        
+        if (self.textColor) {
+            attributes[NSForegroundColorAttributeName] = self.textColor;
+        }
+        
+        if (mutableParagraphStyle) {
+            attributes[NSParagraphStyleAttributeName] = mutableParagraphStyle;
+        }
+        
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:self.text attributes: attributes];
+        
+        self.attributedText = attrString;
+    }
+}
+
+@end
+
 /**
  A category on UIWindow which allows easy accesss to the currently visible view controller
  */
@@ -574,6 +605,9 @@
         cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
         
     }
+    
+    [textLabel setParagraphStyle:[[TSCThemeManager sharedTheme] cellTitleParagraphStyle]];
+    [detailTextLabel setParagraphStyle:[[TSCThemeManager sharedTheme] cellDetailParagraphStyle]];
     
     // So model can perform additional changes if it wants
     if ([row respondsToSelector:@selector(tableViewCell:)]) {
