@@ -29,6 +29,7 @@
 		B1AD7EC71D8C198F00BFCA34 /* InputSwitchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */; };
 		B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */; };
 		B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B679601D89807A00B66FD8 /* TableViewCell.xib */; };
+		B1D10CD11DA540CF003FBCB4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D10CD01DA540CF003FBCB4 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSwitchViewCell.xib; sourceTree = "<group>"; };
 		B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B1B679601D89807A00B66FD8 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		B1D10CD01DA540CF003FBCB4 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 		B17BAA341D89639100844421 /* ThunderTable */ = {
 			isa = PBXGroup;
 			children = (
+				B1D10CD01DA540CF003FBCB4 /* Theme.swift */,
 				B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */,
 				B11264F21D8A9A9900224FB2 /* Input */,
 				B17BAA351D89639100844421 /* ThunderTable.h */,
@@ -297,6 +300,7 @@
 				B19C53271D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift in Sources */,
 				B1AD7EBD1D8BFB8F00BFCA34 /* InputTextViewRow.swift in Sources */,
 				B17BAA5A1D89645000844421 /* TableRow.swift in Sources */,
+				B1D10CD11DA540CF003FBCB4 /* Theme.swift in Sources */,
 				B1AD7EC01D8BFC9D00BFCA34 /* InputTextViewCell.swift in Sources */,
 				B19C531F1D8B00E900B30A35 /* InputTextFieldRow.swift in Sources */,
 			);
