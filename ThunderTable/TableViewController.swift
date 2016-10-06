@@ -85,6 +85,7 @@ open class TableViewController: UITableViewController {
     
     open func configure(cell: UITableViewCell, with row: Row, at indexPath: IndexPath) {
         
+        var _row = row
         var textLabel = cell.textLabel
         var detailLabel = cell.detailTextLabel
         var imageView = cell.imageView
@@ -114,6 +115,19 @@ open class TableViewController: UITableViewController {
             imageView?.image = nil
         }
         
+        var size = CGSize.zero
+        if let imageSize = row.imageSize {
+            size = imageSize
+        }
+        
+        imageView?.set(imageURL: row.imageURL, withPlaceholder: row.image, imageSize: size, animated: true, completion: { [weak self] (image, error) -> (Void) in
+            
+            if let welf = self, _row.image == nil {
+                _row.image = image
+                welf.tableView.reloadRows(at: [indexPath], with: .none)
+            }
+        })
+                
         row.configure(cell: cell, at: indexPath, in: self)
     }
     

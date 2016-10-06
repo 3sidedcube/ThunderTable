@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias ValueChangeCallback = (_ value: Any?) -> (Void)
+
 /// This protocol can be used to represent a `Row` in a `TableViewController` which can receive user input
 public protocol InputRow: Row {
     
@@ -25,17 +27,20 @@ public protocol InputRow: Row {
     /// - parameter value:  The value which self.value should be updated to
     /// - parameter sender: The control which changed the value
     func set(value: Any?, sender: UIControl?)
+    
+    /// A handler for when the value changed
+    var valueChangeHandler: ValueChangeCallback? { get }
 }
 
 public typealias InputCallback = (_ sender: UIControl?) -> (Void)
 
 public struct Callback {
     
-    var identifier: String
+    public var identifier: String
     
-    var callback: InputCallback
+    public var callback: InputCallback
     
-    init(identifier: String, callback: @escaping InputCallback) {
+    public init(identifier: String, callback: @escaping InputCallback) {
         
         self.identifier = identifier
         self.callback = callback
@@ -55,6 +60,8 @@ open class InputTableRow: NSObject, InputRow {
     open var subtitle: String?
     
     open var image: UIImage?
+    
+    open var valueChangeHandler: ValueChangeCallback?
         
     open var prototypeIdentifier: String? {
         return nil
@@ -100,6 +107,7 @@ open class InputTableRow: NSObject, InputRow {
         
         let events = UIControlEvents.valueChanged
         self.value = value
+        self.valueChangeHandler?(value)
         
         callbacks(for: events).forEach { (callback) in
             callback.callback(sender)

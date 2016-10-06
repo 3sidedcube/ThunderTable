@@ -14,7 +14,11 @@ public protocol Row {
     
     var subtitle: String? { get }
     
-    var image: UIImage? { get }
+    var image: UIImage? { get set }
+    
+    var imageSize: CGSize? { get }
+    
+    var imageURL: URL? { get }
     
     var remainSelected: Bool { get }
     
@@ -42,6 +46,14 @@ extension Row {
     }
     
     public var image: UIImage? {
+        return nil
+    }
+    
+    public var imageURL: URL? {
+        return nil
+    }
+    
+    public var imageSize: CGSize? {
         return nil
     }
     
@@ -82,6 +94,10 @@ open class TableRow: Row {
     
     open var image: UIImage?
     
+    open var imageSize: CGSize?
+    
+    open var imageURL: URL?
+    
     open var prototypeIdentifier: String? {
         return nil
     }
@@ -108,7 +124,7 @@ open class TableRow: Row {
         
         if let cell = cell as? TableViewCell, let imageView = cell.cellImageView {
             
-            if image == nil {
+            if image == nil && imageURL == nil {
                 imageView.isHidden = true
             } else {
                 imageView.isHidden = false

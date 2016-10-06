@@ -30,6 +30,8 @@
 		B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */; };
 		B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B679601D89807A00B66FD8 /* TableViewCell.xib */; };
 		B1D10CD11DA540CF003FBCB4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D10CD01DA540CF003FBCB4 /* Theme.swift */; };
+		B1E0883D1DA638CE00E45E47 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E0883C1DA638CE00E45E47 /* ImageView.swift */; };
+		B1E088671DA6470700E45E47 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E088661DA6470700E45E47 /* ImageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B1B679601D89807A00B66FD8 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		B1D10CD01DA540CF003FBCB4 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		B1E0883C1DA638CE00E45E47 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		B1E088661DA6470700E45E47 /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 			children = (
 				B1D10CD01DA540CF003FBCB4 /* Theme.swift */,
 				B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */,
+				B1E0883B1DA638B400E45E47 /* Images */,
 				B11264F21D8A9A9900224FB2 /* Input */,
 				B17BAA351D89639100844421 /* ThunderTable.h */,
 				B17BAA361D89639100844421 /* Info.plist */,
@@ -168,6 +173,15 @@
 				B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		B1E0883B1DA638B400E45E47 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B1E0883C1DA638CE00E45E47 /* ImageView.swift */,
+				B1E088661DA6470700E45E47 /* ImageController.swift */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,11 +310,13 @@
 				B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */,
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
 				B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */,
+				B1E0883D1DA638CE00E45E47 /* ImageView.swift in Sources */,
 				B17BAA561D8963BB00844421 /* TableViewController.swift in Sources */,
 				B19C53271D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift in Sources */,
 				B1AD7EBD1D8BFB8F00BFCA34 /* InputTextViewRow.swift in Sources */,
 				B17BAA5A1D89645000844421 /* TableRow.swift in Sources */,
 				B1D10CD11DA540CF003FBCB4 /* Theme.swift in Sources */,
+				B1E088671DA6470700E45E47 /* ImageController.swift in Sources */,
 				B1AD7EC01D8BFC9D00BFCA34 /* InputTextViewCell.swift in Sources */,
 				B19C531F1D8B00E900B30A35 /* InputTextFieldRow.swift in Sources */,
 			);
