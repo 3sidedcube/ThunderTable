@@ -96,7 +96,11 @@ open class TableRow: Row {
     
     open var imageSize: CGSize?
     
-    open var imageURL: URL?
+    open var imageURL: URL? {
+        didSet {
+            image = nil
+        }
+    }
     
     open var prototypeIdentifier: String? {
         return nil
