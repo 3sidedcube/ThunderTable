@@ -69,7 +69,7 @@ open class ImageController {
                 return
             }
             
-            guard let image = UIImage(data: data) else {
+            guard let image = UIImage(data: data, scale: UIScreen.main.scale) else {
                 
                 OperationQueue.main.addOperation {
                     withCompletion?(nil, ImageControllerError.invalidData, request)
