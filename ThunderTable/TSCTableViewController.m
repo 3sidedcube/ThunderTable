@@ -188,7 +188,7 @@
         _viewHasAppearedBefore = true;
     }
     
-    if (self.title) {
+    if (self.title && !self.disableAnalyticsNotifications) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"TSCStatEventNotification" object:self userInfo:@{@"type":@"screen", @"name":self.title}];
     }
     

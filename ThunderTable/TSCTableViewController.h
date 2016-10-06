@@ -200,4 +200,9 @@
  */
 - (void)sizeHeaderToFit;
 
+/**
+ whether the table view should send analytics event notifications on appearing
+ */
+@property (nonatomic, assign) BOOL disableAnalyticsNotifications;
+
 @end
