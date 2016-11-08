@@ -136,6 +136,12 @@
 - (void)handleDatePicker:(UIDatePicker *)sender
 {
     self.dateLabel.text = [self.dateFormatter stringFromDate:sender.date];
+    
+    if ([self.inputRow respondsToSelector:@selector(setValue:sender:)]) {
+        [self.inputRow setValue:sender.date sender:sender];
+    } else {
+        self.inputRow.value = sender.date;
+    }
 }
 
 @end
