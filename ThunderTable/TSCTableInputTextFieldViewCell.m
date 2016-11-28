@@ -27,7 +27,7 @@
         self.textField.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
         
         self.textField.font = [[TSCThemeManager sharedTheme] fontOfSize:17];
-        self.textField.tintColor = [[TSCThemeManager sharedTheme] cellPlaceholderColor];
+        self.textField.tintColor = [[TSCThemeManager sharedTheme] mainColor];
     
         [self.contentView addSubview:self.textField];
         self.textField.returnKeyType = UIReturnKeyNext;
