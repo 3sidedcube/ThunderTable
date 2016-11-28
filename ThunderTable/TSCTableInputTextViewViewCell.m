@@ -23,7 +23,7 @@
         self.textView.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
         self.textView.textAlignment = NSTextAlignmentLeft;
         self.textView.delegate = self;
-        self.textView.placeholderColor = [[TSCThemeManager sharedTheme] cellDetailColor];
+        self.textView.placeholderColor = [[TSCThemeManager sharedTheme] cellPlaceholderColor];
 
         [self.contentView addSubview:self.textView];
         

@@ -39,6 +39,11 @@
 - (UIColor * _Nonnull)cellDetailColor;
 
 /**
+ @return The placeholder colour to be used for all table view cells throughout the app
+ */
+- (UIColor * _Nonnull)cellPlaceholderColor;
+
+/**
  @return The paragraph style for cell title label
  */
 - (NSParagraphStyle * _Nullable)cellTitleParagraphStyle;

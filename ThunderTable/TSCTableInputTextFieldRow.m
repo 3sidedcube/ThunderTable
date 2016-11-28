@@ -75,7 +75,7 @@
 - (UITableViewCell *)tableViewCell:(UITableViewCell *)cell
 {
     TSCTableInputTextFieldViewCell *inputCell = (TSCTableInputTextFieldViewCell *)cell;
-    inputCell.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder ?: @"" attributes:@{NSForegroundColorAttributeName:self.detailTextColor ? : [[TSCThemeManager sharedTheme] cellDetailColor]}];
+    inputCell.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder ?: @"" attributes:@{NSForegroundColorAttributeName:self.detailTextColor ? : [[TSCThemeManager sharedTheme] cellPlaceholderColor]}];
     inputCell.textField.keyboardType = self.keyboardType;
     inputCell.textField.returnKeyType = self.returnKeyType;
     inputCell.textField.secureTextEntry = self.isSecure;
