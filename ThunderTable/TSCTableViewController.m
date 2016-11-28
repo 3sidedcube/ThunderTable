@@ -1086,7 +1086,12 @@
         if ([self.tableView.indexPathsForVisibleRows containsObject:indexPath]) {
             [reloadIndexPaths addObject:indexPath];
         }
-        [inputRow setValue:inputDictionary[inputRow.inputId]];
+        
+        if ([inputRow respondsToSelector:@selector(setValue:sender:)]) {
+            [inputRow setValue:inputDictionary[inputRow.inputId] sender:nil];
+        } else {
+            [inputRow setValue:inputDictionary[inputRow.inputId]];
+        }
     }];
     
     if (reloadIndexPaths.count > 0) {
