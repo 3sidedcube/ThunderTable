@@ -46,7 +46,8 @@ extension Row {
     }
     
     public var image: UIImage? {
-        return nil
+        get { return nil }
+        set {}
     }
     
     public var imageURL: URL? {
