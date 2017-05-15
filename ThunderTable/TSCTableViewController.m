@@ -1149,8 +1149,11 @@
         }
     }];
     
-    UIAlertView *missingRows = [[UIAlertView alloc] initWithTitle:@"Missing information" message:@"Please complete all the required fields." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [missingRows show];
+    UIAlertController *missingRowsAlertController = [UIAlertController alertControllerWithTitle:@"Missing information" message:@"Please complete all the required fields." preferredStyle:UIAlertControllerStyleAlert];
+    
+    [missingRowsAlertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:missingRowsAlertController animated:true completion:nil];
 }
 
 - (void)enumerateRowsUsingBlock:(void (^)(id <TSCTableRowDataSource> row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
