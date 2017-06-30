@@ -51,6 +51,7 @@ extension Row {
     }
 }
 
+@objc(TSCTableViewController)
 open class TableViewController: UITableViewController {
     
     open var data: [Section] = [] {

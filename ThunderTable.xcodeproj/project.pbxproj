@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B108319D1F068FDF008B565D /* TableImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108319B1F068FDF008B565D /* TableImageViewCell.swift */; };
+		B108319E1F068FDF008B565D /* TableImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B108319C1F068FDF008B565D /* TableImageViewCell.xib */; };
 		B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11264F31D8A9AE800224FB2 /* InputTableRow.swift */; };
 		B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D821D8C3A60007358EA /* InputSliderRow.swift */; };
 		B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B108319B1F068FDF008B565D /* TableImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableImageViewCell.swift; sourceTree = "<group>"; };
+		B108319C1F068FDF008B565D /* TableImageViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableImageViewCell.xib; sourceTree = "<group>"; };
 		B11264F31D8A9AE800224FB2 /* InputTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableRow.swift; sourceTree = "<group>"; };
 		B1784D821D8C3A60007358EA /* InputSliderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderRow.swift; sourceTree = "<group>"; };
 		B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderViewCell.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 				B11264F21D8A9A9900224FB2 /* Input */,
 				B17BAA351D89639100844421 /* ThunderTable.h */,
 				B17BAA361D89639100844421 /* Info.plist */,
+				B108319B1F068FDF008B565D /* TableImageViewCell.swift */,
+				B108319C1F068FDF008B565D /* TableImageViewCell.xib */,
 				B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */,
 				B1B679601D89807A00B66FD8 /* TableViewCell.xib */,
 				B17BAA551D8963BB00844421 /* TableViewController.swift */,
@@ -283,6 +289,7 @@
 				B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */,
 				B1AD7EC71D8C198F00BFCA34 /* InputSwitchViewCell.xib in Resources */,
 				B19C53251D8B033E00B30A35 /* InputTextFieldViewCell.xib in Resources */,
+				B108319E1F068FDF008B565D /* TableImageViewCell.xib in Resources */,
 				B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */,
 				B1AD7EC11D8BFC9D00BFCA34 /* InputTextViewCell.xib in Resources */,
 			);
@@ -307,6 +314,7 @@
 				B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */,
 				B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */,
 				B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */,
+				B108319D1F068FDF008B565D /* TableImageViewCell.swift in Sources */,
 				B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */,
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
 				B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */,
