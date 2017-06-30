@@ -509,7 +509,7 @@
         
         if ([[row rowTitle] isKindOfClass:[NSAttributedString class]]) {
             textLabel.attributedText = (NSAttributedString *)[row rowTitle];
-        } else {
+		} else if ([[row rowTitle] isKindOfClass:[NSString class]]) {
             textLabel.text = [row rowTitle];
         }
     }
@@ -518,7 +518,7 @@
         
         if ([[row rowSubtitle] isKindOfClass:[NSAttributedString class]]) {
             detailTextLabel.attributedText = (NSAttributedString *)[row rowSubtitle];
-        } else {
+        } else if ([[row rowSubtitle] isKindOfClass:[NSString class]]) {
             detailTextLabel.text = [row rowSubtitle];
         }
     }
