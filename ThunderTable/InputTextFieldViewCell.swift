@@ -8,15 +8,15 @@
 
 import UIKit
 
-class InputTextFieldViewCell: TableViewCell {
+open class InputTextFieldViewCell: TableViewCell {
 
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak public var textField: UITextField!
     
-    override func becomeFirstResponder() -> Bool {
+    override open func becomeFirstResponder() -> Bool {
         return textField.becomeFirstResponder()
     }
     
-    override func resignFirstResponder() -> Bool {
+    override open func resignFirstResponder() -> Bool {
         return textField.resignFirstResponder()
     }
 }

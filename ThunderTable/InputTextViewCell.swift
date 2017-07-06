@@ -8,17 +8,17 @@
 
 import UIKit
 
-class InputTextViewCell: TableViewCell {
+open class InputTextViewCell: TableViewCell {
 
     @IBOutlet weak public var textView: UITextView!
     
     @IBOutlet weak public var textViewHeightConstraint: NSLayoutConstraint!
     
-    override func becomeFirstResponder() -> Bool {
+    override open func becomeFirstResponder() -> Bool {
         return textView.becomeFirstResponder()
     }
     
-    override func resignFirstResponder() -> Bool {
+    override open func resignFirstResponder() -> Bool {
         return textView.resignFirstResponder()
     }
 }

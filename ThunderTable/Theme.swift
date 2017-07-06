@@ -9,7 +9,8 @@
 import Foundation
 
 /// Defines the default Theme which can be set on `ThemeManager`
-open class Theme {
+@objc(TSCTheme)
+open class Theme: NSObject {
     
     ///---------------------------------------------------------------------------------------
     /// - name Colours
@@ -152,7 +153,8 @@ public func TSC_isPad() -> Bool {
 }
 
 /// A controller for managing the theme of the app
-open class ThemeManager {
+@objc(TSCThemeManager)
+open class ThemeManager: NSObject {
     
     /// The theme to be used by the app to style all UIs
     public var theme: Theme = Theme()
@@ -160,7 +162,7 @@ open class ThemeManager {
     /// The shared instance theme manager
     public static let shared = ThemeManager()
     
-    private init() {
+    private override init() {
         
     }
     

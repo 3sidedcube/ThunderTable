@@ -8,13 +8,13 @@
 
 import UIKit
 
-class InputSliderViewCell: TableViewCell {
+open class InputSliderViewCell: TableViewCell {
 
-    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak public var valueLabel: UILabel!
     
-    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak public var slider: UISlider!
     
-    func updateLabel(sender: UISlider) {
+    open func updateLabel(sender: UISlider) {
         valueLabel.text = "\(sender.value)"
     }
 }

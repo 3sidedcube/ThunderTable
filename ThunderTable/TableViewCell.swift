@@ -11,10 +11,10 @@ import UIKit
 @objc(TSCTableViewCell)
 open class TableViewCell: UITableViewCell {
 
-    @IBOutlet public var cellImageView: UIImageView!
+    @IBOutlet open var cellImageView: UIImageView!
     
-    @IBOutlet public var cellTextLabel: UILabel!
+    @IBOutlet open var cellTextLabel: UILabel!
     
-    @IBOutlet public var cellDetailLabel: UILabel!
+    @IBOutlet open var cellDetailLabel: UILabel!
     
 }

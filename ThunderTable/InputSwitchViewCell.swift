@@ -8,8 +8,8 @@
 
 import UIKit
 
-class InputSwitchViewCell: TableViewCell {
+open class InputSwitchViewCell: TableViewCell {
 
-    @IBOutlet weak var `switch`: UISwitch!
+    @IBOutlet weak public var `switch`: UISwitch!
  
 }
