@@ -10,15 +10,15 @@ import Foundation
 
 public protocol Row {
     
-    var title: String? { get }
+    var title: String? { get set }
     
-    var subtitle: String? { get }
+    var subtitle: String? { get set }
     
     var image: UIImage? { get set }
     
     var imageSize: CGSize? { get }
     
-    var imageURL: URL? { get }
+    var imageURL: URL? { get set }
     
     var remainSelected: Bool { get }
     
@@ -26,7 +26,7 @@ public protocol Row {
     
     var prototypeIdentifier: String? { get }
     
-    var selectionHandler: SelectionHandler? { get }
+    var selectionHandler: SelectionHandler? { get set }
     
     var estimatedHeight: CGFloat? { get }
     
@@ -38,11 +38,13 @@ public protocol Row {
 extension Row {
     
     public var title: String? {
-        return nil
+		get { return nil }
+		set {}
     }
     
     public var subtitle: String? {
-        return nil
+		get { return nil }
+		set {}
     }
     
     public var image: UIImage? {
@@ -51,7 +53,8 @@ extension Row {
     }
     
     public var imageURL: URL? {
-        return nil
+		get { return nil }
+		set {}
     }
     
     public var imageSize: CGSize? {
@@ -71,7 +74,8 @@ extension Row {
     }
     
     public var selectionHandler: SelectionHandler? {
-        return nil
+		get { return nil }
+		set {}
     }
     
     public var estimatedHeight: CGFloat? {
