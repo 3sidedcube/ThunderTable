@@ -59,6 +59,8 @@ open class TableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+	
+	public var selectedIndexPath: IndexPath?
     
     open override func viewDidLoad() {
         
@@ -79,7 +81,16 @@ open class TableViewController: UITableViewController {
         
         return dictionary
     }
-    
+	
+	public var missingRequiredInputRows: [InputRow]? {
+		
+		guard let inputRows = data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return nil }
+		
+		return inputRows.filter({ (inputRow) -> Bool in
+			return inputRow.required && inputRow.value == nil
+		})
+	}
+	
     private var registeredClasses: [String] = []
 
     // MARK: - Helper functions!
@@ -341,12 +352,17 @@ public extension TableViewController {
         } else if let sectionSelectionHandler = section.selectionHandler {
             sectionSelectionHandler(row, selected, indexPath, tableView)
         }
-        
+		
+		if selected {
+		}
+		
         // Deselect it if remain selected is false
         if selected && !row.remainSelected {
             tableView.deselectRow(at: indexPath, animated: true)
-        }
-        
+		} else if selected && row.remainSelected {
+			selectedIndexPath = indexPath
+		}
+			
         if let _ = row as? InputRow, selected {
             let cell = tableView.cellForRow(at: indexPath)
             cell?.becomeFirstResponder()
@@ -373,9 +389,4 @@ public extension TableViewController {
             }
         }
     }
-}
-
-public extension TableViewController {
-    
-
 }
