@@ -9,6 +9,10 @@
 import Foundation
 
 public protocol Row {
+	
+	var accessoryType: UITableViewCellAccessoryType? { get set }
+	
+	var selectionStyle: UITableViewCellSelectionStyle? { get set }
     
     var title: String? { get set }
     
@@ -21,6 +25,8 @@ public protocol Row {
     var imageURL: URL? { get set }
     
     var remainSelected: Bool { get }
+	
+	var displaySeparators: Bool { get set }
     
     var cellClass: AnyClass? { get }
     
@@ -36,6 +42,21 @@ public protocol Row {
 }
 
 extension Row {
+	
+	public var accessoryType: UITableViewCellAccessoryType? {
+		get { return nil }
+		set {}
+	}
+	
+	public var selectionStyle: UITableViewCellSelectionStyle? {
+		get { return nil }
+		set {}
+	}
+	
+	public var displaySeparators: Bool {
+		get { return true }
+		set {}
+	}
     
     public var title: String? {
 		get { return nil }

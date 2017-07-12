@@ -8,8 +8,38 @@
 
 import UIKit
 
+extension UILabel {
+	
+	var paragraphStyle: NSParagraphStyle? {
+		set {
+			
+			if let _text = text, let style = newValue?.mutableCopy() as? NSMutableParagraphStyle {
+				
+				var attributes = [String : Any]()
+				style.alignment = textAlignment
+				
+				if let _font = font {
+					attributes[NSFontAttributeName] = _font
+				}
+				
+				if let _textColor = textColor {
+					attributes[NSForegroundColorAttributeName] = _textColor
+				}
+				
+				attributes[NSParagraphStyleAttributeName] = paragraphStyle
+				
+				let attributedString = NSAttributedString(string: _text, attributes: attributes)
+				attributedText = attributedString
+			}
+		}
+		get {
+			return NSParagraphStyle()
+		}
+	}
+}
+
 extension UITableViewCellAccessoryType {
-    
+	
     var rightInset: CGFloat {
         switch self {
         case .none:
@@ -107,8 +137,21 @@ open class TableViewController: UITableViewController {
             textLabel = tscTableCell.cellTextLabel
             detailLabel = tscTableCell.cellDetailLabel
             imageView = tscTableCell.cellImageView
+			
+			tscTableCell.shouldDisplaySeparators = row.displaySeparators
         }
-        
+		
+		// Whether to display cell separators
+		if _row.displaySeparators {
+			cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.separatorInset.left, bottom: 0, right: 0)
+		} else {
+			cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat(MAXFLOAT), bottom: 0, right: 0)
+			cell.layoutMargins = UIEdgeInsets(top: 0, left: CGFloat(MAXFLOAT), bottom: 0, right: 0)
+		}
+		
+		cell.selectionStyle = row.selectionStyle ?? (selectable(indexPath) ? .default : .none)
+		cell.accessoryType = row.accessoryType ?? (selectable(indexPath) ? .disclosureIndicator : .none)
+		
         if let rowTitle = row.title {
             textLabel?.text = rowTitle
         } else {
@@ -139,6 +182,9 @@ open class TableViewController: UITableViewController {
                 welf.tableView.reloadRows(at: [indexPath], with: .none)
             }
         })
+		
+		textLabel?.paragraphStyle = ThemeManager.shared.theme.cellTitleParagraphStyle
+		detailLabel?.paragraphStyle = ThemeManager.shared.theme.cellDetailParagraphStyle
                 
         row.configure(cell: cell, at: indexPath, in: self)
     }
