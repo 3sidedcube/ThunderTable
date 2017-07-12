@@ -185,7 +185,7 @@ open class TableViewController: UITableViewController {
 		
 		textLabel?.paragraphStyle = ThemeManager.shared.theme.cellTitleParagraphStyle
 		detailLabel?.paragraphStyle = ThemeManager.shared.theme.cellDetailParagraphStyle
-                
+		
         row.configure(cell: cell, at: indexPath, in: self)
     }
     

@@ -133,6 +133,10 @@ open class TableRow: Row {
     }
     
     open var selectionHandler: SelectionHandler?
+	
+	open var selectionStyle: UITableViewCellSelectionStyle?
+	
+	open var accessoryType: UITableViewCellAccessoryType?
     
     open var cellClass: AnyClass? {
         return TableViewCell.self
