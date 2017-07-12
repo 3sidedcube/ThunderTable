@@ -57,4 +57,41 @@ open class TableSection: Section {
         self.footer = footer
         self.selectionHandler = selectionHandler
     }
+	
+	/// Returns an array of `TableSection` objects sorted by first letter of the row's title
+	///
+	/// - Parameters:
+	///   - rows: The rows to sort into alphabetised sections
+	///   - selectionHandler: A selection handler to add to the sections
+	/// - Returns: An array of `TableSection` objects
+	public class func sortedSections(with rows: [Row], selectionHandler: SelectionHandler? = nil) -> [TableSection] {
+		
+		let sortedAlphabetically = self.alphabeticallySort(rows: rows)
+		let sortedKeys = sortedAlphabetically.keys.sorted { (stringA, stringB) -> Bool in
+			return stringA > stringB
+		}
+			
+		return sortedKeys.flatMap({key -> TableSection? in
+			guard let rows = sortedAlphabetically[key] else { return nil }
+			return TableSection(rows: rows, header: key, footer: nil, selectionHandler: selectionHandler)
+		})
+	}
+	
+	private class func alphabeticallySort(rows: [Row]) -> [String : [Row]] {
+		
+		var sortedDict = [String : [Row]]()
+		
+		rows.forEach { (row) in
+			
+			var firstLetter = "?"
+			if let rowTitle = row.title, !rowTitle.isEmpty {
+				firstLetter = String(rowTitle.characters.prefix(1)).uppercased()
+			}
+			var subItems = sortedDict[firstLetter] ?? []
+			subItems.append(row)
+			sortedDict[firstLetter] = subItems
+		}
+		
+		return sortedDict
+	}
 }
