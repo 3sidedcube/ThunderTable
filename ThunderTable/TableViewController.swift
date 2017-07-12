@@ -139,6 +139,7 @@ open class TableViewController: UITableViewController {
             imageView = tscTableCell.cellImageView
 			
 			tscTableCell.shouldDisplaySeparators = row.displaySeparators
+			tscTableCell.cellStyle = row.cellStyle ?? .subtitle
         }
 		
 		// Whether to display cell separators

@@ -13,9 +13,11 @@ public protocol Row {
 	var accessoryType: UITableViewCellAccessoryType? { get set }
 	
 	var selectionStyle: UITableViewCellSelectionStyle? { get set }
-    
+	
+	var cellStyle: UITableViewCellStyle? { get set }
+	
     var title: String? { get set }
-    
+	
     var subtitle: String? { get set }
     
     var image: UIImage? { get set }
@@ -55,6 +57,11 @@ extension Row {
 	
 	public var displaySeparators: Bool {
 		get { return true }
+		set {}
+	}
+	
+	public var cellStyle: UITableViewCellStyle? {
+		get { return nil }
 		set {}
 	}
     
@@ -113,6 +120,8 @@ extension Row {
 }
 
 open class TableRow: Row {
+	
+	open var cellStyle: UITableViewCellStyle?
     
     open var title: String?
     
