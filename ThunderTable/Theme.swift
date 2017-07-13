@@ -148,10 +148,6 @@ open class Theme: NSObject {
 
 }
 
-public func TSC_isPad() -> Bool {
-	return UI_USER_INTERFACE_IDIOM() == .pad
-}
-
 /// A controller for managing the theme of the app
 @objc(TSCThemeManager)
 open class ThemeManager: NSObject {
