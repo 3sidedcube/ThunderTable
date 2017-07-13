@@ -12,31 +12,43 @@ public typealias SelectionHandler = (_ row: Row, _ selected: Bool, _ indexPath: 
 
 public protocol Section {
     
-    var rows: [Row] { get }
+    var rows: [Row] { get set }
     
-    var header: String? { get }
+    var header: String? { get set }
     
-    var footer: String? { get }
+    var footer: String? { get set }
     
-    var selectionHandler: SelectionHandler? { get }
+    var selectionHandler: SelectionHandler? { get set }
 }
 
-extension Section {
-    
-    var rows: [Row] {
-        return []
-    }
-    
+public extension Section {
+	
+	var rows: [Row] {
+		get {
+			return []
+		}
+		set {}
+	}
+	
     var header: String? {
-        return nil
+		get {
+			return nil
+		}
+		set {}
     }
     
     var footer: String? {
-        return nil
+		get {
+			return nil
+		}
+		set {}
     }
     
     var selectionHandler: SelectionHandler? {
-        return nil
+		get {
+			return nil
+		}
+		set {}
     }
 }
 
