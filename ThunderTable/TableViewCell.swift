@@ -8,7 +8,6 @@
 
 import UIKit
 
-@objc(TSCTableViewCell)
 open class TableViewCell: UITableViewCell {
 
     @IBOutlet open var cellImageView: UIImageView!
