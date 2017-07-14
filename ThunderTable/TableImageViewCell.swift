@@ -11,4 +11,8 @@ import UIKit
 open class TableImageViewCell: TableViewCell {
 
 	@IBOutlet weak public var imageHeightConstraint: NSLayoutConstraint!
+	
+	open override func awakeFromNib() {
+		super.awakeFromNib()
+	}
 }

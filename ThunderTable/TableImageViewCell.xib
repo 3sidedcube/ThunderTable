@@ -17,10 +17,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="90.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B01-Gt-Ew8">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B01-Gt-Ew8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="90.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="90.5" id="gYj-Bt-P80"/>
+                            <constraint firstAttribute="height" priority="999" constant="90.5" id="gYj-Bt-P80"/>
                         </constraints>
                     </imageView>
                 </subviews>
