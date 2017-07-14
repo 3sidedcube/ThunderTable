@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc(TSCTableImageViewCell)
 open class TableImageViewCell: TableViewCell {
 
+	@IBOutlet weak public var imageHeightConstraint: NSLayoutConstraint!
 }

@@ -57,13 +57,33 @@ extension Row {
         
         get {
             
-            guard let cellClass = cellClass else { return nil }
+            guard var cellClass = cellClass else { return nil }
             
-            let classString = String(describing: cellClass)
-            guard let nibName = classString.components(separatedBy: ".").last else { return nil }
-            
+            var classString = String(describing: cellClass)
+            guard var nibName = classString.components(separatedBy: ".").last else { return nil }
+			
             let bundle = Bundle(for: cellClass)
-            guard let _ = bundle.path(forResource: nibName, ofType: "nib") else { return nil }
+			var nibPath = bundle.path(forResource: nibName, ofType: "nib")
+			
+			// Sometimes a cell may have subclassed without providing it's own nib file
+			// In this case always use it's superclass!
+			while nibPath == nil, let superClass = cellClass.superclass() {
+				
+				// Find the new class name
+				classString = String(describing: superClass)
+				// Get the new nib name for the classes superClass
+				if let superNibName = classString.components(separatedBy: ".").last {
+					// Update nibPath and nibName
+					nibPath = bundle.path(forResource: superNibName, ofType: "nib")
+					nibName = superNibName
+				}
+				cellClass = superClass
+			}
+			
+			print("CELL CLASS", self.cellClass!)
+			print("NIB NAME", nibName)
+			
+            guard let _ = nibPath else { return nil }
             let nib = UINib(nibName: nibName, bundle: bundle)
             return nib
         }

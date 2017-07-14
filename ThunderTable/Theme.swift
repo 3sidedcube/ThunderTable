@@ -141,10 +141,10 @@ open class Theme: NSObject {
     open var secondaryLabelFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)
     
     /// The font for the title label of cells throughout the app
-    open var cellTitleFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+    open var cellTitleFont: UIFont = UIFont.preferredFont(forTextStyle: .body)
         
     /// The font for the detail label of cells throughout the app
-    open var cellDetailFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+    open var cellDetailFont: UIFont = UIFont.preferredFont(forTextStyle: .caption1)
 
 }
 
