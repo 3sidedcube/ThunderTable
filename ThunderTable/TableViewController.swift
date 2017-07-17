@@ -65,21 +65,25 @@ extension Row {
             var bundle = Bundle(for: cellClass)
 			var nibPath = bundle.path(forResource: nibName, ofType: "nib")
 			
-			// Sometimes a cell may have subclassed without providing it's own nib file
-			// In this case always use it's superclass!
-			while nibPath == nil, let superClass = cellClass.superclass() {
+			// Only look for nib superclasses if we're told to by Row protocol
+			if useNibSuperclass {
 				
-				// Make sure we're still looking in the correct bundle
-				bundle = Bundle(for: superClass)
-				// Find the new class name
-				classString = String(describing: superClass)
-				// Get the new nib name for the classes superClass
-				if let superNibName = classString.components(separatedBy: ".").last, let _path = bundle.path(forResource: superNibName, ofType: "nib") {
-					// Update nibPath and nibName
-					nibPath = _path
-					nibName = superNibName
+				// Sometimes a cell may have subclassed without providing it's own nib file
+				// In this case always use it's superclass!
+				while nibPath == nil, let superClass = cellClass.superclass(){
+					
+					// Make sure we're still looking in the correct bundle
+					bundle = Bundle(for: superClass)
+					// Find the new class name
+					classString = String(describing: superClass)
+					// Get the new nib name for the classes superClass
+					if let superNibName = classString.components(separatedBy: ".").last, let _path = bundle.path(forResource: superNibName, ofType: "nib") {
+						// Update nibPath and nibName
+						nibPath = _path
+						nibName = superNibName
+					}
+					cellClass = superClass
 				}
-				cellClass = superClass
 			}
 			
             guard let _ = nibPath else { return nil }
@@ -290,6 +294,10 @@ open class TableViewController: UITableViewController {
         if !calculateSize {
             return UITableViewAutomaticDimension
         }
+		
+		if let height = row.height(constrainedTo: CGSize(width: tableView.frame.width, height: CGFloat(MAXFLOAT)), in: tableView) {
+			return height
+		}
         
         // Let's calculate this mothertrucker!
         
