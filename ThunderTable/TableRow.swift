@@ -230,6 +230,10 @@ open class TableRow: Row {
     open var remainSelected: Bool {
         return false
     }
+	
+	open var useNibSuperclass: Bool {
+		return true
+	}
     
     open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
