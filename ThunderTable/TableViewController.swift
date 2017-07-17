@@ -387,6 +387,18 @@ open class TableViewController: UITableViewController {
         return true
     }
     */
+	
+	open override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		
+		let section = data[section]
+		return section.header
+	}
+	
+	open override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+		
+		let section = data[section]
+		return section.footer
+	}
 
     //MARK - Table View Delegate
     

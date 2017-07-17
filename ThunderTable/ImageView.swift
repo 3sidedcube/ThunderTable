@@ -26,6 +26,24 @@ private class ImageClosureWrapper {
     }
 }
 
+/// A subclass of ImageView to improve intrinsicContentSize behaviour
+public class ImageView: UIImageView {
+	
+	public override var intrinsicContentSize: CGSize {
+		if finalSize == .zero {
+			
+			if super.intrinsicContentSize.width == -1.0 || super.intrinsicContentSize.height == -1.0 {
+				return .zero
+			} else {
+				return super.intrinsicContentSize
+			}
+			
+		} else {
+			return finalSize
+		}
+	}
+}
+
 // MARK: - An extension on UIImageView for loading images from urls
 public extension UIImageView {
     
