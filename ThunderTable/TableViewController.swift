@@ -169,8 +169,8 @@ open class TableViewController: UITableViewController {
 		if _row.displaySeparators {
 			cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.separatorInset.left, bottom: 0, right: 0)
 		} else {
-			cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat(MAXFLOAT), bottom: 0, right: 0)
-			cell.layoutMargins = UIEdgeInsets(top: 0, left: CGFloat(MAXFLOAT), bottom: 0, right: 0)
+			cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
+			cell.layoutMargins = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
 		}
 		
 		cell.selectionStyle = row.selectionStyle ?? (selectable(indexPath) ? .default : .none)
@@ -295,7 +295,7 @@ open class TableViewController: UITableViewController {
             return UITableViewAutomaticDimension
         }
 		
-		if let height = row.height(constrainedTo: CGSize(width: tableView.frame.width, height: CGFloat(MAXFLOAT)), in: tableView) {
+		if let height = row.height(constrainedTo: CGSize(width: tableView.frame.width, height: CGFloat.greatestFiniteMagnitude), in: tableView) {
 			return height
 		}
         

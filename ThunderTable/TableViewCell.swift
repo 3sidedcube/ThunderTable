@@ -127,14 +127,14 @@ open class TableViewCell: UITableViewCell {
 	
 	private func valueLayout() {
 		
-		let textLabelSize = cellTextLabel.sizeThatFits(CGSize(width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: CGFloat(MAXFLOAT)))
+		let textLabelSize = cellTextLabel.sizeThatFits(CGSize(width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: CGFloat.greatestFiniteMagnitude))
 		var textLabelFrame = CGRect(x: edgeInsets.left, y: edgeInsets.top, width: textLabelSize.width, height: textLabelSize.height)
 		let textNumberOfLines = max(Int(textLabelSize.height/cellTextLabel.font.lineHeight), 0)
 		
 		var (_, remainder) = contentView.frame.divided(atDistance: textLabelSize.width + edgeInsets.right, from: .minXEdge)
 		remainder.size.width = remainder.size.width - edgeInsets.right;
 		
-		let detailLabelSize = cellDetailLabel.sizeThatFits(CGSize(width: remainder.width, height: CGFloat(MAXFLOAT)))
+		let detailLabelSize = cellDetailLabel.sizeThatFits(CGSize(width: remainder.width, height: CGFloat.greatestFiniteMagnitude))
 		remainder.size.height = detailLabelSize.height
 		let detailNumberOfLines = max(Int(remainder.height/cellDetailLabel.font.lineHeight), 0)
 		
@@ -150,10 +150,10 @@ open class TableViewCell: UITableViewCell {
 	
 	private func subtitleLayout() {
 		
-		let textLabelSize = cellTextLabel.sizeThatFits(CGSize(width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: CGFloat(MAXFLOAT)))
+		let textLabelSize = cellTextLabel.sizeThatFits(CGSize(width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: CGFloat.greatestFiniteMagnitude))
 		var textLabelFrame = CGRect(x: edgeInsets.left, y: edgeInsets.top, width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: textLabelSize.height)
 
-		let detailLabelSize = cellDetailLabel.sizeThatFits(CGSize(width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: CGFloat(MAXFLOAT)))
+		let detailLabelSize = cellDetailLabel.sizeThatFits(CGSize(width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: CGFloat.greatestFiniteMagnitude))
 		var detailLabelFrame = CGRect(x: edgeInsets.left, y: textLabelFrame.maxY, width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: detailLabelSize.height)
 		
 		// If no detail text then center text label
