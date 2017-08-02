@@ -62,7 +62,19 @@ open class InputTableRow: NSObject, InputRow {
     open var image: UIImage?
     
     open var valueChangeHandler: ValueChangeCallback?
-        
+	
+	open var selectionStyle: UITableViewCellSelectionStyle?
+	
+	open var accessoryType: UITableViewCellAccessoryType?
+	
+	open var imageSize: CGSize?
+	
+	open var imageURL: URL? {
+		didSet {
+			image = nil
+		}
+	}
+	
     open var prototypeIdentifier: String? {
         return nil
     }

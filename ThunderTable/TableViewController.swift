@@ -173,8 +173,24 @@ open class TableViewController: UITableViewController {
 			cell.layoutMargins = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
 		}
 		
-		cell.selectionStyle = row.selectionStyle ?? (selectable(indexPath) ? .default : .none)
-		cell.accessoryType = row.accessoryType ?? (selectable(indexPath) ? .disclosureIndicator : .none)
+		
+		// The second else if must be here, as .none equates to nil in an if let
+		if let selectionStyle = row.selectionStyle {
+			cell.selectionStyle = selectionStyle
+		} else if row.selectionStyle == .none {
+			cell.selectionStyle = .none
+		} else {
+			cell.selectionStyle = selectable(indexPath) ? .default : .none
+		}
+		
+		// The second else if must be here, as .none equates to nil in an if let
+		if let accessoryType = row.accessoryType {
+			cell.accessoryType = accessoryType
+		} else if row.accessoryType == .none {
+			cell.accessoryType = .none
+		} else {
+			cell.accessoryType = selectable(indexPath) ? .disclosureIndicator : .none
+		}
 		
         if let rowTitle = row.title {
             textLabel?.text = rowTitle
