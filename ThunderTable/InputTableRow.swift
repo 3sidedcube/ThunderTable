@@ -67,6 +67,8 @@ open class InputTableRow: NSObject, InputRow {
 	
 	open var accessoryType: UITableViewCellAccessoryType?
 	
+	open var displaySeparators: Bool = true
+	
 	open var imageSize: CGSize?
 	
 	open var imageURL: URL? {
