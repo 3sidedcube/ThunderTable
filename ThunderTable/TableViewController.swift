@@ -114,6 +114,12 @@ open class TableViewController: UITableViewController {
     }
 	
 	public var selectedIndexPath: IndexPath?
+	
+	public var selectedRows: [Row]? {
+		return tableView.indexPathsForSelectedRows?.map({ (indexPath) -> Row in
+			return data[indexPath.section].rows[indexPath.row]
+		})
+	}
     
     open override func viewDidLoad() {
         
