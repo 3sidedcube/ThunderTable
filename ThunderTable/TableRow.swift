@@ -13,9 +13,15 @@ import Foundation
 public protocol Row {
 	
 	/// The accessory type to be displayed on the right of the cell for this row
+	/// - Important: If you wish to return `.none` from this, make sure to use the long syntax:
+	/// `UITableViewCellAccessoryType.none` otherwise the compiler will think you are returning
+	/// `Optional.none` which is equivalent to nil and therefore will be ignored by `TableViewController`
 	var accessoryType: UITableViewCellAccessoryType? { get set }
 	
 	/// The selection style to be applied when the cell for this row is pressed down
+	/// - Important: If you wish to return `.none` from this, make sure to use the long syntax:
+	/// `UITableViewCellSelectionStyle.none` otherwise the compiler will think you are returning
+	/// `Optional.none` which is equivalent to nil and therefore will be ignored by `TableViewController`
 	var selectionStyle: UITableViewCellSelectionStyle? { get set }
 	
 	/// The cell style of the cell for this row
