@@ -196,6 +196,8 @@ extension Row {
 open class TableRow: Row {
 	
 	open var cellStyle: UITableViewCellStyle?
+	
+	open var displaySeparators: Bool = true
     
     open var title: String?
     

@@ -126,7 +126,7 @@ open class InputTableRow: NSObject, InputRow {
         }
     }
     
-    init(id: String, required: Bool = false) {
+    public init(id: String, required: Bool = false) {
         
         self.id = id
         self.required = required
