@@ -99,12 +99,15 @@ open class InputTableRow: NSObject, InputRow {
         return false
     }
     
-    var nextHandler: InputCallback?
+    internal var _nextHandler: InputCallback?
+	
+	open var nextHandler: InputCallback?
     
     open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
-        nextHandler = { (control) -> (Void) in
+        _nextHandler = { (control) -> (Void) in
             tableViewController.moveToInputCell(after: indexPath)
+			self.nextHandler?(control)
         }
                 
         if let cell = cell as? TableViewCell, let imageView = cell.cellImageView {
@@ -199,7 +202,6 @@ open class InputTableRow: NSObject, InputRow {
     public func updateTargetsAndSelectors(for control: UIControl) {
         
         control.removeTarget(nil, action: nil, for: .allEvents)
-        
         
         control.addTarget(self, action: #selector(touchDown(control:)), for: .touchDown)
         control.addTarget(self, action: #selector(touchDownRepeat(control:)), for: .touchDownRepeat)

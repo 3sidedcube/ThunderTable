@@ -79,7 +79,7 @@ extension InputTextFieldRow: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
-        nextHandler?(textField)
+        _nextHandler?(textField)
         return false
     }
 }
