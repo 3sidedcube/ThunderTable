@@ -420,14 +420,64 @@ open class TableViewController: UITableViewController {
             set(indexPath: indexPath, selected: false)
         }
     }
+	
+	//MARK - variable header/footer size
+	
+	private var headerTranslatesAutoResizingMask: Bool = false
+	private var footerTranslatesAutoResizingMask: Bool = false
+	
+	public func sizeHeaderToFit() {
+		
+		guard let headerView = tableView.tableHeaderView else { return }
+		
+		// Disable autoresizing mask into constraints to stop the view from being constrained to the height defined in IB
+		headerTranslatesAutoResizingMask = headerView.translatesAutoresizingMaskIntoConstraints
+		headerView.translatesAutoresizingMaskIntoConstraints = false
+		sizeToFit(view: headerView)
+		tableView.tableHeaderView = headerView
+		headerView.translatesAutoresizingMaskIntoConstraints = headerTranslatesAutoResizingMask
+	}
+	
+	public func sizeFooterToFit() {
+		
+		guard let footerView = tableView.tableFooterView else { return }
+		
+		// Disable autoresizing mask into constraints to stop the view from being constrained to the height defined in IB
+		footerTranslatesAutoResizingMask = footerView.translatesAutoresizingMaskIntoConstraints
+		footerView.translatesAutoresizingMaskIntoConstraints = false
+		sizeToFit(view: footerView)
+		tableView.tableFooterView = footerView
+		footerView.translatesAutoresizingMaskIntoConstraints = headerTranslatesAutoResizingMask
+	}
+	
+	private func sizeToFit(view: UIView) {
+		
+		// Because we've disabled translatesAutoresizingMaskIntoConstraints we need to add a temporary constraint for the width of the view
+		let width = view.bounds.width
+		let temporaryWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "[view(width)]", options: [], metrics: ["width": width], views: ["view": view])
+		view.addConstraints(temporaryWidthConstraints)
+		
+		// Now do the view height calculation
+		view.setNeedsLayout()
+		view.layoutIfNeeded()
+		
+		let size = view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+		let height = size.height
+		var frame = view.frame
+		
+		frame.size.height = height
+		view.frame = frame
+		
+		view.removeConstraints(temporaryWidthConstraints)
+	}
 }
 
 
 //MARK - Selection
 public extension TableViewController {
-    
+	
     internal func selectable(_ indexPath: IndexPath) -> Bool {
-        
+		
         let section = data[indexPath.section]
         let row = section.rows[indexPath.row]
         
