@@ -13,22 +13,22 @@ extension UILabel {
 	var paragraphStyle: NSParagraphStyle? {
 		set {
 			
-			if let _text = text, let style = newValue?.mutableCopy() as? NSMutableParagraphStyle {
+			if let text = text, let style = newValue?.mutableCopy() as? NSMutableParagraphStyle {
 				
 				var attributes = [String : Any]()
 				style.alignment = textAlignment
 				
-				if let _font = font {
-					attributes[NSFontAttributeName] = _font
+				if let font = font {
+					attributes[NSFontAttributeName] = font
 				}
 				
-				if let _textColor = textColor {
-					attributes[NSForegroundColorAttributeName] = _textColor
+				if let textColor = textColor {
+					attributes[NSForegroundColorAttributeName] = textColor
 				}
 				
 				attributes[NSParagraphStyleAttributeName] = paragraphStyle
 				
-				let attributedString = NSAttributedString(string: _text, attributes: attributes)
+				let attributedString = NSAttributedString(string: text, attributes: attributes)
 				attributedText = attributedString
 			}
 		}
@@ -77,16 +77,16 @@ extension Row {
 					// Find the new class name
 					classString = String(describing: superClass)
 					// Get the new nib name for the classes superClass
-					if let superNibName = classString.components(separatedBy: ".").last, let _path = bundle.path(forResource: superNibName, ofType: "nib") {
+					if let superNibName = classString.components(separatedBy: ".").last, let path = bundle.path(forResource: superNibName, ofType: "nib") {
 						// Update nibPath and nibName
-						nibPath = _path
+						nibPath = path
 						nibName = superNibName
 					}
 					cellClass = superClass
 				}
 			}
 			
-            guard let _ = nibPath else { return nil }
+            guard nibPath != nil else { return nil }
             let nib = UINib(nibName: nibName, bundle: bundle)
             return nib
         }
@@ -506,7 +506,7 @@ public extension TableViewController {
 			selectedIndexPath = indexPath
 		}
 			
-        if let _ = row as? InputRow, selected {
+        if row is InputRow, selected {
             let cell = tableView.cellForRow(at: indexPath)
             cell?.becomeFirstResponder()
         }
@@ -520,7 +520,7 @@ public extension TableViewController {
                 
                 for (rowIndex, row) in section.rows.enumerated() {
                     
-                    if let _ = row as? InputRow, rowIndex > indexPath.row {
+                    if row is InputRow, rowIndex > indexPath.row {
                         
                         let indexPath = IndexPath(row: rowIndex, section: sectionIndex)
                         tableView.scrollToRow(at: indexPath, at: .top, animated: true)

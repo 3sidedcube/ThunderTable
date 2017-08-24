@@ -60,10 +60,10 @@ open class InputTextViewRow: InputTableRow {
             textCell.textView.text = stringValue
             textCell.textView.textColor = UIColor.black
             
-        } else if let _value = value, _value as? NSNull == nil {
+        } else if let value = value, value as? NSNull == nil {
             
             textCell.textView.textColor = UIColor.black
-            textCell.textView.text = String(describing: _value)
+            textCell.textView.text = String(describing: value)
             
         } else {
             
@@ -82,9 +82,9 @@ extension InputTextViewRow: UITextViewDelegate {
             textView.text = stringValue
             textView.textColor = UIColor.black
             
-        } else if let _value = value, _value as? NSNull == nil {
+        } else if let value = value, value as? NSNull == nil {
             
-            textView.text = String(describing: _value)
+            textView.text = String(describing: value)
             textView.textColor = UIColor.black
             
         } else {
