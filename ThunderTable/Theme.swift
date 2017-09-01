@@ -90,6 +90,9 @@ open class Theme: NSObject {
 	/// A green colour
 	open var greenColor: UIColor = .green
 	
+	/// A light gray colour
+	open var lightGrayColor: UIColor = .lightGray
+	
 	/// A magenta colour
 	open var magentaColor: UIColor = .magenta
 	
