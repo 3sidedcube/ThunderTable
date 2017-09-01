@@ -22,7 +22,7 @@ open class InputTextViewRow: InputTableRow {
     
     open var isSecure: Bool = false
     
-    open override var cellClass: AnyClass? {
+    override open var cellClass: AnyClass? {
         return InputTextViewCell.self
     }
     
@@ -38,7 +38,7 @@ open class InputTextViewRow: InputTableRow {
         self.id = id
     }
     
-    open override func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+    override open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
         guard let textCell = cell as? InputTextViewCell else { return }
         

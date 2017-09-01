@@ -186,7 +186,7 @@ open class ThemeManager: NSObject {
     /// The shared instance theme manager
     public static let shared = ThemeManager()
     
-    private override init() {
+    override private init() {
         
     }
     

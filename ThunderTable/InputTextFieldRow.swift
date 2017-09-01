@@ -20,7 +20,7 @@ open class InputTextFieldRow: InputTableRow {
     
     open var autocapitalizationType: UITextAutocapitalizationType = .none
     
-    open override var cellClass: AnyClass? {
+    override open var cellClass: AnyClass? {
         return InputTextFieldViewCell.self
     }
     
@@ -36,7 +36,7 @@ open class InputTextFieldRow: InputTableRow {
         self.id = id
     }
     
-    open override func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+    override open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
         guard let textCell = cell as? InputTextFieldViewCell else { return }
         

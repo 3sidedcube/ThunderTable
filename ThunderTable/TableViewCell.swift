@@ -34,7 +34,7 @@ open class TableViewCell: UITableViewCell {
 		}
 	}
 	
-	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		
@@ -66,7 +66,7 @@ open class TableViewCell: UITableViewCell {
 		super.init(coder: aDecoder)
 	}
 	
-	open override func awakeFromNib() {
+	override open func awakeFromNib() {
 		
 		super.awakeFromNib()
 		nibBased = true
@@ -79,7 +79,7 @@ open class TableViewCell: UITableViewCell {
 		contentView.backgroundColor = ThemeManager.shared.theme.cellBackgroundColor
 	}
 	
-	open override func layoutSubviews() {
+	override open func layoutSubviews() {
 		
 		super.layoutSubviews()
 		if nibBased || cellTextLabel.constraints.count > 0 || cellDetailLabel.constraints.count > 0 || cellImageView.constraints.count > 0 {
@@ -176,7 +176,7 @@ open class TableViewCell: UITableViewCell {
 	}
 	
 	//This is really quite awful but it's the only way to get tableview to remove the 1px line at the top of sections on a group tableview when disabling cell seperators
-	open override func addSubview(_ view: UIView) {
+	override open func addSubview(_ view: UIView) {
 		
 		if !shouldDisplaySeparators && round(view.frame.height * UIScreen.main.scale) == 1 || round(view.frame.height) == 1 {
 			return

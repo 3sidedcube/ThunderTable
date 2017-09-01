@@ -121,7 +121,7 @@ open class TableViewController: UITableViewController {
 		})
 	}
     
-    open override func viewDidLoad() {
+    override open func viewDidLoad() {
         
         super.viewDidLoad()
         let defaultNib = UINib(nibName: "TableViewCell", bundle: Bundle(for: TableViewController.self))
@@ -278,7 +278,7 @@ open class TableViewController: UITableViewController {
         return cell
     }
     
-    open override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    override open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let row = data[indexPath.section].rows[indexPath.row]
         
@@ -291,7 +291,7 @@ open class TableViewController: UITableViewController {
     
     var dynamicHeightCells: [String: UITableViewCell] = [:]
     
-    open override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let row = data[indexPath.section].rows[indexPath.row]
         
@@ -395,13 +395,13 @@ open class TableViewController: UITableViewController {
     }
     */
 	
-	open override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	override open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		
 		let section = data[section]
 		return section.header
 	}
 	
-	open override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+	override open func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 		
 		let section = data[section]
 		return section.footer
@@ -409,13 +409,13 @@ open class TableViewController: UITableViewController {
 
     //MARK - Table View Delegate
     
-    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectable(indexPath) {
             set(indexPath: indexPath, selected: true)
         }
     }
     
-    open override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    override open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if selectable(indexPath) {
             set(indexPath: indexPath, selected: false)
         }

@@ -28,7 +28,7 @@ open class InputSliderRow: InputTableRow {
         self.title = title
     }
     
-    open override func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+    override open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
         guard let sliderCell = cell as? InputSliderViewCell else { return }
         

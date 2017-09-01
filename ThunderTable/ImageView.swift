@@ -29,7 +29,7 @@ private class ImageClosureWrapper {
 /// A subclass of ImageView to improve intrinsicContentSize behaviour
 public class ImageView: UIImageView {
 	
-	public override var intrinsicContentSize: CGSize {
+	override public var intrinsicContentSize: CGSize {
 		if finalSize == .zero {
 			
 			if super.intrinsicContentSize.width == -1.0 || super.intrinsicContentSize.height == -1.0 {
@@ -210,7 +210,7 @@ public extension UIImageView {
         requests = nil
     }
     
-    open override var intrinsicContentSize: CGSize {
+    override open var intrinsicContentSize: CGSize {
         return finalSize == CGSize.zero ? super.intrinsicContentSize : finalSize
     }
 }

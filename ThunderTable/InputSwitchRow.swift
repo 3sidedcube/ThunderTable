@@ -10,7 +10,7 @@ import UIKit
 
 open class InputSwitchRow: InputTableRow {
 
-    open override var cellClass: AnyClass? {
+    override open var cellClass: AnyClass? {
         return InputSwitchViewCell.self
     }
     
@@ -23,7 +23,7 @@ open class InputSwitchRow: InputTableRow {
         self.image = image
     }
     
-    open override func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+    override open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
         guard let switchCell = cell as? InputSwitchViewCell else { return }
         
