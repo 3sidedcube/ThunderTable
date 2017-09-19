@@ -135,7 +135,7 @@ open class Theme: NSObject {
     ///
     /// - returns:  A light font in the requested size
     open func lightFont(ofSize: CGFloat) -> UIFont {
-        return .systemFont(ofSize: ofSize, weight: UIFontWeightLight)
+        return .systemFont(ofSize: ofSize, weight: .light)
     }
     
     /// Returns a font of a required size
@@ -144,7 +144,7 @@ open class Theme: NSObject {
     ///
     /// - returns: A font in the requested size
     open func font(ofSize: CGFloat) -> UIFont {
-        return .systemFont(ofSize: ofSize, weight: UIFontWeightRegular)
+        return .systemFont(ofSize: ofSize, weight: .regular)
     }
     
     /// Returns a medium font of a required size
@@ -153,7 +153,7 @@ open class Theme: NSObject {
     ///
     /// - returns: A medium font in the requested size
     open func mediumFont(ofSize: CGFloat) -> UIFont {
-        return .systemFont(ofSize: ofSize, weight: UIFontWeightMedium)
+        return .systemFont(ofSize: ofSize, weight: .medium)
     }
     
     /// Returns a bold font of a required size
@@ -162,7 +162,7 @@ open class Theme: NSObject {
     ///
     /// - returns: A bold font in the requested size
     open func boldFont(ofSize: CGFloat) -> UIFont {
-        return UIFont.systemFont(ofSize: ofSize, weight: UIFontWeightBold)
+        return UIFont.systemFont(ofSize: ofSize, weight: .bold)
     }
     
     /// The font for UILabel's throughout the app

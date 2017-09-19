@@ -56,7 +56,7 @@ open class InputSliderRow: InputTableRow {
         }
     }
     
-    func handleChange(sender: UISlider) {
+    @objc func handleChange(sender: UISlider) {
         set(value: sender.value, sender: sender)
     }
 }

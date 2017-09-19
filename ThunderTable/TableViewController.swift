@@ -15,18 +15,18 @@ extension UILabel {
 			
 			if let text = text, let style = newValue?.mutableCopy() as? NSMutableParagraphStyle {
 				
-				var attributes = [String : Any]()
+				var attributes = [NSAttributedStringKey : Any]()
 				style.alignment = textAlignment
 				
 				if let font = font {
-					attributes[NSFontAttributeName] = font
+					attributes[.font] = font
 				}
 				
 				if let textColor = textColor {
-					attributes[NSForegroundColorAttributeName] = textColor
+					attributes[.foregroundColor] = textColor
 				}
 				
-				attributes[NSParagraphStyleAttributeName] = paragraphStyle
+				attributes[.paragraphStyle] = paragraphStyle
 				
 				let attributedString = NSAttributedString(string: text, attributes: attributes)
 				attributedText = attributedString

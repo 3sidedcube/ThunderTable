@@ -42,7 +42,7 @@ open class InputSwitchRow: InputTableRow {
         switchCell.cellDetailLabel.isHidden = subtitle == nil
     }
     
-    func handleChange(sender: UISwitch) {
+    @objc func handleChange(sender: UISwitch) {
         set(value: sender.isOn, sender: sender)
     }
 }
