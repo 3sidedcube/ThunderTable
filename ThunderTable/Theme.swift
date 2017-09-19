@@ -19,7 +19,7 @@ open class Theme: NSObject {
     //MARK: Colours
     
     /// The main tint colour for the app. This colour is generally used as the window tint colour and for tinting any UI elements throughout the app such as images and navigation bars
-    open var mainColor: UIColor = UIColor(red: 0.894, green: 0.000, blue: 0.010, alpha: 1.0)
+    @objc open var mainColor: UIColor = UIColor(red: 0.894, green: 0.000, blue: 0.010, alpha: 1.0)
     
     /// The background colour for all table view cells throughout the app
     open var cellBackgroundColor: UIColor = .white
@@ -37,10 +37,10 @@ open class Theme: NSObject {
     open var cellDetailParagraphStyle: NSParagraphStyle?
     
     /// A secondary colour that compliments the main colour.
-    open var secondaryColor: UIColor = UIColor(white: 0.25, alpha: 1.0)
+    @objc open var secondaryColor: UIColor = UIColor(white: 0.25, alpha: 1.0)
     
     /// The colour of backgrounds throughout the app, particularly in table views
-    open var backgroundColor: UIColor = .groupTableViewBackground
+    @objc open var backgroundColor: UIColor = .groupTableViewBackground
     
     /// The standard colour for free text
     open var freeTextColor: UIColor {
@@ -54,13 +54,13 @@ open class Theme: NSObject {
     open var tableSeperatorColor: UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1.0)
     
     /// The colour of the text for UILabel's throughout the app
-    open var primaryLabelColor: UIColor = .black
+    @objc open var primaryLabelColor: UIColor = .black
     
     /// The colour of the text for alternative UILabel's throughout the app
-    open var secondaryLabelColor: UIColor = .lightGray
+    @objc open var secondaryLabelColor: UIColor = .lightGray
     
     /// The colour to be used for title text in a UINavigationBar
-    open var titleTextColor: UIColor = .black
+    @objc open var titleTextColor: UIColor = .black
     
     /// The colour of the text label in a disabled UITableViewCell
     open var disabledCellTextColor: UIColor = UIColor(white: 0.6, alpha: 0.6)
@@ -112,10 +112,10 @@ open class Theme: NSObject {
 	open var whiteColor: UIColor = .white
 	
     /// The colour to be used in the track of UIProgressBar
-    open var progressTrackTintColour: UIColor = UIColor(white: 0.683, alpha: 1.0)
+    @objc open var progressTrackTintColour: UIColor = UIColor(white: 0.683, alpha: 1.0)
     
     /// The colour to be used for a UIProgressBar fill colour
-    open var progressTintColour: UIColor = .white
+    @objc open var progressTintColour: UIColor = .white
     
     /// The colour to be used as the navigation bar background colour
     open var navigationBarBackgroundColor: UIColor {
@@ -184,9 +184,10 @@ open class Theme: NSObject {
 open class ThemeManager: NSObject {
     
     /// The theme to be used by the app to style all UIs
-    public var theme: Theme = Theme()
+    @objc public var theme: Theme = Theme()
     
     /// The shared instance theme manager
+	@objc(sharedManager)
     public static let shared = ThemeManager()
     
     override private init() {

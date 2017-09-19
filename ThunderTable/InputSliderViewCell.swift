@@ -14,7 +14,7 @@ open class InputSliderViewCell: TableViewCell {
     
     @IBOutlet weak public var slider: UISlider!
     
-    open func updateLabel(sender: UISlider) {
+    @objc open func updateLabel(sender: UISlider) {
         valueLabel.text = "\(sender.value)"
     }
 }
