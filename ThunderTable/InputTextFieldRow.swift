@@ -6,6 +6,8 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
+public typealias ValidCharacterHandler = (_ string: String) -> Bool
+
 open class InputTextFieldRow: InputTableRow {
 
     open var placeholder: String?
@@ -13,7 +15,9 @@ open class InputTextFieldRow: InputTableRow {
     open var keyboardType: UIKeyboardType
     
     open var returnKeyType: UIReturnKeyType
-    
+	
+	open var allowCharacterHandler: ValidCharacterHandler?
+
     open var isSecure: Bool = false
     
     open var autocorrectionType: UITextAutocorrectionType = .default
@@ -67,6 +71,11 @@ open class InputTextFieldRow: InputTableRow {
 extension InputTextFieldRow: UITextFieldDelegate {
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		
+		// If our allow handler says no, then ignore the change that was made
+		if let allowHandler = allowCharacterHandler, !allowHandler(string) {
+			return false
+		}
         
         var editedString = textField.text as NSString?
         editedString = editedString?.replacingCharacters(in: range, with: string) as NSString?
