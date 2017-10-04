@@ -209,9 +209,5 @@ public extension UIImageView {
         })
         requests = nil
     }
-    
-    override open var intrinsicContentSize: CGSize {
-        return finalSize == CGSize.zero ? super.intrinsicContentSize : finalSize
-    }
 }
 
