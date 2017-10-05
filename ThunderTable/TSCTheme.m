@@ -103,7 +103,7 @@
 
 - (UIFont *)lightFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"HelveticaNeue-Light" size:size];
+	return [UIFont systemFontOfSize:size weight:UIFontWeightLight];
 }
 
 - (UIFont *)fontOfSize:(CGFloat)size
@@ -113,7 +113,7 @@
 
 - (UIFont *)mediumFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"HelveticaNeue-Medium" size:size];
+	return [UIFont systemFontOfSize:size weight:UIFontWeightMedium];
 }
 
 - (UIFont *)boldFontOfSize:(CGFloat)size
