@@ -481,7 +481,7 @@ public extension TableViewController {
         let section = data[indexPath.section]
         let row = section.rows[indexPath.row]
         
-        return row.selectionHandler != nil || section.selectionHandler != nil || (row as? InputRow) != nil || !row.remainSelected
+        return row.selectionHandler != nil || section.selectionHandler != nil || (row as? InputRow) != nil
     }
     
     internal func set(indexPath: IndexPath, selected: Bool) {
