@@ -283,7 +283,7 @@
     self.tableView.scrollIndicatorInsets = contentInsets;
 }
 
-- (void)dynamicContentSizeDidChange(NSNotification *)sender
+- (void)dynamicContentSizeDidChange:(NSNotification *)sender
 {
 	if (self.redrawWithDynamicContentSizeChange) {
 		[self.tableView reloadData];
