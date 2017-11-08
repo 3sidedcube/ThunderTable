@@ -12,7 +12,7 @@
 
 + (instancetype)sectionWithItems:(NSArray *)items
 {
-    TSCTableSection *section = [[TSCTableSection alloc] init];
+    TSCTableSection *section = [[self alloc] init];
     section.items = items;
     
     return section;
@@ -20,7 +20,7 @@
 
 + (instancetype)sectionWithTitle:(NSString *)title footer:(NSString *)footer items:(NSArray *)items target:(id)target selector:(SEL)selector
 {
-    TSCTableSection *section = [[TSCTableSection alloc] init];
+    TSCTableSection *section = [[self alloc] init];
     section.title = title;
     section.items = items;
     section.target = target;
