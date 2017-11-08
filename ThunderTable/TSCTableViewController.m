@@ -147,7 +147,7 @@
         self.registeredCellClasses = [NSMutableArray array];
         self.dynamicHeightCells = [NSMutableDictionary dictionary];
         self.shouldMakeFirstTextFieldFirstResponder = true;
-		self.redrawWithDynamicContentChange = true;
+		self.redrawWithDynamicContentSizeChange = true;
     }
     
     return self;
