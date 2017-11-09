@@ -301,9 +301,9 @@
     if (refreshEnabled) {
         self.refreshControl = [[UIRefreshControl alloc] init];
         [self.refreshControl addTarget:self action:@selector(handleRefresh) forControlEvents:UIControlEventValueChanged];
-        [self.tableView addSubview:self.refreshControl];
+		self.tableView.refreshControl = self.refreshControl;
     } else {
-        [self.refreshControl removeFromSuperview];
+		self.tableView.refreshControl = nil;
         self.refreshControl = nil;
     }
 }
