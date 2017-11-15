@@ -249,6 +249,8 @@ open class TableViewController: UITableViewController {
         } else if let cellClass = row.cellClass {
             tableView.register(cellClass, forCellReuseIdentifier: identifier)
         }
+		
+		registeredClasses.append(identifier)
     }
     
     // MARK: - TableView data source
@@ -290,7 +292,7 @@ open class TableViewController: UITableViewController {
         if identifier == "Cell" {
             print("You didn't provide a cellClass or prototypeIdentifier for \(row), falling back to our default cell class")
         }
-        
+		
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
 
         configure(cell: cell, with: row, at: indexPath)
