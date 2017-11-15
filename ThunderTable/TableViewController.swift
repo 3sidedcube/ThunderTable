@@ -127,6 +127,26 @@ open class TableViewController: UITableViewController {
         let defaultNib = UINib(nibName: "TableViewCell", bundle: Bundle(for: TableViewController.self))
         tableView.register(defaultNib, forCellReuseIdentifier: "Cell")
     }
+	
+	private var dynamicChangeObserver: NSObjectProtocol?
+	
+	public var shouldRedrawWithContentSizeChange = true
+	
+	open override func viewWillAppear(_ animated: Bool) {
+		
+		super.viewWillAppear(animated)
+		
+		NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: self, queue: .main) { [weak self] (notification) in
+			guard let strongSelf = self, strongSelf.shouldRedrawWithContentSizeChange else { return }
+			strongSelf.tableView.reloadData()
+		}
+	}
+	
+	open override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		guard let dynamicChangeObserver = dynamicChangeObserver else { return }
+		NotificationCenter.default.removeObserver(dynamicChangeObserver)
+	}
     
     public var inputDictionary: [String: Any?]? {
         
