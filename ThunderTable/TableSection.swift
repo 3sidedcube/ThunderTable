@@ -97,7 +97,7 @@ open class TableSection: Section {
 			
 			var firstLetter = "?"
 			if let rowTitle = row.title, !rowTitle.isEmpty {
-				firstLetter = String(rowTitle.characters.prefix(1)).uppercased()
+				firstLetter = String(rowTitle.prefix(1)).uppercased()
 			}
 			var subItems = sortedDict[firstLetter] ?? []
 			subItems.append(row)
