@@ -80,7 +80,7 @@ open class TableSection: Section {
 		
 		let sortedAlphabetically = self.alphabeticallySort(rows: rows)
 		let sortedKeys = sortedAlphabetically.keys.sorted { (stringA, stringB) -> Bool in
-			return stringA > stringB
+			return stringB > stringA
 		}
 			
 		return sortedKeys.flatMap({key -> TableSection? in
