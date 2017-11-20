@@ -135,6 +135,9 @@ open class InputTableRow: NSObject, InputRow {
         
         self.id = id
         self.required = required
+		
+		selectionStyle = UITableViewCellSelectionStyle.none
+		accessoryType = UITableViewCellAccessoryType.none
     }
     
     //MARK: - Targets and Selectors
