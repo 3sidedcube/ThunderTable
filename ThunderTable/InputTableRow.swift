@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias ValueChangeCallback = (_ value: Any?) -> (Void)
+public typealias ValueChangeCallback = (_ value: Any?, _ sender: UIControl?) -> (Void)
 
 /// This protocol can be used to represent a `Row` in a `TableViewController` which can receive user input
 public protocol InputRow: Row {
@@ -124,7 +124,7 @@ open class InputTableRow: NSObject, InputRow {
         
         let events = UIControlEvents.valueChanged
         self.value = value
-        self.valueChangeHandler?(value)
+        self.valueChangeHandler?(value, sender)
         
         callbacks(for: events).forEach { (callback) in
             callback.callback(sender)
