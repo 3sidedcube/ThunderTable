@@ -10,6 +10,8 @@ import Foundation
 
 public typealias SelectionHandler = (_ row: Row, _ selected: Bool, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
 
+public typealias EditHandler = (_ row: Row, _ editingStyle: UITableViewCellEditingStyle, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
+
 public protocol Section {
     
     var rows: [Row] { get set }
@@ -17,6 +19,8 @@ public protocol Section {
     var header: String? { get set }
     
     var footer: String? { get set }
+	
+	var editHandler: EditHandler? { get set }
     
     var selectionHandler: SelectionHandler? { get set }
 }
@@ -43,6 +47,13 @@ public extension Section {
 		}
 		set {}
     }
+	
+	var editHandler: EditHandler? {
+		get {
+			return nil
+		}
+		set {}
+	}
     
     var selectionHandler: SelectionHandler? {
 		get {
@@ -61,6 +72,8 @@ open class TableSection: Section {
     open var rows: [Row]
     
     open var selectionHandler: SelectionHandler?
+	
+	open var editHandler: EditHandler?
     
     public init(rows: [Row], header: String? = nil, footer: String? = nil, selectionHandler: SelectionHandler? = nil) {
         

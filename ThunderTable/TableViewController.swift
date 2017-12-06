@@ -268,7 +268,41 @@ open class TableViewController: UITableViewController {
         return section.rows.count
     }
 
-    
+	override open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+		let row = data[indexPath.section].rows[indexPath.row]
+		return row.isEditable
+	}
+	
+	override open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+		
+		let section = data[indexPath.section]
+		let row = section.rows[indexPath.row]
+		
+		// Row edit handler overrides section edit handler
+		if let rowEditHandler = row.editHandler {
+			rowEditHandler(row, editingStyle, indexPath, tableView)
+		} else if let sectionEditHandler = section.editHandler {
+			sectionEditHandler(row, editingStyle, indexPath, tableView)
+		}
+	}
+	
+	override open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		//TODO: Add implementation via `Row` or `Section` protocol
+		return nil
+	}
+	
+	@available(iOS 11.0, *)
+	override open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+		//TODO: Add implementation via `Row` or `Section` protocol
+		return nil
+	}
+	
+	@available(iOS 11.0, *)
+	override open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+		//TODO: Add implementation via `Row` or `Section` protocol
+		return nil
+	}
+		
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = data[indexPath.section].rows[indexPath.row]
@@ -380,42 +414,6 @@ open class TableViewController: UITableViewController {
         cellHeight = ceil(cellHeight);
         return cellHeight;
     }
- 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 	
 	override open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		
@@ -517,9 +515,6 @@ public extension TableViewController {
         } else if let sectionSelectionHandler = section.selectionHandler {
             sectionSelectionHandler(row, selected, indexPath, tableView)
         }
-		
-		if selected {
-		}
 		
         // Deselect it if remain selected is false
         if selected && !row.remainSelected {

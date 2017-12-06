@@ -54,6 +54,11 @@ public protocol Row {
 	///
 	/// Defaults to true
 	var displaySeparators: Bool { get set }
+	
+	/// Whether the row is editable (Shows delete/actions) on cell swipe
+	///
+	/// Defaults to false
+	var isEditable: Bool { get set }
     
     /// The class for the `UITableViewCell` subclass for the cell
     var cellClass: AnyClass? { get }
@@ -62,8 +67,11 @@ public protocol Row {
 	/// file, which this row will use
     var prototypeIdentifier: String? { get }
     
-    /// A function which will be called when the row is pressed on in the table view
+    /// A closure which will be called when the row is pressed on in the table view
     var selectionHandler: SelectionHandler? { get set }
+	
+	/// A closure which will be called when the row is edited in the table view
+	var editHandler: EditHandler? { get set }
     
     /// The estimated height of the row
 	///
@@ -125,6 +133,11 @@ extension Row {
 		set {}
 	}
 	
+	public var isEditable: Bool {
+		get { return false }
+		set {}
+	}
+	
 	public var cellStyle: UITableViewCellStyle? {
 		get { return nil }
 		set {}
@@ -171,6 +184,11 @@ extension Row {
 		set {}
     }
 	
+	public var editHandler: EditHandler? {
+		get { return nil }
+		set {}
+	}
+	
 	public var useNibSuperclass: Bool {
 		return true
 	}
@@ -198,6 +216,10 @@ open class TableRow: Row {
 	open var cellStyle: UITableViewCellStyle?
 	
 	open var displaySeparators: Bool = true
+	
+	public var isEditable: Bool = false
+	
+	public var editHandler: EditHandler?
     
     open var title: String?
     
