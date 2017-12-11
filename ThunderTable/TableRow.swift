@@ -224,6 +224,10 @@ open class TableRow: Row {
 	public var editHandler: EditHandler?
     
     open var title: String?
+	
+	open var titleTextColor: UIColor = ThemeManager.shared.theme.cellTitleColor
+	
+	open var subtitleTextColor: UIColor = ThemeManager.shared.theme.cellDetailColor
     
     open var subtitle: String?
     
@@ -278,15 +282,22 @@ open class TableRow: Row {
 	}
     
     open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+		
+		guard let tableViewCell = cell as? TableViewCell else {
+			return
+		}
         
-        if let cell = cell as? TableViewCell, let imageView = cell.cellImageView {
-            
+        if let imageView = tableViewCell.cellImageView {
+			
             if image == nil && imageURL == nil {
                 imageView.isHidden = true
             } else {
                 imageView.isHidden = false
             }
         }
+		
+		tableViewCell.cellTextLabel?.textColor = titleTextColor
+		tableViewCell.cellDetailLabel?.textColor = subtitleTextColor
     }
 	
 	public func height(constrainedTo size: CGSize, in tableView: UITableView) -> CGFloat? {

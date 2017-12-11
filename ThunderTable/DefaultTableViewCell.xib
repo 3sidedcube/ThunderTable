@@ -19,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EmF-Up-2nr">
-                        <rect key="frame" x="12" y="12" width="295" height="66.5"/>
+                        <rect key="frame" x="0.0" y="12" width="0.0" height="66.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wlx-pT-sjm" customClass="ImageView" customModule="ThunderTable" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="66.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="751" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAl-KY-1wa">
-                                <rect key="frame" x="-12" y="0.0" width="0.0" height="66.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="66.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
