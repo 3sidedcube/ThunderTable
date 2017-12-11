@@ -44,7 +44,7 @@ open class InputTextViewRow: InputTableRow {
         
         super.configure(cell: cell, at: indexPath, in: tableViewController)
         
-        textCell.cellTextLabel.isHidden = title == nil
+        textCell.cellTextLabel?.isHidden = title == nil
         
         textCell.textViewHeightConstraint.constant = textViewHeight
         textCell.textView.keyboardType = keyboardType

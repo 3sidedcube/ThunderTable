@@ -64,7 +64,7 @@ open class InputTextFieldRow: InputTableRow {
             textCell.textField.text = String(describing: value)
         }
         
-        textCell.cellTextLabel.isHidden = title == nil
+        textCell.cellTextLabel?.isHidden = title == nil
     }
 }
 

@@ -38,7 +38,7 @@ open class InputSliderRow: InputTableRow {
         sliderCell.slider.addTarget(self, action: #selector(handleChange(sender:)), for: .valueChanged)
         sliderCell.slider.addTarget(sliderCell, action: #selector(InputSliderViewCell.updateLabel(sender:)), for: .valueChanged)
         
-        sliderCell.cellTextLabel.isHidden = title == nil
+        sliderCell.cellTextLabel?.isHidden = title == nil
         
         if let doubleValue = value as? Float {
             sliderCell.slider.value = doubleValue

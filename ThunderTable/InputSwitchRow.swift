@@ -38,8 +38,8 @@ open class InputSwitchRow: InputTableRow {
             switchCell.switch.isOn = false
         }
         
-        switchCell.cellTextLabel.isHidden = title == nil
-        switchCell.cellDetailLabel.isHidden = subtitle == nil
+        switchCell.cellTextLabel?.isHidden = title == nil
+        switchCell.cellDetailLabel?.isHidden = subtitle == nil
     }
     
     @objc func handleChange(sender: UISwitch) {

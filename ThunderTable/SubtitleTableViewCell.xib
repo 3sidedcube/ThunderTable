@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="91" id="kCh-GQ-elx" customClass="SubtitleTableViewCell" customModule="ThunderTable" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kCh-GQ-elx" id="RRW-1R-hSP">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="90.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tHE-AG-P02">
+                        <rect key="frame" x="0.0" y="12" width="0.0" height="66.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H0l-G2-rhk" customClass="ImageView" customModule="ThunderTable" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="66.5"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Rcx-RR-gWc">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="66.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="751" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKr-qR-Qvx">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Subtitle" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVg-Gp-w9u">
+                                        <rect key="frame" x="0.0" y="46" width="0.0" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="tHE-AG-P02" secondAttribute="trailing" constant="12" id="FGb-aR-gmS"/>
+                    <constraint firstAttribute="bottom" secondItem="tHE-AG-P02" secondAttribute="bottom" constant="12" id="Gvd-sm-kP5"/>
+                    <constraint firstItem="tHE-AG-P02" firstAttribute="top" secondItem="RRW-1R-hSP" secondAttribute="top" constant="12" id="aFo-9q-qyB"/>
+                    <constraint firstItem="tHE-AG-P02" firstAttribute="leading" secondItem="RRW-1R-hSP" secondAttribute="leading" constant="12" id="rvJ-Ov-82E"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cellDetailLabel" destination="DVg-Gp-w9u" id="Wt4-9o-1aJ"/>
+                <outlet property="cellImageView" destination="H0l-G2-rhk" id="Bbf-Hd-3db"/>
+                <outlet property="cellTextLabel" destination="dKr-qR-Qvx" id="TPj-1v-o7n"/>
+            </connections>
+            <point key="canvasLocation" x="-182" y="0.5"/>
+        </tableViewCell>
+    </objects>
+</document>

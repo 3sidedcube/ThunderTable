@@ -10,11 +10,11 @@ import UIKit
 
 open class TableViewCell: UITableViewCell {
 
-    @IBOutlet open var cellImageView: UIImageView!
+    @IBOutlet open var cellImageView: UIImageView?
     
-    @IBOutlet open var cellTextLabel: UILabel!
+    @IBOutlet open var cellTextLabel: UILabel?
     
-    @IBOutlet open var cellDetailLabel: UILabel!
+    @IBOutlet open var cellDetailLabel: UILabel?
 	
 	private var nibBased = false
 	
@@ -43,22 +43,22 @@ open class TableViewCell: UITableViewCell {
 		if !nibBased {
 			
 			cellImageView = UIImageView();
-			contentView.addSubview(cellImageView)
+			contentView.addSubview(cellImageView!)
 			
 			cellTextLabel = UILabel()
-			cellTextLabel.numberOfLines = 0
-			cellTextLabel.backgroundColor = .clear
-			cellTextLabel.numberOfLines = 0;
-			cellTextLabel.font = ThemeManager.shared.theme.cellTitleFont
-			cellTextLabel.textColor = ThemeManager.shared.theme.cellTitleColor
+			cellTextLabel?.numberOfLines = 0
+			cellTextLabel?.backgroundColor = .clear
+			cellTextLabel?.numberOfLines = 0;
+			cellTextLabel?.font = ThemeManager.shared.theme.cellTitleFont
+			cellTextLabel?.textColor = ThemeManager.shared.theme.cellTitleColor
 			
-			contentView.addSubview(cellTextLabel)
+			contentView.addSubview(cellTextLabel!)
 			
 			cellDetailLabel = UILabel()
-			cellDetailLabel.numberOfLines = 0;
-			cellDetailLabel.font = ThemeManager.shared.theme.cellDetailFont
-			cellDetailLabel.textColor = ThemeManager.shared.theme.cellDetailColor
-			contentView.addSubview(cellDetailLabel)
+			cellDetailLabel?.numberOfLines = 0;
+			cellDetailLabel?.font = ThemeManager.shared.theme.cellDetailFont
+			cellDetailLabel?.textColor = ThemeManager.shared.theme.cellDetailColor
+			contentView.addSubview(cellDetailLabel!)
 		}
 	}
 	
@@ -82,7 +82,13 @@ open class TableViewCell: UITableViewCell {
 	override open func layoutSubviews() {
 		
 		super.layoutSubviews()
-		if nibBased || cellTextLabel.constraints.count > 0 || cellDetailLabel.constraints.count > 0 || cellImageView.constraints.count > 0 {
+		
+		// Don't layout manually if is marked as nib based, or if none of the root labels/image
+		// views are created or have constraints
+		guard !nibBased,
+			let cellTextLabel = cellTextLabel, cellTextLabel.constraints.isEmpty,
+			let cellDetailLabel = cellDetailLabel, cellDetailLabel.constraints.isEmpty,
+			let cellImageView = cellImageView, cellImageView.constraints.isEmpty else {
 			return
 		}
 		
@@ -111,21 +117,24 @@ open class TableViewCell: UITableViewCell {
 		
 		// Only set the center if we have superview to avoid breaking automatic cell height calculations
 		if superview != nil {
-			cellImageView.center = CGPoint(x: cellImageView.center.x, y: max(imageView != nil ? imageView!.frame.height/2 : 0, contentView.center.y))			
+			cellImageView.center = CGPoint(x: cellImageView.center.x, y: max(imageView != nil ? imageView!.frame.height/2 : 0, contentView.center.y))
 		}
 	}
 	
 	private var edgeInsets: UIEdgeInsets {
 		
 		var leftIndentation: CGFloat = max(indentationWidth * CGFloat(indentationLevel), 12);
-		if cellImageView.image != nil {
-			leftIndentation = cellImageView.frame.maxX + leftIndentation;
+		if cellImageView?.image != nil {
+			leftIndentation = cellImageView!.frame.maxX + leftIndentation;
 		}
 		let insets = UIEdgeInsets(top: 8, left: leftIndentation, bottom: 0, right: 12)
 		return insets;
 	}
 	
 	private func valueLayout() {
+		
+		guard let cellTextLabel = cellTextLabel else { return }
+		guard let cellDetailLabel = cellDetailLabel else { return }
 		
 		let textLabelSize = cellTextLabel.sizeThatFits(CGSize(width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: CGFloat.greatestFiniteMagnitude))
 		var textLabelFrame = CGRect(x: edgeInsets.left, y: edgeInsets.top, width: textLabelSize.width, height: textLabelSize.height)
@@ -144,11 +153,14 @@ open class TableViewCell: UITableViewCell {
 			remainder.origin.y = self.contentView.frame.size.height / 2 - remainder.size.height / 2;
 		}
 		
-		self.cellTextLabel.frame = textLabelFrame.integral;
-		self.cellDetailLabel.frame = remainder.integral;
+		self.cellTextLabel?.frame = textLabelFrame.integral;
+		self.cellDetailLabel?.frame = remainder.integral;
 	}
 	
 	private func subtitleLayout() {
+		
+		guard let cellTextLabel = cellTextLabel else { return }
+		guard let cellDetailLabel = cellDetailLabel else { return }
 		
 		let textLabelSize = cellTextLabel.sizeThatFits(CGSize(width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: CGFloat.greatestFiniteMagnitude))
 		var textLabelFrame = CGRect(x: edgeInsets.left, y: edgeInsets.top, width: contentView.frame.width - edgeInsets.left - edgeInsets.right, height: textLabelSize.height)
@@ -162,7 +174,7 @@ open class TableViewCell: UITableViewCell {
 			textLabelFrame.origin.y = contentView.frame.height / 2 - textLabelFrame.height / 2
 			
 		// If image view is larger than both labels, put together then centre them
-		} else if cellImageView.frame.height >= detailLabelFrame.maxY - textLabelFrame.minY {
+		} else if let cellImageView = cellImageView, cellImageView.frame.height >= detailLabelFrame.maxY - textLabelFrame.minY {
 			
 			var compoundRect = CGRect(x: textLabelFrame.minX, y: 0, width: textLabelFrame.width, height: detailLabelFrame.maxY - textLabelFrame.minY)
 			compoundRect.origin.y = contentView.frame.height / 2 - compoundRect.height / 2
@@ -171,8 +183,8 @@ open class TableViewCell: UITableViewCell {
 			detailLabelFrame.origin.y = textLabelFrame.maxY
 		}
 
-		cellTextLabel.frame = (cellTextLabel.text == nil || cellTextLabel.text!.replacingOccurrences(of: " ", with: "").isEmpty) ? .zero : textLabelFrame.integral
-		cellDetailLabel.frame = (cellDetailLabel.text == nil || cellDetailLabel.text!.replacingOccurrences(of: " ", with: "").isEmpty) ? .zero : detailLabelFrame.integral
+		self.cellTextLabel?.frame = (cellTextLabel.text == nil || cellTextLabel.text!.replacingOccurrences(of: " ", with: "").isEmpty) ? .zero : textLabelFrame.integral
+		self.cellDetailLabel?.frame = (cellDetailLabel.text == nil || cellDetailLabel.text!.replacingOccurrences(of: " ", with: "").isEmpty) ? .zero : detailLabelFrame.integral
 	}
 	
 	//This is really quite awful but it's the only way to get tableview to remove the 1px line at the top of sections on a group tableview when disabling cell seperators

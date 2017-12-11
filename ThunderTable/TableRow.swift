@@ -25,6 +25,8 @@ public protocol Row {
 	var selectionStyle: UITableViewCellSelectionStyle? { get set }
 	
 	/// The cell style of the cell for this row
+	///
+	/// - Important: This will only take affect if you directly use TableRow, or subclass `TableViewCell` but don't use a xib based layout and return false from `useNibSuperclass`.
 	var cellStyle: UITableViewCellStyle? { get set }
 	
     /// A string to be displayed as the title for the row
@@ -246,7 +248,17 @@ open class TableRow: Row {
 	open var accessoryType: UITableViewCellAccessoryType?
     
     open var cellClass: AnyClass? {
-        return TableViewCell.self
+		guard let cellStyle = cellStyle else { return TableViewCell.self }
+		switch cellStyle {
+		case .default:
+			return DefaultTableViewCell.self
+		case .subtitle:
+			return SubtitleTableViewCell.self
+		case .value1:
+			return Value1TableViewCell.self
+		case .value2:
+			return TableViewCell.self
+		}
     }
     
     open var estimatedHeight: CGFloat? {
