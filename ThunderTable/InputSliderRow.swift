@@ -8,6 +8,12 @@
 
 import UIKit
 
+/// A row which displays a `UISlider` and label displaying it's value
+///
+/// - Important: If you use the valueChangeHandler on this row, and want to use the
+/// sender part of that closure, make sure to use `correctedValue` rather than `value`
+/// due to the custom implementation of UISlider allowing for non-integer steps.
+/// This means `sender.value !== value` in that closure!
 open class InputSliderRow: InputTableRow {
     
     override open var cellClass: AnyClass? {
@@ -17,11 +23,14 @@ open class InputSliderRow: InputTableRow {
     open var minValue: Float
     
     open var maxValue: Float
+	
+	open var interval: Float
     
     public init(title: String?, minValue: Float, maxValue: Float, id: String, required: Bool) {
         
         self.minValue = minValue
         self.maxValue = maxValue
+		self.interval = 1.0
         
         super.init(id: id, required: required)
         
@@ -39,16 +48,17 @@ open class InputSliderRow: InputTableRow {
         sliderCell.slider.addTarget(sliderCell, action: #selector(InputSliderViewCell.updateLabel(sender:)), for: .valueChanged)
         
         sliderCell.cellTextLabel?.isHidden = title == nil
+		sliderCell.slider.interval = interval
         
         if let doubleValue = value as? Float {
-            sliderCell.slider.value = doubleValue
+            sliderCell.slider.correctedValue = doubleValue
         } else {
-            sliderCell.slider.value = minValue
+            sliderCell.slider.correctedValue = minValue
         }
-        
-        sliderCell.slider.maximumValue = maxValue
+		
+        sliderCell.slider.correctedMaximumValue = maxValue
         sliderCell.slider.minimumValue = minValue
-        
+		
         if let value = value {
             sliderCell.valueLabel.text = "\(value)"
         } else {
@@ -56,7 +66,7 @@ open class InputSliderRow: InputTableRow {
         }
     }
     
-    @objc func handleChange(sender: UISlider) {
-        set(value: sender.value, sender: sender)
+    @objc func handleChange(sender: IntervalSlider) {
+        set(value: sender.correctedValue, sender: sender)
     }
 }
