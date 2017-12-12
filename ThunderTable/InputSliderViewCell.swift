@@ -8,6 +8,55 @@
 
 import UIKit
 
+@IBDesignable internal class PaddedLabel: UILabel {
+	
+	/**
+	The left edge insets of the label
+	*/
+	@IBInspectable internal var leftInset: CGFloat = 0
+	
+	/**
+	The right edge insets of the label
+	*/
+	@IBInspectable internal var rightInset: CGFloat = 0
+	
+	/**
+	The top edge insets of the label
+	*/
+	@IBInspectable internal var topInset: CGFloat = 0
+	
+	/**
+	The bottom edge insets of the label
+	*/
+	@IBInspectable internal var bottomInset: CGFloat = 0
+	
+	private var edgeInsets: UIEdgeInsets {
+		get {
+			return UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+		}
+	}
+	
+	override func drawText(in rect: CGRect) {
+		super.drawText(in: UIEdgeInsetsInsetRect(rect, edgeInsets))
+	}
+	
+	override func sizeThatFits(_ size: CGSize) -> CGSize {
+		
+		var adjSize = super.sizeThatFits(size)
+		adjSize.width += leftInset + rightInset
+		adjSize.height += topInset + bottomInset
+		
+		return adjSize
+	}
+	
+	override var intrinsicContentSize: CGSize {
+		var superSize = super.intrinsicContentSize
+		superSize.width += leftInset + rightInset
+		superSize.height += topInset + bottomInset
+		return superSize
+	}
+}
+
 /// A subclass of `UISlider` which allows custom intervals between maximumValue and minimumValue.
 ///
 /// This is achieved by providing the conversion variable, `correctedValue` which should be used in place of `value`

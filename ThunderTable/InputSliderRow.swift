@@ -49,10 +49,14 @@ open class InputSliderRow: InputTableRow {
         
         sliderCell.cellTextLabel?.isHidden = title == nil
 		
-		// Order of setting these is important, as they all rely on interval
 		sliderCell.slider.interval = interval
 		sliderCell.slider.minimumValue = minValue
 		sliderCell.slider.maximumValue = maxValue
+		
+		sliderCell.valueLabel.backgroundColor = ThemeManager.shared.theme.mainColor
+		sliderCell.valueLabel.textColor = .white
+		sliderCell.valueLabel.layer.cornerRadius = 5
+		sliderCell.valueLabel.layer.masksToBounds = true
 		
         if let doubleValue = value as? Float {
             sliderCell.slider.value = doubleValue
