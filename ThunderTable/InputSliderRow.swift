@@ -48,16 +48,17 @@ open class InputSliderRow: InputTableRow {
         sliderCell.slider.addTarget(sliderCell, action: #selector(InputSliderViewCell.updateLabel(sender:)), for: .valueChanged)
         
         sliderCell.cellTextLabel?.isHidden = title == nil
-		sliderCell.slider.interval = interval
-        
-        if let doubleValue = value as? Float {
-            sliderCell.slider.correctedValue = doubleValue
-        } else {
-            sliderCell.slider.correctedValue = minValue
-        }
 		
-        sliderCell.slider.correctedMaximumValue = maxValue
-        sliderCell.slider.minimumValue = minValue
+		// Order of setting these is important, as they all rely on interval
+		sliderCell.slider.interval = interval
+		sliderCell.slider.minimumValue = minValue
+		sliderCell.slider.maximumValue = maxValue
+		
+        if let doubleValue = value as? Float {
+            sliderCell.slider.value = doubleValue
+        } else {
+            sliderCell.slider.value = minValue
+        }
 		
         if let value = value {
             sliderCell.valueLabel.text = "\(value)"

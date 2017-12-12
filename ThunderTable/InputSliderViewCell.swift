@@ -10,55 +10,31 @@ import UIKit
 
 /// A subclass of `UISlider` which allows custom intervals between maximumValue and minimumValue.
 ///
-/// This is achieved by providing conversion variables, `correctedValue` and `correctedMaximumValue` which
-/// should be used in place of setting/getting `value` and `maximumValue` respectively, and then a conversion
-/// is done to convert `value` to the actual value taking into account the user's custom interval.
-///
-/// There is also a helper function `setCorrectedValue(_,animated)` which should be used in place of the `UISlider` equivalent.
-///
-/// - Important: For intervals other than 1, `value != correctedValue` and `correctedValue` should be used to get/set
+/// This is achieved by providing the conversion variable, `correctedValue` which should be used in place of `value`
+/// - Important: For intervals other than 1, `value != correctedValue` and `correctedValue` should be used to get
 /// the actual value the user has selected!
 public class IntervalSlider: UISlider {
 	
 	/// A custom interval that the slider should jump at
-	public var interval: Float = 1 {
-		didSet {
-			// Update value and maximumValue to reflect change in interval
-			value = minimumValue + ((_correctedValue - minimumValue) / interval)
-			maximumValue = minimumValue + ((_correctedMaximumValue - minimumValue) / interval)
-		}
-	}
-	
-	private var _correctedValue: Float = 0.0
+	///
+	/// - Warning: Setting this after the user updates the slider is currently not supported, and will break
+	/// the values the slider returns
+	public var interval: Float = 1
 	
 	/// Should be used instead of `value`, returns the usable value taking into account the custom interval
 	public var correctedValue: Float {
-		get {
-			let convertedValue = (interval * (value - minimumValue)) + minimumValue
-			return convertedValue
+		
+		var finalValue = value
+		let tempValue = fabsf(fmodf(value, interval));
+		
+		//if the remainder is greater than or equal to the half of the interval then return the higher interval, otherwise, return the lower interval
+		if tempValue >= (interval / 2.0) {
+			finalValue = value - tempValue + interval
+		} else {
+			finalValue = value - tempValue
 		}
-		set {
-			_correctedValue = newValue
-			value = minimumValue + ((newValue - minimumValue) / interval)
-		}
-	}
-	
-	private var _correctedMaximumValue: Float = 1.0
-	
-	/// Should be used instead of `maximumValue`, returns the usable max value taking into account the custom interval
-	public var correctedMaximumValue: Float {
-		get {
-			let convertedValue = (interval * (maximumValue - minimumValue)) + minimumValue
-			return convertedValue
-		}
-		set {
-			_correctedMaximumValue = newValue
-			maximumValue = minimumValue + ((newValue - minimumValue) / interval)
-		}
-	}
-	
-	public func setCorrectedValue(_ value: Float, animated: Bool) {
-		super.setValue(minimumValue + ((value - minimumValue) / interval), animated: animated)
+		
+		return finalValue
 	}
 }
 
