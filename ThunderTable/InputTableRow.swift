@@ -105,8 +105,8 @@ open class InputTableRow: NSObject, InputRow {
     
     open func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
-        _nextHandler = { (control) -> (Void) in
-            tableViewController.moveToInputCell(after: indexPath)
+        _nextHandler = { [weak tableViewController] (control) -> (Void) in
+            tableViewController?.moveToInputCell(after: indexPath)
 			self.nextHandler?(control)
         }
                 
