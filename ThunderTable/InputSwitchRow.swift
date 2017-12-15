@@ -9,6 +9,10 @@
 import UIKit
 
 open class InputSwitchRow: InputTableRow {
+	
+	public var isEnabled = true
+	
+	public var isUserInteractionEnabled = true
 
     override open var cellClass: AnyClass? {
         return InputSwitchViewCell.self
@@ -37,6 +41,9 @@ open class InputSwitchRow: InputTableRow {
         } else {
             switchCell.switch.isOn = false
         }
+		
+		switchCell.switch.isEnabled = isEnabled
+		switchCell.switch.isUserInteractionEnabled = isUserInteractionEnabled
         
         switchCell.cellTextLabel?.isHidden = title == nil
         switchCell.cellDetailLabel?.isHidden = subtitle == nil
