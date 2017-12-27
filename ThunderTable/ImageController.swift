@@ -14,7 +14,7 @@ public typealias ImageRequestCompletion = (_ image: UIImage?,_ error: Error?,_ r
 open class ImageController {
     
     /// The shared singleton of the image controller
-    static let shared: ImageController = ImageController()
+    public static let shared: ImageController = ImageController()
     
     /// The operation queue that contains all requests added to a default session
     private let defaultRequestQueue: OperationQueue
