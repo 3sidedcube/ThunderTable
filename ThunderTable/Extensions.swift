@@ -18,6 +18,13 @@ extension Array : Section {
 		}
 		set {}
 	}
+    
+    public var editHandler: EditHandler? {
+        get {
+            return nil
+        }
+        set {}
+    }
 }
 
 extension String : Row {

@@ -47,14 +47,7 @@ public extension Section {
 		}
 		set {}
     }
-	
-	var editHandler: EditHandler? {
-		get {
-			return nil
-		}
-		set {}
-	}
-    
+
     var selectionHandler: SelectionHandler? {
 		get {
 			return nil
