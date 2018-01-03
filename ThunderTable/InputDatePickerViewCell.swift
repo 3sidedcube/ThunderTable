@@ -43,7 +43,7 @@ open class InputDatePickerViewCell: TableViewCell {
 		textField.resignFirstResponder()
 	}
 	
-	@objc internal func updateLabel(sender: UIDatePicker) {
+	@objc func updateLabel(sender: UIDatePicker) {
 		textField.text = dateFormatter.string(from: sender.date)
 	}
 }

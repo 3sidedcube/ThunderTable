@@ -72,7 +72,7 @@ open class InputDatePickerRow: InputTableRow {
 		datePickerCell.dateFormatter = dateFormatter
 		datePickerCell.textField.delegate = self
 		datePickerCell.datePicker.addTarget(self, action: #selector(handleChange(sender:)), for: .valueChanged)
-		datePickerCell.datePicker.addTarget(datePickerCell, action: #selector(updateLabel(sender:)), for: .valueChanged)
+		datePickerCell.datePicker.addTarget(datePickerCell, action: #selector(InputDatePickerViewCell.updateLabel(sender:)), for: .valueChanged)
 		
 		// Setting up date picker
 		datePickerCell.datePicker.minimumDate = minimumDate
