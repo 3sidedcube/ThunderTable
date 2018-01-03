@@ -62,8 +62,10 @@ open class InputTextFieldRow: InputTableRow {
             textCell.textField.text = stringValue
         } else if let value = value, value as? NSNull == nil {
             textCell.textField.text = String(describing: value)
-        }
-        
+		} else {
+			textCell.textField.text = nil
+		}
+		
         textCell.cellTextLabel?.isHidden = title == nil
     }
 }
