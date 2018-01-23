@@ -28,7 +28,10 @@ open class InputDatePickerViewCell: TableViewCell {
 		
 		super.awakeFromNib()
 		
-		let doneToolbar = UIToolbar()
+		let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 44))
+		doneToolbar.isTranslucent = true
+		doneToolbar.barTintColor = .white
+		doneToolbar.tintColor = ThemeManager.shared.theme.mainColor
 		
 		doneToolbar.items = [
 			UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
