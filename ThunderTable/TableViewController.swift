@@ -136,7 +136,7 @@ open class TableViewController: UITableViewController {
 		
 		super.viewWillAppear(animated)
 		
-		NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: self, queue: .main) { [weak self] (notification) in
+		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: self, queue: .main) { [weak self] (notification) in
 			guard let strongSelf = self, strongSelf.shouldRedrawWithContentSizeChange else { return }
 			strongSelf.tableView.reloadData()
 		}
