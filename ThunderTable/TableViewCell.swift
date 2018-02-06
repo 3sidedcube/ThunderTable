@@ -190,7 +190,7 @@ open class TableViewCell: UITableViewCell {
 	//This is really quite awful but it's the only way to get tableview to remove the 1px line at the top of sections on a group tableview when disabling cell seperators
 	override open func addSubview(_ view: UIView) {
 		
-		if !shouldDisplaySeparators && round(view.frame.height * UIScreen.main.scale) == 1 || round(view.frame.height) == 1 {
+		if !shouldDisplaySeparators && (round(view.frame.height * UIScreen.main.scale) == 1 || round(view.frame.height) == 1) {
 			return
 		}
 		
