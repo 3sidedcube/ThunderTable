@@ -2,12 +2,12 @@
 //  ThunderTableTests.swift
 //  ThunderTableTests
 //
-//  Created by Simon Mitchell on 16/09/2014.
-//  Copyright (c) 2014 threesidedcube. All rights reserved.
+//  Created by Simon Mitchell on 14/09/2016.
+//  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
-import UIKit
 import XCTest
+@testable import ThunderTable
 
 class ThunderTableTests: XCTestCase {
     
@@ -23,12 +23,12 @@ class ThunderTableTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
