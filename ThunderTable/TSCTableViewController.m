@@ -147,6 +147,7 @@
         self.registeredCellClasses = [NSMutableArray array];
         self.dynamicHeightCells = [NSMutableDictionary dictionary];
         self.shouldMakeFirstTextFieldFirstResponder = true;
+		self.redrawWithDynamicContentSizeChange = true;
     }
     
     return self;
@@ -164,9 +165,11 @@
     [super viewWillDisappear:animated];
     [self TSC_resignAnyResponders];
     self.viewHasAppeared = false;
+	
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -177,6 +180,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicContentSizeDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -280,6 +285,13 @@
     self.tableView.scrollIndicatorInsets = contentInsets;
 }
 
+- (void)dynamicContentSizeDidChange:(NSNotification *)sender
+{
+	if (self.redrawWithDynamicContentSizeChange) {
+		[self.tableView reloadData];
+	}
+}
+
 #pragma mark Refresh
 
 - (void)setRefreshEnabled:(BOOL)refreshEnabled
@@ -289,9 +301,9 @@
     if (refreshEnabled) {
         self.refreshControl = [[UIRefreshControl alloc] init];
         [self.refreshControl addTarget:self action:@selector(handleRefresh) forControlEvents:UIControlEventValueChanged];
-        [self.tableView addSubview:self.refreshControl];
+		self.tableView.refreshControl = self.refreshControl;
     } else {
-        [self.refreshControl removeFromSuperview];
+		self.tableView.refreshControl = nil;
         self.refreshControl = nil;
     }
 }

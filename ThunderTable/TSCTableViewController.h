@@ -205,4 +205,9 @@
  */
 @property (nonatomic, assign) BOOL disableAnalyticsNotifications;
 
+/**
+ Whether the table view should redraw when user changes content sizing in the settings app
+ */
+@property (nonatomic, assign) BOOL redrawWithDynamicContentSizeChange;
+
 @end
