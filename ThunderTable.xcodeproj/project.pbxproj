@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		490A3C4E2034569200DC3176 /* ThunderTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; };
+		495C37CC203458BA00DD1105 /* ThunderTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; };
 		B108319D1F068FDF008B565D /* TableImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108319B1F068FDF008B565D /* TableImageViewCell.swift */; };
 		B108319E1F068FDF008B565D /* TableImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B108319C1F068FDF008B565D /* TableImageViewCell.xib */; };
 		B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11264F31D8A9AE800224FB2 /* InputTableRow.swift */; };
@@ -101,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				490A3C4E2034569200DC3176 /* ThunderTable.framework in Frameworks */,
+				495C37CC203458BA00DD1105 /* ThunderTable.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
