@@ -19,7 +19,7 @@
 
 + (id)rowWithTitle:(NSString *)title placeholder:(NSString *)placeholder inputId:(NSString *)inputId keyboardType:(UIKeyboardType)keyboardType required:(BOOL)required
 {
-    TSCTableInputTextFieldRow *row = [[TSCTableInputTextFieldRow alloc] init];
+    TSCTableInputTextFieldRow *row = [[[self class] alloc] init];
     row.title = title;
     row.placeholder = placeholder;
     row.inputId = inputId;
@@ -31,7 +31,7 @@
 
 + (id)rowWithTitle:(NSString *)title placeholder:(NSString *)placeholder inputId:(NSString *)inputId returnKeyType:(UIReturnKeyType)returnKeyType required:(BOOL)required
 {
-    TSCTableInputTextFieldRow *row = [[TSCTableInputTextFieldRow alloc] init];
+    TSCTableInputTextFieldRow *row = [[[self class] alloc] init];
     row.title = title;
     row.placeholder = placeholder;
     row.inputId = inputId;
@@ -43,7 +43,7 @@
 
 + (id)rowWithTitle:(NSString *)title placeholder:(NSString *)placeholder inputId:(NSString *)inputId returnKeyType:(UIReturnKeyType)returnKeyType required:(BOOL)required isSecure:(BOOL)isSecure
 {
-    TSCTableInputTextFieldRow *row = [[TSCTableInputTextFieldRow alloc] init];
+    TSCTableInputTextFieldRow *row = [[[self class] alloc] init];
     row.title = title;
     row.placeholder = placeholder;
     row.inputId = inputId;
@@ -52,6 +52,14 @@
     row.isSecure = isSecure;
     
     return row;
+}
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.returnKeyType = UIReturnKeyNext;
+    }
+    return self;
 }
 
 - (NSString *)rowTitle
@@ -67,19 +75,23 @@
 - (UITableViewCell *)tableViewCell:(UITableViewCell *)cell
 {
     TSCTableInputTextFieldViewCell *inputCell = (TSCTableInputTextFieldViewCell *)cell;
-    inputCell.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder ?: @"" attributes:@{NSForegroundColorAttributeName:self.detailTextColor ? : [[TSCThemeManager sharedTheme] cellDetailColor]}];
+    inputCell.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder ?: @"" attributes:@{NSForegroundColorAttributeName:self.detailTextColor ? : [[TSCThemeManager sharedTheme] cellPlaceholderColor]}];
     inputCell.textField.keyboardType = self.keyboardType;
     inputCell.textField.returnKeyType = self.returnKeyType;
     inputCell.textField.secureTextEntry = self.isSecure;
     inputCell.textField.autocapitalizationType = self.autocapitalizationType;
     inputCell.textField.autocorrectionType = self.autocorrectionType;
     
-    if (inputCell.inputRow.value != [NSNull null]) {
+    [self updateTargetsAndActionsForControl:inputCell.textField];
+    
+    if (self.value && self.value != [NSNull null]) {
+        
         if ([inputCell.inputRow.value isKindOfClass:[NSNumber class]]) {
-            inputCell.textField.text = [inputCell.inputRow.value stringValue];
+            inputCell.textField.text = [self.value stringValue];
         } else {
-            inputCell.textField.text = inputCell.inputRow.value;
+            inputCell.textField.text = self.value;
         }
+        
     } else {
         inputCell.textField.text = nil;
     }

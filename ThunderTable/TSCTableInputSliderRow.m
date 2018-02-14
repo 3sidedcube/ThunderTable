@@ -14,7 +14,6 @@
 @property (nonatomic, copy) NSNumber *sliderMinValue;
 @property (nonatomic, copy) NSNumber *sliderMaxValue;
 @property (nonatomic, copy) NSNumber *currentValue;
-@property (nonatomic, copy) NSNumber *sliderIntervalValue;
 
 @end
 
@@ -48,7 +47,18 @@
     TSCTableInputSliderViewCell *inputCell = (TSCTableInputSliderViewCell *)cell;
     inputCell.slider.minimumValue = [self.sliderMinValue floatValue];
     inputCell.slider.maximumValue = [self.sliderMaxValue floatValue];
-    [inputCell.slider setValue:[self.currentValue floatValue] animated:YES];
+	[inputCell.slider setValue:[self.currentValue floatValue] animated:YES];
+	
+	NSString *stringValue = self.formatter ? [self.formatter stringForObjectValue:@(self.currentValue.floatValue ?: inputCell.slider.value)] : [NSString stringWithFormat:@"%.1f", self.currentValue.floatValue ?: inputCell.slider.value];
+	
+	inputCell.valueLabel.text = stringValue;
+	inputCell.interval = self.sliderInterval ?: @(1.0);
+	inputCell.formatter = self.formatter;
+	
+	[inputCell handleSliderValueChanged:inputCell.slider];
+    
+    [self updateTargetsAndActionsForControl:inputCell.slider];
+    [inputCell.slider addTarget:inputCell action:@selector(handleSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     
     return inputCell;
 }

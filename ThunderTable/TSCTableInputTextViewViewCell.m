@@ -23,8 +23,7 @@
         self.textView.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
         self.textView.textAlignment = NSTextAlignmentLeft;
         self.textView.delegate = self;
-        self.textView.placeholderColor = [[TSCThemeManager sharedTheme] cellDetailColor];
-        self.textView.returnKeyType = UIReturnKeyNext;
+        self.textView.placeholderColor = [[TSCThemeManager sharedTheme] cellPlaceholderColor];
 
         [self.contentView addSubview:self.textView];
         
@@ -52,7 +51,11 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    self.inputRow.value = textView.text;
+    if ([self.inputRow respondsToSelector:@selector(setValue:sender:)]) {
+        [self.inputRow setValue:textView.text sender:textView];
+    } else {
+        self.inputRow.value = textView.text;
+    }
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -62,8 +65,8 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    if (self.textView.text.length == 0) {
-        [self.textView resignFirstResponder];
+    if ([self.inputRow respondsToSelector:@selector(setValue:sender:)]) {
+        [self.inputRow setValue:textView.text sender:textView];
     } else {
         self.inputRow.value = textView.text;
     }

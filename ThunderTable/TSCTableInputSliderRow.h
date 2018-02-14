@@ -31,4 +31,14 @@
  */
 + (instancetype)rowWithTitle:(NSString *)title inputId:(NSString *)inputId minValue:(NSNumber *)minValue maxValue:(NSNumber *)maxValue currentValue:(NSNumber *)currentValue required:(BOOL)required;
 
+/**
+ An optional formatter which if provided will format the displayed value on the slider cell
+ */
+@property (nonatomic, strong) NSFormatter *formatter;
+
+/**
+ The interval allowed on the `UISlider`
+ */
+@property (nonatomic, copy) NSNumber *sliderIntervalValue;
+
 @end

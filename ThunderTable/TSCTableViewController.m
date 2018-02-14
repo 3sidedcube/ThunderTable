@@ -24,6 +24,37 @@
 #import "UIImageView+TSCImageView.h"
 #import "TSCThemeManager.h"
 
+@implementation UILabel (ParagraphStyle)
+
+- (void)setParagraphStyle:(NSParagraphStyle *)style
+{
+    NSMutableParagraphStyle *mutableParagraphStyle = [style mutableCopy];
+    mutableParagraphStyle.alignment = self.textAlignment;
+    
+    if (self.text && mutableParagraphStyle) {
+        
+        NSMutableDictionary *attributes = [NSMutableDictionary new];
+        
+        if (self.font) {
+            attributes[NSFontAttributeName] = self.font;
+        }
+        
+        if (self.textColor) {
+            attributes[NSForegroundColorAttributeName] = self.textColor;
+        }
+        
+        if (mutableParagraphStyle) {
+            attributes[NSParagraphStyleAttributeName] = mutableParagraphStyle;
+        }
+        
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:self.text attributes: attributes];
+        
+        self.attributedText = attrString;
+    }
+}
+
+@end
+
 /**
  A category on UIWindow which allows easy accesss to the currently visible view controller
  */
@@ -101,6 +132,7 @@
 @property (nonatomic, strong) NSMutableArray *registeredCellClasses;
 @property (nonatomic, strong) NSMutableDictionary *dynamicHeightCells;
 @property (nonatomic, assign) BOOL viewHasAppeared;
+@property (assign, nonatomic) BOOL translatesAutoresizingMask;
 
 @end
 
@@ -115,6 +147,7 @@
         self.registeredCellClasses = [NSMutableArray array];
         self.dynamicHeightCells = [NSMutableDictionary dictionary];
         self.shouldMakeFirstTextFieldFirstResponder = true;
+		self.redrawWithDynamicContentSizeChange = true;
     }
     
     return self;
@@ -132,9 +165,11 @@
     [super viewWillDisappear:animated];
     [self TSC_resignAnyResponders];
     self.viewHasAppeared = false;
+	
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -145,6 +180,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicContentSizeDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -156,7 +193,7 @@
         _viewHasAppearedBefore = true;
     }
     
-    if (self.title) {
+    if (self.title && !self.disableAnalyticsNotifications) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"TSCStatEventNotification" object:self userInfo:@{@"type":@"screen", @"name":self.title}];
     }
     
@@ -248,6 +285,13 @@
     self.tableView.scrollIndicatorInsets = contentInsets;
 }
 
+- (void)dynamicContentSizeDidChange:(NSNotification *)sender
+{
+	if (self.redrawWithDynamicContentSizeChange) {
+		[self.tableView reloadData];
+	}
+}
+
 #pragma mark Refresh
 
 - (void)setRefreshEnabled:(BOOL)refreshEnabled
@@ -257,9 +301,9 @@
     if (refreshEnabled) {
         self.refreshControl = [[UIRefreshControl alloc] init];
         [self.refreshControl addTarget:self action:@selector(handleRefresh) forControlEvents:UIControlEventValueChanged];
-        [self.tableView addSubview:self.refreshControl];
+		self.tableView.refreshControl = self.refreshControl;
     } else {
-        [self.refreshControl removeFromSuperview];
+		self.tableView.refreshControl = nil;
         self.refreshControl = nil;
     }
 }
@@ -477,7 +521,7 @@
         
         if ([[row rowTitle] isKindOfClass:[NSAttributedString class]]) {
             textLabel.attributedText = (NSAttributedString *)[row rowTitle];
-        } else {
+		} else if ([[row rowTitle] isKindOfClass:[NSString class]]) {
             textLabel.text = [row rowTitle];
         }
     }
@@ -486,7 +530,7 @@
         
         if ([[row rowSubtitle] isKindOfClass:[NSAttributedString class]]) {
             detailTextLabel.attributedText = (NSAttributedString *)[row rowSubtitle];
-        } else {
+        } else if ([[row rowSubtitle] isKindOfClass:[NSString class]]) {
             detailTextLabel.text = [row rowSubtitle];
         }
     }
@@ -550,11 +594,6 @@
 
     }
     
-    // So model can perform additional changes if it wants
-    if ([row respondsToSelector:@selector(tableViewCell:)]) {
-        [row tableViewCell:cell];
-    }
-    
     if ([row respondsToSelector:@selector(shouldDisplaySeperator)] && ![row shouldDisplaySeperator]) {
         
         if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -578,7 +617,14 @@
         cell.shouldDisplaySeparators = [row shouldDisplaySeperator];
         
     }
-
+    
+    [textLabel setParagraphStyle:[[TSCThemeManager sharedTheme] cellTitleParagraphStyle]];
+    [detailTextLabel setParagraphStyle:[[TSCThemeManager sharedTheme] cellDetailParagraphStyle]];
+    
+    // So model can perform additional changes if it wants
+    if ([row respondsToSelector:@selector(tableViewCell:)]) {
+        [row tableViewCell:cell];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -631,7 +677,7 @@
     NSObject <TSCTableSectionDataSource> *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = [section sectionItems][indexPath.row];
     
-    if([row respondsToSelector:@selector(tableViewCellEstimatedHeight)]) {
+    if ([row respondsToSelector:@selector(tableViewCellEstimatedHeight)]) {
         return [row tableViewCellEstimatedHeight];
     } else {
         return [self tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -695,7 +741,15 @@
 {
     if ([self isIndexPathSelectable:indexPath]) {
         
-        [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
+        [self TSC_handleTableViewSelectionWithIndexPath:indexPath selection:true];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self isIndexPathSelectable:indexPath]) {
+        
+        [self TSC_handleTableViewSelectionWithIndexPath:indexPath selection:false];
     }
 }
 
@@ -762,7 +816,11 @@
     return false;
 }
 
-- (void)TSC_handleTableViewSelectionWithIndexPath:(NSIndexPath *)indexPath
+/**
+ Perform a selection here!
+ @param selection Determines whether the selection was a selection or a de-selection
+ */
+- (void)TSC_handleTableViewSelectionWithIndexPath:(NSIndexPath *)indexPath selection:(BOOL)wasSelection
 {
     TSCTableSection *section = self.dataSource[indexPath.section];
     NSObject <TSCTableRowDataSource> *row = section.sectionItems[indexPath.row];
@@ -771,6 +829,7 @@
     selection.indexPath = indexPath;
     selection.object = row;
     selection.tableView = self.tableView;
+    selection.wasSelection = wasSelection;
     
     self.selectedIndexPath = indexPath;
     
@@ -911,21 +970,16 @@
     NSArray *subviews = cell.contentView.subviews;
     CGFloat lowestYValue = 0;
     
-    UIView *highestView;
-    UIView *lowestView;
-    
     for (UIView *view in subviews) {
         
         if (CGRectGetMaxY(view.frame) > totalHeight) {
             
             totalHeight = CGRectGetMaxY(view.frame);
-            highestView = view;
         }
         
         if (view.frame.origin.y < lowestYValue) {
             
             lowestYValue = view.frame.origin.y;
-            lowestView = view;
         }
     }
     
@@ -1006,7 +1060,7 @@
                 if ([row isKindOfClass:[TSCTableInputTextFieldRow class]]) {
                     
                     NSInteger index = [section.sectionItems indexOfObject:row];
-                    [self TSC_handleTableViewSelectionWithIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+                    [self TSC_handleTableViewSelectionWithIndexPath:[NSIndexPath indexPathForRow:index inSection:0] selection:true];
                     
                     break;
                 }
@@ -1015,48 +1069,45 @@
     }
 }
 
-- (NSArray *)TSC_inputs
-{
-    NSMutableArray *inputs = [NSMutableArray array];
-    
-    for (TSCTableSection *section in self.dataSource) {
-        
-        for (TSCTableInputRow *row in [section sectionItems]) {
-            if ([row conformsToProtocol:@protocol(TSCTableInputRowDataSource)]) {
-                [inputs addObject:row];
-            }
-        }
-    }
-    
-    return inputs;
-}
-
 - (NSDictionary *)inputDictionary
 {
     NSMutableDictionary *inputDictionary = [NSMutableDictionary dictionary];
     
-    for (TSCTableInputRow *row in [self TSC_inputs]) {
+    [self enumerateInputRowsUsingBlock:^(id<TSCTableInputRowDataSource>  _Nonnull inputRow, NSInteger index, NSIndexPath * _Nonnull indexPath, BOOL * _Nonnull stop) {
         
-        if (!row.inputId) {
+        if (!inputRow.inputId) {
             
         } else {
             
-            if (row.value) {
-                [inputDictionary setObject:row.value forKey:row.inputId];
+            if (inputRow.value) {
+                [inputDictionary setObject:inputRow.value forKey:inputRow.inputId];
             } else {
-                [inputDictionary setObject:[NSNull null] forKey:row.inputId];
+                [inputDictionary setObject:[NSNull null] forKey:inputRow.inputId];
             }
         }
-    }
+    }];
     
     return inputDictionary;
 }
 
 - (void)setInputDictionary:(NSDictionary *)inputDictionary
 {
-    for (TSCTableInputRow *row in [self TSC_inputs]) {
+    NSMutableArray <NSIndexPath *> * reloadIndexPaths = [NSMutableArray new];
+    [self enumerateInputRowsUsingBlock:^(id<TSCTableInputRowDataSource>  _Nonnull inputRow, NSInteger index, NSIndexPath * _Nonnull indexPath, BOOL * _Nonnull stop) {
         
-        row.value = inputDictionary[row.inputId];
+        if ([self.tableView.indexPathsForVisibleRows containsObject:indexPath]) {
+            [reloadIndexPaths addObject:indexPath];
+        }
+        
+        if ([inputRow respondsToSelector:@selector(setValue:sender:)]) {
+            [inputRow setValue:inputDictionary[inputRow.inputId] sender:nil];
+        } else {
+            [inputRow setValue:inputDictionary[inputRow.inputId]];
+        }
+    }];
+    
+    if (reloadIndexPaths.count > 0) {
+        [self.tableView reloadRowsAtIndexPaths:reloadIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -1110,16 +1161,20 @@
         }
     }];
     
-    UIAlertView *missingRows = [[UIAlertView alloc] initWithTitle:@"Missing information" message:@"Please complete all the required fields." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [missingRows show];
+    UIAlertController *missingRowsAlertController = [UIAlertController alertControllerWithTitle:@"Missing information" message:@"Please complete all the required fields." preferredStyle:UIAlertControllerStyleAlert];
+    
+    [missingRowsAlertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:missingRowsAlertController animated:true completion:nil];
 }
 
 - (void)enumerateRowsUsingBlock:(void (^)(id <TSCTableRowDataSource> row, NSInteger index, NSIndexPath *indexPath, BOOL *stop))block
 {
     __block NSInteger index = 0;
-    [self.dataSource enumerateObjectsUsingBlock:^(TSCTableSection *section, NSUInteger sectionIndex, BOOL *stopSection) {
+    
+    [self.dataSource enumerateObjectsUsingBlock:^(id <TSCTableSectionDataSource> section, NSUInteger sectionIndex, BOOL *stopSection) {
         
-        [section.items enumerateObjectsUsingBlock:^(TSCTableRow *row, NSUInteger rowIndex, BOOL *stopRow) {
+        [section.sectionItems enumerateObjectsUsingBlock:^(id <TSCTableRowDataSource> row, NSUInteger rowIndex, BOOL *stopRow) {
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
             block(row, index, indexPath, stopRow);
@@ -1143,6 +1198,11 @@
 
 - (void)tableInputViewCellDidFinish:(TSCTableViewCell *)cell
 {
+    // Default implementation to avoid crashes with subclasses calling super
+}
+
+- (void)tableInputViewCellWillFinish:(TSCTableViewCell *)cell
+{
     __block NSInteger selectedRowIndex = -1;
     
     if ([cell isKindOfClass:[TSCTableInputTextFieldViewCell class]]) {
@@ -1160,10 +1220,15 @@
         }
         
         if (index > selectedRowIndex) {
-            [self TSC_handleTableViewSelectionWithIndexPath:indexPath];
+            [self TSC_handleTableViewSelectionWithIndexPath:indexPath selection:true];
             *stop = true;
         }
     }];
+}
+
+- (void)tableInputViewCellDidStart:(TSCTableViewCell *)cell
+{
+    self.selectedIndexPath = cell.currentIndexPath;
 }
 
 #pragma mark - UITextField delegate
@@ -1171,6 +1236,55 @@
 - (void)textFieldDidReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+}
+
+#pragma mark - variable header size
+
+- (void)sizeHeaderToFit {
+    
+    // Disable autoresizing mask into constraints to stop the view from being constrained to the height defined in IB
+    UIView *headerView = self.tableView.tableHeaderView;
+    
+    if (headerView) {
+        
+        [self disableAutoresizeMaskConstraints];
+    
+        // Because we've disabled translatesAutoresizingMaskIntoConstraints we need to add a temporary constraint for the width of the header
+        CGFloat headerWidth = self.tableView.tableHeaderView.bounds.size.width;
+        NSArray *temporaryWidthConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"[headerView(width)]" options:0 metrics:@{@"width": @(headerWidth)} views:@{@"headerView": headerView}];
+        [headerView addConstraints:temporaryWidthConstraints];
+        
+        // Now do the header view height calculation
+        [headerView setNeedsLayout];
+        [headerView layoutIfNeeded];
+        
+        CGSize headerSize = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        CGFloat height = headerSize.height;
+        CGRect frame = headerView.frame;
+        
+        frame.size.height = height;
+        headerView.frame = frame;
+        
+        self.tableView.tableHeaderView = headerView;
+        
+        [headerView removeConstraints:temporaryWidthConstraints];
+        
+        // Re-enable autoresizing mask into constraints
+        [self reenableAutoresizeMaskConstraints];
+        
+    }
+}
+
+- (void)disableAutoresizeMaskConstraints {
+    
+    self.translatesAutoresizingMask = self.tableView.tableHeaderView.translatesAutoresizingMaskIntoConstraints;
+    if (self.translatesAutoresizingMask) {
+        self.tableView.tableHeaderView.translatesAutoresizingMaskIntoConstraints = false;
+    }
+}
+
+- (void)reenableAutoresizeMaskConstraints {
+    self.tableView.tableHeaderView.translatesAutoresizingMaskIntoConstraints = self.translatesAutoresizingMask;
 }
 
 @end

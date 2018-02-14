@@ -151,8 +151,8 @@
     }
     
     if (self.isBold) {
-        valueCell.cellTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17];
-        valueCell.cellDetailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+		valueCell.cellTextLabel.font = [UIFont systemFontOfSize:17];
+		valueCell.cellDetailTextLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightLight];
     }
     
     return valueCell;

@@ -27,7 +27,7 @@
         self.textField.textColor = [[TSCThemeManager sharedTheme] cellTitleColor];
         
         self.textField.font = [[TSCThemeManager sharedTheme] fontOfSize:17];
-        self.textField.tintColor = [[TSCThemeManager sharedTheme] cellDetailColor];
+        self.textField.tintColor = [[TSCThemeManager sharedTheme] mainColor];
     
         [self.contentView addSubview:self.textField];
         self.textField.returnKeyType = UIReturnKeyNext;
@@ -62,8 +62,12 @@
     textField.text = [textField.text stringByReplacingCharactersInRange:range withString:string];
     textField.text = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@"\u00a0"];
     
-    self.inputRow.value = [textField.text stringByReplacingOccurrencesOfString:@"\u00a0" withString:@" "];
-    
+    if ([self.inputRow respondsToSelector:@selector(setValue:sender:)]) {
+        [self.inputRow setValue:[textField.text stringByReplacingOccurrencesOfString:@"\u00a0" withString:@" "] sender:textField];
+    } else {
+        self.inputRow.value = [textField.text stringByReplacingOccurrencesOfString:@"\u00a0" withString:@" "];
+    }
+        
     return NO;
 }
 
@@ -78,11 +82,18 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if ([self.delegate respondsToSelector:@selector(tableInputViewCellDidFinish:)]) {
-        [self.delegate tableInputViewCellDidFinish:self];
+    if ([self.delegate respondsToSelector:@selector(tableInputViewCellWillFinish:)]) {
+        [self.delegate tableInputViewCellWillFinish:self];
     }
-    
+        
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(tableInputViewCellDidStart:)]) {
+        [self.delegate tableInputViewCellDidStart:self];
+    }
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated

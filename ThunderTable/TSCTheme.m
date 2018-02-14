@@ -25,6 +25,21 @@
     return [UIColor blackColor];
 }
 
+- (UIColor *)secondaryLabelColor
+{
+    return [UIColor lightGrayColor];
+}
+
+- (UIFont *)primaryLabelFont
+{
+    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
+}
+
+- (UIFont *)secondaryLabelFont
+{
+    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
+}
+
 - (UIColor *)cellBackgroundColor
 {
     return [UIColor whiteColor];
@@ -37,17 +52,33 @@
 
 - (UIColor *)cellDetailColor
 {
-    return [UIColor lightGrayColor];
+    return [UIColor darkTextColor];
 }
 
-- (UIColor *)detailLabelColor
+- (UIColor *)cellPlaceholderColor
 {
-    return [UIColor darkGrayColor];
+    return [UIColor colorWithRed:199.0/255.0 green:199.0/255.0 blue:205.0/255.0 alpha:1.0];
 }
 
-- (UIColor *)secondaryLabelColor
+- (UIFont *)cellTitleFont
 {
-    return [UIColor lightGrayColor];
+    return [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+}
+
+- (UIFont *)cellDetailFont
+{
+    return [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+}
+
+- (NSParagraphStyle * _Nullable)cellTitleParagraphStyle
+{
+    return nil;
+}
+
+
+- (NSParagraphStyle * _Nullable)cellDetailParagraphStyle
+{
+    return nil;
 }
 
 - (UIColor *)backgroundColor
@@ -70,24 +101,9 @@
     return [UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1];
 }
 
-- (UIFont *)primaryLabelFont
-{
-    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
-}
-
-- (UIFont *)secondaryLabelFont
-{
-    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
-}
-
-- (UIFont *)detailLabelFont
-{
-    return [UIFont systemFontOfSize:[UIFont systemFontSize]];
-}
-
 - (UIFont *)lightFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"HelveticaNeue-Light" size:size];
+	return [UIFont systemFontOfSize:size weight:UIFontWeightLight];
 }
 
 - (UIFont *)fontOfSize:(CGFloat)size
@@ -97,7 +113,7 @@
 
 - (UIFont *)mediumFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"HelveticaNeue-Medium" size:size];
+	return [UIFont systemFontOfSize:size weight:UIFontWeightMedium];
 }
 
 - (UIFont *)boldFontOfSize:(CGFloat)size

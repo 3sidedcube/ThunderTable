@@ -43,20 +43,28 @@
 {
     [super layoutSubviews];
     
-    NSString *stringValue = [NSString stringWithFormat:@"%.1f", self.displayNumber.floatValue ?: self.slider.value];
+	NSString *stringValue = self.formatter ? [self.formatter stringForObjectValue:@(self.displayNumber.floatValue ?: self.slider.value)] : [NSString stringWithFormat:@"%.1f", self.displayNumber.floatValue ?: self.slider.value];
     self.valueLabel.text = stringValue;
     
     CGSize valueLabelSize = [self.valueLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
     CGSize textLabelSize = [self.cellTextLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
 
-    [self.cellTextLabel setFrame:CGRectMake(self.contentView.frame.origin.x + 16, self.cellTextLabel.frame.origin.y, textLabelSize.width, self.cellTextLabel.frame.size.height)];
-    
-    self.valueLabel.frame = CGRectMake(self.cellTextLabel.bounds.size.width + self.cellTextLabel.frame.origin.x + 10, self.contentView.frame.size.height / 2 - (valueLabelSize.height +  2) / 2, valueLabelSize.width + 10, valueLabelSize.height + 5);
-    
-    CGFloat sliderOffset = self.valueLabel.frame.origin.x + self.valueLabel.frame.size.width + 10;
+	[self.cellTextLabel setFrame:CGRectMake(self.contentView.frame.origin.x + 16, self.formatter ? 8 : self.cellTextLabel.frame.origin.y, textLabelSize.width, self.cellTextLabel.frame.size.height)];
+	
+	CGFloat sliderOffset = 0.0;
+	
+	if (self.formatter) {
+		
+		self.valueLabel.frame = CGRectMake(self.cellTextLabel.frame.origin.x, CGRectGetMaxY(self.cellTextLabel.frame) + 4, valueLabelSize.width + 10, valueLabelSize.height + 5);
+		sliderOffset = CGRectGetMaxX(self.cellTextLabel.frame) + 10;
+		
+	} else {
+		
+		self.valueLabel.frame = CGRectMake(self.cellTextLabel.bounds.size.width + self.cellTextLabel.frame.origin.x + 10, self.contentView.frame.size.height / 2 - (valueLabelSize.height +  2) / 2, valueLabelSize.width + 10, valueLabelSize.height + 5);
+		sliderOffset = CGRectGetMaxX(self.valueLabel.frame) + 10;
+	}
     
     self.slider.frame = CGRectMake(sliderOffset, 0, self.contentView.bounds.size.width - sliderOffset - 10, self.contentView.frame.size.height);
-    
 }
 
 - (void)setInputRow:(id <TSCTableInputSliderRowDataSource>)inputRow
@@ -65,9 +73,10 @@
     
     self.slider.maximumValue = [[inputRow maximumValue] floatValue];
     self.slider.minimumValue = [[inputRow minimumValue] floatValue];
-    self.slider.value = [[inputRow value] floatValue];
+    [self.slider setValue:[[inputRow value] floatValue] animated:true];
     self.interval = [inputRow sliderInterval];
     self.cellTextLabel.text = [inputRow rowTitle];
+    [self handleSliderValueChanged:self.slider];
 }
 
 - (void)handleSliderValueChanged:(UISlider *)slider
@@ -92,6 +101,12 @@
     self.displayNumber = @(finalValue);
     
     [self layoutSubviews];
+}
+
+- (void)prepareForReuse
+{
+	[super prepareForReuse];
+	self.formatter = nil;
 }
 
 @end
