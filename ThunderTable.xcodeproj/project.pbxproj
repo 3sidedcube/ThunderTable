@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		495C37CC203458BA00DD1105 /* ThunderTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; };
 		B108319D1F068FDF008B565D /* TableImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108319B1F068FDF008B565D /* TableImageViewCell.swift */; };
 		B108319E1F068FDF008B565D /* TableImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B108319C1F068FDF008B565D /* TableImageViewCell.xib */; };
 		B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11264F31D8A9AE800224FB2 /* InputTableRow.swift */; };
@@ -14,7 +15,6 @@
 		B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D821D8C3A60007358EA /* InputSliderRow.swift */; };
 		B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */; };
 		B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */; };
-		B17BAA3C1D89639200844421 /* ThunderTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; };
 		B17BAA411D89639200844421 /* ThunderTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BAA401D89639200844421 /* ThunderTableTests.swift */; };
 		B17BAA431D89639200844421 /* ThunderTable.h in Headers */ = {isa = PBXBuildFile; fileRef = B17BAA351D89639100844421 /* ThunderTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B17BAA561D8963BB00844421 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BAA551D8963BB00844421 /* TableViewController.swift */; };
@@ -45,16 +45,6 @@
 		B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC81041FDE873700C8EE72 /* Value1TableViewCell.swift */; };
 		B1EC81071FDE873700C8EE72 /* Value1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EC81051FDE873700C8EE72 /* Value1TableViewCell.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B17BAA3D1D89639200844421 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B17BAA291D89639100844421 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B17BAA311D89639100844421;
-			remoteInfo = ThunderTable;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B108319B1F068FDF008B565D /* TableImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableImageViewCell.swift; sourceTree = "<group>"; };
@@ -111,13 +101,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17BAA3C1D89639200844421 /* ThunderTable.framework in Frameworks */,
+				495C37CC203458BA00DD1105 /* ThunderTable.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		490A3C4D2034569200DC3176 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B11264F21D8A9A9900224FB2 /* Input */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +131,7 @@
 				B17BAA341D89639100844421 /* ThunderTable */,
 				B17BAA3F1D89639200844421 /* ThunderTableTests */,
 				B17BAA331D89639100844421 /* Products */,
+				490A3C4D2034569200DC3176 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -271,7 +269,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				B17BAA3E1D89639200844421 /* PBXTargetDependency */,
 			);
 			name = ThunderTableTests;
 			productName = ThunderTableTests;
@@ -290,13 +287,11 @@
 				TargetAttributes = {
 					B17BAA311D89639100844421 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 5AAUAL6K5G;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					B17BAA3A1D89639200844421 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 5AAUAL6K5G;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -387,14 +382,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B17BAA3E1D89639200844421 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B17BAA311D89639100844421 /* ThunderTable */;
-			targetProxy = B17BAA3D1D89639200844421 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B17BAA441D89639200844421 /* Debug */ = {
@@ -516,7 +503,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 5AAUAL6K5G;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -539,7 +526,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 5AAUAL6K5G;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -559,12 +546,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 5AAUAL6K5G;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ThunderTableTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable.ThunderTableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -572,12 +559,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 5AAUAL6K5G;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ThunderTableTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable.ThunderTableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
