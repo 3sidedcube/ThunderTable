@@ -23,6 +23,10 @@ public protocol Section {
 	var editHandler: EditHandler? { get set }
     
     var selectionHandler: SelectionHandler? { get set }
+	
+	var rowLeadingSwipeActionsConfiguration: SwipeActionsConfigurable? { get }
+	
+	var rowTrailingSwipeActionsConfiguration: SwipeActionsConfigurable? { get }
 }
 
 public extension Section {
@@ -54,6 +58,10 @@ public extension Section {
 		}
 		set {}
     }
+	
+	var rowLeadingSwipeActionsConfiguration: SwipeActionsConfigurable? { get { return nil } }
+	
+	var rowTrailingSwipeActionsConfiguration: SwipeActionsConfigurable? { get { return nil } }
 }
 
 open class TableSection: Section {
@@ -67,6 +75,10 @@ open class TableSection: Section {
     open var selectionHandler: SelectionHandler?
 	
 	open var editHandler: EditHandler?
+	
+	open var rowLeadingSwipeActionsConfiguration: SwipeActionsConfigurable?
+	
+	open var rowTrailingSwipeActionsConfiguration: SwipeActionsConfigurable?
     
     public init(rows: [Row], header: String? = nil, footer: String? = nil, selectionHandler: SelectionHandler? = nil) {
         
