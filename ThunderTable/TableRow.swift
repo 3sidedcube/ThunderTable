@@ -142,7 +142,7 @@ extension Row {
 	}
 	
 	public var isEditable: Bool {
-		get { return leadingSwipeActionsConfiguration != nil || trailingSwipeActionsConfiguration != nil }
+		get { return leadingSwipeActionsConfiguration != nil || trailingSwipeActionsConfiguration != nil || editHandler != nil }
 		set {}
 	}
 	
@@ -231,7 +231,7 @@ open class TableRow: Row {
 	
 	public var isEditable: Bool {
 		get {
-			return leadingSwipeActionsConfiguration != nil || trailingSwipeActionsConfiguration != nil
+			return leadingSwipeActionsConfiguration != nil || trailingSwipeActionsConfiguration != nil || editHandler != nil
 		}
 		set {}
 	}
