@@ -16,7 +16,6 @@
 		B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */; };
 		B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */; };
 		B17BAA411D89639200844421 /* ThunderTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BAA401D89639200844421 /* ThunderTableTests.swift */; };
-		B17BAA431D89639200844421 /* ThunderTable.h in Headers */ = {isa = PBXBuildFile; fileRef = B17BAA351D89639100844421 /* ThunderTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B17BAA561D8963BB00844421 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BAA551D8963BB00844421 /* TableViewController.swift */; };
 		B17BAA581D89643800844421 /* TableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BAA571D89643800844421 /* TableSection.swift */; };
 		B17BAA5A1D89645000844421 /* TableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BAA591D89645000844421 /* TableRow.swift */; };
@@ -55,7 +54,6 @@
 		B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderViewCell.swift; sourceTree = "<group>"; };
 		B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSliderViewCell.xib; sourceTree = "<group>"; };
 		B17BAA321D89639100844421 /* ThunderTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ThunderTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B17BAA351D89639100844421 /* ThunderTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThunderTable.h; sourceTree = "<group>"; };
 		B17BAA361D89639100844421 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B17BAA3B1D89639200844421 /* ThunderTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThunderTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B17BAA401D89639200844421 /* ThunderTableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderTableTests.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */,
 				B1E0883B1DA638B400E45E47 /* Images */,
 				B11264F21D8A9A9900224FB2 /* Input */,
-				B17BAA351D89639100844421 /* ThunderTable.h */,
 				B17BAA361D89639100844421 /* Info.plist */,
 				B1EC80FB1FDE85C000C8EE72 /* Cells */,
 				B17BAA551D8963BB00844421 /* TableViewController.swift */,
@@ -233,7 +230,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17BAA431D89639200844421 /* ThunderTable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
