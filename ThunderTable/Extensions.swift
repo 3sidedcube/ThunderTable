@@ -27,6 +27,48 @@ extension Array : Section {
     }
 }
 
+extension String: PickerRowDisplayable {
+	
+	public var rowTitle: String {
+		get {
+			return self
+		}
+		set {
+			
+		}
+	}
+	
+	public var value: AnyHashable {
+		return self
+	}
+}
+
+extension Int: PickerRowDisplayable {
+	
+	public var rowTitle: String {
+		get {
+			return "\(self)"
+		}
+	}
+	
+	public var value: AnyHashable {
+		return self
+	}
+}
+
+extension Double: PickerRowDisplayable {
+	
+	public var rowTitle: String {
+		get {
+			return "\(self)"
+		}
+	}
+	
+	public var value: AnyHashable {
+		return self
+	}
+}
+
 extension String : Row {
 	
 	public var title: String? {

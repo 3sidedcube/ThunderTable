@@ -11,6 +11,9 @@
 		B108319D1F068FDF008B565D /* TableImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108319B1F068FDF008B565D /* TableImageViewCell.swift */; };
 		B108319E1F068FDF008B565D /* TableImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B108319C1F068FDF008B565D /* TableImageViewCell.xib */; };
 		B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11264F31D8A9AE800224FB2 /* InputTableRow.swift */; };
+		B114F10E2035CA75005D52F2 /* InputPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114F10D2035CA75005D52F2 /* InputPickerRow.swift */; };
+		B114F1112035CC19005D52F2 /* InputPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */; };
+		B114F1122035CC19005D52F2 /* InputPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */; };
 		B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CB8CE1F320DA600E58116 /* Extensions.swift */; };
 		B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D821D8C3A60007358EA /* InputSliderRow.swift */; };
 		B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */; };
@@ -50,6 +53,9 @@
 		B108319B1F068FDF008B565D /* TableImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableImageViewCell.swift; sourceTree = "<group>"; };
 		B108319C1F068FDF008B565D /* TableImageViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableImageViewCell.xib; sourceTree = "<group>"; };
 		B11264F31D8A9AE800224FB2 /* InputTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableRow.swift; sourceTree = "<group>"; };
+		B114F10D2035CA75005D52F2 /* InputPickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPickerRow.swift; sourceTree = "<group>"; };
+		B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPickerViewCell.swift; sourceTree = "<group>"; };
+		B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPickerViewCell.xib; sourceTree = "<group>"; };
 		B11CB8CE1F320DA600E58116 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B1784D821D8C3A60007358EA /* InputSliderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderRow.swift; sourceTree = "<group>"; };
 		B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderViewCell.swift; sourceTree = "<group>"; };
@@ -175,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				B1C2C56B1FFCEE3100D968C5 /* InputDatePickerRow.swift */,
+				B114F10D2035CA75005D52F2 /* InputPickerRow.swift */,
 				B1AD7EC21D8C194400BFCA34 /* InputSwitchRow.swift */,
 				B1AD7EBC1D8BFB8F00BFCA34 /* InputTextViewRow.swift */,
 				B19C531E1D8B00E900B30A35 /* InputTextFieldRow.swift */,
@@ -188,6 +195,8 @@
 			children = (
 				B1C2C56D1FFCF20F00D968C5 /* InputDatePickerViewCell.swift */,
 				B1C2C56E1FFCF20F00D968C5 /* InputDatePickerViewCell.xib */,
+				B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */,
+				B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */,
 				B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */,
 				B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */,
 				B1AD7EBE1D8BFC9D00BFCA34 /* InputTextViewCell.swift */,
@@ -320,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */,
+				B114F1122035CC19005D52F2 /* InputPickerViewCell.xib in Resources */,
 				B1EC81031FDE86BF00C8EE72 /* SubtitleTableViewCell.xib in Resources */,
 				B1AD7EC71D8C198F00BFCA34 /* InputSwitchViewCell.xib in Resources */,
 				B19C53251D8B033E00B30A35 /* InputTextFieldViewCell.xib in Resources */,
@@ -357,11 +367,13 @@
 				B108319D1F068FDF008B565D /* TableImageViewCell.swift in Sources */,
 				B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */,
 				B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */,
+				B114F10E2035CA75005D52F2 /* InputPickerRow.swift in Sources */,
 				B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */,
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
 				B1EC80FE1FDE85EA00C8EE72 /* DefaultTableViewCell.swift in Sources */,
 				B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */,
 				B1E0883D1DA638CE00E45E47 /* ImageView.swift in Sources */,
+				B114F1112035CC19005D52F2 /* InputPickerViewCell.swift in Sources */,
 				B17BAA561D8963BB00844421 /* TableViewController.swift in Sources */,
 				B19C53271D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift in Sources */,
 				B1AD7EBD1D8BFB8F00BFCA34 /* InputTextViewRow.swift in Sources */,
