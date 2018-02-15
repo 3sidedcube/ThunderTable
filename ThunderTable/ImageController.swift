@@ -6,7 +6,7 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public typealias ImageRequestCompletion = (_ image: UIImage?,_ error: Error?,_ request: ImageRequest?) -> Void
 

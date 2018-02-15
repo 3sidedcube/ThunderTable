@@ -6,6 +6,8 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
+import UIKit
+
 open class InputTextViewRow: InputTableRow {
 
     open var placeholder: String?

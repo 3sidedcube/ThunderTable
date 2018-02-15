@@ -6,7 +6,7 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// A protocol which allows the rendering of information into a cell within
 /// a `UITableView` by providing a declarative view on the information to show
