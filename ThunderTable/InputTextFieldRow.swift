@@ -6,6 +6,8 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
+import UIKit
+
 public typealias ValidCharacterHandler = (_ string: String) -> Bool
 
 open class InputTextFieldRow: InputTableRow {

@@ -6,7 +6,7 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Defines the default Theme which can be set on `ThemeManager`
 @objc(TSCTheme)

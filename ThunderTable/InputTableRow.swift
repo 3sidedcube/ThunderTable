@@ -6,7 +6,7 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public typealias ValueChangeCallback = (_ value: Any?, _ sender: UIControl?) -> (Void)
 

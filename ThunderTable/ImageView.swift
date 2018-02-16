@@ -6,7 +6,7 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ObjectiveC
 
 public typealias ImageViewSetImageURLCompletion = (_ image: UIImage?,_  error: Error?) -> (Void)
