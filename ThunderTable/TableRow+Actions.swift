@@ -126,7 +126,7 @@ extension RowActionable {
     func rowAction(with handler: @escaping (UITableViewRowAction, IndexPath) -> Void) -> UITableViewRowAction {
         let rowAction = UITableViewRowAction(style: style._UITableViewRowActionStyle, title: title, handler: handler)
         rowAction.backgroundColor = backgroundColor
-        rowAction.backgroundEffect =  backgroundEffect
+        rowAction.backgroundEffect = backgroundEffect
         return rowAction
     }
     
