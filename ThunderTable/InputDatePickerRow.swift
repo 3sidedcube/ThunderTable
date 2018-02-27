@@ -31,7 +31,7 @@ open class InputDatePickerRow: InputTableRow {
 	///   - mode: The mode of the date picker
 	///   - id: The unique id for this row
 	///   - required: Whether the value is required
-	public init(title: String?, mode: UIDatePickerMode = .dateAndTime, id: String, required: Bool) {
+	public init(title: String?, mode: UIDatePickerMode, id: String, required: Bool) {
 		
 		self.mode = mode
 		

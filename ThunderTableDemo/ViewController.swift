@@ -13,7 +13,7 @@ class ViewController: TableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        data = [basicsSection(), inputSection()]
+        data = [basicsSection(), inputSection(), customSection()]
     }
     
     private func basicsSection() -> TableSection {
@@ -37,6 +37,16 @@ class ViewController: TableViewController {
         return basicsSection
     }
     
+    private func customSection() -> TableSection {
+        
+        let subtitleRow = TableRow(title: "Custom", subtitle: "Colours", image: nil, selectionHandler: nil)
+        subtitleRow.titleTextColor = .red
+        subtitleRow.subtitleTextColor = .blue
+        
+        let customSection = TableSection(rows: [subtitleRow], header: "Custom Rows", footer: nil, selectionHandler: nil)
+        return customSection
+    }
+    
     private func inputSection() -> TableSection {
         
         let textFieldRow = InputTextFieldRow(title: "Name", placeholder: "3 Sided Cube", id: "name", required: true, keyboardType: .default, returnKeyType: .next)
@@ -51,17 +61,18 @@ class ViewController: TableViewController {
         let switchRow2 = InputSwitchRow(title: "Switch 2", subtitle: "Default On", id: "switch2")
         switchRow2.value = true
         
-        let dobRow = InputDatePickerRow(title: "Date of Birth", id: "dob", required: false)
+        let dobRow = InputDatePickerRow(title: "Date of Birth", mode: .date, id: "dob", required: false)
         dobRow.dateFormatter.dateFormat = "dd-MM-YYYY"
         dobRow.maximumDate = Date()
         dobRow.minimumDate = Date().addingTimeInterval(-18 * 365 * 24 * 60 * 60)
         dobRow.mode = .date
         
-        let countdownRow = InputDatePickerRow(title: "Timer", id: "timer", required: false)
-        countdownRow.mode = .countDownTimer
+        let date = Date(timeIntervalSince1970: 743706458)
+        dobRow.value = date
         
-        let timeOfDayRow = InputDatePickerRow(title: "Bedtime", id: "bedtime", required: false)
-        timeOfDayRow.mode = .time
+        let countdownRow = InputDatePickerRow(title: "Timer", mode: .countDownTimer, id: "timer", required: false)
+        
+        let timeOfDayRow = InputDatePickerRow(title: "Bedtime", mode: .time, id: "bedtime", required: false)
         
         let viewInputRow = TableRow(title: "View Inputted Values")
         viewInputRow.selectionHandler = { (row, selected, indexPath, tableView) -> (Void) in
@@ -82,7 +93,9 @@ class ViewController: TableViewController {
             }
         }
         
-        let inputSection = TableSection(rows: [textFieldRow, textViewRow, switchRow, switchRow2, dobRow, countdownRow, timeOfDayRow, viewInputRow], header: "Input Rows", footer: nil, selectionHandler: nil)
+        let sliderRow = InputSliderRow(title: "Piece of string", minValue: 1.0, maxValue: 10.0, id: "string", required: true)
+        
+        let inputSection = TableSection(rows: [textFieldRow, textViewRow, switchRow, switchRow2, dobRow, countdownRow, timeOfDayRow, sliderRow, viewInputRow], header: "Input Rows", footer: nil, selectionHandler: nil)
         
         return inputSection
     }
