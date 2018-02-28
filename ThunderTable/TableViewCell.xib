@@ -19,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1x5-Ca-jlu">
-                        <rect key="frame" x="12" y="12" width="296" height="66.5"/>
+                        <rect key="frame" x="0.0" y="12" width="0.0" height="66.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="B01-Gt-Ew8" customClass="ImageView" customModule="ThunderTable" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="66.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="66.5"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="toS-nj-qw5">
-                                <rect key="frame" x="-12" y="12" width="0.0" height="43"/>
+                                <rect key="frame" x="0.0" y="12" width="0.0" height="43"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="751" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azA-O2-jDz">
                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.5"/>

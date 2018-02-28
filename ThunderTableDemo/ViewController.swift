@@ -39,11 +39,11 @@ class ViewController: TableViewController {
     
     private func customSection() -> TableSection {
         
-        let subtitleRow = TableRow(title: "Custom", subtitle: "Colours", image: nil, selectionHandler: nil)
+        let subtitleRow = TableRow(title: "Red", subtitle: "Blue", image: nil, selectionHandler: nil)
         subtitleRow.titleTextColor = .red
         subtitleRow.subtitleTextColor = .blue
         
-        let noSeparatorsRow = TableRow(title: "No Separator")
+        let noSeparatorsRow = TableRow(title: "No Separators")
         noSeparatorsRow.displaySeparators = false
         
         let detailRow = TableRow(title: "Detail Disclosure")
@@ -61,7 +61,7 @@ class ViewController: TableViewController {
         let subtitleStyleRow = TableRow(title: "Subtitle", subtitle: "Subtitle", image: nil, selectionHandler: nil)
         subtitleStyleRow.cellStyle = .subtitle
         
-        let customSection = TableSection(rows: [subtitleRow, noSeparatorsRow, detailRow, checkRow, value1Row, value2Row, subtitleStyleRow], header: "Custom Rows", footer: nil, selectionHandler: nil)
+        let customSection = TableSection(rows: [noSeparatorsRow, subtitleRow, detailRow, checkRow, value1Row, value2Row, subtitleStyleRow], header: "Custom Rows", footer: nil, selectionHandler: nil)
         return customSection
     }
     
