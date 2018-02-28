@@ -30,6 +30,8 @@
 		B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */; };
 		B19C53251D8B033E00B30A35 /* InputTextFieldViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */; };
 		B19C53271D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */; };
+		B1A8983E2047117D0028CAE4 /* Value2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1A8983C2047117D0028CAE4 /* Value2TableViewCell.xib */; };
+		B1A8983F2047117D0028CAE4 /* Value2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8983D2047117D0028CAE4 /* Value2TableViewCell.swift */; };
 		B1AD7EBD1D8BFB8F00BFCA34 /* InputTextViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EBC1D8BFB8F00BFCA34 /* InputTextViewRow.swift */; };
 		B1AD7EC01D8BFC9D00BFCA34 /* InputTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EBE1D8BFC9D00BFCA34 /* InputTextViewCell.swift */; };
 		B1AD7EC11D8BFC9D00BFCA34 /* InputTextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1AD7EBF1D8BFC9D00BFCA34 /* InputTextViewCell.xib */; };
@@ -54,13 +56,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		B14F946220444E910014F694 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B17BAA291D89639100844421 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B17BAA311D89639100844421;
-			remoteInfo = ThunderTable;
-		};
-		B17BAA3D1D89639200844421 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B17BAA291D89639100844421 /* Project object */;
 			proxyType = 1;
@@ -110,6 +105,8 @@
 		B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextFieldViewCell.swift; sourceTree = "<group>"; };
 		B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextFieldViewCell.xib; sourceTree = "<group>"; };
 		B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationLoadingIndicatorManager.swift; sourceTree = "<group>"; };
+		B1A8983C2047117D0028CAE4 /* Value2TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Value2TableViewCell.xib; sourceTree = "<group>"; };
+		B1A8983D2047117D0028CAE4 /* Value2TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Value2TableViewCell.swift; sourceTree = "<group>"; };
 		B1AD7EBC1D8BFB8F00BFCA34 /* InputTextViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextViewRow.swift; sourceTree = "<group>"; };
 		B1AD7EBE1D8BFC9D00BFCA34 /* InputTextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextViewCell.swift; sourceTree = "<group>"; };
 		B1AD7EBF1D8BFC9D00BFCA34 /* InputTextViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextViewCell.xib; sourceTree = "<group>"; };
@@ -287,6 +284,8 @@
 				B1B679601D89807A00B66FD8 /* TableViewCell.xib */,
 				B1EC81041FDE873700C8EE72 /* Value1TableViewCell.swift */,
 				B1EC81051FDE873700C8EE72 /* Value1TableViewCell.xib */,
+				B1A8983D2047117D0028CAE4 /* Value2TableViewCell.swift */,
+				B1A8983C2047117D0028CAE4 /* Value2TableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -427,6 +426,7 @@
 				B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */,
 				B1EC80FF1FDE85EA00C8EE72 /* DefaultTableViewCell.xib in Resources */,
 				B1C2C5701FFCF20F00D968C5 /* InputDatePickerViewCell.xib in Resources */,
+				B1A8983E2047117D0028CAE4 /* Value2TableViewCell.xib in Resources */,
 				B1AD7EC11D8BFC9D00BFCA34 /* InputTextViewCell.xib in Resources */,
 				B1EC81071FDE873700C8EE72 /* Value1TableViewCell.xib in Resources */,
 			);
@@ -479,6 +479,7 @@
 				B1E088671DA6470700E45E47 /* ImageController.swift in Sources */,
 				B1AD7EC01D8BFC9D00BFCA34 /* InputTextViewCell.swift in Sources */,
 				B19C531F1D8B00E900B30A35 /* InputTextFieldRow.swift in Sources */,
+				B1A8983F2047117D0028CAE4 /* Value2TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,11 +498,6 @@
 			isa = PBXTargetDependency;
 			target = B17BAA311D89639100844421 /* ThunderTable */;
 			targetProxy = B14F946220444E910014F694 /* PBXContainerItemProxy */;
-		};
-		B17BAA3E1D89639200844421 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B17BAA311D89639100844421 /* ThunderTable */;
-			targetProxy = B17BAA3D1D89639200844421 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

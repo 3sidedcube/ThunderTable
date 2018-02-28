@@ -43,7 +43,25 @@ class ViewController: TableViewController {
         subtitleRow.titleTextColor = .red
         subtitleRow.subtitleTextColor = .blue
         
-        let customSection = TableSection(rows: [subtitleRow], header: "Custom Rows", footer: nil, selectionHandler: nil)
+        let noSeparatorsRow = TableRow(title: "No Separator")
+        noSeparatorsRow.displaySeparators = false
+        
+        let detailRow = TableRow(title: "Detail Disclosure")
+        detailRow.accessoryType = .detailDisclosureButton
+        
+        let checkRow = TableRow(title: "Check Mark")
+        checkRow.accessoryType = .checkmark
+        
+        let value1Row = TableRow(title: "Value 1", subtitle: "Subtitle", image: nil, selectionHandler: nil)
+        value1Row.cellStyle = .value1
+        
+        let value2Row = TableRow(title: "Value 2", subtitle: "Subtitle", image: nil, selectionHandler: nil)
+        value2Row.cellStyle = .value2
+        
+        let subtitleStyleRow = TableRow(title: "Subtitle", subtitle: "Subtitle", image: nil, selectionHandler: nil)
+        subtitleStyleRow.cellStyle = .subtitle
+        
+        let customSection = TableSection(rows: [subtitleRow, noSeparatorsRow, detailRow, checkRow, value1Row, value2Row, subtitleStyleRow], header: "Custom Rows", footer: nil, selectionHandler: nil)
         return customSection
     }
     
