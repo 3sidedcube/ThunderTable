@@ -6,7 +6,7 @@
 //  Copyright © 2018 3SidedCube. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// A protocol which can be used to represent a component in a `UIPickerView`
 public protocol PickerComponentDisplayable {
