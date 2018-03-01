@@ -116,6 +116,12 @@ public protocol Row {
 	///   - tableView: The table view which the row will be displayed in
 	/// - Returns: The height (or nil, to have this ignored) the row should be displayed at
 	func height(constrainedTo size: CGSize, in tableView: UITableView) -> CGFloat?
+	
+	/// A configuration object which allows leading swipe actions to be attached to the row.
+	var leadingSwipeActionsConfiguration: SwipeActionsConfigurable? { get }
+	
+	/// A configuration object which allows trailing swipe actions to be attached to the row.
+	var trailingSwipeActionsConfiguration: SwipeActionsConfigurable? { get }
 }
 
 extension Row {
@@ -136,7 +142,7 @@ extension Row {
 	}
 	
 	public var isEditable: Bool {
-		get { return false }
+		get { return leadingSwipeActionsConfiguration != nil || trailingSwipeActionsConfiguration != nil || editHandler != nil }
 		set {}
 	}
 	
@@ -210,6 +216,10 @@ extension Row {
 	public func height(constrainedTo size: CGSize, in tableView: UITableView) -> CGFloat? {
 		return nil
 	}
+	
+	public var leadingSwipeActionsConfiguration: SwipeActionsConfigurable? { get { return nil } }
+	
+	public var trailingSwipeActionsConfiguration: SwipeActionsConfigurable? { get { return nil } }
 }
 
 /// A base class which can be subclassed providing a template for the `Row` protocol
@@ -219,7 +229,12 @@ open class TableRow: Row {
 	
 	open var displaySeparators: Bool = true
 	
-	public var isEditable: Bool = false
+	public var isEditable: Bool {
+		get {
+			return leadingSwipeActionsConfiguration != nil || trailingSwipeActionsConfiguration != nil || editHandler != nil
+		}
+		set {}
+	}
 	
 	public var editHandler: EditHandler?
     
@@ -250,6 +265,10 @@ open class TableRow: Row {
 	open var selectionStyle: UITableViewCellSelectionStyle?
 	
 	open var accessoryType: UITableViewCellAccessoryType?
+	
+	open var leadingSwipeActionsConfiguration: SwipeActionsConfigurable?
+	
+	open var trailingSwipeActionsConfiguration: SwipeActionsConfigurable?
     
     open var cellClass: AnyClass? {
 		guard let cellStyle = cellStyle else { return TableViewCell.self }

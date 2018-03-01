@@ -285,21 +285,36 @@ open class TableViewController: UITableViewController {
 		}
 	}
 	
-	override open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-		//TODO: Add implementation via `Row` or `Section` protocol
-		return nil
+	open override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		
+		let section = data[indexPath.section]
+		let row = section.rows[indexPath.row]
+		
+		guard let configuration = row.trailingSwipeActionsConfiguration ?? section.rowTrailingSwipeActionsConfiguration else { return nil }
+		
+		return configuration.rowActionsFor(row: row, in: tableView)
 	}
 	
 	@available(iOS 11.0, *)
 	override open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-		//TODO: Add implementation via `Row` or `Section` protocol
-		return nil
+		
+		let section = data[indexPath.section]
+		let row = section.rows[indexPath.row]
+		
+		guard let configuration = row.leadingSwipeActionsConfiguration ?? section.rowLeadingSwipeActionsConfiguration else { return nil }
+		
+		return configuration.configurationFor(row: row, at: indexPath, in: tableView)
 	}
 	
 	@available(iOS 11.0, *)
 	override open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-		//TODO: Add implementation via `Row` or `Section` protocol
-		return nil
+		
+		let section = data[indexPath.section]
+		let row = section.rows[indexPath.row]
+		
+		guard let configuration = row.trailingSwipeActionsConfiguration ?? section.rowTrailingSwipeActionsConfiguration else { return nil }
+		
+		return configuration.configurationFor(row: row, at: indexPath, in: tableView)
 	}
 		
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
