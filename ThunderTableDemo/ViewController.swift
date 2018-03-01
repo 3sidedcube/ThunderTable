@@ -29,13 +29,13 @@ class ViewController: TableViewController {
         
         let leftActionsRow = TableRow(title: "Swipe From Left")
         let leftAction1 = RowAction(style: .normal, title: "Action") { (actionable, view, callback, row, indexPath, tableView) in
-            
+            callback?(true)
         }
         let actionConfiguration = SwipeActionsConfiguration(actions: [leftAction1, destructiveAction])
         leftActionsRow.leadingSwipeActionsConfiguration = actionConfiguration
         
         let customAction = RowAction(style: .normal, title: "Custom") { (actionable, view, callback, row, indexPath, tableView) in
-            
+            callback?(true)
         }
         customAction.backgroundColor = .green
         
