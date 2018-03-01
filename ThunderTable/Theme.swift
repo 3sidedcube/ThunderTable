@@ -175,7 +175,7 @@ open class Theme: NSObject {
     open var cellTitleFont: UIFont = .preferredFont(forTextStyle: .body)
         
     /// The font for the detail label of cells throughout the app
-    open var cellDetailFont: UIFont = .preferredFont(forTextStyle: .caption1)
+    open var cellDetailFont: UIFont = .preferredFont(forTextStyle: .subheadline)
 
 }
 
