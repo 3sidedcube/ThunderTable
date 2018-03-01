@@ -13,7 +13,38 @@ class ViewController: TableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        data = [basicsSection(), inputSection(), customSection()]
+        data = [basicsSection(), inputSection(), customSection(), actionsSection()]
+    }
+    
+    private func actionsSection() -> TableSection {
+        
+        let destructiveAction = RowAction(style: .destructive, title: "Destroy!") { (actionable, view, callback, row, indexPath, tableView) in
+            
+            let alertController = UIAlertController(title: "Performed Action", message: nil, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+            callback?(false)
+        }
+        
+        let leftActionsRow = TableRow(title: "Swipe From Left")
+        let leftAction1 = RowAction(style: .normal, title: "Action") { (actionable, view, callback, row, indexPath, tableView) in
+            
+        }
+        let actionConfiguration = SwipeActionsConfiguration(actions: [leftAction1, destructiveAction])
+        leftActionsRow.leadingSwipeActionsConfiguration = actionConfiguration
+        
+        let customAction = RowAction(style: .normal, title: "Custom") { (actionable, view, callback, row, indexPath, tableView) in
+            
+        }
+        customAction.backgroundColor = .green
+        
+        let rightActionConfiguration = SwipeActionsConfiguration(actions: [customAction])
+        
+        let rightActionsRow = TableRow(title: "Swipe From Right")
+        rightActionsRow.trailingSwipeActionsConfiguration = rightActionConfiguration
+        
+        return TableSection(rows: [leftActionsRow, rightActionsRow], header: "Cell Actions", footer: nil, selectionHandler: nil)
     }
     
     private func basicsSection() -> TableSection {
