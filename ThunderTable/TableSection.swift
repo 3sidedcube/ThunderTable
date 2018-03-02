@@ -14,15 +14,15 @@ public typealias EditHandler = (_ row: Row, _ editingStyle: UITableViewCellEditi
 
 public protocol Section {
     
-    var rows: [Row] { get set }
+    var rows: [Row] { get }
     
-    var header: String? { get set }
+    var header: String? { get }
     
-    var footer: String? { get set }
+    var footer: String? { get }
     
-    var editHandler: EditHandler? { get set }
+    var editHandler: EditHandler? { get }
     
-    var selectionHandler: SelectionHandler? { get set }
+    var selectionHandler: SelectionHandler? { get }
     
     var rowLeadingSwipeActionsConfiguration: SwipeActionsConfigurable? { get }
     
@@ -32,36 +32,24 @@ public protocol Section {
 public extension Section {
     
     var rows: [Row] {
-        get {
-            return []
-        }
-        set {}
+        return []
     }
     
     var header: String? {
-        get {
-            return nil
-        }
-        set {}
+        return nil
     }
     
     var footer: String? {
-        get {
-            return nil
-        }
-        set {}
+        return nil
     }
     
     var selectionHandler: SelectionHandler? {
-        get {
-            return nil
-        }
-        set {}
+        return nil
     }
     
-    var rowLeadingSwipeActionsConfiguration: SwipeActionsConfigurable? { get { return nil } }
+    var rowLeadingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }
     
-    var rowTrailingSwipeActionsConfiguration: SwipeActionsConfigurable? { get { return nil } }
+    var rowTrailingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }
 }
 
 open class TableSection: Section {
