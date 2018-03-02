@@ -197,7 +197,15 @@ class ViewController: TableViewController {
         
         let sliderRow = InputSliderRow(title: "Piece of string", minValue: 1.0, maxValue: 10.0, id: "string", required: true)
         
-        let inputSection = TableSection(rows: [textFieldRow, textViewRow, switchRow, switchRow2, dobRow, countdownRow, timeOfDayRow, sliderRow, viewInputRow], header: "Input Rows", footer: nil, selectionHandler: nil)
+        let givenNameCompnent = PickerComponent(items: ["John", "Cersei", "Tyrion"])
+        let familyNameComponent = PickerComponent(items: ["Lannister", "Greyjoy", "Snow"])
+        
+        let inputPickerRow = InputPickerRow(title: "Pick Me!", components: [givenNameCompnent, familyNameComponent], formatter: { (value) -> String in
+            guard let stringValues = value as? [String] else { return "" }
+            return stringValues.joined(separator: " ")
+        }, id: "name_components", required: false)
+        
+        let inputSection = TableSection(rows: [textFieldRow, textViewRow, switchRow, switchRow2, dobRow, countdownRow, timeOfDayRow, sliderRow, viewInputRow, inputPickerRow], header: "Input Rows", footer: nil, selectionHandler: nil)
         
         return inputSection
     }
