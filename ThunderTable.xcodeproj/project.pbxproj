@@ -11,11 +11,15 @@
 		B108319D1F068FDF008B565D /* TableImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108319B1F068FDF008B565D /* TableImageViewCell.swift */; };
 		B108319E1F068FDF008B565D /* TableImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B108319C1F068FDF008B565D /* TableImageViewCell.xib */; };
 		B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11264F31D8A9AE800224FB2 /* InputTableRow.swift */; };
+		B114F0C320359F76005D52F2 /* TableRow+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114F0C220359F76005D52F2 /* TableRow+Actions.swift */; };
 		B114F10E2035CA75005D52F2 /* InputPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114F10D2035CA75005D52F2 /* InputPickerRow.swift */; };
 		B114F1112035CC19005D52F2 /* InputPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */; };
 		B114F1122035CC19005D52F2 /* InputPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */; };
-		B114F0C320359F76005D52F2 /* TableRow+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114F0C220359F76005D52F2 /* TableRow+Actions.swift */; };
 		B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CB8CE1F320DA600E58116 /* Extensions.swift */; };
+		B11CEB7D20497806001308B3 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CEB7B20497806001308B3 /* ContactTableViewCell.swift */; };
+		B11CEB7E20497806001308B3 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B11CEB7C20497806001308B3 /* ContactTableViewCell.xib */; };
+		B11CEB9E20498E61001308B3 /* CNContact+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CEB9D20498E61001308B3 /* CNContact+Section.swift */; };
+		B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CEB79204977A2001308B3 /* CNContact+Row.swift */; };
 		B14F945120444E820014F694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945020444E820014F694 /* AppDelegate.swift */; };
 		B14F945320444E820014F694 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945220444E820014F694 /* ViewController.swift */; };
 		B14F945620444E820014F694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14F945420444E820014F694 /* Main.storyboard */; };
@@ -86,11 +90,15 @@
 		B108319B1F068FDF008B565D /* TableImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableImageViewCell.swift; sourceTree = "<group>"; };
 		B108319C1F068FDF008B565D /* TableImageViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableImageViewCell.xib; sourceTree = "<group>"; };
 		B11264F31D8A9AE800224FB2 /* InputTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableRow.swift; sourceTree = "<group>"; };
+		B114F0C220359F76005D52F2 /* TableRow+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableRow+Actions.swift"; sourceTree = "<group>"; };
 		B114F10D2035CA75005D52F2 /* InputPickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPickerRow.swift; sourceTree = "<group>"; };
 		B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPickerViewCell.swift; sourceTree = "<group>"; };
 		B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPickerViewCell.xib; sourceTree = "<group>"; };
-		B114F0C220359F76005D52F2 /* TableRow+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableRow+Actions.swift"; sourceTree = "<group>"; };
 		B11CB8CE1F320DA600E58116 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B11CEB79204977A2001308B3 /* CNContact+Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CNContact+Row.swift"; path = "../../../../../../Documents/CNContact+Row.swift"; sourceTree = "<group>"; };
+		B11CEB7B20497806001308B3 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContactTableViewCell.swift; path = ../../../../../../Documents/ContactTableViewCell.swift; sourceTree = "<group>"; };
+		B11CEB7C20497806001308B3 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContactTableViewCell.xib; path = ../../../../../../Documents/ContactTableViewCell.xib; sourceTree = "<group>"; };
+		B11CEB9D20498E61001308B3 /* CNContact+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CNContact+Section.swift"; path = "../../../../../../Documents/CNContact+Section.swift"; sourceTree = "<group>"; };
 		B14F944E20444E810014F694 /* ThunderTableDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThunderTableDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B14F945020444E820014F694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B14F945220444E820014F694 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -181,9 +189,29 @@
 			name = Input;
 			sourceTree = "<group>";
 		};
+		B11CEB772049779D001308B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B11CEB79204977A2001308B3 /* CNContact+Row.swift */,
+				B11CEB9D20498E61001308B3 /* CNContact+Section.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B11CEB7A204977F6001308B3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B11CEB7B20497806001308B3 /* ContactTableViewCell.swift */,
+				B11CEB7C20497806001308B3 /* ContactTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		B14F944F20444E810014F694 /* ThunderTableDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B11CEB7A204977F6001308B3 /* Cells */,
+				B11CEB772049779D001308B3 /* Models */,
 				B14F945020444E820014F694 /* AppDelegate.swift */,
 				B14F945220444E820014F694 /* ViewController.swift */,
 				B14F945420444E820014F694 /* Main.storyboard */,
@@ -420,6 +448,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B11CEB7E20497806001308B3 /* ContactTableViewCell.xib in Resources */,
 				B14F945B20444E820014F694 /* LaunchScreen.storyboard in Resources */,
 				B14F945820444E820014F694 /* Assets.xcassets in Resources */,
 				B14F945620444E820014F694 /* Main.storyboard in Resources */,
@@ -459,8 +488,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B11CEB7D20497806001308B3 /* ContactTableViewCell.swift in Sources */,
 				B14F945320444E820014F694 /* ViewController.swift in Sources */,
+				B11CEB9E20498E61001308B3 /* CNContact+Section.swift in Sources */,
 				B14F945120444E820014F694 /* AppDelegate.swift in Sources */,
+				B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,13 +8,29 @@
 
 import UIKit
 import ThunderTable
+import Contacts
+import ContactsUI
 
 class ViewController: TableViewController {
 
     override func viewDidLoad() {
+        
+        let contact1 = CNMutableContact()
+        contact1.givenName = "John"
+        contact1.familyName = "Snow"
+        contact1.phoneNumbers = [
+            CNLabeledValue(label: CNLabelHome, value: CNPhoneNumber(stringValue: "+44 20 7946 0302"))
+        ]
+        contact1.emailAddresses = [
+            CNLabeledValue(label: CNLabelHome, value: "john@john.john")
+        ]
+        
         super.viewDidLoad()
-        data = [basicsSection(), inputSection(), customSection(), actionsSection()]
+        
+        data = [basicsSection(), protocolSection(), contact1, inputSection(), customSection(), actionsSection()]
     }
+    
+    
     
     private func actionsSection() -> TableSection {
         
@@ -66,6 +82,43 @@ class ViewController: TableViewController {
         let basicsSection = TableSection(rows: [row, subtitleRow, imageRow, remoteImageRow, actionRow], header: "Header", footer: "Footer", selectionHandler: nil)
         
         return basicsSection
+    }
+    
+    private func protocolSection() -> TableSection {
+        
+        let contact1 = CNMutableContact()
+        contact1.givenName = "John"
+        contact1.familyName = "Snow"
+        contact1.phoneNumbers = [
+            CNLabeledValue(label: CNLabelHome, value: CNPhoneNumber(stringValue: "+44 20 7946 0302"))
+        ]
+        
+        let contact2 = CNMutableContact()
+        contact2.givenName = "Cersei"
+        contact2.familyName = "Lannister"
+        contact2.emailAddresses = [
+            CNLabeledValue(label: CNLabelHome, value: "cersei@cersei.cersei")
+        ]
+        
+        let contact3 = CNMutableContact()
+        contact3.givenName = "Tyrion"
+        contact3.familyName = contact2.familyName
+        
+        return TableSection(rows: [contact1, contact2, contact3], header: "Custom Protocol Inheritance", footer: nil, selectionHandler: { (row, selected, indexPath, tableView) -> (Void) in
+            
+            switch row {
+            case let contact as CNContact:
+                
+                let contactVC = CNContactViewController(forNewContact: contact)
+                let contactNavController = UINavigationController(rootViewController: contactVC)
+                contactVC.delegate = self
+                self.present(contactNavController, animated: true, completion: nil)
+                
+                break
+            default:
+                break
+            }
+        })
     }
     
     private func customSection() -> TableSection {
@@ -147,6 +200,17 @@ class ViewController: TableViewController {
         let inputSection = TableSection(rows: [textFieldRow, textViewRow, switchRow, switchRow2, dobRow, countdownRow, timeOfDayRow, sliderRow, viewInputRow], header: "Input Rows", footer: nil, selectionHandler: nil)
         
         return inputSection
+    }
+}
+
+extension ViewController: CNContactViewControllerDelegate {
+    
+    func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func contactViewController(_ viewController: CNContactViewController, shouldPerformDefaultActionFor property: CNContactProperty) -> Bool {
+        return false
     }
 }
 
