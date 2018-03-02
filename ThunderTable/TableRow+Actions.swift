@@ -113,8 +113,11 @@ extension RowActionable {
     /// - Parameter handler: The handler to be called.
     /// - Returns: A `UIContextualAction`.
     func contextualAction(with handler: @escaping UIContextualActionHandler) -> UIContextualAction {
+        
         let action = UIContextualAction(style: style._UIContextualActionStyle, title: title, handler: handler)
-        action.backgroundColor = backgroundColor
+        if backgroundColor != nil {
+            action.backgroundColor = backgroundColor
+        }
         action.image = image
         return action
     }
@@ -124,8 +127,11 @@ extension RowActionable {
     /// - Parameter handler: The handler to be called.
     /// - Returns: A `UIContextualAction`.
     func rowAction(with handler: @escaping (UITableViewRowAction, IndexPath) -> Void) -> UITableViewRowAction {
+        
         let rowAction = UITableViewRowAction(style: style._UITableViewRowActionStyle, title: title, handler: handler)
-        rowAction.backgroundColor = backgroundColor
+        if backgroundColor != nil {
+            rowAction.backgroundColor = backgroundColor
+        }
         rowAction.backgroundEffect = backgroundEffect
         return rowAction
     }
