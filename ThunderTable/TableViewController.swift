@@ -290,7 +290,14 @@ open class TableViewController: UITableViewController {
 		let section = data[indexPath.section]
 		let row = section.rows[indexPath.row]
 		
-		guard let configuration = row.trailingSwipeActionsConfiguration ?? section.rowTrailingSwipeActionsConfiguration else { return nil }
+		guard let configuration = row.trailingSwipeActionsConfiguration ?? section.rowTrailingSwipeActionsConfiguration else {
+            
+            // Returning nil gives us the default "delete" item, so we only return nil if we don't have an editHandler
+            if section.editHandler == nil && row.editHandler == nil {
+                return []
+            }
+            return nil
+        }
 		
 		return configuration.rowActionsFor(row: row, in: tableView)
 	}
@@ -312,7 +319,15 @@ open class TableViewController: UITableViewController {
 		let section = data[indexPath.section]
 		let row = section.rows[indexPath.row]
 		
-		guard let configuration = row.trailingSwipeActionsConfiguration ?? section.rowTrailingSwipeActionsConfiguration else { return nil }
+		guard let configuration = row.trailingSwipeActionsConfiguration ?? section.rowTrailingSwipeActionsConfiguration else {
+            
+            // Returning nil gives us the default "delete" item, so we only return nil if we don't have an editHandler
+            if section.editHandler == nil && row.editHandler == nil {
+                let emptyConfiguration = UISwipeActionsConfiguration(actions: [])
+                return emptyConfiguration
+            }
+            return nil
+        }
 		
 		return configuration.configurationFor(row: row, at: indexPath, in: tableView)
 	}
