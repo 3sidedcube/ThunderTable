@@ -11,29 +11,20 @@ import Foundation
 extension Array : Section {
     
     public var rows: [Row] {
-        get {
-            return filter({ (item) -> Bool in
-                return item is Row
-            }) as? [Row] ?? []
-        }
-        set {}
+        return filter({ (item) -> Bool in
+            return item is Row
+        }) as? [Row] ?? []
     }
     
     public var editHandler: EditHandler? {
-        get {
-            return nil
-        }
-        set {}
+        return nil
     }
 }
 
 extension String: PickerRowDisplayable {
     
     public var rowTitle: String {
-        get {
-            return self
-        }
-        set {}
+        return self
     }
     
     public var value: AnyHashable {
@@ -44,9 +35,7 @@ extension String: PickerRowDisplayable {
 extension Int: PickerRowDisplayable {
     
     public var rowTitle: String {
-        get {
-            return "\(self)"
-        }
+        return "\(self)"
     }
     
     public var value: AnyHashable {
@@ -57,9 +46,7 @@ extension Int: PickerRowDisplayable {
 extension Double: PickerRowDisplayable {
     
     public var rowTitle: String {
-        get {
-            return "\(self)"
-        }
+        return "\(self)"
     }
     
     public var value: AnyHashable {
@@ -70,7 +57,6 @@ extension Double: PickerRowDisplayable {
 extension String : Row {
     
     public var title: String? {
-        get { return self }
-        set {}
+        return self
     }
 }
