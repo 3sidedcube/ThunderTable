@@ -57,7 +57,7 @@ open class InputDatePickerRow: InputTableRow {
 		}
 	}
 	
-	open override var cellClass: AnyClass? {
+	open override var cellClass: UITableViewCell.Type? {
 		return InputDatePickerViewCell.self
 	}
 	

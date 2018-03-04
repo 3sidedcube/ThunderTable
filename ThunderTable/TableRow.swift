@@ -63,7 +63,7 @@ public protocol Row {
 	var isEditable: Bool { get }
     
     /// The class for the `UITableViewCell` subclass for the cell
-    var cellClass: AnyClass? { get }
+    var cellClass: UITableViewCell.Type? { get }
     
     /// A prototype identifier for a cell which is defined in a storyboard
 	/// file, which this row will use
@@ -171,7 +171,7 @@ extension Row {
         return false
     }
     
-    public var cellClass: AnyClass? {
+    public var cellClass: UITableViewCell.Type? {
         return TableViewCell.self
     }
     
@@ -257,7 +257,7 @@ open class TableRow: Row {
 	
 	open var trailingSwipeActionsConfiguration: SwipeActionsConfigurable?
     
-    open var cellClass: AnyClass? {
+    open var cellClass: UITableViewCell.Type? {
 		guard let cellStyle = cellStyle else { return TableViewCell.self }
 		switch cellStyle {
 		case .default:

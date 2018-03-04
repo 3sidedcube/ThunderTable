@@ -70,7 +70,7 @@ extension Row {
 				
 				// Sometimes a cell may have subclassed without providing it's own nib file
 				// In this case always use it's superclass!
-				while nibPath == nil, let superClass = cellClass.superclass(){
+				while nibPath == nil, let superClass = cellClass.superclass() as? UITableViewCell.Type {
 					
 					// Make sure we're still looking in the correct bundle
 					bundle = Bundle(for: superClass)
@@ -402,7 +402,7 @@ open class TableViewController: UITableViewController {
         var cell = dynamicHeightCells[identifier]
         if cell == nil {
             
-            if let aClass = row.cellClass as? UITableViewCell.Type {
+            if let aClass = row.cellClass {
                 cell = aClass.init(style: .default, reuseIdentifier: identifier)
             }
         }
