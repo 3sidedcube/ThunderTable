@@ -24,7 +24,7 @@ open class InputTextViewRow: InputTableRow {
     
     open var isSecure: Bool = false
     
-    override open var cellClass: AnyClass? {
+    override open var cellClass: UITableViewCell.Type? {
         return InputTextViewCell.self
     }
     

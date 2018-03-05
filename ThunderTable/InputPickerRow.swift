@@ -89,7 +89,7 @@ open class InputPickerRow: InputTableRow {
         self.title = title
     }
     
-    open override var cellClass: AnyClass? {
+    open override var cellClass: UITableViewCell.Type? {
         return InputPickerViewCell.self
     }
     

@@ -83,7 +83,7 @@ open class InputTableRow: NSObject, InputRow {
     
     open var selectionHandler: SelectionHandler?
     
-    open var cellClass: AnyClass? {
+    open var cellClass: UITableViewCell.Type? {
         return TableViewCell.self
     }
     
