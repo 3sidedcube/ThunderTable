@@ -153,11 +153,11 @@ open class TableViewController: UITableViewController {
 		NotificationCenter.default.removeObserver(dynamicChangeObserver)
 	}
     
-    public var inputDictionary: [String: Any?]? {
+    public var inputDictionary: [String: Any]? {
         
         guard let inputRows = _data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return nil }
         
-        var dictionary: [String: Any?] = [:]
+        var dictionary: [String: Any] = [:]
         
         inputRows.forEach { (row) in
             dictionary[row.id] = row.value
