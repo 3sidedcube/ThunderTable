@@ -153,9 +153,9 @@ open class TableViewController: UITableViewController {
 		NotificationCenter.default.removeObserver(dynamicChangeObserver)
 	}
     
-    public var inputDictionary: [String: Any]? {
+    public var inputDictionary: [String: Any] {
         
-        guard let inputRows = _data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return nil }
+        guard let inputRows = _data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return [:] }
         
         var dictionary: [String: Any] = [:]
         
