@@ -89,7 +89,7 @@ open class TableSection: Section {
             return stringB > stringA
         }
         
-        return sortedKeys.flatMap({key -> TableSection? in
+        return sortedKeys.compactMap({key -> TableSection? in
             guard let rows = sortedAlphabetically[key] else { return nil }
             return TableSection(rows: rows, header: key, footer: nil, selectionHandler: selectionHandler)
         })
