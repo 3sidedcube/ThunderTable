@@ -111,9 +111,18 @@ open class TableViewController: UITableViewController {
     
     private var _data: [Section] = []
     
+    private var _isBlockingRedrawing: Bool = false
+    
+    public func withoutRedrawing(_ closure: () -> Void) {
+        _isBlockingRedrawing = true
+        closure()
+        _isBlockingRedrawing = false
+    }
+    
     open var data: [Section] {
         set {
             _data = newValue
+            guard !_isBlockingRedrawing else { return }
             tableView.reloadData()
         }
         get {
