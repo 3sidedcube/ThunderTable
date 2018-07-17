@@ -113,6 +113,9 @@ open class TableViewController: UITableViewController {
     
     private var _isBlockingRedrawing: Bool = false
     
+    /// A function which allows for mutation of `data` without causing the tableView to reload.
+    ///
+    /// - Parameter closure: Code to be run without reloading the table view.
     public func withoutRedrawing(_ closure: () -> Void) {
         _isBlockingRedrawing = true
         closure()

@@ -60,6 +60,7 @@
 		B1EC81031FDE86BF00C8EE72 /* SubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EC81011FDE86BF00C8EE72 /* SubtitleTableViewCell.xib */; };
 		B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC81041FDE873700C8EE72 /* Value1TableViewCell.swift */; };
 		B1EC81071FDE873700C8EE72 /* Value1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EC81051FDE873700C8EE72 /* Value1TableViewCell.xib */; };
+		B1F8047F20FDEC5200921AC9 /* TableViewController+Reload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F8047E20FDEC5200921AC9 /* TableViewController+Reload.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,7 @@
 		B1EC81011FDE86BF00C8EE72 /* SubtitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		B1EC81041FDE873700C8EE72 /* Value1TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value1TableViewCell.swift; sourceTree = "<group>"; };
 		B1EC81051FDE873700C8EE72 /* Value1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Value1TableViewCell.xib; sourceTree = "<group>"; };
+		B1F8047E20FDEC5200921AC9 /* TableViewController+Reload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewController+Reload.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +255,7 @@
 				B17BAA361D89639100844421 /* Info.plist */,
 				B1EC80FB1FDE85C000C8EE72 /* Cells */,
 				B17BAA551D8963BB00844421 /* TableViewController.swift */,
+				B1F8047E20FDEC5200921AC9 /* TableViewController+Reload.swift */,
 				B17BAA571D89643800844421 /* TableSection.swift */,
 				B17BAA591D89645000844421 /* TableRow.swift */,
 				B114F0C220359F76005D52F2 /* TableRow+Actions.swift */,
@@ -506,6 +509,7 @@
 				B17BAA581D89643800844421 /* TableSection.swift in Sources */,
 				B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */,
 				B1C2C56C1FFCEE3100D968C5 /* InputDatePickerRow.swift in Sources */,
+				B1F8047F20FDEC5200921AC9 /* TableViewController+Reload.swift in Sources */,
 				B1EC81021FDE86BF00C8EE72 /* SubtitleTableViewCell.swift in Sources */,
 				B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */,
 				B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */,
