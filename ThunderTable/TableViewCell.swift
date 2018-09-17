@@ -18,7 +18,7 @@ open class TableViewCell: UITableViewCell {
 	
 	private var nibBased = false
 	
-	public var cellStyle: UITableViewCellStyle = .default
+	public var cellStyle: UITableViewCell.CellStyle = .default
 	
 	public var shouldDisplaySeparators = true {
 		didSet {
@@ -34,7 +34,7 @@ open class TableViewCell: UITableViewCell {
 		}
 	}
 	
-	override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		

@@ -168,7 +168,7 @@ public extension UIImageView {
                         // Animate the change
                         if animated {
                             let transition = CATransition()
-                            transition.type = kCATransitionFade
+                            transition.type = CATransitionType.fade
                             transition.duration = 0.25
                         }
                     }
