@@ -15,7 +15,7 @@ extension UILabel {
 			
 			if let text = text, let style = newValue?.mutableCopy() as? NSMutableParagraphStyle {
 				
-				var attributes = [NSAttributedStringKey : Any]()
+				var attributes = [NSAttributedString.Key : Any]()
 				style.alignment = textAlignment
 				
 				if let font = font {
@@ -38,7 +38,7 @@ extension UILabel {
 	}
 }
 
-extension UITableViewCellAccessoryType {
+extension UITableViewCell.AccessoryType {
 	
     var rightInset: CGFloat {
         switch self {
@@ -141,7 +141,7 @@ open class TableViewController: UITableViewController {
 		
 		super.viewWillAppear(animated)
 		
-		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: self, queue: .main) { [weak self] (notification) in
+		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: self, queue: .main) { [weak self] (notification) in
 			guard let strongSelf = self, strongSelf.shouldRedrawWithContentSizeChange else { return }
 			strongSelf.tableView.reloadData()
 		}
@@ -278,7 +278,7 @@ open class TableViewController: UITableViewController {
 		return row.isEditable
 	}
 	
-	override open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+	override open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		
 		let section = data[indexPath.section]
 		let row = section.rows[indexPath.row]
@@ -390,7 +390,7 @@ open class TableViewController: UITableViewController {
         let calculateSize = row.prototypeIdentifier == nil && row.nib == nil
         
         if !calculateSize {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
 		
 		if let height = row.height(constrainedTo: CGSize(width: tableView.frame.width, height: CGFloat.greatestFiniteMagnitude), in: tableView) {
@@ -413,7 +413,7 @@ open class TableViewController: UITableViewController {
             }
         }
         
-        guard let _cell = cell else { return UITableViewAutomaticDimension }
+        guard let _cell = cell else { return UITableView.automaticDimension }
 
         configure(cell: _cell, with: row, at: indexPath)
         
@@ -440,7 +440,7 @@ open class TableViewController: UITableViewController {
             }
         }
         
-        var cellHeight = totalHeight + fabs(lowestYValue) + 8
+        var cellHeight = totalHeight + abs(lowestYValue) + 8
         
         if let padding = row.padding {
             cellHeight = cellHeight - 8 + padding
@@ -516,7 +516,7 @@ open class TableViewController: UITableViewController {
 		view.setNeedsLayout()
 		view.layoutIfNeeded()
 		
-		let size = view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+		let size = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 		let height = size.height
 		var frame = view.frame
 		

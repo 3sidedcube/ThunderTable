@@ -10,7 +10,7 @@ import UIKit
 
 public typealias SelectionHandler = (_ row: Row, _ selected: Bool, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
 
-public typealias EditHandler = (_ row: Row, _ editingStyle: UITableViewCellEditingStyle, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
+public typealias EditHandler = (_ row: Row, _ editingStyle: UITableViewCell.EditingStyle, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
 
 public protocol Section {
     

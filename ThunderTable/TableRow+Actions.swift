@@ -28,7 +28,7 @@ public enum RowActionableStyle {
         }
     }
     
-    var _UITableViewRowActionStyle: UITableViewRowActionStyle {
+    var _UITableViewRowActionStyle: UITableViewRowAction.Style {
         switch self {
         case .destructive:
             return .destructive
@@ -112,7 +112,7 @@ extension RowActionable {
     ///
     /// - Parameter handler: The handler to be called.
     /// - Returns: A `UIContextualAction`.
-    func contextualAction(with handler: @escaping UIContextualActionHandler) -> UIContextualAction {
+    func contextualAction(with handler: @escaping UIContextualAction.Handler) -> UIContextualAction {
         
         let action = UIContextualAction(style: style._UIContextualActionStyle, title: title, handler: handler)
         // Only set this if non-nil otherwise we end up with no default colouring and a transparent background to the button

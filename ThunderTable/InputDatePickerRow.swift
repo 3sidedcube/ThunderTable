@@ -13,7 +13,7 @@ import UIKit
 open class InputDatePickerRow: InputTableRow {
 	
 	/// The date picker mode for the row
-	open var mode: UIDatePickerMode = .dateAndTime
+	open var mode: UIDatePicker.Mode = .dateAndTime
 	
 	/// The minimum date allowed by the row
 	open var minimumDate: Date?
@@ -31,7 +31,7 @@ open class InputDatePickerRow: InputTableRow {
 	///   - mode: The mode of the date picker
 	///   - id: The unique id for this row
 	///   - required: Whether the value is required
-	public init(title: String?, mode: UIDatePickerMode = .dateAndTime, id: String, required: Bool) {
+	public init(title: String?, mode: UIDatePicker.Mode = .dateAndTime, id: String, required: Bool) {
 		
 		self.mode = mode
 		
