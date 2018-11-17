@@ -185,8 +185,11 @@ public extension UIImageView {
                             }
                         })
                         
-                        // Remove this image request from the queued requests
-                        welf.requests?.remove(at: requestIndex)
+                        // Remove this image request from the queued requests, recalculate index,
+                        // because above code may have broken the ordering!
+                        if let index = welf.requests?.index(where: { $0.urlRequest == request?.urlRequest }) {
+                            welf.requests?.remove(at: index)
+                        }
                     }
                 }
                 
