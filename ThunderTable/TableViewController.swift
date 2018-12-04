@@ -26,14 +26,15 @@ extension UILabel {
 					attributes[.foregroundColor] = textColor
 				}
 				
-				attributes[.paragraphStyle] = paragraphStyle
+				attributes[.paragraphStyle] = newValue
 				
 				let attributedString = NSAttributedString(string: text, attributes: attributes)
 				attributedText = attributedString
 			}
 		}
 		get {
-			return NSParagraphStyle()
+            guard let paragraphAttribute = attributedText?.attribute(.paragraphStyle, at: 0, effectiveRange: nil) else { return nil }
+            return paragraphAttribute as? NSParagraphStyle
 		}
 	}
 }
