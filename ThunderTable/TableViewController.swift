@@ -25,8 +25,8 @@ extension UILabel {
 				if let textColor = textColor {
 					attributes[.foregroundColor] = textColor
 				}
-				
-				attributes[.paragraphStyle] = newValue
+				                
+				attributes[.paragraphStyle] = style
 				
 				let attributedString = NSAttributedString(string: text, attributes: attributes)
 				attributedText = attributedString
