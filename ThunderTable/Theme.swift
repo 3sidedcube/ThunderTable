@@ -117,6 +117,9 @@ open class Theme: NSObject {
     /// The colour to be used for a UIProgressBar fill colour
     @objc open var progressTintColour: UIColor = .white
     
+    /// The status bar style to use by default
+    open var statusBarStyle: UIStatusBarStyle = .lightContent
+    
     /// The colour to be used as the navigation bar background colour
     open var navigationBarBackgroundColor: UIColor {
         return mainColor
