@@ -16,9 +16,6 @@
 		B114F1112035CC19005D52F2 /* InputPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */; };
 		B114F1122035CC19005D52F2 /* InputPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */; };
 		B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CB8CE1F320DA600E58116 /* Extensions.swift */; };
-		B11CEB7D20497806001308B3 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CEB7B20497806001308B3 /* ContactTableViewCell.swift */; };
-		B11CEB7E20497806001308B3 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B11CEB7C20497806001308B3 /* ContactTableViewCell.xib */; };
-		B11CEB9E20498E61001308B3 /* CNContact+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CEB9D20498E61001308B3 /* CNContact+Section.swift */; };
 		B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CEB79204977A2001308B3 /* CNContact+Row.swift */; };
 		B14F945120444E820014F694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945020444E820014F694 /* AppDelegate.swift */; };
 		B14F945320444E820014F694 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945220444E820014F694 /* ViewController.swift */; };
@@ -48,6 +45,9 @@
 		B1AD7EC71D8C198F00BFCA34 /* InputSwitchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */; };
 		B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */; };
 		B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B679601D89807A00B66FD8 /* TableViewCell.xib */; };
+		B1BAABCA22244B94007F0F61 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */; };
+		B1BAABCD22244BAF007F0F61 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1BAABCC22244BAF007F0F61 /* ContactTableViewCell.xib */; };
+		B1BAABCF22244C06007F0F61 /* CNContact+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAABCE22244C06007F0F61 /* CNContact+Section.swift */; };
 		B1C2C56C1FFCEE3100D968C5 /* InputDatePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2C56B1FFCEE3100D968C5 /* InputDatePickerRow.swift */; };
 		B1C2C56F1FFCF20F00D968C5 /* InputDatePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2C56D1FFCF20F00D968C5 /* InputDatePickerViewCell.swift */; };
 		B1C2C5701FFCF20F00D968C5 /* InputDatePickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C2C56E1FFCF20F00D968C5 /* InputDatePickerViewCell.xib */; };
@@ -95,10 +95,7 @@
 		B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPickerViewCell.swift; sourceTree = "<group>"; };
 		B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPickerViewCell.xib; sourceTree = "<group>"; };
 		B11CB8CE1F320DA600E58116 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		B11CEB79204977A2001308B3 /* CNContact+Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CNContact+Row.swift"; path = "../../../../../../Documents/CNContact+Row.swift"; sourceTree = "<group>"; };
-		B11CEB7B20497806001308B3 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContactTableViewCell.swift; path = ../../../../../../Documents/ContactTableViewCell.swift; sourceTree = "<group>"; };
-		B11CEB7C20497806001308B3 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContactTableViewCell.xib; path = ../../../../../../Documents/ContactTableViewCell.xib; sourceTree = "<group>"; };
-		B11CEB9D20498E61001308B3 /* CNContact+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CNContact+Section.swift"; path = "../../../../../../Documents/CNContact+Section.swift"; sourceTree = "<group>"; };
+		B11CEB79204977A2001308B3 /* CNContact+Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CNContact+Row.swift"; sourceTree = "<group>"; };
 		B14F944E20444E810014F694 /* ThunderTableDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThunderTableDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B14F945020444E820014F694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B14F945220444E820014F694 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +128,9 @@
 		B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSwitchViewCell.xib; sourceTree = "<group>"; };
 		B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B1B679601D89807A00B66FD8 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		B1BAABCC22244BAF007F0F61 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
+		B1BAABCE22244C06007F0F61 /* CNContact+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CNContact+Section.swift"; sourceTree = "<group>"; };
 		B1C2C56B1FFCEE3100D968C5 /* InputDatePickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDatePickerRow.swift; sourceTree = "<group>"; };
 		B1C2C56D1FFCF20F00D968C5 /* InputDatePickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDatePickerViewCell.swift; sourceTree = "<group>"; };
 		B1C2C56E1FFCF20F00D968C5 /* InputDatePickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDatePickerViewCell.xib; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				B11CEB79204977A2001308B3 /* CNContact+Row.swift */,
-				B11CEB9D20498E61001308B3 /* CNContact+Section.swift */,
+				B1BAABCE22244C06007F0F61 /* CNContact+Section.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,8 +201,8 @@
 		B11CEB7A204977F6001308B3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				B11CEB7B20497806001308B3 /* ContactTableViewCell.swift */,
-				B11CEB7C20497806001308B3 /* ContactTableViewCell.xib */,
+				B1BAABCC22244BAF007F0F61 /* ContactTableViewCell.xib */,
+				B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -449,9 +449,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B11CEB7E20497806001308B3 /* ContactTableViewCell.xib in Resources */,
 				B14F945B20444E820014F694 /* LaunchScreen.storyboard in Resources */,
 				B14F945820444E820014F694 /* Assets.xcassets in Resources */,
+				B1BAABCD22244BAF007F0F61 /* ContactTableViewCell.xib in Resources */,
 				B14F945620444E820014F694 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,9 +489,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B11CEB7D20497806001308B3 /* ContactTableViewCell.swift in Sources */,
+				B1BAABCA22244B94007F0F61 /* ContactTableViewCell.swift in Sources */,
+				B1BAABCF22244C06007F0F61 /* CNContact+Section.swift in Sources */,
 				B14F945320444E820014F694 /* ViewController.swift in Sources */,
-				B11CEB9E20498E61001308B3 /* CNContact+Section.swift in Sources */,
 				B14F945120444E820014F694 /* AppDelegate.swift in Sources */,
 				B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */,
 			);
