@@ -1,7 +1,7 @@
-language: objective-c
+language: swift
 xcode_project: ThunderTable.xcodeproj # path to your xcodeproj folder
 xcode_scheme: ThunderTable
-osx_image: xcode9.3
+osx_image: xcode10.1
 env:
   global:
   - LC_CTYPE=en_US.UTF-8
@@ -9,19 +9,20 @@ env:
   - IOS_FRAMEWORK_SCHEME="ThunderTable"
   - TVOS_FRAMEWORK_SCHEME=""
   - OSX_FRAMEWORK_SCHEME=""
-  - IOS_SDK=iphonesimulator11.3
-  - TVOS_SDK=appletvsimulator11.3
-  - OSX_SDK=macosx10.13
+  - IOS_SDK=iphonesimulator12.1
+  - TVOS_SDK=appletvsimulator12.1
+  - OSX_SDK=macosx10.14
   matrix:
-    - DESTINATION="OS=10.0,name=iPhone 5"           SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
-    - DESTINATION="OS=10.1,name=iPhone 5S"          SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
-    - DESTINATION="OS=10.3.1,name=iPhone 7"         SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
-    - DESTINATION="OS=10.3.1,name=iPhone 7 Plus"    SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
-    - DESTINATION="OS=11.0.1,name=iPhone 7 Plus"    SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
-    - DESTINATION="OS=11.1,name=iPhone 7"           SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
-    - DESTINATION="OS=11.2,name=iPhone 7"           SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
-    - DESTINATION="OS=11.1,name=iPhone 7 Plus"      SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
-    - DESTINATION="OS=11.2,name=iPhone 7 Plus"      SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=11.0.1,name=iPhone 5s"        SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=11.0.1,name=iPhone 8 Plus"    SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=11.1,name=iPhone 8"           SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=11.2,name=iPhone 8"           SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=11.1,name=iPhone 8 Plus"      SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=11.2,name=iPhone 8 Plus"      SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=12.0,name=iPhone 8 Plus"      SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=12.0,name=iPhone X"           SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=12.1,name=iPhone XR"          SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
+    - DESTINATION="OS=12.1,name=iPhone XS Max"      SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" BUILD_EXAMPLE="NO" POD_LINT="NO"
 script:
   - set -o pipefail
   - xcodebuild -version
