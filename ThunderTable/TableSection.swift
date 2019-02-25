@@ -10,7 +10,7 @@ import UIKit
 
 public typealias SelectionHandler = (_ row: Row, _ selected: Bool, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
 
-public typealias EditHandler = (_ row: Row, _ editingStyle: UITableViewCellEditingStyle, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
+public typealias EditHandler = (_ row: Row, _ editingStyle: UITableViewCell.EditingStyle, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
 
 public protocol Section {
     
@@ -85,7 +85,7 @@ open class TableSection: Section {
             return stringB > stringA
         }
         
-        return sortedKeys.flatMap({key -> TableSection? in
+        return sortedKeys.compactMap({key -> TableSection? in
             guard let rows = sortedAlphabetically[key] else { return nil }
             return TableSection(rows: rows, header: key, footer: nil, selectionHandler: selectionHandler)
         })

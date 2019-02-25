@@ -15,7 +15,7 @@ extension UILabel {
 			
 			if let text = text, let style = newValue?.mutableCopy() as? NSMutableParagraphStyle {
 				
-				var attributes = [NSAttributedStringKey : Any]()
+				var attributes = [NSAttributedString.Key : Any]()
 				style.alignment = textAlignment
 				
 				if let font = font {
@@ -25,20 +25,21 @@ extension UILabel {
 				if let textColor = textColor {
 					attributes[.foregroundColor] = textColor
 				}
-				
-				attributes[.paragraphStyle] = paragraphStyle
+				                
+				attributes[.paragraphStyle] = style
 				
 				let attributedString = NSAttributedString(string: text, attributes: attributes)
 				attributedText = attributedString
 			}
 		}
 		get {
-			return NSParagraphStyle()
+            guard let paragraphAttribute = attributedText?.attribute(.paragraphStyle, at: 0, effectiveRange: nil) else { return nil }
+            return paragraphAttribute as? NSParagraphStyle
 		}
 	}
 }
 
-extension UITableViewCellAccessoryType {
+extension UITableViewCell.AccessoryType {
 	
     var rightInset: CGFloat {
         switch self {
@@ -70,7 +71,7 @@ extension Row {
 				
 				// Sometimes a cell may have subclassed without providing it's own nib file
 				// In this case always use it's superclass!
-				while nibPath == nil, let superClass = cellClass.superclass(){
+				while nibPath == nil, let superClass = cellClass.superclass() as? UITableViewCell.Type {
 					
 					// Make sure we're still looking in the correct bundle
 					bundle = Bundle(for: superClass)
@@ -106,9 +107,15 @@ extension Row {
 
 open class TableViewController: UITableViewController {
     
-    open var data: [Section] = [] {
-        didSet {
+    private var _data: [Section] = []
+    
+    open var data: [Section] {
+        set {
+            _data = newValue
             tableView.reloadData()
+        }
+        get {
+            return _data
         }
     }
 	
@@ -116,7 +123,7 @@ open class TableViewController: UITableViewController {
 	
 	public var selectedRows: [Row]? {
 		return tableView.indexPathsForSelectedRows?.map({ (indexPath) -> Row in
-			return data[indexPath.section].rows[indexPath.row]
+			return _data[indexPath.section].rows[indexPath.row]
 		})
 	}
     
@@ -135,7 +142,7 @@ open class TableViewController: UITableViewController {
 		
 		super.viewWillAppear(animated)
 		
-		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: self, queue: .main) { [weak self] (notification) in
+		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: self, queue: .main) { [weak self] (notification) in
 			guard let strongSelf = self, strongSelf.shouldRedrawWithContentSizeChange else { return }
 			strongSelf.tableView.reloadData()
 		}
@@ -147,11 +154,11 @@ open class TableViewController: UITableViewController {
 		NotificationCenter.default.removeObserver(dynamicChangeObserver)
 	}
     
-    public var inputDictionary: [String: Any?]? {
+    public var inputDictionary: [String: Any] {
         
-        guard let inputRows = data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return nil }
+        guard let inputRows = _data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return [:] }
         
-        var dictionary: [String: Any?] = [:]
+        var dictionary: [String: Any] = [:]
         
         inputRows.forEach { (row) in
             dictionary[row.id] = row.value
@@ -162,7 +169,7 @@ open class TableViewController: UITableViewController {
 	
 	public var missingRequiredInputRows: [InputRow]? {
 		
-		guard let inputRows = data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return nil }
+		guard let inputRows = _data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return nil }
 		
 		return inputRows.filter({ (inputRow) -> Bool in
 			return inputRow.required && inputRow.value == nil
@@ -256,14 +263,14 @@ open class TableViewController: UITableViewController {
 
     override open func numberOfSections(in tableView: UITableView) -> Int {
         
-        return data.count
+        return _data.count
     }
 
     override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section - 1 > data.count { return 0 }
+        if section - 1 > _data.count { return 0 }
         
-        let section = data[section]
+        let section = _data[section]
         return section.rows.count
     }
 
@@ -272,7 +279,7 @@ open class TableViewController: UITableViewController {
 		return row.isEditable
 	}
 	
-	override open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+	override open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		
 		let section = data[indexPath.section]
 		let row = section.rows[indexPath.row]
@@ -334,7 +341,7 @@ open class TableViewController: UITableViewController {
 		
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let row = data[indexPath.section].rows[indexPath.row]
+        let row = _data[indexPath.section].rows[indexPath.row]
         
         var identifier: String = "Cell"
         
@@ -365,7 +372,7 @@ open class TableViewController: UITableViewController {
     
     override open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let row = data[indexPath.section].rows[indexPath.row]
+        let row = _data[indexPath.section].rows[indexPath.row]
         
         if let estimatedHeight = row.estimatedHeight {
             return estimatedHeight
@@ -378,13 +385,13 @@ open class TableViewController: UITableViewController {
     
     override open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let row = data[indexPath.section].rows[indexPath.row]
+        let row = _data[indexPath.section].rows[indexPath.row]
         
         // If they're using prototype cells or nibs then we don't want to manually calculate size
         let calculateSize = row.prototypeIdentifier == nil && row.nib == nil
         
         if !calculateSize {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
 		
 		if let height = row.height(constrainedTo: CGSize(width: tableView.frame.width, height: CGFloat.greatestFiniteMagnitude), in: tableView) {
@@ -402,12 +409,12 @@ open class TableViewController: UITableViewController {
         var cell = dynamicHeightCells[identifier]
         if cell == nil {
             
-            if let aClass = row.cellClass as? UITableViewCell.Type {
+            if let aClass = row.cellClass {
                 cell = aClass.init(style: .default, reuseIdentifier: identifier)
             }
         }
         
-        guard let _cell = cell else { return UITableViewAutomaticDimension }
+        guard let _cell = cell else { return UITableView.automaticDimension }
 
         configure(cell: _cell, with: row, at: indexPath)
         
@@ -434,7 +441,7 @@ open class TableViewController: UITableViewController {
             }
         }
         
-        var cellHeight = totalHeight + fabs(lowestYValue) + 8
+        var cellHeight = totalHeight + abs(lowestYValue) + 8
         
         if let padding = row.padding {
             cellHeight = cellHeight - 8 + padding
@@ -446,13 +453,13 @@ open class TableViewController: UITableViewController {
 	
 	override open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		
-		let section = data[section]
+		let section = _data[section]
 		return section.header
 	}
 	
 	override open func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 		
-		let section = data[section]
+		let section = _data[section]
 		return section.footer
 	}
 
@@ -510,7 +517,7 @@ open class TableViewController: UITableViewController {
 		view.setNeedsLayout()
 		view.layoutIfNeeded()
 		
-		let size = view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+		let size = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 		let height = size.height
 		var frame = view.frame
 		
@@ -527,7 +534,7 @@ public extension TableViewController {
 	
     internal func selectable(_ indexPath: IndexPath) -> Bool {
 		
-        let section = data[indexPath.section]
+        let section = _data[indexPath.section]
         let row = section.rows[indexPath.row]
         
         return row.selectionHandler != nil || section.selectionHandler != nil || (row as? InputRow) != nil
@@ -535,7 +542,7 @@ public extension TableViewController {
     
     internal func set(indexPath: IndexPath, selected: Bool) {
         
-        let section = data[indexPath.section]
+        let section = _data[indexPath.section]
         let row = section.rows[indexPath.row]
         
         // Row selection overrides section selection

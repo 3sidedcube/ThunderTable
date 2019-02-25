@@ -16,18 +16,18 @@ public protocol Row {
 	/// - Important: If you wish to return `.none` from this, make sure to use the long syntax:
 	/// `UITableViewCellAccessoryType.none` otherwise the compiler will think you are returning
 	/// `Optional.none` which is equivalent to nil and therefore will be ignored by `TableViewController`
-	var accessoryType: UITableViewCellAccessoryType? { get }
+	var accessoryType: UITableViewCell.AccessoryType? { get }
 	
 	/// The selection style to be applied when the cell for this row is pressed down
 	/// - Important: If you wish to return `.none` from this, make sure to use the long syntax:
 	/// `UITableViewCellSelectionStyle.none` otherwise the compiler will think you are returning
 	/// `Optional.none` which is equivalent to nil and therefore will be ignored by `TableViewController`
-	var selectionStyle: UITableViewCellSelectionStyle? { get }
+	var selectionStyle: UITableViewCell.SelectionStyle? { get }
 	
 	/// The cell style of the cell for this row
 	///
 	/// - Important: This will only take affect if you directly use TableRow, or subclass `TableViewCell` but don't use a xib based layout and return false from `useNibSuperclass`.
-	var cellStyle: UITableViewCellStyle? { get }
+	var cellStyle: UITableViewCell.CellStyle? { get }
 	
     /// A string to be displayed as the title for the row
     var title: String? { get }
@@ -63,7 +63,7 @@ public protocol Row {
 	var isEditable: Bool { get }
     
     /// The class for the `UITableViewCell` subclass for the cell
-    var cellClass: AnyClass? { get }
+    var cellClass: UITableViewCell.Type? { get }
     
     /// A prototype identifier for a cell which is defined in a storyboard
 	/// file, which this row will use
@@ -126,11 +126,11 @@ public protocol Row {
 
 extension Row {
 	
-	public var accessoryType: UITableViewCellAccessoryType? {
+	public var accessoryType: UITableViewCell.AccessoryType? {
 		return nil
 	}
 	
-	public var selectionStyle: UITableViewCellSelectionStyle? {
+	public var selectionStyle: UITableViewCell.SelectionStyle? {
 		return nil
 	}
 	
@@ -142,7 +142,7 @@ extension Row {
 		return leadingSwipeActionsConfiguration != nil || trailingSwipeActionsConfiguration != nil || editHandler != nil
 	}
 	
-	public var cellStyle: UITableViewCellStyle? {
+	public var cellStyle: UITableViewCell.CellStyle? {
 		return nil
 	}
     
@@ -171,7 +171,7 @@ extension Row {
         return false
     }
     
-    public var cellClass: AnyClass? {
+    public var cellClass: UITableViewCell.Type? {
         return TableViewCell.self
     }
     
@@ -215,7 +215,7 @@ extension Row {
 /// A base class which can be subclassed providing a template for the `Row` protocol
 open class TableRow: Row {
 	
-	open var cellStyle: UITableViewCellStyle?
+	open var cellStyle: UITableViewCell.CellStyle?
 	
 	open var displaySeparators: Bool = true
 	
@@ -249,15 +249,15 @@ open class TableRow: Row {
     
     open var selectionHandler: SelectionHandler?
 	
-	open var selectionStyle: UITableViewCellSelectionStyle?
+	open var selectionStyle: UITableViewCell.SelectionStyle?
 	
-	open var accessoryType: UITableViewCellAccessoryType?
+	open var accessoryType: UITableViewCell.AccessoryType?
 	
 	open var leadingSwipeActionsConfiguration: SwipeActionsConfigurable?
 	
 	open var trailingSwipeActionsConfiguration: SwipeActionsConfigurable?
     
-    open var cellClass: AnyClass? {
+    open var cellClass: UITableViewCell.Type? {
 		guard let cellStyle = cellStyle else { return TableViewCell.self }
 		switch cellStyle {
 		case .default:

@@ -89,7 +89,7 @@ open class InputPickerRow: InputTableRow {
         self.title = title
     }
     
-    open override var cellClass: AnyClass? {
+    open override var cellClass: UITableViewCell.Type? {
         return InputPickerViewCell.self
     }
     
@@ -128,7 +128,7 @@ open class InputPickerRow: InputTableRow {
         if let arrayValue = value as? [AnyHashable] {
             pickerCell.textField.text = formatter(arrayValue)
         } else {
-            let arrayValue = components.flatMap({ $0.items.first?.value })
+            let arrayValue = components.compactMap({ $0.items.first?.value })
             pickerCell.textField.text = formatter(arrayValue)
         }
     }
