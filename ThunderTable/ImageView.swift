@@ -6,7 +6,7 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ObjectiveC
 
 public typealias ImageViewSetImageURLCompletion = (_ image: UIImage?,_  error: Error?) -> (Void)
@@ -168,7 +168,7 @@ public extension UIImageView {
                         // Animate the change
                         if animated {
                             let transition = CATransition()
-                            transition.type = kCATransitionFade
+                            transition.type = CATransitionType.fade
                             transition.duration = 0.25
                         }
                     }
@@ -185,8 +185,11 @@ public extension UIImageView {
                             }
                         })
                         
-                        // Remove this image request from the queued requests
-                        welf.requests?.remove(at: requestIndex)
+                        // Remove this image request from the queued requests, recalculate index,
+                        // because above code may have broken the ordering!
+                        if let index = welf.requests?.index(where: { $0.urlRequest == request?.urlRequest }) {
+                            welf.requests?.remove(at: index)
+                        }
                     }
                 }
                 

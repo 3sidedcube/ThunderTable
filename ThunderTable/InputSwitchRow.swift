@@ -14,7 +14,7 @@ open class InputSwitchRow: InputTableRow {
 	
 	public var isUserInteractionEnabled = true
 
-    override open var cellClass: AnyClass? {
+    override open var cellClass: UITableViewCell.Type? {
         return InputSwitchViewCell.self
     }
     

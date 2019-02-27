@@ -6,7 +6,7 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public typealias ValueChangeCallback = (_ value: Any?, _ sender: UIControl?) -> (Void)
 
@@ -63,9 +63,9 @@ open class InputTableRow: NSObject, InputRow {
     
     open var valueChangeHandler: ValueChangeCallback?
 	
-	open var selectionStyle: UITableViewCellSelectionStyle?
+	open var selectionStyle: UITableViewCell.SelectionStyle?
 	
-	open var accessoryType: UITableViewCellAccessoryType?
+	open var accessoryType: UITableViewCell.AccessoryType?
 	
 	open var displaySeparators: Bool = true
 	
@@ -83,7 +83,7 @@ open class InputTableRow: NSObject, InputRow {
     
     open var selectionHandler: SelectionHandler?
     
-    open var cellClass: AnyClass? {
+    open var cellClass: UITableViewCell.Type? {
         return TableViewCell.self
     }
     
@@ -122,7 +122,7 @@ open class InputTableRow: NSObject, InputRow {
     
     public func set(value: Any?, sender: UIControl?) {
         
-        let events = UIControlEvents.valueChanged
+        let events = UIControl.Event.valueChanged
         self.value = value
         self.valueChangeHandler?(value, sender)
         
@@ -136,19 +136,19 @@ open class InputTableRow: NSObject, InputRow {
         self.id = id
         self.required = required
 		
-		selectionStyle = UITableViewCellSelectionStyle.none
-		accessoryType = UITableViewCellAccessoryType.none
+		selectionStyle = UITableViewCell.SelectionStyle.none
+		accessoryType = UITableViewCell.AccessoryType.none
     }
     
     //MARK: - Targets and Selectors
     
     private var callbacks: [UInt : [Callback]] = [:]
     
-    public func add(callback: Callback, for controlEvents: UIControlEvents) {
+    public func add(callback: Callback, for controlEvents: UIControl.Event) {
         
         for i in 0...19 {
             
-            let controlEvent = UIControlEvents(rawValue: UInt(1 << i))
+            let controlEvent = UIControl.Event(rawValue: UInt(1 << i))
             
             if controlEvents.contains(controlEvent) {
                 
@@ -161,12 +161,12 @@ open class InputTableRow: NSObject, InputRow {
         }
     }
 
-    public func remove(callback: Callback, for controlEvents: UIControlEvents) {
+    public func remove(callback: Callback, for controlEvents: UIControl.Event) {
         
         // If provide a target and a selector, only remove events for that target and selector
         for i in 0...19 {
             
-            let controlEvent = UIControlEvents(rawValue: UInt(1 << i))
+            let controlEvent = UIControl.Event(rawValue: UInt(1 << i))
             
             if controlEvents.contains(controlEvent) {
                 
@@ -182,13 +182,13 @@ open class InputTableRow: NSObject, InputRow {
         }
     }
     
-    public func callbacks(for controlEvents: UIControlEvents) -> [Callback] {
+    public func callbacks(for controlEvents: UIControl.Event) -> [Callback] {
         
         var returnCallbacks: [Callback] = []
         
         for i in 0...19 {
             
-            let controlEvent = UIControlEvents(rawValue: UInt(1 << i))
+            let controlEvent = UIControl.Event(rawValue: UInt(1 << i))
             
             if let eventCallbacks = callbacks[controlEvent.rawValue], controlEvents.contains(controlEvent) {
                 

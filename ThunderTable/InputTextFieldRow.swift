@@ -6,6 +6,8 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
+import UIKit
+
 public typealias ValidCharacterHandler = (_ string: String) -> Bool
 
 open class InputTextFieldRow: InputTableRow {
@@ -24,7 +26,7 @@ open class InputTextFieldRow: InputTableRow {
     
     open var autocapitalizationType: UITextAutocapitalizationType = .none
     
-    override open var cellClass: AnyClass? {
+    override open var cellClass: UITableViewCell.Type? {
         return InputTextFieldViewCell.self
     }
     

@@ -6,7 +6,7 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// A protocol which allows the rendering of information into a cell within
 /// a `UITableView` by providing a declarative view on the information to show
@@ -16,24 +16,24 @@ public protocol Row {
 	/// - Important: If you wish to return `.none` from this, make sure to use the long syntax:
 	/// `UITableViewCellAccessoryType.none` otherwise the compiler will think you are returning
 	/// `Optional.none` which is equivalent to nil and therefore will be ignored by `TableViewController`
-	var accessoryType: UITableViewCellAccessoryType? { get set }
+	var accessoryType: UITableViewCell.AccessoryType? { get }
 	
 	/// The selection style to be applied when the cell for this row is pressed down
 	/// - Important: If you wish to return `.none` from this, make sure to use the long syntax:
 	/// `UITableViewCellSelectionStyle.none` otherwise the compiler will think you are returning
 	/// `Optional.none` which is equivalent to nil and therefore will be ignored by `TableViewController`
-	var selectionStyle: UITableViewCellSelectionStyle? { get set }
+	var selectionStyle: UITableViewCell.SelectionStyle? { get }
 	
 	/// The cell style of the cell for this row
 	///
 	/// - Important: This will only take affect if you directly use TableRow, or subclass `TableViewCell` but don't use a xib based layout and return false from `useNibSuperclass`.
-	var cellStyle: UITableViewCellStyle? { get set }
+	var cellStyle: UITableViewCell.CellStyle? { get }
 	
     /// A string to be displayed as the title for the row
-    var title: String? { get set }
+    var title: String? { get }
 	
     /// A string to be displayed as the subtitle for the row
-    var subtitle: String? { get set }
+    var subtitle: String? { get }
     
     /// An image to be displayed in the row
     var image: UIImage? { get set }
@@ -45,7 +45,7 @@ public protocol Row {
     var imageSize: CGSize? { get }
     
     /// A url to load the image for the cell from
-    var imageURL: URL? { get set }
+    var imageURL: URL? { get }
     
     /// Whether the cell should remain selected when pressed by the user
 	///
@@ -55,25 +55,25 @@ public protocol Row {
 	/// Whether separators should be displayed on the cell
 	///
 	/// Defaults to true
-	var displaySeparators: Bool { get set }
+	var displaySeparators: Bool { get }
 	
 	/// Whether the row is editable (Shows delete/actions) on cell swipe
 	///
 	/// Defaults to false
-	var isEditable: Bool { get set }
+	var isEditable: Bool { get }
     
     /// The class for the `UITableViewCell` subclass for the cell
-    var cellClass: AnyClass? { get }
+    var cellClass: UITableViewCell.Type? { get }
     
     /// A prototype identifier for a cell which is defined in a storyboard
 	/// file, which this row will use
     var prototypeIdentifier: String? { get }
     
     /// A closure which will be called when the row is pressed on in the table view
-    var selectionHandler: SelectionHandler? { get set }
+    var selectionHandler: SelectionHandler? { get }
 	
 	/// A closure which will be called when the row is edited in the table view
-	var editHandler: EditHandler? { get set }
+	var editHandler: EditHandler? { get }
     
     /// The estimated height of the row
 	///
@@ -116,43 +116,42 @@ public protocol Row {
 	///   - tableView: The table view which the row will be displayed in
 	/// - Returns: The height (or nil, to have this ignored) the row should be displayed at
 	func height(constrainedTo size: CGSize, in tableView: UITableView) -> CGFloat?
+	
+	/// A configuration object which allows leading swipe actions to be attached to the row.
+	var leadingSwipeActionsConfiguration: SwipeActionsConfigurable? { get }
+	
+	/// A configuration object which allows trailing swipe actions to be attached to the row.
+	var trailingSwipeActionsConfiguration: SwipeActionsConfigurable? { get }
 }
 
 extension Row {
 	
-	public var accessoryType: UITableViewCellAccessoryType? {
-		get { return nil }
-		set {}
+	public var accessoryType: UITableViewCell.AccessoryType? {
+		return nil
 	}
 	
-	public var selectionStyle: UITableViewCellSelectionStyle? {
-		get { return nil }
-		set {}
+	public var selectionStyle: UITableViewCell.SelectionStyle? {
+		return nil
 	}
 	
 	public var displaySeparators: Bool {
-		get { return true }
-		set {}
+		return true
 	}
 	
 	public var isEditable: Bool {
-		get { return false }
-		set {}
+		return leadingSwipeActionsConfiguration != nil || trailingSwipeActionsConfiguration != nil || editHandler != nil
 	}
 	
-	public var cellStyle: UITableViewCellStyle? {
-		get { return nil }
-		set {}
+	public var cellStyle: UITableViewCell.CellStyle? {
+		return nil
 	}
     
     public var title: String? {
-		get { return nil }
-		set {}
+		return nil
     }
     
     public var subtitle: String? {
-		get { return nil }
-		set {}
+		return nil
     }
     
     public var image: UIImage? {
@@ -161,8 +160,7 @@ extension Row {
     }
     
     public var imageURL: URL? {
-		get { return nil }
-		set {}
+		return nil
     }
     
     public var imageSize: CGSize? {
@@ -173,7 +171,7 @@ extension Row {
         return false
     }
     
-    public var cellClass: AnyClass? {
+    public var cellClass: UITableViewCell.Type? {
         return TableViewCell.self
     }
     
@@ -182,13 +180,11 @@ extension Row {
     }
     
     public var selectionHandler: SelectionHandler? {
-		get { return nil }
-		set {}
+		return nil
     }
 	
 	public var editHandler: EditHandler? {
-		get { return nil }
-		set {}
+		return nil
 	}
 	
 	public var useNibSuperclass: Bool {
@@ -210,16 +206,22 @@ extension Row {
 	public func height(constrainedTo size: CGSize, in tableView: UITableView) -> CGFloat? {
 		return nil
 	}
+	
+	public var leadingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }
+	
+	public var trailingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }
 }
 
 /// A base class which can be subclassed providing a template for the `Row` protocol
 open class TableRow: Row {
 	
-	open var cellStyle: UITableViewCellStyle?
+	open var cellStyle: UITableViewCell.CellStyle?
 	
 	open var displaySeparators: Bool = true
 	
-	public var isEditable: Bool = false
+	public var isEditable: Bool {
+        return leadingSwipeActionsConfiguration != nil || trailingSwipeActionsConfiguration != nil || editHandler != nil
+	}
 	
 	public var editHandler: EditHandler?
     
@@ -247,11 +249,15 @@ open class TableRow: Row {
     
     open var selectionHandler: SelectionHandler?
 	
-	open var selectionStyle: UITableViewCellSelectionStyle?
+	open var selectionStyle: UITableViewCell.SelectionStyle?
 	
-	open var accessoryType: UITableViewCellAccessoryType?
+	open var accessoryType: UITableViewCell.AccessoryType?
+	
+	open var leadingSwipeActionsConfiguration: SwipeActionsConfigurable?
+	
+	open var trailingSwipeActionsConfiguration: SwipeActionsConfigurable?
     
-    open var cellClass: AnyClass? {
+    open var cellClass: UITableViewCell.Type? {
 		guard let cellStyle = cellStyle else { return TableViewCell.self }
 		switch cellStyle {
 		case .default:
@@ -261,7 +267,7 @@ open class TableRow: Row {
 		case .value1:
 			return Value1TableViewCell.self
 		case .value2:
-			return TableViewCell.self
+			return Value2TableViewCell.self
 		}
     }
     

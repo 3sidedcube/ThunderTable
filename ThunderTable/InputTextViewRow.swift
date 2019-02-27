@@ -6,6 +6,8 @@
 //  Copyright © 2016 3SidedCube. All rights reserved.
 //
 
+import UIKit
+
 open class InputTextViewRow: InputTableRow {
 
     open var placeholder: String?
@@ -22,7 +24,7 @@ open class InputTextViewRow: InputTableRow {
     
     open var isSecure: Bool = false
     
-    override open var cellClass: AnyClass? {
+    override open var cellClass: UITableViewCell.Type? {
         return InputTextViewCell.self
     }
     

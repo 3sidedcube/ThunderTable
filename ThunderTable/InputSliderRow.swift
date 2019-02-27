@@ -16,7 +16,7 @@ import UIKit
 /// This means `sender.value !== value` in that closure!
 open class InputSliderRow: InputTableRow {
     
-    override open var cellClass: AnyClass? {
+    override open var cellClass: UITableViewCell.Type? {
         return InputSliderViewCell.self
     }
     
