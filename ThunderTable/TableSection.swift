@@ -43,10 +43,6 @@ public extension Section {
         return nil
     }
     
-    var selectionHandler: SelectionHandler? {
-        return nil
-    }
-    
     var rowLeadingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }
     
     var rowTrailingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }

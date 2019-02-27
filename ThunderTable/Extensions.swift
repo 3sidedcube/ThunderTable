@@ -19,6 +19,10 @@ extension Array : Section {
     public var editHandler: EditHandler? {
         return nil
     }
+    
+    public var selectionHandler: SelectionHandler? {
+        return nil
+    }
 }
 
 extension String: PickerRowDisplayable {

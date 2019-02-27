@@ -16,6 +16,14 @@
 		B114F1112035CC19005D52F2 /* InputPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */; };
 		B114F1122035CC19005D52F2 /* InputPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */; };
 		B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CB8CE1F320DA600E58116 /* Extensions.swift */; };
+		B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CEB79204977A2001308B3 /* CNContact+Row.swift */; };
+		B14F945120444E820014F694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945020444E820014F694 /* AppDelegate.swift */; };
+		B14F945320444E820014F694 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945220444E820014F694 /* ViewController.swift */; };
+		B14F945620444E820014F694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14F945420444E820014F694 /* Main.storyboard */; };
+		B14F945820444E820014F694 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B14F945720444E820014F694 /* Assets.xcassets */; };
+		B14F945B20444E820014F694 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14F945920444E820014F694 /* LaunchScreen.storyboard */; };
+		B14F946020444E910014F694 /* ThunderTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; };
+		B14F946120444E910014F694 /* ThunderTable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D821D8C3A60007358EA /* InputSliderRow.swift */; };
 		B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */; };
 		B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */; };
@@ -27,6 +35,8 @@
 		B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */; };
 		B19C53251D8B033E00B30A35 /* InputTextFieldViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */; };
 		B19C53271D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */; };
+		B1A8983E2047117D0028CAE4 /* Value2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1A8983C2047117D0028CAE4 /* Value2TableViewCell.xib */; };
+		B1A8983F2047117D0028CAE4 /* Value2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8983D2047117D0028CAE4 /* Value2TableViewCell.swift */; };
 		B1AD7EBD1D8BFB8F00BFCA34 /* InputTextViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EBC1D8BFB8F00BFCA34 /* InputTextViewRow.swift */; };
 		B1AD7EC01D8BFC9D00BFCA34 /* InputTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EBE1D8BFC9D00BFCA34 /* InputTextViewCell.swift */; };
 		B1AD7EC11D8BFC9D00BFCA34 /* InputTextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1AD7EBF1D8BFC9D00BFCA34 /* InputTextViewCell.xib */; };
@@ -35,6 +45,9 @@
 		B1AD7EC71D8C198F00BFCA34 /* InputSwitchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */; };
 		B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */; };
 		B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B679601D89807A00B66FD8 /* TableViewCell.xib */; };
+		B1BAABCA22244B94007F0F61 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */; };
+		B1BAABCD22244BAF007F0F61 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1BAABCC22244BAF007F0F61 /* ContactTableViewCell.xib */; };
+		B1BAABCF22244C06007F0F61 /* CNContact+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAABCE22244C06007F0F61 /* CNContact+Section.swift */; };
 		B1C2C56C1FFCEE3100D968C5 /* InputDatePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2C56B1FFCEE3100D968C5 /* InputDatePickerRow.swift */; };
 		B1C2C56F1FFCF20F00D968C5 /* InputDatePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2C56D1FFCF20F00D968C5 /* InputDatePickerViewCell.swift */; };
 		B1C2C5701FFCF20F00D968C5 /* InputDatePickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C2C56E1FFCF20F00D968C5 /* InputDatePickerViewCell.xib */; };
@@ -49,6 +62,30 @@
 		B1EC81071FDE873700C8EE72 /* Value1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EC81051FDE873700C8EE72 /* Value1TableViewCell.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B14F946220444E910014F694 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B17BAA291D89639100844421 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B17BAA311D89639100844421;
+			remoteInfo = ThunderTable;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B14F946420444E910014F694 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B14F946120444E910014F694 /* ThunderTable.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		B108319B1F068FDF008B565D /* TableImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableImageViewCell.swift; sourceTree = "<group>"; };
 		B108319C1F068FDF008B565D /* TableImageViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableImageViewCell.xib; sourceTree = "<group>"; };
@@ -58,6 +95,14 @@
 		B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPickerViewCell.swift; sourceTree = "<group>"; };
 		B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPickerViewCell.xib; sourceTree = "<group>"; };
 		B11CB8CE1F320DA600E58116 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B11CEB79204977A2001308B3 /* CNContact+Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CNContact+Row.swift"; sourceTree = "<group>"; };
+		B14F944E20444E810014F694 /* ThunderTableDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThunderTableDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B14F945020444E820014F694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B14F945220444E820014F694 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B14F945520444E820014F694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B14F945720444E820014F694 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B14F945A20444E820014F694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B14F945C20444E820014F694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1784D821D8C3A60007358EA /* InputSliderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderRow.swift; sourceTree = "<group>"; };
 		B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderViewCell.swift; sourceTree = "<group>"; };
 		B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSliderViewCell.xib; sourceTree = "<group>"; };
@@ -73,6 +118,8 @@
 		B19C53221D8B033E00B30A35 /* InputTextFieldViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextFieldViewCell.swift; sourceTree = "<group>"; };
 		B19C53231D8B033E00B30A35 /* InputTextFieldViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextFieldViewCell.xib; sourceTree = "<group>"; };
 		B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationLoadingIndicatorManager.swift; sourceTree = "<group>"; };
+		B1A8983C2047117D0028CAE4 /* Value2TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Value2TableViewCell.xib; sourceTree = "<group>"; };
+		B1A8983D2047117D0028CAE4 /* Value2TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Value2TableViewCell.swift; sourceTree = "<group>"; };
 		B1AD7EBC1D8BFB8F00BFCA34 /* InputTextViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextViewRow.swift; sourceTree = "<group>"; };
 		B1AD7EBE1D8BFC9D00BFCA34 /* InputTextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextViewCell.swift; sourceTree = "<group>"; };
 		B1AD7EBF1D8BFC9D00BFCA34 /* InputTextViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextViewCell.xib; sourceTree = "<group>"; };
@@ -81,6 +128,9 @@
 		B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSwitchViewCell.xib; sourceTree = "<group>"; };
 		B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B1B679601D89807A00B66FD8 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		B1BAABCC22244BAF007F0F61 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
+		B1BAABCE22244C06007F0F61 /* CNContact+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CNContact+Section.swift"; sourceTree = "<group>"; };
 		B1C2C56B1FFCEE3100D968C5 /* InputDatePickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDatePickerRow.swift; sourceTree = "<group>"; };
 		B1C2C56D1FFCF20F00D968C5 /* InputDatePickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDatePickerViewCell.swift; sourceTree = "<group>"; };
 		B1C2C56E1FFCF20F00D968C5 /* InputDatePickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDatePickerViewCell.xib; sourceTree = "<group>"; };
@@ -96,6 +146,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B14F944B20444E810014F694 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B14F946020444E910014F694 /* ThunderTable.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B17BAA2E1D89639100844421 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,11 +189,45 @@
 			name = Input;
 			sourceTree = "<group>";
 		};
+		B11CEB772049779D001308B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B11CEB79204977A2001308B3 /* CNContact+Row.swift */,
+				B1BAABCE22244C06007F0F61 /* CNContact+Section.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B11CEB7A204977F6001308B3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B1BAABCC22244BAF007F0F61 /* ContactTableViewCell.xib */,
+				B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B14F944F20444E810014F694 /* ThunderTableDemo */ = {
+			isa = PBXGroup;
+			children = (
+				B11CEB7A204977F6001308B3 /* Cells */,
+				B11CEB772049779D001308B3 /* Models */,
+				B14F945020444E820014F694 /* AppDelegate.swift */,
+				B14F945220444E820014F694 /* ViewController.swift */,
+				B14F945420444E820014F694 /* Main.storyboard */,
+				B14F945720444E820014F694 /* Assets.xcassets */,
+				B14F945920444E820014F694 /* LaunchScreen.storyboard */,
+				B14F945C20444E820014F694 /* Info.plist */,
+			);
+			path = ThunderTableDemo;
+			sourceTree = "<group>";
+		};
 		B17BAA281D89639100844421 = {
 			isa = PBXGroup;
 			children = (
 				B17BAA341D89639100844421 /* ThunderTable */,
 				B17BAA3F1D89639200844421 /* ThunderTableTests */,
+				B14F944F20444E810014F694 /* ThunderTableDemo */,
 				B17BAA331D89639100844421 /* Products */,
 				490A3C4D2034569200DC3176 /* Frameworks */,
 			);
@@ -146,6 +238,7 @@
 			children = (
 				B17BAA321D89639100844421 /* ThunderTable.framework */,
 				B17BAA3B1D89639200844421 /* ThunderTableTests.xctest */,
+				B14F944E20444E810014F694 /* ThunderTableDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,6 +324,8 @@
 				B1B679601D89807A00B66FD8 /* TableViewCell.xib */,
 				B1EC81041FDE873700C8EE72 /* Value1TableViewCell.swift */,
 				B1EC81051FDE873700C8EE72 /* Value1TableViewCell.xib */,
+				B1A8983D2047117D0028CAE4 /* Value2TableViewCell.swift */,
+				B1A8983C2047117D0028CAE4 /* Value2TableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -248,6 +343,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		B14F944D20444E810014F694 /* ThunderTableDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B14F945F20444E820014F694 /* Build configuration list for PBXNativeTarget "ThunderTableDemo" */;
+			buildPhases = (
+				B14F944A20444E810014F694 /* Sources */,
+				B14F944B20444E810014F694 /* Frameworks */,
+				B14F944C20444E810014F694 /* Resources */,
+				B14F946420444E910014F694 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B14F946320444E910014F694 /* PBXTargetDependency */,
+			);
+			name = ThunderTableDemo;
+			productName = ThunderTableDemo;
+			productReference = B14F944E20444E810014F694 /* ThunderTableDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		B17BAA311D89639100844421 /* ThunderTable */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B17BAA461D89639200844421 /* Build configuration list for PBXNativeTarget "ThunderTable" */;
@@ -289,10 +403,15 @@
 		B17BAA291D89639100844421 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = 3SidedCube;
 				TargetAttributes = {
+					B14F944D20444E810014F694 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 25H7BM6YWK;
+						ProvisioningStyle = Automatic;
+					};
 					B17BAA311D89639100844421 = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 1000;
@@ -311,6 +430,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = B17BAA281D89639100844421;
 			productRefGroup = B17BAA331D89639100844421 /* Products */;
@@ -319,11 +439,23 @@
 			targets = (
 				B17BAA311D89639100844421 /* ThunderTable */,
 				B17BAA3A1D89639200844421 /* ThunderTableTests */,
+				B14F944D20444E810014F694 /* ThunderTableDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B14F944C20444E810014F694 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B14F945B20444E820014F694 /* LaunchScreen.storyboard in Resources */,
+				B14F945820444E820014F694 /* Assets.xcassets in Resources */,
+				B1BAABCD22244BAF007F0F61 /* ContactTableViewCell.xib in Resources */,
+				B14F945620444E820014F694 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B17BAA301D89639100844421 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -337,6 +469,7 @@
 				B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */,
 				B1EC80FF1FDE85EA00C8EE72 /* DefaultTableViewCell.xib in Resources */,
 				B1C2C5701FFCF20F00D968C5 /* InputDatePickerViewCell.xib in Resources */,
+				B1A8983E2047117D0028CAE4 /* Value2TableViewCell.xib in Resources */,
 				B1AD7EC11D8BFC9D00BFCA34 /* InputTextViewCell.xib in Resources */,
 				B1EC81071FDE873700C8EE72 /* Value1TableViewCell.xib in Resources */,
 			);
@@ -352,6 +485,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B14F944A20444E810014F694 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1BAABCA22244B94007F0F61 /* ContactTableViewCell.swift in Sources */,
+				B1BAABCF22244C06007F0F61 /* CNContact+Section.swift in Sources */,
+				B14F945320444E820014F694 /* ViewController.swift in Sources */,
+				B14F945120444E820014F694 /* AppDelegate.swift in Sources */,
+				B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B17BAA2D1D89639100844421 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -383,6 +528,7 @@
 				B1E088671DA6470700E45E47 /* ImageController.swift in Sources */,
 				B1AD7EC01D8BFC9D00BFCA34 /* InputTextViewCell.swift in Sources */,
 				B19C531F1D8B00E900B30A35 /* InputTextFieldRow.swift in Sources */,
+				B1A8983F2047117D0028CAE4 /* Value2TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +542,78 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B14F946320444E910014F694 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B17BAA311D89639100844421 /* ThunderTable */;
+			targetProxy = B14F946220444E910014F694 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B14F945420444E820014F694 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B14F945520444E820014F694 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B14F945920444E820014F694 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B14F945A20444E820014F694 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		B14F945D20444E820014F694 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25H7BM6YWK;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ThunderTableDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.3sidedcube.ThunderTableDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B14F945E20444E820014F694 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25H7BM6YWK;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ThunderTableDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.3sidedcube.ThunderTableDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		B17BAA441D89639200844421 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -518,7 +735,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -542,7 +759,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -594,6 +811,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B14F945F20444E820014F694 /* Build configuration list for PBXNativeTarget "ThunderTableDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B14F945D20444E820014F694 /* Debug */,
+				B14F945E20444E820014F694 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B17BAA2C1D89639100844421 /* Build configuration list for PBXProject "ThunderTable" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

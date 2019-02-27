@@ -267,7 +267,7 @@ open class TableRow: Row {
 		case .value1:
 			return Value1TableViewCell.self
 		case .value2:
-			return TableViewCell.self
+			return Value2TableViewCell.self
 		}
     }
     
