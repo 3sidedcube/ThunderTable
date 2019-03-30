@@ -47,6 +47,8 @@ extension UITableViewCell.AccessoryType {
             return 0
         case .disclosureIndicator, .detailButton, .detailDisclosureButton, .checkmark:
             return 4
+        @unknown default:
+            return 0
         }
     }
 }
@@ -565,7 +567,7 @@ public extension TableViewController {
         }
     }
     
-    public func moveToInputCell(after indexPath: IndexPath) {
+    func moveToInputCell(after indexPath: IndexPath) {
         
         outerLoop: for (sectionIndex, section) in data.enumerated() {
             
