@@ -1,6 +1,6 @@
 # Thunder Table
 
-[![Build Status](https://travis-ci.org/3sidedcube/iOS-ThunderTable.svg)](https://travis-ci.org/3sidedcube/iOS-ThunderTable) [![Swift 4.2](http://img.shields.io/badge/swift-4.2-brightgreen.svg)](https://swift.org/blog/swift-4-2-released/) [![Apache 2](https://img.shields.io/badge/license-Apache%202-brightgreen.svg)](LICENSE.md)
+[![Build Status](https://travis-ci.org/3sidedcube/iOS-ThunderTable.svg)](https://travis-ci.org/3sidedcube/iOS-ThunderTable) [![Swift 5](http://img.shields.io/badge/swift-5-brightgreen.svg)](https://swift.org/blog/swift-5-released/) [![Apache 2](https://img.shields.io/badge/license-Apache%202-brightgreen.svg)](LICENSE.md)
 
 Thunder Table is a useful framework which enables quick and easy creation of table views in iOS, making the process of creating complex tables as simple as a few lines of code; and removing the necessity for having long chains of index paths and if statements.
 
