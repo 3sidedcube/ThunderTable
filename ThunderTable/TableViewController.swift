@@ -47,6 +47,8 @@ extension UITableViewCell.AccessoryType {
             return 0
         case .disclosureIndicator, .detailButton, .detailDisclosureButton, .checkmark:
             return 4
+        @unknown default:
+            return 0
         }
     }
 }

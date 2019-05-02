@@ -268,7 +268,9 @@ open class TableRow: Row {
 			return Value1TableViewCell.self
 		case .value2:
 			return Value2TableViewCell.self
-		}
+        @unknown default:
+            return DefaultTableViewCell.self
+        }
     }
     
     open var estimatedHeight: CGFloat? {

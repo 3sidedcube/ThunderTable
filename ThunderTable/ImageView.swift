@@ -174,7 +174,7 @@ public extension UIImageView {
                     }
                     
                     // Cancel lower resolution requests if there are any!
-                    if let requestIndex = welf.requests?.index(where: { $0.urlRequest == request?.urlRequest }), let requests = welf.requests {
+                    if let requestIndex = welf.requests?.firstIndex(where: { $0.urlRequest == request?.urlRequest }), let requests = welf.requests {
                         
                         requests.enumerated().forEach({ (index, request) in
                             
@@ -187,7 +187,7 @@ public extension UIImageView {
                         
                         // Remove this image request from the queued requests, recalculate index,
                         // because above code may have broken the ordering!
-                        if let index = welf.requests?.index(where: { $0.urlRequest == request?.urlRequest }) {
+                        if let index = welf.requests?.firstIndex(where: { $0.urlRequest == request?.urlRequest }) {
                             welf.requests?.remove(at: index)
                         }
                     }
