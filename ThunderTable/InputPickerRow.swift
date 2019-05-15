@@ -41,7 +41,7 @@ public protocol PickerRowDisplayable {
 
 public extension PickerRowDisplayable {
     
-    public var attributedTitle: NSAttributedString? { get { return nil } }
+    var attributedTitle: NSAttributedString? { get { return nil } }
 }
 
 /// A helper class for ease of use of `PickerRowDisplayable`
@@ -116,7 +116,7 @@ open class InputPickerRow: InputTableRow {
             guard i < values.count else { return }
             let rowValue = values[i]
             
-            guard let selectedIndex = component.items.index(where: {
+            guard let selectedIndex = component.items.firstIndex(where: {
                 $0.value == rowValue
             }) else { return }
             

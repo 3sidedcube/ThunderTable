@@ -172,7 +172,7 @@ open class InputTableRow: NSObject, InputRow {
                 
                 if var eventCallbacks = callbacks[controlEvent.rawValue] {
                     
-                    if let index = eventCallbacks.index(where: {
+                    if let index = eventCallbacks.firstIndex(where: {
                         return $0.identifier == callback.identifier
                     } ) {
                         eventCallbacks.remove(at: index)
