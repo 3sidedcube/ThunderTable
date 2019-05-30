@@ -6,7 +6,7 @@
 //  Copyright © 2018 3SidedCube. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension TableViewController {
     
@@ -20,7 +20,7 @@ extension TableViewController {
         
         for (index, section) in data.enumerated() {
             
-            guard let matchingRowIndex = section.rows.index(where: {
+            guard let matchingRowIndex = section.rows.firstIndex(where: {
                 guard let matchableRow = $0 as? T else { return false }
                 return matchableRow == row
             }) else {
@@ -41,7 +41,8 @@ extension TableViewController {
     ///   - row: The row that should be replaced.
     ///   - otherRow: The row that is replacing the original row.
     ///   - additionalReloadIndexPaths: Additional index paths that should be reloaded at the same time.
-    public func replace<T: Row & Equatable>(row: T, with otherRow: Row, reloading additionalReloadIndexPaths: [IndexPath] = []) {
+    ///   - animation: The animation to use when reloading the rows
+    public func replace<T: Row & Equatable>(row: T, with otherRow: Row, reloading additionalReloadIndexPaths: [IndexPath] = [], animation: UITableView.RowAnimation = .none) {
         
         guard let indexPath = indexPathFor(row: row) else { return }
         guard let tableSection = data[indexPath.section] as? TableSection else { return }
@@ -56,7 +57,7 @@ extension TableViewController {
         
         var indexPaths = [indexPath]
         indexPaths.append(contentsOf: additionalReloadIndexPaths)
-        tableView.reloadRows(at: indexPaths, with: .none)
+        tableView.reloadRows(at: indexPaths, with: animation)
     }
     
     /// Replaces multiple rows with replacement rows.
@@ -66,7 +67,8 @@ extension TableViewController {
     /// - Parameters:
     ///   - rows: The rows to replace.
     ///   - otherRows: The rows they should be replaced by.
-    public func replace<T: Row & Equatable>(rows: [T], with otherRows: [Row]) {
+    ///   - animation: The row animation to use when replacing
+    public func replace<T: Row & Equatable>(rows: [T], with otherRows: [Row], animation: UITableView.RowAnimation) {
         
         guard rows.count == otherRows.count else { return }
         
@@ -88,22 +90,23 @@ extension TableViewController {
             }
         }
         
-        tableView.reloadRows(at: replacement.map({ $0.1 }), with: .none)
+        tableView.reloadRows(at: replacement.map({ $0.1 }), with: animation)
     }
     
     /// Reloads the cell at the indexPath for a given row.
     ///
-    /// - Parameter row: The row to reload the cell for.
-    public func redraw<T: Row & Equatable>(row: T) {
+    /// - Parameters:
+    ///   - row: The row to reload the cell for.
+    ///   - animation: The animation to use when redrawing
+    public func redraw<T: Row & Equatable>(row: T, with animation: UITableView.RowAnimation = .none) {
         
         guard let indexPath = indexPathFor(row: row) else { return }
-        tableView.reloadRows(at: [indexPath], with: .none)
+        tableView.reloadRows(at: [indexPath], with: animation)
     }
     
     /// The last available indexPath in the tableView
     public var lastIndexPath: IndexPath? {
-        guard let lastSection = data.last else { return nil }
-        guard !lastSection.rows.isEmpty else { return nil }
+        guard let lastSection = data.last(where: { !$0.rows.isEmpty }) else { return nil }
         return IndexPath(row: lastSection.rows.count - 1, section: data.count - 1)
     }
 }
