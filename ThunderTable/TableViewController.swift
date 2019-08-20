@@ -137,8 +137,20 @@ open class TableViewController: UITableViewController {
     }
 	
 	private var dynamicChangeObserver: NSObjectProtocol?
+    
+    private var accessibilityObservers: [Any] = []
 	
+    /// Whether the table view should redraw when the devices content size changes
 	public var shouldRedrawWithContentSizeChange = true
+    
+    /// A list of notification names that should cause the table view to redraw itself
+    public var accessibilityRedrawNotificationNames: [Notification.Name] = [
+        UIAccessibility.darkerSystemColorsStatusDidChangeNotification,
+        UIAccessibility.boldTextStatusDidChangeNotification,
+        UIAccessibility.grayscaleStatusDidChangeNotification,
+        UIAccessibility.invertColorsStatusDidChangeNotification,
+        UIAccessibility.reduceTransparencyStatusDidChangeNotification
+    ]
 	
 	open override func viewWillAppear(_ animated: Bool) {
 		
@@ -148,10 +160,35 @@ open class TableViewController: UITableViewController {
 			guard let strongSelf = self, strongSelf.shouldRedrawWithContentSizeChange else { return }
 			strongSelf.tableView.reloadData()
 		}
+        
+        // Notification names that it makes sense to redraw on
+        let accessibilityNotifications: [Notification.Name] = [
+            UIAccessibility.darkerSystemColorsStatusDidChangeNotification,
+            UIAccessibility.assistiveTouchStatusDidChangeNotification,
+            UIAccessibility.boldTextStatusDidChangeNotification,
+            UIAccessibility.grayscaleStatusDidChangeNotification,
+            UIAccessibility.guidedAccessStatusDidChangeNotification,
+            UIAccessibility.invertColorsStatusDidChangeNotification,
+            UIAccessibility.reduceMotionStatusDidChangeNotification,
+            UIAccessibility.reduceTransparencyStatusDidChangeNotification
+        ]
+        
+        accessibilityObservers = accessibilityNotifications.map({ (notificationName) -> Any in
+            return NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: .main, using: { [weak self] (notification) in
+                guard let strongSelf = self, strongSelf.accessibilityRedrawNotificationNames.contains(notification.name) else {
+                    return
+                }
+                strongSelf.tableView.reloadData()
+            })
+        })
 	}
 	
 	open override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
+        accessibilityObservers.forEach { (observer) in
+            NotificationCenter.default.removeObserver(observer)
+        }
+        accessibilityObservers = []
 		guard let dynamicChangeObserver = dynamicChangeObserver else { return }
 		NotificationCenter.default.removeObserver(dynamicChangeObserver)
 	}
