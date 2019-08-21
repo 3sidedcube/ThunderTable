@@ -184,17 +184,6 @@ open class TableViewController: UITableViewController {
             })
         })
 	}
-    
-    private func reloadVisibleRowsWhilstMaintainingSelection() {
-        
-        guard let visibleIndexPaths = tableView.indexPathsForVisibleRows else { return }
-        
-        let selectedVisibleIndexPaths = tableView.indexPathsForSelectedRows?.filter({ visibleIndexPaths.contains($0) })
-        tableView.reloadRows(at: visibleIndexPaths, with: .none)
-        selectedVisibleIndexPaths?.forEach({ (indexPath) in
-            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-        })
-    }
 	
 	open override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -231,6 +220,17 @@ open class TableViewController: UITableViewController {
     private var registeredClasses: [String] = []
 
     // MARK: - Helper functions!
+    
+    private func reloadVisibleRowsWhilstMaintainingSelection() {
+        
+        guard let visibleIndexPaths = tableView.indexPathsForVisibleRows else { return }
+        
+        let selectedVisibleIndexPaths = tableView.indexPathsForSelectedRows?.filter({ visibleIndexPaths.contains($0) })
+        tableView.reloadRows(at: visibleIndexPaths, with: .none)
+        selectedVisibleIndexPaths?.forEach({ (indexPath) in
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        })
+    }
     
     open func configure(cell: UITableViewCell, with row: Row, at indexPath: IndexPath) {
         
