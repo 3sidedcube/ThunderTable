@@ -139,6 +139,8 @@ open class TableViewController: UITableViewController {
 	private var dynamicChangeObserver: NSObjectProtocol?
     
     private var accessibilityObservers: [Any] = []
+    
+    private var _isBlockingSelectionHandlers: Bool = false
 	
     /// Whether the table view should redraw when the devices content size changes
 	public var shouldRedrawWithContentSizeChange = true
@@ -158,8 +160,7 @@ open class TableViewController: UITableViewController {
 		
 		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: self, queue: .main) { [weak self] (notification) in
 			guard let strongSelf = self, strongSelf.shouldRedrawWithContentSizeChange else { return }
-            guard let visibleIndexPaths = strongSelf.tableView.indexPathsForVisibleRows else { return }
-            strongSelf.tableView.reloadRows(at: visibleIndexPaths, with: .none)
+            strongSelf.reloadVisibleRowsWhilstMaintainingSelection()
 		}
         
         // Notification names that it makes sense to redraw on
@@ -179,11 +180,21 @@ open class TableViewController: UITableViewController {
                 guard let strongSelf = self, strongSelf.accessibilityRedrawNotificationNames.contains(notification.name) else {
                     return
                 }
-                guard let visibleIndexPaths = strongSelf.tableView.indexPathsForVisibleRows else { return }
-                strongSelf.tableView.reloadRows(at: visibleIndexPaths, with: .none)
+                strongSelf.reloadVisibleRowsWhilstMaintainingSelection()
             })
         })
 	}
+    
+    private func reloadVisibleRowsWhilstMaintainingSelection() {
+        
+        guard let visibleIndexPaths = tableView.indexPathsForVisibleRows else { return }
+        
+        let selectedVisibleIndexPaths = tableView.indexPathsForSelectedRows?.filter({ visibleIndexPaths.contains($0) })
+        tableView.reloadRows(at: visibleIndexPaths, with: .none)
+        selectedVisibleIndexPaths?.forEach({ (indexPath) in
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        })
+    }
 	
 	open override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -507,12 +518,14 @@ open class TableViewController: UITableViewController {
     //MARK - Table View Delegate
     
     override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !_isBlockingSelectionHandlers else { return }
         if selectable(indexPath) {
             set(indexPath: indexPath, selected: true)
         }
     }
     
     override open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard !_isBlockingSelectionHandlers else { return }
         if selectable(indexPath) {
             set(indexPath: indexPath, selected: false)
         }
