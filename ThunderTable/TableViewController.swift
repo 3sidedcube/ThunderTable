@@ -161,6 +161,7 @@ open class TableViewController: UITableViewController {
 		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: self, queue: .main) { [weak self] (notification) in
 			guard let strongSelf = self, strongSelf.shouldRedrawWithContentSizeChange else { return }
             strongSelf.reloadVisibleRowsWhilstMaintainingSelection()
+            strongSelf.accessibilitySettingsDidChange()
 		}
         
         // Notification names that it makes sense to redraw on
@@ -181,6 +182,7 @@ open class TableViewController: UITableViewController {
                     return
                 }
                 strongSelf.reloadVisibleRowsWhilstMaintainingSelection()
+                strongSelf.accessibilitySettingsDidChange()
             })
         })
 	}
@@ -194,6 +196,12 @@ open class TableViewController: UITableViewController {
 		guard let dynamicChangeObserver = dynamicChangeObserver else { return }
 		NotificationCenter.default.removeObserver(dynamicChangeObserver)
 	}
+    
+    /// A function which does nothing, but provides a hook for `TableViewController`'s automatic
+    /// refresh when accessibility settings change!
+    public func accessibilitySettingsDidChange() {
+        
+    }
     
     public var inputDictionary: [String: Any] {
         
