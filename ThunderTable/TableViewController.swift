@@ -158,7 +158,8 @@ open class TableViewController: UITableViewController {
 		
 		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: self, queue: .main) { [weak self] (notification) in
 			guard let strongSelf = self, strongSelf.shouldRedrawWithContentSizeChange else { return }
-			strongSelf.tableView.reloadData()
+            guard let visibleIndexPaths = strongSelf.tableView.indexPathsForVisibleRows else { return }
+            strongSelf.tableView.reloadRows(at: visibleIndexPaths, with: .none)
 		}
         
         // Notification names that it makes sense to redraw on
@@ -178,7 +179,8 @@ open class TableViewController: UITableViewController {
                 guard let strongSelf = self, strongSelf.accessibilityRedrawNotificationNames.contains(notification.name) else {
                     return
                 }
-                strongSelf.tableView.reloadData()
+                guard let visibleIndexPaths = strongSelf.tableView.indexPathsForVisibleRows else { return }
+                strongSelf.tableView.reloadRows(at: visibleIndexPaths, with: .none)
             })
         })
 	}
