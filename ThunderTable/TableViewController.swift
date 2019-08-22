@@ -107,7 +107,7 @@ extension Row {
     }
 }
 
-open class TableViewController: UITableViewController {
+open class TableViewController: UITableViewController, UIContentSizeCategoryAdjusting {
     
     private var _data: [Section] = []
     
@@ -140,10 +140,7 @@ open class TableViewController: UITableViewController {
     
     private var accessibilityObservers: [Any] = []
     
-    private var _isBlockingSelectionHandlers: Bool = false
-	
-    /// Whether the table view should redraw when the devices content size changes
-	public var shouldRedrawWithContentSizeChange = true
+    public var adjustsFontForContentSizeCategory: Bool = true
     
     /// A list of notification names that should cause the table view to redraw itself
     public var accessibilityRedrawNotificationNames: [Notification.Name] = [
@@ -159,7 +156,7 @@ open class TableViewController: UITableViewController {
 		super.viewWillAppear(animated)
 		
 		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: self, queue: .main) { [weak self] (notification) in
-			guard let strongSelf = self, strongSelf.shouldRedrawWithContentSizeChange else { return }
+			guard let strongSelf = self, strongSelf.adjustsFontForContentSizeCategory else { return }
             strongSelf.reloadVisibleRowsWhilstMaintainingSelection()
             strongSelf.accessibilitySettingsDidChange()
 		}
@@ -526,14 +523,12 @@ open class TableViewController: UITableViewController {
     //MARK - Table View Delegate
     
     override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard !_isBlockingSelectionHandlers else { return }
         if selectable(indexPath) {
             set(indexPath: indexPath, selected: true)
         }
     }
     
     override open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        guard !_isBlockingSelectionHandlers else { return }
         if selectable(indexPath) {
             set(indexPath: indexPath, selected: false)
         }
