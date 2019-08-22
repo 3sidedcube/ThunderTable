@@ -138,7 +138,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 	
     private var dynamicChangeObserver: NSObjectProtocol? {
         didSet {
-            print("Did set dynamic change observer", dynamicChangeObserver ?? "nil")
+            print("Did set dynamic change observer", dynamicChangeObserver ?? "nil", self)
         }
     }
     
@@ -165,7 +165,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             strongSelf.reloadVisibleRowsWhilstMaintainingSelection()
             strongSelf.accessibilitySettingsDidChange()
 		}
-        print("Added dynamic change observer", dynamicChangeObserver ?? "nil")
+        print("Added dynamic change observer", dynamicChangeObserver ?? "nil", self)
         
         // Notification names that it makes sense to redraw on
         let accessibilityNotifications: [Notification.Name] = [
@@ -197,7 +197,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         }
         accessibilityObservers = []
 		guard let dynamicChangeObserver = dynamicChangeObserver else { return }
-        print("Removed dynamic change observer", dynamicChangeObserver)
+        print("Removed dynamic change observer", dynamicChangeObserver, self)
 		NotificationCenter.default.removeObserver(dynamicChangeObserver)
         self.dynamicChangeObserver = nil
 	}
