@@ -136,7 +136,11 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         tableView.register(defaultNib, forCellReuseIdentifier: "Cell")
     }
 	
-	private var dynamicChangeObserver: NSObjectProtocol?
+    private var dynamicChangeObserver: NSObjectProtocol? {
+        didSet {
+            print("Did set dynamic change observer", dynamicChangeObserver ?? "nil")
+        }
+    }
     
     private var accessibilityObservers: [Any] = []
     
@@ -156,11 +160,12 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 		super.viewWillAppear(animated)
 		
 		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: self, queue: .main) { [weak self] (notification) in
-            print("UIContentSizeCategory.didChangeNotification", self ?? "")
+            print("UIContentSizeCategory.didChangeNotification", self ?? "nil")
 			guard let strongSelf = self, strongSelf.adjustsFontForContentSizeCategory else { return }
             strongSelf.reloadVisibleRowsWhilstMaintainingSelection()
             strongSelf.accessibilitySettingsDidChange()
 		}
+        print("Added dynamic change observer", dynamicChangeObserver ?? "nil")
         
         // Notification names that it makes sense to redraw on
         let accessibilityNotifications: [Notification.Name] = [
@@ -192,7 +197,9 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         }
         accessibilityObservers = []
 		guard let dynamicChangeObserver = dynamicChangeObserver else { return }
+        print("Removed dynamic change observer", dynamicChangeObserver)
 		NotificationCenter.default.removeObserver(dynamicChangeObserver)
+        self.dynamicChangeObserver = nil
 	}
     
     /// A function which does nothing, but provides a hook for `TableViewController`'s automatic
