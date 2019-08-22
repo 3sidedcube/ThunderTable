@@ -156,6 +156,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 		super.viewWillAppear(animated)
 		
 		dynamicChangeObserver = NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: self, queue: .main) { [weak self] (notification) in
+            print("UIContentSizeCategory.didChangeNotification", self)
 			guard let strongSelf = self, strongSelf.adjustsFontForContentSizeCategory else { return }
             strongSelf.reloadVisibleRowsWhilstMaintainingSelection()
             strongSelf.accessibilitySettingsDidChange()
