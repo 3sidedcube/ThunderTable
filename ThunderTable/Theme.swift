@@ -18,16 +18,24 @@ open class Theme: NSObject {
     //MARK: Colours
     
     /// The main tint colour for the app. This colour is generally used as the window tint colour and for tinting any UI elements throughout the app such as images and navigation bars
-    open var mainColor: UIColor = UIColor(red: 0.894, green: 0.000, blue: 0.010, alpha: 1.0)
+    open var mainColor: UIColor {
+        return UIAccessibility.isDarkerSystemColorsEnabled ? UIColor(red: 183.0/255.0, green: 24.0/255.0, blue: 41.0/255.0, alpha: 1.0) : UIColor(red: 0.894, green: 0.000, blue: 0.010, alpha: 1.0)
+    }
     
     /// The background colour for all table view cells throughout the app
-    open var cellBackgroundColor: UIColor = .white
+    open var cellBackgroundColor: UIColor {
+        return .white
+    }
     
     /// The title colour to be used for all table view cells throughout the app
-    open var cellTitleColor: UIColor = .black
+    open var cellTitleColor: UIColor {
+        return .black
+    }
     
     /// The detail colour to be used for all table view cells throughout the app
-    open var cellDetailColor: UIColor = .darkText
+    open var cellDetailColor: UIColor {
+        return .darkText
+    }
     
     /// The paragraph style for cell title label
     open var cellTitleParagraphStyle: NSParagraphStyle?
@@ -39,7 +47,9 @@ open class Theme: NSObject {
     open var secondaryColor: UIColor = UIColor(white: 0.25, alpha: 1.0)
     
     /// The colour of backgrounds throughout the app, particularly in table views
-    open var backgroundColor: UIColor = .groupTableViewBackground
+    open var backgroundColor: UIColor {
+        return .groupTableViewBackground
+    }
     
     /// The standard colour for free text
     open var freeTextColor: UIColor {
@@ -47,74 +57,118 @@ open class Theme: NSObject {
     }
     
     /// The colour of header text in the app
-    open var headerTextColor: UIColor = .black
+    open var headerTextColor: UIColor {
+        return .black
+    }
     
     /// The colour of UITableViewCell seperators
-    open var tableSeperatorColor: UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1.0)
+    open var tableSeperatorColor: UIColor {
+        return UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1.0)
+    }
     
     /// The colour of the text for UILabel's throughout the app
-    open var primaryLabelColor: UIColor = .black
+    open var primaryLabelColor: UIColor {
+        return .black
+    }
     
     /// The colour of the text for alternative UILabel's throughout the app
-    open var secondaryLabelColor: UIColor = .lightGray
+    open var secondaryLabelColor: UIColor {
+        return .lightGray
+    }
     
     /// The colour to be used for title text in a UINavigationBar
-    open var titleTextColor: UIColor = .black
+    open var titleTextColor: UIColor {
+        return .black
+    }
     
     /// The colour of the text label in a disabled UITableViewCell
-    open var disabledCellTextColor: UIColor = UIColor(white: 0.6, alpha: 0.6)
-	
-	//MARK: -
-	//MARK: - Standard colours
-	//MARK: -
-	
-	/// A blue colour
-	open var blueColor: UIColor = .blue
-	
-	// A brown colour
-	open var brownColor: UIColor = .brown
-	
-	/// A dark blue colour
-	open var darkBlueColor: UIColor = UIColor(red: 5.0/255.0, green: 56.0/255.0, blue: 115.0/255.0, alpha: 1.0)
-	
-	/// A cyan colour
-	open var cyanColor: UIColor = .cyan
-	
-	/// A dark gray colour
-	open var darkGrayColor: UIColor = .darkGray
-	
-	/// A gray colour
-	open var grayColor: UIColor = .gray
-	
-	/// A green colour
-	open var greenColor: UIColor = .green
-	
-	/// A light gray colour
-	open var lightGrayColor: UIColor = .lightGray
-	
-	/// A magenta colour
-	open var magentaColor: UIColor = .magenta
-	
-	/// An orange colour
-	open var orangeColor: UIColor = .orange
-	
-	// A purple colour
-	open var purpleColor: UIColor = .purple
-	
+    open var disabledCellTextColor: UIColor {
+        return UIColor(white: 0.6, alpha: 0.6)
+    }
+    
+    //MARK: -
+    //MARK: - Standard colours
+    //MARK: -
+    
+    /// A blue colour
+    open var blueColor: UIColor {
+        return .blue
+    }
+    
+    // A brown colour
+    open var brownColor: UIColor {
+        return .brown
+    }
+    
+    /// A dark blue colour
+    open var darkBlueColor: UIColor {
+        return UIColor(red: 5.0/255.0, green: 56.0/255.0, blue: 115.0/255.0, alpha: 1.0)
+    }
+    
+    /// A cyan colour
+    open var cyanColor: UIColor {
+        return .cyan
+    }
+    
+    /// A dark gray colour
+    open var darkGrayColor: UIColor {
+        return .darkGray
+    }
+    
+    /// A gray colour
+    open var grayColor: UIColor {
+        return .gray
+    }
+    
+    /// A green colour
+    open var greenColor: UIColor {
+        return .green
+    }
+    
+    /// A light gray colour
+    open var lightGrayColor: UIColor {
+        return .lightGray
+    }
+    
+    /// A magenta colour
+    open var magentaColor: UIColor {
+        return .magenta
+    }
+    
+    /// An orange colour
+    open var orangeColor: UIColor {
+        return .orange
+    }
+    
+    // A purple colour
+    open var purpleColor: UIColor {
+        return .purple
+    }
+    
     /// A red colour
-    open var redColor: UIColor = .red
+    open var redColor: UIColor {
+        return .red
+    }
     
     /// A yellow colour
-    open var yellowColor: UIColor = .yellow
-	
-	/// A white colour
-	open var whiteColor: UIColor = .white
-	
+    open var yellowColor: UIColor {
+        return .yellow
+    }
+    
+    /// A white colour
+    open var whiteColor: UIColor {
+        return .white
+    }
+    
     /// The colour to be used in the track of UIProgressBar
-    open var progressTrackTintColour: UIColor = UIColor(white: 0.683, alpha: 1.0)
+    open var progressTrackTintColour: UIColor {
+        return UIAccessibility.isDarkerSystemColorsEnabled ? UIColor(white: 0.583, alpha: 1.0) : UIColor(white: 0.683, alpha: 1.0)
+    }
     
     /// The colour to be used for a UIProgressBar fill colour
-    open var progressTintColour: UIColor = .white
+    open var progressTintColour: UIColor {
+        return .white
+    }
     
     /// The status bar style to use by default
     open var statusBarStyle: UIStatusBarStyle = .lightContent
@@ -125,7 +179,9 @@ open class Theme: NSObject {
     }
     
     /// The colour to be used as the navigation bar tint colour
-    open var navigationBarTintColor: UIColor = .white
+    open var navigationBarTintColor: UIColor {
+        return .white
+    }
     
     ///---------------------------------------------------------------------------------------
     /// @name Fonts
@@ -211,7 +267,7 @@ open class Theme: NSObject {
             return .preferredFont(forTextStyle: .body)
         }
     }
-        
+    
     /// The font for the detail label of cells throughout the app
     open var cellDetailFont: UIFont {
         if #available(iOS 11.0, *) {
@@ -220,7 +276,7 @@ open class Theme: NSObject {
             return .preferredFont(forTextStyle: .subheadline)
         }
     }
-
+    
 }
 
 /// A controller for managing the theme of the app
@@ -240,7 +296,7 @@ open class ThemeManager {
     public class func customiseApp() {
         
         let theme = ThemeManager.shared.theme
-
+        
         let navBar = UINavigationBar.appearance()
         navBar.tintColor = theme.mainColor
         
@@ -249,7 +305,7 @@ open class ThemeManager {
         
         let tabBar = UITabBar.appearance()
         tabBar.tintColor = theme.mainColor
-
+        
         let `switch` = UISwitch.appearance()
         `switch`.onTintColor = theme.mainColor
     }
