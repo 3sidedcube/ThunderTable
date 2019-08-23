@@ -140,6 +140,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     
     private var accessibilityObservers: [Any] = []
     
+    /// Indicates whether the table view should redraw visible cells automatically when the device's UIContentSizeCategory is changed.
     public var adjustsFontForContentSizeCategory: Bool = true
     
     /// A list of notification names that should cause the table view to redraw itself
