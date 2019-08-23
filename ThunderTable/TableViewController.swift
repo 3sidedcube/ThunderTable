@@ -162,7 +162,10 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             strongSelf.accessibilitySettingsDidChange()
 		}
         
-        // Notification names that it makes sense to redraw on
+        // Notification names that it makes sense to redraw on.
+        // Note that these differ from `self.accessibilityRedrawNotificationNames`. It is easier, and not too
+        // expensive to manage which notifications trigger a refresh at the point of receiving the notification
+        // rather than risking double-adding or double-removing the observers!
         let accessibilityNotifications: [Notification.Name] = [
             UIAccessibility.darkerSystemColorsStatusDidChangeNotification,
             UIAccessibility.assistiveTouchStatusDidChangeNotification,
