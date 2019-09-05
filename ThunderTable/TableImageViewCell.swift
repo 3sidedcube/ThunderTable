@@ -14,6 +14,8 @@ open class TableImageViewCell: TableViewCell {
 	
 	override open func awakeFromNib() {
 		super.awakeFromNib()
+        isAccessibilityElement = false
+        cellImageView?.isAccessibilityElement = true
 	}
     
     open override var accessibilityElements: [Any]? {
