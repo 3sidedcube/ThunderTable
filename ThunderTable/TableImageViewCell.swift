@@ -15,4 +15,8 @@ open class TableImageViewCell: TableViewCell {
 	override open func awakeFromNib() {
 		super.awakeFromNib()
 	}
+    
+    open override var accessibilityElements: [Any]? {
+        return [cellImageView].compactMap({ $0 })
+    }
 }
