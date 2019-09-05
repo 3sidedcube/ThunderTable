@@ -17,6 +17,9 @@ open class TableImageViewCell: TableViewCell {
 	}
     
     open override var accessibilityElements: [Any]? {
-        return [cellImageView].compactMap({ $0 })
+        get {
+            return [cellImageView].compactMap({ $0 })
+        }
+        set { }
     }
 }
