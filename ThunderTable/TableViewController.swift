@@ -124,8 +124,12 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 	public var selectedIndexPath: IndexPath?
 	
 	public var selectedRows: [Row]? {
-		return tableView.indexPathsForSelectedRows?.map({ (indexPath) -> Row in
-			return _data[indexPath.section].rows[indexPath.row]
+		return tableView.indexPathsForSelectedRows?.compactMap({ (indexPath) -> Row? in
+            guard indexPath.section < _data.count else { return nil }
+            let section = _data[indexPath.section]
+            guard indexPath.row < section.rows.count else { return nil }
+            let row = section.rows[indexPath.row]
+			return row
 		})
 	}
     
@@ -337,14 +341,19 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     }
 
 	override open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-		let row = data[indexPath.section].rows[indexPath.row]
+        guard indexPath.section < data.count else { return false }
+        let section = data[indexPath.section]
+        guard indexPath.row < section.rows.count else { return false }
+        let row = section.rows[indexPath.row]
 		return row.isEditable
 	}
 	
 	override open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		
-		let section = data[indexPath.section]
-		let row = section.rows[indexPath.row]
+		guard indexPath.section < data.count else { return }
+        let section = data[indexPath.section]
+        guard indexPath.row < section.rows.count else { return }
+        let row = section.rows[indexPath.row]
 		
 		// Row edit handler overrides section edit handler
 		if let rowEditHandler = row.editHandler {
@@ -356,8 +365,10 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 	
 	open override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 		
-		let section = data[indexPath.section]
-		let row = section.rows[indexPath.row]
+		guard indexPath.section < data.count else { return [] }
+        let section = data[indexPath.section]
+        guard indexPath.row < section.rows.count else { return [] }
+        let row = section.rows[indexPath.row]
 		
 		guard let configuration = row.trailingSwipeActionsConfiguration ?? section.rowTrailingSwipeActionsConfiguration else {
             
@@ -374,8 +385,10 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 	@available(iOS 11.0, *)
 	override open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		
-		let section = data[indexPath.section]
-		let row = section.rows[indexPath.row]
+		guard indexPath.section < data.count else { return nil }
+        let section = data[indexPath.section]
+        guard indexPath.row < section.rows.count else { return nil }
+        let row = section.rows[indexPath.row]
 		
 		guard let configuration = row.leadingSwipeActionsConfiguration ?? section.rowLeadingSwipeActionsConfiguration else { return nil }
 		
@@ -385,8 +398,10 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 	@available(iOS 11.0, *)
 	override open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		
-		let section = data[indexPath.section]
-		let row = section.rows[indexPath.row]
+		guard indexPath.section < data.count else { return nil }
+        let section = data[indexPath.section]
+        guard indexPath.row < section.rows.count else { return nil }
+        let row = section.rows[indexPath.row]
 		
 		guard let configuration = row.trailingSwipeActionsConfiguration ?? section.rowTrailingSwipeActionsConfiguration else {
             
@@ -403,8 +418,11 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 		
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let row = _data[indexPath.section].rows[indexPath.row]
-        
+        guard indexPath.section < data.count else { return false }
+        let section = data[indexPath.section]
+        guard indexPath.row < section.rows.count else { return false }
+        let row = section.rows[indexPath.row]
+                
         var identifier: String = "Cell"
         
         // If the row defines a cell class use the identifier for that
@@ -434,7 +452,10 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     
     override open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let row = _data[indexPath.section].rows[indexPath.row]
+        guard indexPath.section < data.count else { return self.tableView(tableView, heightForRowAt: indexPath) }
+        let section = data[indexPath.section]
+        guard indexPath.row < section.rows.count else { return self.tableView(tableView, heightForRowAt: indexPath) }
+        let row = section.rows[indexPath.row]
         
         if let estimatedHeight = row.estimatedHeight {
             return estimatedHeight
@@ -447,7 +468,10 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     
     override open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let row = _data[indexPath.section].rows[indexPath.row]
+        guard indexPath.section < data.count else { return UITableView.automaticDimension }
+        let section = data[indexPath.section]
+        guard indexPath.row < section.rows.count else { return UITableView.automaticDimension }
+        let row = section.rows[indexPath.row]
         
         // If they're using prototype cells or nibs then we don't want to manually calculate size
         let calculateSize = row.prototypeIdentifier == nil && row.nib == nil
@@ -514,13 +538,13 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     }
 	
 	override open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		
+        guard section < data.count else { return nil }
 		let section = _data[section]
 		return section.header
 	}
 	
 	override open func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-		
+        guard section < data.count else { return nil }
 		let section = _data[section]
 		return section.footer
 	}
@@ -595,8 +619,10 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 public extension TableViewController {
 	
     internal func selectable(_ indexPath: IndexPath) -> Bool {
-		
-        let section = _data[indexPath.section]
+        
+        guard indexPath.section < data.count else { return false }
+        let section = data[indexPath.section]
+        guard indexPath.row < section.rows.count else { return false }
         let row = section.rows[indexPath.row]
         
         return row.selectionHandler != nil || section.selectionHandler != nil || (row as? InputRow) != nil
@@ -604,7 +630,9 @@ public extension TableViewController {
     
     internal func set(indexPath: IndexPath, selected: Bool) {
         
-        let section = _data[indexPath.section]
+        guard indexPath.section < data.count else { return }
+        let section = data[indexPath.section]
+        guard indexPath.row < section.rows.count else { return }
         let row = section.rows[indexPath.row]
         
         // Row selection overrides section selection
