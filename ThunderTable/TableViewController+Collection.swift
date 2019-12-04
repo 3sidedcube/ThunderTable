@@ -10,7 +10,7 @@ import Foundation
 
 extension TableViewController {
     
-    public subscript (index: IndexPath) -> (Section, Row)? {
+    public subscript (index: IndexPath) -> (section: Section, row: Row)? {
         
         guard index.section < data.count else {
             return nil
@@ -25,17 +25,7 @@ extension TableViewController {
     }
     
     public subscript (row index: IndexPath) -> Row? {
-        
-        guard index.section < data.count else {
-            return nil
-        }
-        
-        let section = data[index.section]
-        guard index.row < section.rows.count else {
-            return nil
-        }
-        
-        return section.rows[index.row]
+        return self[index]?.row
     }
     
     public subscript (section index: IndexPath) -> Section? {
