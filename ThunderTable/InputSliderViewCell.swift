@@ -141,4 +141,12 @@ open class InputSliderViewCell: TableViewCell {
         }
         set { }
     }
+    
+    open override func accessibilityDecrement() {
+        slider.accessibilityDecrement()
+    }
+    
+    open override func accessibilityIncrement() {
+        slider.accessibilityIncrement()
+    }
 }
