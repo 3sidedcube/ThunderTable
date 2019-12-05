@@ -31,7 +31,10 @@ open class InputSwitchViewCell: TableViewCell {
     
     open override var accessibilityLabel: String? {
         get {
-            return [cellTextLabel?.text, cellDetailLabel?.text].compactMap({
+            return [
+                cellTextLabel?.accessibilityLabel ?? cellTextLabel?.text,
+                cellDetailLabel?.accessibilityLabel ?? cellDetailLabel?.text
+            ].compactMap({
                 guard let text = $0, !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
                 return text
             }).joined(separator: ",")

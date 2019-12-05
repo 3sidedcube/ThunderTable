@@ -20,10 +20,17 @@ open class InputSliderRow: InputTableRow {
         return InputSliderViewCell.self
     }
     
+    // Defines whether to group the label and slider as a single accessibility element
+    /// - Note: Defaults to true!
+    public var accessibilityGroupLabelsAndSlider = true
+    
+    /// The minimum value that can be chosen by the slider
     open var minValue: Float
     
+    /// The maximum value that can be chosen by the slider
     open var maxValue: Float
-	
+    
+    /// The interval at which the slider increments or decrements
 	open var interval: Float
     
     public init(title: String?, minValue: Float, maxValue: Float, id: String, required: Bool) {
@@ -48,6 +55,8 @@ open class InputSliderRow: InputTableRow {
         sliderCell.slider.addTarget(sliderCell, action: #selector(InputSliderViewCell.updateLabel(sender:)), for: .valueChanged)
         
         sliderCell.cellTextLabel?.isHidden = title == nil
+        
+        sliderCell.accessibilityGroupLabelsAndSlider = accessibilityGroupLabelsAndSlider
 		
 		sliderCell.slider.interval = interval
 		sliderCell.slider.minimumValue = minValue
