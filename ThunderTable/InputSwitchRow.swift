@@ -8,11 +8,20 @@
 
 import UIKit
 
+/// An input row which provides a title, subtitle, and `UISwitch` in it's UI
 open class InputSwitchRow: InputTableRow {
 	
 	public var isEnabled = true
 	
 	public var isUserInteractionEnabled = true
+    
+    /// Defines whether to group the label and switch as a single accessibility element
+    /// - Note: Defaults to true!
+    public var accessibilityGroupLabelsAndSwitch = true {
+        didSet {
+            isAccessibilityElement = accessibilityGroupLabelsAndSwitch
+        }
+    }
 
     override open var cellClass: UITableViewCell.Type? {
         return InputSwitchViewCell.self
@@ -22,6 +31,7 @@ open class InputSwitchRow: InputTableRow {
         
         super.init(id: id, required: false)
         
+        isAccessibilityElement = true
         self.title = title
         self.subtitle = subtitle
         self.image = image
@@ -41,6 +51,8 @@ open class InputSwitchRow: InputTableRow {
         } else {
             switchCell.switch.isOn = false
         }
+        
+        switchCell.accessibilityGroupLabelsAndSwitch = accessibilityGroupLabelsAndSwitch
 		
 		switchCell.switch.isEnabled = isEnabled
 		switchCell.switch.isUserInteractionEnabled = isUserInteractionEnabled
