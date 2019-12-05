@@ -33,7 +33,8 @@ open class InputSwitchViewCell: TableViewCell {
         get {
             return [
                 cellTextLabel?.accessibilityLabel ?? cellTextLabel?.text,
-                cellDetailLabel?.accessibilityLabel ?? cellDetailLabel?.text
+                cellDetailLabel?.accessibilityLabel ?? cellDetailLabel?.text,
+                self.switch.accessibilityValue
             ].compactMap({
                 guard let text = $0, !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
                 return text
@@ -45,6 +46,7 @@ open class InputSwitchViewCell: TableViewCell {
     open override func accessibilityActivate() -> Bool {
         self.switch.setOn(!self.switch.isOn, animated: true)
         self.switch.sendActions(for: .valueChanged)
+        UIAccessibility.post(notification: .announcement, argument: self.switch.accessibilityValue)
         return true
     }
 }
