@@ -38,4 +38,10 @@ open class InputSwitchViewCell: TableViewCell {
         }
         set { }
     }
+    
+    open override func accessibilityActivate() -> Bool {
+        self.switch.setOn(!self.switch.isOn, animated: true)
+        self.switch.sendActions(for: .valueChanged)
+        return true
+    }
 }
