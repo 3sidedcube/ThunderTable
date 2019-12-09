@@ -174,7 +174,8 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             UIAccessibility.guidedAccessStatusDidChangeNotification,
             UIAccessibility.invertColorsStatusDidChangeNotification,
             UIAccessibility.reduceMotionStatusDidChangeNotification,
-            UIAccessibility.reduceTransparencyStatusDidChangeNotification
+            UIAccessibility.reduceTransparencyStatusDidChangeNotification,
+            UIAccessibility.voiceOverStatusDidChangeNotification
         ]
         
         accessibilityObservers = accessibilityNotifications.map({ (notificationName) -> Any in
