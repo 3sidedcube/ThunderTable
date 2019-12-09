@@ -99,6 +99,13 @@ public class IntervalSlider: UISlider {
         self.setValue(correctedNextValue, animated: true)
         sendActions(for: .valueChanged)
     }
+    
+    public override var accessibilityValue: String? {
+        get {
+            return "\(correctedValue)"
+        }
+        set {  }
+    }
 }
 
 open class InputSliderViewCell: TableViewCell {
