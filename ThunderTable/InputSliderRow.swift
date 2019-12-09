@@ -33,6 +33,10 @@ open class InputSliderRow: InputTableRow {
     /// The interval at which the slider increments or decrements
 	open var interval: Float
     
+    /// A closure that will be called in order to format the accessibility value for the slider.
+    /// This can be used to for example make the accessibility value read "2 miles" rather than simply "2"
+    open var accessibilityValueFormatter: ((Float) -> String)?
+    
     public init(title: String?, minValue: Float, maxValue: Float, id: String, required: Bool) {
         
         self.minValue = minValue
@@ -51,6 +55,7 @@ open class InputSliderRow: InputTableRow {
         super.configure(cell: cell, at: indexPath, in: tableViewController)
         
         updateTargetsAndSelectors(for: sliderCell.slider)
+        sliderCell.accessibilityValueFormatter = accessibilityValueFormatter
         sliderCell.slider.addTarget(self, action: #selector(handleChange(sender:)), for: .valueChanged)
         sliderCell.slider.addTarget(sliderCell, action: #selector(InputSliderViewCell.updateLabel(sender:)), for: .valueChanged)
         

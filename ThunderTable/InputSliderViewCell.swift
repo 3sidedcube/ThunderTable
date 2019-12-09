@@ -107,6 +107,10 @@ open class InputSliderViewCell: TableViewCell {
     
     @IBOutlet weak public var slider: IntervalSlider!
     
+    /// A closure that will be called in order to format the accessibility value for the slider.
+    /// This can be used to for example make the accessibility value read "2 miles" rather than simply "2"
+    public var accessibilityValueFormatter: ((Float) -> String)?
+    
     // Defines whether to group the label and slider as a single accessibility element
     /// - Note: Defaults to true!
     public var accessibilityGroupLabelsAndSlider = true {
@@ -128,12 +132,20 @@ open class InputSliderViewCell: TableViewCell {
         }
     }
     
+    open override var accessibilityValue: String? {
+        get {
+            return accessibilityValueFormatter?(slider.correctedValue) ?? slider.accessibilityValue
+        }
+        set { }
+    }
+    
     open override var accessibilityLabel: String? {
         get {
+            // We don't return the value label's text here as that is covered by `accessibilityLabel`
+            // and so would be read twice if we put it in this array
             return [
                 cellTextLabel?.accessibilityLabel ?? cellTextLabel?.text,
-                cellDetailLabel?.accessibilityLabel ?? cellDetailLabel?.text,
-                slider.accessibilityValue
+                cellDetailLabel?.accessibilityLabel ?? cellDetailLabel?.text
             ].compactMap({
                 guard let text = $0, !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
                 return text
