@@ -29,16 +29,9 @@ open class InputSwitchViewCell: TableViewCell {
         set {  }
     }
     
-    open override var accessibilityLabel: String? {
+    open override var accessibilityValue: String? {
         get {
-            return [
-                cellTextLabel?.accessibilityLabel ?? cellTextLabel?.text,
-                cellDetailLabel?.accessibilityLabel ?? cellDetailLabel?.text,
-                self.switch.accessibilityLabel
-            ].compactMap({
-                guard let text = $0, !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
-                return text
-            }).joined(separator: ",")
+            return `switch`.accessibilityValue
         }
         set { }
     }
