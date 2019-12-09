@@ -31,9 +31,15 @@ public protocol Row {
 	
     /// A string to be displayed as the title for the row
     var title: String? { get }
+    
+    /// A string to be used as the accessibility label for the row title
+    var accessibilityTitle: String? { get }
 	
     /// A string to be displayed as the subtitle for the row
     var subtitle: String? { get }
+    
+    /// A string to be used as the accessibility label for the row subtitle
+    var accessibilitySubtitle: String? { get }
     
     /// An image to be displayed in the row
     var image: UIImage? { get set }
@@ -154,6 +160,14 @@ extension Row {
 		return nil
     }
     
+    public var accessibilityTitle: String? {
+        return nil
+    }
+    
+    public var accessibilitySubtitle: String? {
+        return nil
+    }
+    
     public var image: UIImage? {
         get { return nil }
         set {}
@@ -226,12 +240,16 @@ open class TableRow: Row {
 	public var editHandler: EditHandler?
     
     open var title: String?
+    
+    open var accessibilityTitle: String?
 	
 	open var titleTextColor: UIColor = ThemeManager.shared.theme.cellTitleColor
 	
 	open var subtitleTextColor: UIColor = ThemeManager.shared.theme.cellDetailColor
     
     open var subtitle: String?
+    
+    open var accessibilitySubtitle: String?
     
     open var image: UIImage?
     

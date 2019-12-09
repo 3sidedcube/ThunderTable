@@ -277,10 +277,22 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             textLabel?.text = nil
         }
         
+        if let rowAccessibilityTitle = row.accessibilityTitle {
+            textLabel?.accessibilityLabel = rowAccessibilityTitle
+        } else {
+            textLabel?.accessibilityLabel = nil
+        }
+        
         if let rowSubtitle = row.subtitle {
             detailLabel?.text = rowSubtitle
         } else {
             detailLabel?.text = nil
+        }
+        
+        if let rowAccessibilitySubtitle = row.accessibilitySubtitle {
+            detailLabel?.accessibilityLabel = rowAccessibilitySubtitle
+        } else {
+            detailLabel?.accessibilityLabel = nil
         }
         
         if let rowImage = row.image {
