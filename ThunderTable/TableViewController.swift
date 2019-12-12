@@ -162,11 +162,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             strongSelf.accessibilitySettingsDidChange()
 		}
         
-        // Notification names that it makes sense to redraw on.
-        // Note that these differ from `self.accessibilityRedrawNotificationNames`. It is easier, and not too
-        // expensive to manage which notifications trigger a refresh at the point of receiving the notification
-        // rather than risking double-adding or double-removing the observers!
-        let accessibilityNotifications: [Notification.Name] = [
+        var accessibilityNotifications: [Notification.Name] = [
             UIAccessibility.darkerSystemColorsStatusDidChangeNotification,
             UIAccessibility.assistiveTouchStatusDidChangeNotification,
             UIAccessibility.boldTextStatusDidChangeNotification,
@@ -176,6 +172,14 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             UIAccessibility.reduceMotionStatusDidChangeNotification,
             UIAccessibility.reduceTransparencyStatusDidChangeNotification
         ]
+            
+        // Notification names that it makes sense to redraw on.
+        // Note that these differ from `self.accessibilityRedrawNotificationNames`. It is easier, and not too
+        // expensive to manage which notifications trigger a refresh at the point of receiving the notification
+        // rather than risking double-adding or double-removing the observers!
+        if #available(iOS 11.0, *) {
+            accessibilityNotifications.append(UIAccessibility.voiceOverStatusDidChangeNotification)
+        }
         
         accessibilityObservers = accessibilityNotifications.map({ (notificationName) -> Any in
             return NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: .main, using: { [weak self] (notification) in
@@ -277,10 +281,22 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             textLabel?.text = nil
         }
         
+        if let rowAccessibilityTitle = row.accessibilityTitle {
+            textLabel?.accessibilityLabel = rowAccessibilityTitle
+        } else {
+            textLabel?.accessibilityLabel = nil
+        }
+        
         if let rowSubtitle = row.subtitle {
             detailLabel?.text = rowSubtitle
         } else {
             detailLabel?.text = nil
+        }
+        
+        if let rowAccessibilitySubtitle = row.accessibilitySubtitle {
+            detailLabel?.accessibilityLabel = rowAccessibilitySubtitle
+        } else {
+            detailLabel?.accessibilityLabel = nil
         }
         
         if let rowImage = row.image {

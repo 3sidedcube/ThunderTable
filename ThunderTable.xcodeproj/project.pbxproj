@@ -413,6 +413,7 @@
 					B14F944D20444E810014F694 = {
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = 25H7BM6YWK;
+						LastSwiftMigration = 1120;
 						ProvisioningStyle = Automatic;
 					};
 					B17BAA311D89639100844421 = {
@@ -592,7 +593,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.3sidedcube.ThunderTableDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -614,7 +615,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.3sidedcube.ThunderTableDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

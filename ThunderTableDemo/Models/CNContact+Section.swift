@@ -22,7 +22,7 @@ extension CNContact: Section {
     
     public var rows: [Row] {
         
-        var _rows: [Row] = [
+        let _rows: [Row] = [
             TableRow(title: CNContact.localizedString(forKey: CNContactGivenNameKey), subtitle: givenName, image: nil, selectionHandler: nil),
             TableRow(title: CNContact.localizedString(forKey: CNContactFamilyNameKey), subtitle: familyName, image: nil, selectionHandler: nil)
         ]
