@@ -96,7 +96,7 @@ open class Theme: NSObject {
         if #available(iOS 13.0, *) {
             return .secondaryLabel
         } else {
-            return .lightGray
+            return .darkGray
         }
     }
     
