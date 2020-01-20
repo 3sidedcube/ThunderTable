@@ -60,17 +60,21 @@ open class InputTextViewRow: InputTableRow {
         if let stringValue = value as? String {
             
             textCell.textView.text = stringValue
-            textCell.textView.textColor = UIColor.black
+            textCell.textView.textColor = ThemeManager.shared.theme.cellTitleColor
             
         } else if let value = value, value as? NSNull == nil {
             
-            textCell.textView.textColor = UIColor.black
+            textCell.textView.textColor = ThemeManager.shared.theme.cellTitleColor
             textCell.textView.text = String(describing: value)
             
         } else {
             
             textCell.textView.text = placeholder
-            textCell.textView.textColor = UIColor.lightGray
+            if #available(iOS 13.0, *) {
+                textCell.textView.textColor = .placeholderText
+            } else {
+                textCell.textView.textColor = .lightGray
+            }
         }
     }
 }
