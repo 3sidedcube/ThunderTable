@@ -161,6 +161,7 @@ class ViewController: TableViewController {
         switchRow.required = true
         
         let switchRow2 = InputSwitchRow(title: "Switch 2", subtitle: "Default On", id: "switch2")
+        switchRow2.subtitle = "Change to on!"
         switchRow2.value = true
         
         let dobRow = InputDatePickerRow(title: "Date of Birth", mode: .date, id: "dob", required: false)
@@ -188,7 +189,7 @@ class ViewController: TableViewController {
                 
             } else {
                 
-                let alertViewController = UIAlertController(title: "Inputted Values", message: "\(self.inputDictionary ?? [:])", preferredStyle: .alert)
+                let alertViewController = UIAlertController(title: "Inputted Values", message: "\(self.inputDictionary)", preferredStyle: .alert)
                 alertViewController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
                 
                 self.present(alertViewController, animated: true, completion: nil)
@@ -196,6 +197,14 @@ class ViewController: TableViewController {
         }
         
         let sliderRow = InputSliderRow(title: "Piece of string", minValue: 1.0, maxValue: 10.0, id: "string", required: true)
+        sliderRow.subtitle = "Enter the length"
+        let distanceFormatter = MeasurementFormatter()
+        distanceFormatter.unitStyle = .medium
+        
+        sliderRow.accessibilityValueFormatter = { value in
+            let measurement = Measurement(value: Double(value), unit: .init(symbol: "m"))
+            return distanceFormatter.string(from: measurement)
+        }
         
         let givenNameCompnent = PickerComponent(items: ["John", "Cersei", "Tyrion"])
         let familyNameComponent = PickerComponent(items: ["Lannister", "Greyjoy", "Snow"])
