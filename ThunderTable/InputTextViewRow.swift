@@ -86,17 +86,17 @@ extension InputTextViewRow: UITextViewDelegate {
         if let stringValue = value as? String {
             
             textView.text = stringValue
-            textView.textColor = UIColor.black
+            textView.textColor = ThemeManager.shared.theme.cellTitleColor
             
         } else if let value = value, value as? NSNull == nil {
             
             textView.text = String(describing: value)
-            textView.textColor = UIColor.black
+            textView.textColor = ThemeManager.shared.theme.cellTitleColor
             
         } else {
             
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = ThemeManager.shared.theme.cellTitleColor
         }
     }
     
@@ -104,7 +104,11 @@ extension InputTextViewRow: UITextViewDelegate {
         
         if textView.text.isEmpty {
             textView.text = placeholder
-            textView.textColor = UIColor.lightGray
+            if #available(iOS 13.0, *) {
+                textView.textColor = .placeholderText
+            } else {
+                textView.textColor = .lightGray
+            }
         }
     }
     
