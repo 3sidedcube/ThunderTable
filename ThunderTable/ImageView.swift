@@ -130,8 +130,9 @@ public extension UIImageView {
     /// - parameter withPlaceholder: The image to use as a placeholder for the loading image (Optional)
     /// - parameter imageSize:       The size of the final image which will be loaded from the URL
     /// - parameter animated:        Whether the loading image should animate in when retrieved
+    /// - parameter callCompletionForIntermediaryLoads: Whether `completion` should be called for intermediary image loads
     /// - parameter completion:      A closure which will be called upon the completed load of the image.
-    func set(imageURLS: [URL]?, withPlaceholder: UIImage?, imageSize: CGSize = CGSize.zero, animated: Bool = false, completion: ImageViewSetImageURLCompletion?) {
+    func set(imageURLS: [URL]?, withPlaceholder: UIImage?, imageSize: CGSize = CGSize.zero, animated: Bool = false, callCompletionForIntermediaryLoads: Bool = false, completion: ImageViewSetImageURLCompletion?) {
         
         finalSize = imageSize
         cancelCurrentRequestOperations()
@@ -200,6 +201,10 @@ public extension UIImageView {
                     welf.imageURLS = nil
                     welf.completion?(image, error)
                     welf.completion = nil
+                    
+                } else if callCompletionForIntermediaryLoads {
+                    
+                    welf.completion?(image, error)
                 }
             })
         })
