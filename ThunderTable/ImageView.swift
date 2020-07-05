@@ -17,6 +17,15 @@ private var showingPlaceholderKey: UInt8 = 2
 private var imageUrlsKey: UInt8 = 3
 private var requestsKey: UInt8 = 4
 
+private class ImageClosureWrapper {
+    
+    var closure: ImageViewSetImageURLCompletion?
+    
+    init(closure: ImageViewSetImageURLCompletion?) {
+        self.closure = closure
+    }
+}
+
 /// A subclass of ImageView to improve intrinsicContentSize behaviour
 public class ImageView: UIImageView {
 	
@@ -54,6 +63,16 @@ public extension UIImageView {
         }
         set {
             objc_setAssociatedObject(self, &finalSizeKey, NSValue(cgSize: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    private var completion: ImageViewSetImageURLCompletion? {
+        get {
+            guard let wrapper = objc_getAssociatedObject(self, &completionKey) as? ImageClosureWrapper else { return nil }
+            return wrapper.closure
+        }
+        set {
+            objc_setAssociatedObject(self, &completionKey, ImageClosureWrapper(closure: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
@@ -117,6 +136,7 @@ public extension UIImageView {
         
         finalSize = imageSize
         cancelCurrentRequestOperations()
+        self.completion = completion
         
         image = withPlaceholder
         self.imageURLS = imageURLS
@@ -126,25 +146,25 @@ public extension UIImageView {
             
             return ImageController.shared.loadImage(fromURL: $0, completion: { [weak self] (image, error, request) in
                 
-                guard let self = self else { return }
+                guard let welf = self else { return }
                 
                 // Only update the image if the request is still in the queue (Hasn't been cancelled)
-                if let requests = self.requests, requests.contains(where: { $0.urlRequest == request?.urlRequest }), let replacementImage = image {
+                if let requests = welf.requests, requests.contains(where: { $0.urlRequest == request?.urlRequest }), let replacementImage = image {
                     
                     // Replace the current image if we're showing the placeholder or the returned image is larger than the current one
-                    var replaceImage = self.showingPlaceholder && image != nil
+                    var replaceImage = welf.showingPlaceholder && image != nil
                     
                     // Check if the returned image is larger
-                    if let currentImage = self.image, !replaceImage {
+                    if let currentImage = welf.image, !replaceImage {
                         replaceImage = replacementImage.size.width > currentImage.size.width || replacementImage.size.height > currentImage.size.height
                     }
                     
                     if replaceImage {
                         
-                        self.showingPlaceholder = false
-                        self.image = replacementImage
-                        self.setNeedsUpdateConstraints()
-                        self.setNeedsLayout()
+                        welf.showingPlaceholder = false
+                        welf.image = replacementImage
+                        welf.setNeedsUpdateConstraints()
+                        welf.setNeedsLayout()
                         
                         // Animate the change
                         if animated {
@@ -155,46 +175,51 @@ public extension UIImageView {
                     }
                     
                     // Cancel lower resolution requests if there are any!
-                    if let requestIndex = self.requests?.firstIndex(where: { $0.urlRequest == request?.urlRequest }), let requests = self.requests {
+                    if let requestIndex = welf.requests?.firstIndex(where: { $0.urlRequest == request?.urlRequest }), let requests = welf.requests {
                         
                         requests.enumerated().forEach({ (index, request) in
                             
                             if index < requestIndex {
                                 
                                 ImageController.shared.cancel(imageRequest: request)
-                                self.requests?.remove(at: index)
+                                welf.requests?.remove(at: index)
                             }
                         })
                         
                         // Remove this image request from the queued requests, recalculate index,
                         // because above code may have broken the ordering!
-                        if let index = self.requests?.firstIndex(where: { $0.urlRequest == request?.urlRequest }) {
-                            self.requests?.remove(at: index)
+                        if let index = welf.requests?.firstIndex(where: { $0.urlRequest == request?.urlRequest }) {
+                            welf.requests?.remove(at: index)
                         }
                     }
                 }
                 
                 // If no remaining requests, call the completion
-                if self.requests?.count == 0 {
+                if welf.requests?.count == 0 {
                     
-                    self.cancelCurrentRequestOperations()
-                    self.imageURLS = nil
-                    completion?(image, error)
+                    welf.cancelCurrentRequestOperations()
+                    welf.imageURLS = nil
+                    welf.completion?(image, error)
+                    welf.completion = nil
                     
                 } else if callCompletionForIntermediaryLoads {
                     
-                    completion?(image, error)
+                    welf.completion?(image, error)
                 }
             })
         })
     }
     
     private func cancelCurrentRequestOperations() {
-        
+        completion?(nil, ImageViewError.cancelledDueToNewUrl)
         requests?.forEach({ (request) in
             ImageController.shared.cancel(imageRequest: request)
         })
         requests = nil
     }
+}
+
+enum ImageViewError: Error {
+    case cancelledDueToNewUrl
 }
 
