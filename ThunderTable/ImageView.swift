@@ -197,7 +197,7 @@ public extension UIImageView {
                 // If no remaining requests, call the completion
                 if welf.requests?.count == 0 {
                     
-                    welf.cancelCurrentRequestOperations()
+                    welf.cancelCurrentRequestOperations(callingCompletion: false)
                     welf.imageURLS = nil
                     welf.completion?(image, error)
                     welf.completion = nil
@@ -210,8 +210,10 @@ public extension UIImageView {
         })
     }
     
-    private func cancelCurrentRequestOperations() {
-        completion?(nil, ImageViewError.cancelledDueToNewUrl)
+    private func cancelCurrentRequestOperations(callingCompletion: Bool = true) {
+        if callingCompletion {
+            completion?(nil, ImageViewError.cancelledDueToNewUrl)
+        }
         requests?.forEach({ (request) in
             ImageController.shared.cancel(imageRequest: request)
         })
