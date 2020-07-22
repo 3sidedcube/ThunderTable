@@ -70,6 +70,11 @@ class ViewController: TableViewController {
         let imageRow = TableRow(title: "Bundled Image", subtitle: "With Footer", image: #imageLiteral(resourceName: "logo"), selectionHandler: nil)
         let remoteImageRow = TableRow(title: "Remote Image")
         remoteImageRow.imageURL = URL(string: "http://via.placeholder.com/120x80")
+        remoteImageRow.imageSize = .init(width: 120, height: 80)
+        
+        let remoteImageWithPlaceholderRow = TableRow(title: "Remote Image w/ Placeholder")
+        remoteImageWithPlaceholderRow.placeholderImage = #imageLiteral(resourceName: "logo")
+        remoteImageWithPlaceholderRow.imageURL = URL(string: "http://via.placeholder.com/80x80")
         
         let actionRow = TableRow(title: "Show Alert", subtitle: nil, image: nil) { (row, selected, indexPath, tableView) -> (Void) in
             
@@ -79,7 +84,7 @@ class ViewController: TableViewController {
             self.present(alertViewController, animated: true, completion: nil)
         }
         
-        let basicsSection = TableSection(rows: [row, subtitleRow, imageRow, remoteImageRow, actionRow], header: "Header", footer: "Footer", selectionHandler: nil)
+        let basicsSection = TableSection(rows: [row, subtitleRow, imageRow, remoteImageRow, remoteImageWithPlaceholderRow, actionRow], header: "Header", footer: "Footer", selectionHandler: nil)
         
         return basicsSection
     }
