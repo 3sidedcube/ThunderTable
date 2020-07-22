@@ -310,11 +310,15 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             size = imageSize
         }
         
-        imageView?.set(imageURL: row.imageURL, withPlaceholder: row.image, imageSize: size, animated: true, completion: { [weak self] (image, error) -> (Void) in
-            
-            if let welf = self, _row.image == nil {
+        imageView?.set(
+            imageURL: row.imageURL,
+            withPlaceholder: row.image ?? row.placeholderImage,
+            imageSize: size,
+            animated: true,
+            completion: { [weak self] (image, error) -> (Void) in
+            if _row.image == nil {
                 _row.image = image
-                welf.tableView.reloadRows(at: [indexPath], with: .none)
+                self?.tableView.reloadRows(at: [indexPath], with: .none)
             }
         })
 		

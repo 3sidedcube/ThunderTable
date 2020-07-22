@@ -44,6 +44,9 @@ public protocol Row {
     /// An image to be displayed in the row
     var image: UIImage? { get set }
     
+    /// An image to be used as placeholder when using asynchronous image loading and `image` is nil
+    var placeholderImage: UIImage? { get }
+    
     /// The size of the image which will be displayed in the row
 	/// 
 	/// This will be used when displaying an image using imageURL in order
@@ -168,6 +171,10 @@ extension Row {
         return nil
     }
     
+    public var placeholderImage: UIImage? {
+        return nil
+    }
+    
     public var image: UIImage? {
         get { return nil }
         set {}
@@ -252,6 +259,8 @@ open class TableRow: Row {
     open var accessibilitySubtitle: String?
     
     open var image: UIImage?
+    
+    open var placeholderImage: UIImage?
     
     open var imageSize: CGSize?
     
