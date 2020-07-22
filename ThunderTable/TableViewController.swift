@@ -111,9 +111,21 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     
     private var _data: [Section] = []
     
+    private var _isBlockingRedrawing: Bool = false
+    
+    /// A function which allows for mutation of `data` without causing the tableView to reload.
+    ///
+    /// - Parameter closure: Code to be run without reloading the table view.
+    public func withoutRedrawing(_ closure: () -> Void) {
+        _isBlockingRedrawing = true
+        closure()
+        _isBlockingRedrawing = false
+    }
+    
     open var data: [Section] {
         set {
             _data = newValue
+            guard !_isBlockingRedrawing else { return }
             tableView.reloadData()
         }
         get {
