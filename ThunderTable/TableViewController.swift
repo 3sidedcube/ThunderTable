@@ -341,7 +341,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             indexPathsToReload.append(indexPath)
         }
         guard !indexPathsToReload.isEmpty else { return }
-        self.tableView.reloadRows(at: indexPathsToReload, with: .none)
+        self.tableView.reloadRows(at: indexPathsToReload, with: animation)
     }
     
     private func register(row: Row) {
