@@ -310,18 +310,38 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             size = imageSize
         }
         
-        imageView?.set(imageURL: row.imageURL, withPlaceholder: row.image, imageSize: size, animated: true, completion: { [weak self] (image, error) -> (Void) in
+        // Only load image from url if we have an image url
+        if let imageURL = row.imageURL {
             
-            if let welf = self, _row.image == nil {
+            imageView?.set(imageURL: imageURL, withPlaceholder: row.image, imageSize: size, animated: true, completion: { [weak self] (image, error) -> (Void) in
+                
+                guard let self = self else { return }
+                guard let image = image, _row.image == nil else { return }
                 _row.image = image
-                welf.tableView.reloadRows(at: [indexPath], with: .none)
-            }
-        })
+                // Try and find matching index paths with the same imageURL and reload it.
+                // We can't use `indexPath` provided to this function as it may have changed!
+                self.reloadRows(where: { $0.imageURL == imageURL })
+            })
+        }
 		
 		textLabel?.paragraphStyle = ThemeManager.shared.theme.cellTitleParagraphStyle
 		detailLabel?.paragraphStyle = ThemeManager.shared.theme.cellDetailParagraphStyle
 		
         row.configure(cell: cell, at: indexPath, in: self)
+    }
+    
+    /// Reloads all table rows where the row matches a certain predicate
+    /// - Parameter predicate: The predicate to match rows based on
+    /// - Parameter animation: The animation to run when reloading
+    public func reloadRows(where predicate: (Row) -> Bool, with animation: UITableView.RowAnimation = .none) {
+        
+        var indexPathsToReload: [IndexPath] = []
+        self.forEachRow { (row, indexPath, _) in
+            guard predicate(row) else { return }
+            indexPathsToReload.append(indexPath)
+        }
+        guard !indexPathsToReload.isEmpty else { return }
+        self.tableView.reloadRows(at: indexPathsToReload, with: animation)
     }
     
     private func register(row: Row) {
