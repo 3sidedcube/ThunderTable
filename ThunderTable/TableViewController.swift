@@ -113,6 +113,10 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     
     open var data: [Section] {
         set {
+            // If the table view has had rows removed/added
+            if newValue.indexPaths != data.indexPaths {
+                scrollOffsetManager.resetAllOffsets()
+            }
             _data = newValue
             tableView.reloadData()
         }
@@ -120,7 +124,8 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             return _data
         }
     }
-	
+    
+    /// The currently selected index path of the table view
 	public var selectedIndexPath: IndexPath?
 	
 	public var selectedRows: [Row]? {
@@ -326,6 +331,8 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 		
 		textLabel?.paragraphStyle = ThemeManager.shared.theme.cellTitleParagraphStyle
 		detailLabel?.paragraphStyle = ThemeManager.shared.theme.cellDetailParagraphStyle
+        
+        updateScrollPosition(cell: cell, at: indexPath)
 		
         row.configure(cell: cell, at: indexPath, in: self)
     }
@@ -570,7 +577,37 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             set(indexPath: indexPath, selected: false)
         }
     }
-	
+    
+    //MARK: -
+    //MARK: Scroll Offset Management
+    //MARK:
+    
+    private lazy var scrollOffsetManager: ScrollOffsetManager = {
+        ScrollOffsetManager()
+    }()
+    
+    /// Whether the table view should keep track of scroll view positions within it's cells.
+    /// This allows us to prevent re-use issues with re-using cells that the user has scrolled.
+    /// To allow your cell's scroll position to be remembered you need to implement the `ScrollOffsetManagable`
+    /// protocol on your `UITableViewCell` subclass.
+    /// - Note: This will not handle re-ordering of cells at present, and if the length of your
+    /// data changes (different numbers of rows in any section, or different number of sections)
+    /// then the cached values will be reset. This may be improved in future if we decide to enforce
+    /// row's being `Equatable`.
+    public var rememberEmbeddedScrollPositions: Bool = true
+    
+    func updateScrollPosition(cell: UITableViewCell, at indexPath: IndexPath) {
+        
+        guard rememberEmbeddedScrollPositions, let scrollable = cell as? ScrollOffsetManagable else { return }
+        
+        // Set the identifier on the scrollable so it can be tracked. Use `indexPath` for this
+        scrollable.identifier = indexPath
+        // Register the scrollable so it's offset is tracked
+        scrollOffsetManager.register(scrollable: scrollable)
+        // Set the scroll offset based on `scrollOffsetManager`. This fixes scroll re-use issues.
+        scrollOffsetManager.setScrollOffset(scrollable, animated: false, fallback: .zero)
+    }
+    
 	//MARK - variable header/footer size
 	
 	private var headerTranslatesAutoResizingMask: Bool = false
