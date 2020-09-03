@@ -18,11 +18,21 @@ Table sections are objects that conform to the `Section` protocol, most of the t
 
 # Installation
 
-Setting up your app to use Thunder Table is a simple.
+Setting up your app to use ThunderTable is a simple and quick process. You can choose between a manual installation, or use Carthage.
 
-+ Drag ThunderTable.xcodeproj
-+ Add ThunderTable.framework to your Embedded Binaries.
-+ Wherever you want to use ThunderTable use `import ThunderTable`
+## Carthage
+
+- Add `github "3sidedcube/ThunderTable" == 1.5.0` to your Cartfile.
+- Run `carthage update --platform ios` to fetch the framework.
+- Drag `ThunderTable` into your project's _Linked Frameworks and Libraries_ section from the `Carthage/Build` folder.
+- Add the Build Phases script step as defined [here](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos).
+
+## Manual
+
+- Clone as a submodule, or download this repo
+- Import ThunderTable.xcproject into your project
+- Add ThunderTable.framework to your Embedded Binaries.
+- Wherever you want to use ThunderTable use `import ThunderTable`.
 
 # Code Example
 ## A Simple Table View Controller
