@@ -115,7 +115,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         set {
             // If the table view has had rows removed/added
             if newValue.indexPaths != data.indexPaths {
-                scrollOffsetManager.resetAllOffsets()
+                resetEmbeddedScrollOffsets()
             }
             _data = newValue
             tableView.reloadData()
@@ -595,6 +595,22 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     /// then the cached values will be reset. This may be improved in future if we decide to enforce
     /// row's being `Equatable`.
     public var rememberEmbeddedScrollPositions: Bool = true
+    
+    /// Resets all the "remembered" scroll offsets back to `.zero` for all embedded scrollable cells
+    /// that conform to `ScrollOffsetManagable`.
+    ///
+    /// - Note: This will not actually perform any scrolling on the visible cells (Based on the value provided in `scrollVisibleCells`,
+    /// but they will reset to `.zero` the next time that `cellForRow:` is called regardless of the value provided.
+    /// - Parameter scrollVisibleCells: Whether to scroll the visible cells as well as resetting the cache. Defaults to `false`
+    /// - Parameter animated: If `scrollVisibleCells == true`, whether we should animate the transition. Defaults to `false`
+    public func resetEmbeddedScrollOffsets(scrollingVisibleCells: Bool = false, animated: Bool = false) {
+        scrollOffsetManager.resetAllOffsets()
+        guard scrollingVisibleCells else { return }
+        tableView.visibleCells.forEach { (cell) in
+            guard let scrollable = cell as? ScrollOffsetManagable else { return }
+            scrollable.scrollView?.setContentOffset(.zero, animated: animated)
+        }
+    }
     
     func updateScrollPosition(cell: UITableViewCell, at indexPath: IndexPath) {
         
