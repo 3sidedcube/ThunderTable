@@ -222,27 +222,9 @@ class ViewController: TableViewController {
     private func collectionScrollReuseSection() -> TableSection {
         
         return TableSection(
-            rows: [
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText]),
-                CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText])
-            ],
+            rows: (0..<18).map({ _ in
+                return CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText])
+            }),
             header: "This section exhibits TableViewController's ability to remember and not re-use scroll view offsets"
         )
     }
