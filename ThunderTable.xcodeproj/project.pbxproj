@@ -44,6 +44,12 @@
 		B1AD7EC31D8C194400BFCA34 /* InputSwitchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EC21D8C194400BFCA34 /* InputSwitchRow.swift */; };
 		B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EC41D8C198F00BFCA34 /* InputSwitchViewCell.swift */; };
 		B1AD7EC71D8C198F00BFCA34 /* InputSwitchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */; };
+		B1B5C6D624FFCAAD00F05CE8 /* ScrollOffsetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5C6D424FFCAAD00F05CE8 /* ScrollOffsetManager.swift */; };
+		B1B5C6D724FFCAAD00F05CE8 /* ScrollOffsetManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5C6D524FFCAAD00F05CE8 /* ScrollOffsetManagable.swift */; };
+		B1B5C6DA24FFD6DB00F05CE8 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5C6D824FFD6DB00F05CE8 /* CollectionTableViewCell.swift */; };
+		B1B5C6DB24FFD6DB00F05CE8 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B5C6D924FFD6DB00F05CE8 /* CollectionTableViewCell.xib */; };
+		B1B5C6DD24FFDBED00F05CE8 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5C6DC24FFDBED00F05CE8 /* CollectionViewCell.swift */; };
+		B1B5C6DF24FFDC4000F05CE8 /* CollectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5C6DE24FFDC4000F05CE8 /* CollectionRow.swift */; };
 		B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */; };
 		B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B679601D89807A00B66FD8 /* TableViewCell.xib */; };
 		B1BAABCA22244B94007F0F61 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */; };
@@ -128,6 +134,12 @@
 		B1AD7EC21D8C194400BFCA34 /* InputSwitchRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSwitchRow.swift; sourceTree = "<group>"; };
 		B1AD7EC41D8C198F00BFCA34 /* InputSwitchViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSwitchViewCell.swift; sourceTree = "<group>"; };
 		B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSwitchViewCell.xib; sourceTree = "<group>"; };
+		B1B5C6D424FFCAAD00F05CE8 /* ScrollOffsetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollOffsetManager.swift; sourceTree = "<group>"; };
+		B1B5C6D524FFCAAD00F05CE8 /* ScrollOffsetManagable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollOffsetManagable.swift; sourceTree = "<group>"; };
+		B1B5C6D824FFD6DB00F05CE8 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
+		B1B5C6D924FFD6DB00F05CE8 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionTableViewCell.xib; sourceTree = "<group>"; };
+		B1B5C6DC24FFDBED00F05CE8 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		B1B5C6DE24FFDC4000F05CE8 /* CollectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRow.swift; sourceTree = "<group>"; };
 		B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B1B679601D89807A00B66FD8 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
@@ -196,6 +208,7 @@
 			children = (
 				B11CEB79204977A2001308B3 /* CNContact+Row.swift */,
 				B1BAABCE22244C06007F0F61 /* CNContact+Section.swift */,
+				B1B5C6DE24FFDC4000F05CE8 /* CollectionRow.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -205,6 +218,9 @@
 			children = (
 				B1BAABCC22244BAF007F0F61 /* ContactTableViewCell.xib */,
 				B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */,
+				B1B5C6D824FFD6DB00F05CE8 /* CollectionTableViewCell.swift */,
+				B1B5C6D924FFD6DB00F05CE8 /* CollectionTableViewCell.xib */,
+				B1B5C6DC24FFDBED00F05CE8 /* CollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -248,6 +264,7 @@
 		B17BAA341D89639100844421 /* ThunderTable */ = {
 			isa = PBXGroup;
 			children = (
+				B1B5C6D324FFCA8C00F05CE8 /* Scroll Offset Caching */,
 				B1D10CD01DA540CF003FBCB4 /* Theme.swift */,
 				B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */,
 				B1E0883B1DA638B400E45E47 /* Images */,
@@ -303,6 +320,15 @@
 				B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		B1B5C6D324FFCA8C00F05CE8 /* Scroll Offset Caching */ = {
+			isa = PBXGroup;
+			children = (
+				B1B5C6D524FFCAAD00F05CE8 /* ScrollOffsetManagable.swift */,
+				B1B5C6D424FFCAAD00F05CE8 /* ScrollOffsetManager.swift */,
+			);
+			name = "Scroll Offset Caching";
 			sourceTree = "<group>";
 		};
 		B1E0883B1DA638B400E45E47 /* Images */ = {
@@ -454,6 +480,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1B5C6DB24FFD6DB00F05CE8 /* CollectionTableViewCell.xib in Resources */,
 				B14F945B20444E820014F694 /* LaunchScreen.storyboard in Resources */,
 				B14F945820444E820014F694 /* Assets.xcassets in Resources */,
 				B1BAABCD22244BAF007F0F61 /* ContactTableViewCell.xib in Resources */,
@@ -495,7 +522,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1BAABCA22244B94007F0F61 /* ContactTableViewCell.swift in Sources */,
+				B1B5C6DA24FFD6DB00F05CE8 /* CollectionTableViewCell.swift in Sources */,
+				B1B5C6DF24FFDC4000F05CE8 /* CollectionRow.swift in Sources */,
 				B1BAABCF22244C06007F0F61 /* CNContact+Section.swift in Sources */,
+				B1B5C6DD24FFDBED00F05CE8 /* CollectionViewCell.swift in Sources */,
 				B14F945320444E820014F694 /* ViewController.swift in Sources */,
 				B14F945120444E820014F694 /* AppDelegate.swift in Sources */,
 				B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */,
@@ -511,6 +541,7 @@
 				B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */,
 				B1C2C56C1FFCEE3100D968C5 /* InputDatePickerRow.swift in Sources */,
 				B1EC81021FDE86BF00C8EE72 /* SubtitleTableViewCell.swift in Sources */,
+				B1B5C6D724FFCAAD00F05CE8 /* ScrollOffsetManagable.swift in Sources */,
 				B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */,
 				B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */,
 				B1C2C56F1FFCF20F00D968C5 /* InputDatePickerViewCell.swift in Sources */,
@@ -521,6 +552,7 @@
 				B114F10E2035CA75005D52F2 /* InputPickerRow.swift in Sources */,
 				B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */,
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
+				B1B5C6D624FFCAAD00F05CE8 /* ScrollOffsetManager.swift in Sources */,
 				B1EC80FE1FDE85EA00C8EE72 /* DefaultTableViewCell.swift in Sources */,
 				B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */,
 				B1E0883D1DA638CE00E45E47 /* ImageView.swift in Sources */,

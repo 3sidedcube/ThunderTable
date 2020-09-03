@@ -27,7 +27,7 @@ class ViewController: TableViewController {
         
         super.viewDidLoad()
         
-        data = [basicsSection(), protocolSection(), contact1, inputSection(), customSection(), actionsSection()]
+        data = [basicsSection(), protocolSection(), contact1, inputSection(), customSection(), actionsSection(), collectionScrollReuseSection()]
     }
     
     
@@ -217,6 +217,16 @@ class ViewController: TableViewController {
         let inputSection = TableSection(rows: [textFieldRow, textViewRow, switchRow, switchRow2, dobRow, countdownRow, timeOfDayRow, sliderRow, viewInputRow, inputPickerRow], header: "Input Rows", footer: nil, selectionHandler: nil)
         
         return inputSection
+    }
+    
+    private func collectionScrollReuseSection() -> TableSection {
+        
+        return TableSection(
+            rows: (0..<18).map({ _ in
+                return CollectionRow(colours: [.red, .green, .blue, .brown, .cyan, .darkGray, .darkText])
+            }),
+            header: "This section exhibits TableViewController's ability to remember and not re-use scroll view offsets"
+        )
     }
 }
 
