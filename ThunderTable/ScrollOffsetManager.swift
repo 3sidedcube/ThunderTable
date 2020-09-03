@@ -56,7 +56,7 @@ class ScrollOffsetManager {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         
-        scrollable.scrollView?.setContentOffset(newOffset, animated: animated)
+        scrollView.setContentOffset(newOffset, animated: animated)
         
         scrollView.showsVerticalScrollIndicator = preShowVerticalScrollIndicator
         scrollView.showsHorizontalScrollIndicator = preShowHorizontalScrollIndicator
