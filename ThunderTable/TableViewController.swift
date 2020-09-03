@@ -610,7 +610,12 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         }
     }
     
-    func updateScrollPosition(cell: UITableViewCell, at indexPath: IndexPath) {
+    /// Updates the scroll position for the given cell, storing it in `scrollOffsetManager` and actually setting the contentOffset
+    /// - Parameters:
+    ///   - cell: The cell to update scroll for
+    ///   - indexPath: The index path that the cell is at
+    ///   - animated: Whether to animate the setting of scroll offset
+    func updateScrollPosition(cell: UITableViewCell, at indexPath: IndexPath, animated: Bool = false) {
         
         guard rememberEmbeddedScrollPositions, let scrollable = cell as? ScrollOffsetManagable else { return }
         
@@ -619,7 +624,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         // Register the scrollable so it's offset is tracked
         scrollOffsetManager.register(scrollable: scrollable)
         // Set the scroll offset based on `scrollOffsetManager`. This fixes scroll re-use issues.
-        scrollOffsetManager.setScrollOffset(scrollable, animated: false, fallback: .zero)
+        scrollOffsetManager.setScrollOffset(scrollable, animated: animated, fallback: .zero)
     }
     
 	//MARK - variable header/footer size
