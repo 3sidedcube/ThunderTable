@@ -582,9 +582,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     //MARK: Scroll Offset Management
     //MARK:
     
-    private lazy var scrollOffsetManager: ScrollOffsetManager = {
-        ScrollOffsetManager()
-    }()
+    private let scrollOffsetManager: ScrollOffsetManager = ScrollOffsetManager()
     
     /// Whether the table view should keep track of scroll view positions within it's cells.
     /// This allows us to prevent re-use issues with re-using cells that the user has scrolled.
