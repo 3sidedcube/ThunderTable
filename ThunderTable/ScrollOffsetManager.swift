@@ -14,6 +14,7 @@ import Foundation
 /// to avoid re-use issues.
 class ScrollOffsetManager {
     
+    /// Internal cache for scroll view offsets
     private var offsetMap: [AnyHashable : CGPoint] = [:]
     
     /// Registers the scrollable to the manager for listening for scroll offset changes
