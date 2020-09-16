@@ -8,13 +8,17 @@
 
 import UIKit
 
-open class InputDatePickerViewCell: TableViewCell {
+open class InputDatePickerViewCell: TableViewCell, DatePickerCell {    
+    
+    public var inputTextField: UITextField? {
+        return textField
+    }
 
     @IBOutlet weak public var textField: UITextField!
 	
-	public var datePicker = UIDatePicker()
+    public var datePicker: UIDatePicker? = UIDatePicker()
 	
-	internal var dateFormatter: DateFormatter = DateFormatter()
+	public var dateFormatter: DateFormatter? = DateFormatter()
 		
     override open func becomeFirstResponder() -> Bool {
         return textField.becomeFirstResponder()
@@ -45,8 +49,8 @@ open class InputDatePickerViewCell: TableViewCell {
 	@objc private func handleDone(sender: UIBarButtonItem) {
 		textField.resignFirstResponder()
 	}
-	
-	@objc func updateLabel(sender: UIDatePicker) {
-		textField.text = dateFormatter.string(from: sender.date)
-	}
+    
+    @objc public func updateInputTextFieldText(sender: UIDatePicker) {
+        textField.text = dateFormatter?.string(from: sender.date)
+    }
 }

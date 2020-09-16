@@ -17,6 +17,9 @@
 		B114F1122035CC19005D52F2 /* InputPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */; };
 		B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CB8CE1F320DA600E58116 /* Extensions.swift */; };
 		B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CEB79204977A2001308B3 /* CNContact+Row.swift */; };
+		B12D31092512385700274462 /* InputInlineDatePickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B12D31072512385700274462 /* InputInlineDatePickerViewCell.xib */; };
+		B12D310A2512385700274462 /* InputInlineDatePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12D31082512385700274462 /* InputInlineDatePickerViewCell.swift */; };
+		B12D310E2512393A00274462 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12D310D2512393A00274462 /* DatePickerCell.swift */; };
 		B14F945120444E820014F694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945020444E820014F694 /* AppDelegate.swift */; };
 		B14F945320444E820014F694 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945220444E820014F694 /* ViewController.swift */; };
 		B14F945620444E820014F694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14F945420444E820014F694 /* Main.storyboard */; };
@@ -103,6 +106,9 @@
 		B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPickerViewCell.xib; sourceTree = "<group>"; };
 		B11CB8CE1F320DA600E58116 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B11CEB79204977A2001308B3 /* CNContact+Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CNContact+Row.swift"; sourceTree = "<group>"; };
+		B12D31072512385700274462 /* InputInlineDatePickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputInlineDatePickerViewCell.xib; sourceTree = "<group>"; };
+		B12D31082512385700274462 /* InputInlineDatePickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputInlineDatePickerViewCell.swift; sourceTree = "<group>"; };
+		B12D310D2512393A00274462 /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		B14F944E20444E810014F694 /* ThunderTableDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThunderTableDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B14F945020444E820014F694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B14F945220444E820014F694 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +231,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		B12D31062512347800274462 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		B14F944F20444E810014F694 /* ThunderTableDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +277,7 @@
 		B17BAA341D89639100844421 /* ThunderTable */ = {
 			isa = PBXGroup;
 			children = (
+				B12D31062512347800274462 /* Extensions */,
 				B1B5C6D324FFCA8C00F05CE8 /* Scroll Offset Caching */,
 				B1D10CD01DA540CF003FBCB4 /* Theme.swift */,
 				B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */,
@@ -306,6 +320,8 @@
 		B19C53211D8B02F600B30A35 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B12D31082512385700274462 /* InputInlineDatePickerViewCell.swift */,
+				B12D31072512385700274462 /* InputInlineDatePickerViewCell.xib */,
 				B1C2C56D1FFCF20F00D968C5 /* InputDatePickerViewCell.swift */,
 				B1C2C56E1FFCF20F00D968C5 /* InputDatePickerViewCell.xib */,
 				B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */,
@@ -318,6 +334,7 @@
 				B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */,
 				B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */,
 				B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */,
+				B12D310D2512393A00274462 /* DatePickerCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -500,6 +517,7 @@
 				B108319E1F068FDF008B565D /* TableImageViewCell.xib in Resources */,
 				B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */,
 				B1EC80FF1FDE85EA00C8EE72 /* DefaultTableViewCell.xib in Resources */,
+				B12D31092512385700274462 /* InputInlineDatePickerViewCell.xib in Resources */,
 				B1C2C5701FFCF20F00D968C5 /* InputDatePickerViewCell.xib in Resources */,
 				B1A8983E2047117D0028CAE4 /* Value2TableViewCell.xib in Resources */,
 				B1AD7EC11D8BFC9D00BFCA34 /* InputTextViewCell.xib in Resources */,
@@ -540,6 +558,7 @@
 				B17BAA581D89643800844421 /* TableSection.swift in Sources */,
 				B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */,
 				B1C2C56C1FFCEE3100D968C5 /* InputDatePickerRow.swift in Sources */,
+				B12D310A2512385700274462 /* InputInlineDatePickerViewCell.swift in Sources */,
 				B1EC81021FDE86BF00C8EE72 /* SubtitleTableViewCell.swift in Sources */,
 				B1B5C6D724FFCAAD00F05CE8 /* ScrollOffsetManagable.swift in Sources */,
 				B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */,
@@ -549,6 +568,7 @@
 				B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */,
 				B114F0C320359F76005D52F2 /* TableRow+Actions.swift in Sources */,
 				B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */,
+				B12D310E2512393A00274462 /* DatePickerCell.swift in Sources */,
 				B114F10E2035CA75005D52F2 /* InputPickerRow.swift in Sources */,
 				B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */,
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,

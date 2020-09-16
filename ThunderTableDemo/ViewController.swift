@@ -177,6 +177,8 @@ class ViewController: TableViewController {
         
         let timeOfDayRow = InputDatePickerRow(title: "Bedtime", mode: .time, id: "bedtime", required: false)
         
+        let dateAndTimeRow = InputDatePickerRow(title: "Date and Time", mode: .dateAndTime, id: "dateAndTime", required: false)
+        
         let viewInputRow = TableRow(title: "View Inputted Values")
         viewInputRow.selectionHandler = { (row, selected, indexPath, tableView) -> (Void) in
             
@@ -214,7 +216,7 @@ class ViewController: TableViewController {
             return stringValues.joined(separator: " ")
         }, id: "name_components", required: false)
         
-        let inputSection = TableSection(rows: [textFieldRow, textViewRow, switchRow, switchRow2, dobRow, countdownRow, timeOfDayRow, sliderRow, viewInputRow, inputPickerRow], header: "Input Rows", footer: nil, selectionHandler: nil)
+        let inputSection = TableSection(rows: [textFieldRow, textViewRow, switchRow, switchRow2, dobRow, countdownRow, timeOfDayRow, dateAndTimeRow, sliderRow, viewInputRow, inputPickerRow], header: "Input Rows", footer: nil, selectionHandler: nil)
         
         return inputSection
     }
