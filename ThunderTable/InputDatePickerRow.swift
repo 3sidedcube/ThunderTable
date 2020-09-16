@@ -68,7 +68,14 @@ open class InputDatePickerRow: InputTableRow {
                 // keep the traditional `wheels` cell for this case
                 return InputDatePickerViewCell.self
             default:
-                return InputInlineDatePickerViewCell.self
+                switch self {
+                // Automatic, Compact and Inline should all use the inline style cell
+                case .automatic, .compact, .inline:
+                    return InputInlineDatePickerViewCell.self
+                    // All others (.wheels) should use the original date picker cell
+                default:
+                    return InputDatePickerViewCell.self
+                }
             }
         }
     }
