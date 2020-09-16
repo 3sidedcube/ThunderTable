@@ -8,16 +8,23 @@
 
 import UIKit
 
+/// A `TableViewCell` subclass with an image, title label, and a text field aligned horizontally
+///
+/// This cell subclass allows the user to pick a date using a `UIDatePicker`set as the text field's
+/// `inputView`, meaning it shows in-place of the default iOS keyboard
 open class InputDatePickerViewCell: TableViewCell, DatePickerCell {    
     
     public var inputTextField: UITextField? {
         return textField
     }
-
+    
+    /// The text field showing the date chosen
     @IBOutlet weak public var textField: UITextField!
-	
+    
+    /// The date picker shown as the text field's `inputView`
     public var datePicker: UIDatePicker? = UIDatePicker()
-	
+    
+    /// The date formatter used to format the date displayed in `textField`
 	public var dateFormatter: DateFormatter? = DateFormatter()
 		
     override open func becomeFirstResponder() -> Bool {
