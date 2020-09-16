@@ -49,7 +49,7 @@ open class InputDatePickerRow: InputTableRow {
         /// Returns the correct cell class for the style given the mode the date picker is set to
         /// - Parameter mode: The date picker mode the date picker is in
         /// - Returns: A table view cell class used to render the cell
-        func cellClassFor(mode: UIDatePicker.Mode) -> UITableViewCell.Type {
+        func cellClass(for mode: UIDatePicker.Mode) -> UITableViewCell.Type {
             
             // Even old versions of iOS can support `inline` no matter how much of a hot mess it is visually!
             if self == .inline {
@@ -124,7 +124,7 @@ open class InputDatePickerRow: InputTableRow {
 	}
 	
 	open override var cellClass: UITableViewCell.Type? {
-        return preferredDatePickerStyle.cellClassFor(mode: mode)
+        return preferredDatePickerStyle.cellClass(for: mode)
 	}
 	
 	open override func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
