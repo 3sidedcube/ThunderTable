@@ -136,7 +136,7 @@ open class InputDatePickerRow: InputTableRow {
 	
 	open override func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
 		
-        guard let datePickerCell = cell as? DatePickerCell else { return }
+        guard let datePickerCell = cell as? InputDatePickerViewCell else { return }
 		
 		super.configure(cell: cell, at: indexPath, in: tableViewController)
 		

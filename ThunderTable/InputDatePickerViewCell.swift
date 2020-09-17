@@ -12,27 +12,27 @@ import UIKit
 ///
 /// This cell subclass allows the user to pick a date using a `UIDatePicker`set as the text field's
 /// `inputView`, meaning it shows in-place of the default iOS keyboard
-open class InputDatePickerViewCell: TableViewCell, DatePickerCell {    
+open class InputDatePickerViewCell: TableViewCell {
     
     public var inputTextField: UITextField? {
         return textField
     }
     
-    /// The text field showing the date chosen
-    @IBOutlet weak public var textField: UITextField!
+    /// The text field allowing the user to enter a date
+    @IBOutlet weak public var textField: UITextField?
     
-    /// The date picker shown as the text field's `inputView`
-    public var datePicker: UIDatePicker? = UIDatePicker()
+    /// The date picker the user uses to pick the date
+    @IBOutlet public var datePicker: UIDatePicker? = UIDatePicker()
     
     /// The date formatter used to format the date displayed in `textField`
 	public var dateFormatter: DateFormatter? = DateFormatter()
 		
     override open func becomeFirstResponder() -> Bool {
-        return textField.becomeFirstResponder()
+        return textField?.becomeFirstResponder() ?? false
     }
     
     override open func resignFirstResponder() -> Bool {
-        return textField.resignFirstResponder()
+        return textField?.resignFirstResponder() ?? false
     }
 	
 	open override func awakeFromNib() {
@@ -49,15 +49,15 @@ open class InputDatePickerViewCell: TableViewCell, DatePickerCell {
 			UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(handleDone(sender:)))
 		]
 		
-		textField.inputView = datePicker
-		textField.inputAccessoryView = doneToolbar
+		textField?.inputView = datePicker
+		textField?.inputAccessoryView = doneToolbar
 	}
 	
 	@objc private func handleDone(sender: UIBarButtonItem) {
-		textField.resignFirstResponder()
+		textField?.resignFirstResponder()
 	}
     
     @objc public func updateInputTextFieldText(sender: UIDatePicker) {
-        textField.text = dateFormatter?.string(from: sender.date)
+        textField?.text = dateFormatter?.string(from: sender.date)
     }
 }

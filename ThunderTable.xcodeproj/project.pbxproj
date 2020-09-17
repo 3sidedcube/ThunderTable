@@ -19,7 +19,6 @@
 		B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CEB79204977A2001308B3 /* CNContact+Row.swift */; };
 		B12D31092512385700274462 /* InputInlineDatePickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B12D31072512385700274462 /* InputInlineDatePickerViewCell.xib */; };
 		B12D310A2512385700274462 /* InputInlineDatePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12D31082512385700274462 /* InputInlineDatePickerViewCell.swift */; };
-		B12D310E2512393A00274462 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12D310D2512393A00274462 /* DatePickerCell.swift */; };
 		B14F945120444E820014F694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945020444E820014F694 /* AppDelegate.swift */; };
 		B14F945320444E820014F694 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945220444E820014F694 /* ViewController.swift */; };
 		B14F945620444E820014F694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14F945420444E820014F694 /* Main.storyboard */; };
@@ -108,7 +107,6 @@
 		B11CEB79204977A2001308B3 /* CNContact+Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CNContact+Row.swift"; sourceTree = "<group>"; };
 		B12D31072512385700274462 /* InputInlineDatePickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputInlineDatePickerViewCell.xib; sourceTree = "<group>"; };
 		B12D31082512385700274462 /* InputInlineDatePickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputInlineDatePickerViewCell.swift; sourceTree = "<group>"; };
-		B12D310D2512393A00274462 /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		B14F944E20444E810014F694 /* ThunderTableDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThunderTableDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B14F945020444E820014F694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B14F945220444E820014F694 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -334,7 +332,6 @@
 				B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */,
 				B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */,
 				B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */,
-				B12D310D2512393A00274462 /* DatePickerCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -568,7 +565,6 @@
 				B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */,
 				B114F0C320359F76005D52F2 /* TableRow+Actions.swift in Sources */,
 				B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */,
-				B12D310E2512393A00274462 /* DatePickerCell.swift in Sources */,
 				B114F10E2035CA75005D52F2 /* InputPickerRow.swift in Sources */,
 				B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */,
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
