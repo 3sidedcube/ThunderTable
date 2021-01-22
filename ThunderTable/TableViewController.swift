@@ -118,12 +118,17 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
                 resetEmbeddedScrollOffsets()
             }
             _data = newValue
+            guard reloadDataOnDataDidSet else { return }
             tableView.reloadData()
         }
         get {
             return _data
         }
     }
+
+    /// When `true`, execute `tableView.reloadData()` on `didSet` of `data`.
+    /// Only set this to `false` is changes to `tableView` should be handled by the subclass.
+    public var reloadDataOnDataDidSet = true
     
     /// The currently selected index path of the table view
 	public var selectedIndexPath: IndexPath?
