@@ -128,7 +128,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 
     /// When `true`, execute `tableView.reloadData()` on `didSet` of `data`.
     /// Only set this to `false` is changes to `tableView` should be handled by the subclass.
-    public var reloadDataOnDataDidSet = true
+    open var reloadDataOnDataDidSet = true
     
     /// The currently selected index path of the table view
 	public var selectedIndexPath: IndexPath?
