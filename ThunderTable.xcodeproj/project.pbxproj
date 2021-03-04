@@ -69,7 +69,7 @@
 		B1EC81031FDE86BF00C8EE72 /* SubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EC81011FDE86BF00C8EE72 /* SubtitleTableViewCell.xib */; };
 		B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC81041FDE873700C8EE72 /* Value1TableViewCell.swift */; };
 		B1EC81071FDE873700C8EE72 /* Value1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EC81051FDE873700C8EE72 /* Value1TableViewCell.xib */; };
-		B8D95CF525C8729F004F32DD /* DeclarativeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D95CF425C8729F004F32DD /* DeclarativeSection.swift */; };
+		B8B37A6425F1AA05002B866A /* DeclarativeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D95CF425C8729F004F32DD /* DeclarativeSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -567,7 +567,7 @@
 				B108319D1F068FDF008B565D /* TableImageViewCell.swift in Sources */,
 				B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */,
 				B114F0C320359F76005D52F2 /* TableRow+Actions.swift in Sources */,
-				B8D95CF525C8729F004F32DD /* DeclarativeSection.swift in Sources */,
+				B8B37A6425F1AA05002B866A /* DeclarativeSection.swift in Sources */,
 				B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */,
 				B114F10E2035CA75005D52F2 /* InputPickerRow.swift in Sources */,
 				B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */,
