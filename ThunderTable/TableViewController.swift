@@ -577,47 +577,6 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             set(indexPath: indexPath, selected: false)
         }
     }
-
-    override open func tableView(
-        _ tableView: UITableView,
-        heightForHeaderInSection section: Int
-    ) -> CGFloat {
-        guard let tableSection = data[section] as? DeclarativeSection else {
-            return super.tableView(tableView, heightForHeaderInSection: section)
-        }
-        return tableSection.headerHeight
-    }
-
-    override open func tableView(
-        _ tableView: UITableView,
-        viewForHeaderInSection section: Int
-    ) -> UIView? {
-        guard let tableSection = data[section] as? DeclarativeSection else {
-            return super.tableView(tableView, viewForHeaderInSection: section)
-        }
-        return tableSection.headerView
-    }
-
-    override open func tableView(
-        _ tableView: UITableView,
-        heightForFooterInSection section: Int
-    ) -> CGFloat {
-        guard let tableSection = data[section] as? DeclarativeSection else {
-            return super.tableView(tableView, heightForFooterInSection: section)
-        }
-        return tableSection.footerHeight
-    }
-
-    override open func tableView(
-        _ tableView: UITableView,
-        viewForFooterInSection section: Int
-    ) -> UIView? {
-        guard let tableSection = data[section] as? DeclarativeSection else {
-            return super.tableView(tableView, viewForFooterInSection: section)
-        }
-        return tableSection.footerView
-    }
-
     
     //MARK: -
     //MARK: Scroll Offset Management
