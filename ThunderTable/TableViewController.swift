@@ -356,6 +356,18 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         guard !indexPathsToReload.isEmpty else { return }
         self.tableView.reloadRows(at: indexPathsToReload, with: animation)
     }
+
+    /// Execute `closure` with `reloadDataOnDataDidSet` set to `false`.
+    /// Return `reloadDataOnDataDidSet` to it's previous value when closure returns
+    ///
+    /// - Parameter closure: Functionality to execute
+    open func withoutReloading(closure: () -> Void) {
+        let valueBefore = reloadDataOnDataDidSet
+
+        reloadDataOnDataDidSet = false
+        closure()
+        reloadDataOnDataDidSet = valueBefore
+    }
     
     private func register(row: Row) {
         
