@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		495C37CC203458BA00DD1105 /* ThunderTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; };
+		869271D526CEB2720021179D /* ThunderTable.framework-iphoneos.xcarchive in Resources */ = {isa = PBXBuildFile; fileRef = 869271D226CEB2720021179D /* ThunderTable.framework-iphoneos.xcarchive */; };
+		869271D626CEB2720021179D /* ThunderTable.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 869271D326CEB2720021179D /* ThunderTable.xcframework */; };
+		869271D726CEB2720021179D /* ThunderTable.framework-iphonesimulator.xcarchive in Resources */ = {isa = PBXBuildFile; fileRef = 869271D426CEB2720021179D /* ThunderTable.framework-iphonesimulator.xcarchive */; };
 		B108319D1F068FDF008B565D /* TableImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108319B1F068FDF008B565D /* TableImageViewCell.swift */; };
 		B108319E1F068FDF008B565D /* TableImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B108319C1F068FDF008B565D /* TableImageViewCell.xib */; };
 		B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11264F31D8A9AE800224FB2 /* InputTableRow.swift */; };
@@ -97,6 +100,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		869271D226CEB2720021179D /* ThunderTable.framework-iphoneos.xcarchive */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "ThunderTable.framework-iphoneos.xcarchive"; sourceTree = "<group>"; };
+		869271D326CEB2720021179D /* ThunderTable.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = ThunderTable.xcframework; sourceTree = "<group>"; };
+		869271D426CEB2720021179D /* ThunderTable.framework-iphonesimulator.xcarchive */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "ThunderTable.framework-iphonesimulator.xcarchive"; sourceTree = "<group>"; };
 		B108319B1F068FDF008B565D /* TableImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableImageViewCell.swift; sourceTree = "<group>"; };
 		B108319C1F068FDF008B565D /* TableImageViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableImageViewCell.xib; sourceTree = "<group>"; };
 		B11264F31D8A9AE800224FB2 /* InputTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableRow.swift; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B14F946020444E910014F694 /* ThunderTable.framework in Frameworks */,
+				869271D626CEB2720021179D /* ThunderTable.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +205,16 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		869271D126CEB2720021179D /* build */ = {
+			isa = PBXGroup;
+			children = (
+				869271D226CEB2720021179D /* ThunderTable.framework-iphoneos.xcarchive */,
+				869271D326CEB2720021179D /* ThunderTable.xcframework */,
+				869271D426CEB2720021179D /* ThunderTable.framework-iphonesimulator.xcarchive */,
+			);
+			path = build;
+			sourceTree = SOURCE_ROOT;
 		};
 		B11264F21D8A9A9900224FB2 /* Input */ = {
 			isa = PBXGroup;
@@ -260,6 +277,7 @@
 				B17BAA3F1D89639200844421 /* ThunderTableTests */,
 				B14F944F20444E810014F694 /* ThunderTableDemo */,
 				B17BAA331D89639100844421 /* Products */,
+				869271D126CEB2720021179D /* build */,
 				490A3C4D2034569200DC3176 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -499,8 +517,10 @@
 			files = (
 				B1B5C6DB24FFD6DB00F05CE8 /* CollectionTableViewCell.xib in Resources */,
 				B14F945B20444E820014F694 /* LaunchScreen.storyboard in Resources */,
+				869271D726CEB2720021179D /* ThunderTable.framework-iphonesimulator.xcarchive in Resources */,
 				B14F945820444E820014F694 /* Assets.xcassets in Resources */,
 				B1BAABCD22244BAF007F0F61 /* ContactTableViewCell.xib in Resources */,
+				869271D526CEB2720021179D /* ThunderTable.framework-iphoneos.xcarchive in Resources */,
 				B14F945620444E820014F694 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -642,7 +662,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ThunderTableDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.3sidedcube.ThunderTableDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -665,7 +688,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ThunderTableDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.3sidedcube.ThunderTableDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -783,7 +809,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -806,7 +833,11 @@
 				INFOPLIST_FILE = ThunderTable/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -832,7 +863,11 @@
 				INFOPLIST_FILE = ThunderTable/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -849,7 +884,11 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = ThunderTableTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable.ThunderTableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -864,7 +903,11 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = ThunderTableTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable.ThunderTableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
