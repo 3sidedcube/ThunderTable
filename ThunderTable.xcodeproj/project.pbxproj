@@ -26,6 +26,7 @@
 		B14F945B20444E820014F694 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14F945920444E820014F694 /* LaunchScreen.storyboard */; };
 		B14F946020444E910014F694 /* ThunderTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; };
 		B14F946120444E910014F694 /* ThunderTable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1689E6827C3F26500A53ACC /* IndexPath+SafeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1689E6727C3F26500A53ACC /* IndexPath+SafeSection.swift */; };
 		B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D821D8C3A60007358EA /* InputSliderRow.swift */; };
 		B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */; };
 		B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */; };
@@ -115,6 +116,7 @@
 		B14F945720444E820014F694 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B14F945A20444E820014F694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B14F945C20444E820014F694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1689E6727C3F26500A53ACC /* IndexPath+SafeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+SafeSection.swift"; sourceTree = "<group>"; };
 		B1784D821D8C3A60007358EA /* InputSliderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderRow.swift; sourceTree = "<group>"; };
 		B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderViewCell.swift; sourceTree = "<group>"; };
 		B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSliderViewCell.xib; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 		B12D31062512347800274462 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B1689E6727C3F26500A53ACC /* IndexPath+SafeSection.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
 				B1B5C6D624FFCAAD00F05CE8 /* ScrollOffsetManager.swift in Sources */,
 				B1EC80FE1FDE85EA00C8EE72 /* DefaultTableViewCell.swift in Sources */,
+				B1689E6827C3F26500A53ACC /* IndexPath+SafeSection.swift in Sources */,
 				B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */,
 				B1E0883D1DA638CE00E45E47 /* ImageView.swift in Sources */,
 				B114F1112035CC19005D52F2 /* InputPickerViewCell.swift in Sources */,
