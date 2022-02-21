@@ -732,19 +732,20 @@ public extension TableViewController {
     func moveToInputCell(after indexPath: IndexPath) {
         
         outerLoop: for (sectionIndex, section) in data.enumerated() {
-            
-            if sectionIndex >= indexPath.section {
-                
-                for (rowIndex, row) in section.rows.enumerated() {
-                    
-                    if row is InputRow, rowIndex > indexPath.row {
-                        
-                        let indexPath = IndexPath(row: rowIndex, section: sectionIndex)
-                        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                        set(indexPath: indexPath, selected: true)
-                        
-                        break outerLoop
-                    }
+
+            guard let indexPathSection = indexPath.safeSection, sectionIndex >= indexPathSection else {
+                continue
+            }
+
+            for (rowIndex, row) in section.rows.enumerated() {
+
+                if row is InputRow, rowIndex > indexPath.row {
+
+                    let indexPath = IndexPath(row: rowIndex, section: sectionIndex)
+                    tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    set(indexPath: indexPath, selected: true)
+
+                    break outerLoop
                 }
             }
         }

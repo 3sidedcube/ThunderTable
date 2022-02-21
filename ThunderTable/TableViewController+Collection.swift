@@ -13,12 +13,12 @@ extension TableViewController {
     //MARK: - Subscript Functions
     
     public subscript (index: IndexPath) -> (section: Section, row: Row)? {
-        
-        guard index.section < data.count else {
+
+        guard let safeSectionIndex = index.safeSection, safeSectionIndex < data.count else {
             return nil
         }
         
-        let section = data[index.section]
+        let section = data[safeSectionIndex]
         guard index.row < section.rows.count else {
             return nil
         }
@@ -32,11 +32,11 @@ extension TableViewController {
     
     public subscript (section index: IndexPath) -> Section? {
         
-        guard index.section < data.count else {
+        guard let safeSectionIndex = index.safeSection, safeSectionIndex < data.count else {
             return nil
         }
         
-        return data[index.section]
+        return data[safeSectionIndex]
     }
     
     /// forEach Array equivalant for looping across all sections and rows of current `data`
