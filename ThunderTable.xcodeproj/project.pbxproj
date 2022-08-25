@@ -26,6 +26,7 @@
 		B14F945B20444E820014F694 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14F945920444E820014F694 /* LaunchScreen.storyboard */; };
 		B14F946020444E910014F694 /* ThunderTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; };
 		B14F946120444E910014F694 /* ThunderTable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B17BAA321D89639100844421 /* ThunderTable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1689E6827C3F26500A53ACC /* IndexPath+SafeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1689E6727C3F26500A53ACC /* IndexPath+SafeSection.swift */; };
 		B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D821D8C3A60007358EA /* InputSliderRow.swift */; };
 		B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */; };
 		B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */; };
@@ -69,6 +70,8 @@
 		B1EC81031FDE86BF00C8EE72 /* SubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EC81011FDE86BF00C8EE72 /* SubtitleTableViewCell.xib */; };
 		B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC81041FDE873700C8EE72 /* Value1TableViewCell.swift */; };
 		B1EC81071FDE873700C8EE72 /* Value1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EC81051FDE873700C8EE72 /* Value1TableViewCell.xib */; };
+		B87F86B62672208A00D58320 /* DeclarativeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87F86B52672208A00D58320 /* DeclarativeTableViewController.swift */; };
+		B8B37A6425F1AA05002B866A /* DeclarativeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D95CF425C8729F004F32DD /* DeclarativeSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +117,7 @@
 		B14F945720444E820014F694 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B14F945A20444E820014F694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B14F945C20444E820014F694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1689E6727C3F26500A53ACC /* IndexPath+SafeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+SafeSection.swift"; sourceTree = "<group>"; };
 		B1784D821D8C3A60007358EA /* InputSliderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderRow.swift; sourceTree = "<group>"; };
 		B1784D841D8C3A8A007358EA /* InputSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSliderViewCell.swift; sourceTree = "<group>"; };
 		B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSliderViewCell.xib; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 		B1EC81011FDE86BF00C8EE72 /* SubtitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		B1EC81041FDE873700C8EE72 /* Value1TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value1TableViewCell.swift; sourceTree = "<group>"; };
 		B1EC81051FDE873700C8EE72 /* Value1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Value1TableViewCell.xib; sourceTree = "<group>"; };
+		B87F86B52672208A00D58320 /* DeclarativeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclarativeTableViewController.swift; sourceTree = "<group>"; };
+		B8D95CF425C8729F004F32DD /* DeclarativeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclarativeSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +238,7 @@
 		B12D31062512347800274462 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B1689E6727C3F26500A53ACC /* IndexPath+SafeSection.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -284,8 +291,10 @@
 				B17BAA361D89639100844421 /* Info.plist */,
 				B1EC80FB1FDE85C000C8EE72 /* Cells */,
 				B17BAA551D8963BB00844421 /* TableViewController.swift */,
+				B87F86B52672208A00D58320 /* DeclarativeTableViewController.swift */,
 				B185A58B2398129D00B87BC7 /* TableViewController+Collection.swift */,
 				B17BAA571D89643800844421 /* TableSection.swift */,
+				B8D95CF425C8729F004F32DD /* DeclarativeSection.swift */,
 				B17BAA591D89645000844421 /* TableRow.swift */,
 				B114F0C220359F76005D52F2 /* TableRow+Actions.swift */,
 				B11CB8CE1F320DA600E58116 /* Extensions.swift */,
@@ -447,7 +456,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = 3SidedCube;
 				TargetAttributes = {
 					B14F944D20444E810014F694 = {
@@ -470,10 +479,9 @@
 			};
 			buildConfigurationList = B17BAA2C1D89639100844421 /* Build configuration list for PBXProject "ThunderTable" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -564,14 +572,17 @@
 				B108319D1F068FDF008B565D /* TableImageViewCell.swift in Sources */,
 				B11264F41D8A9AE800224FB2 /* InputTableRow.swift in Sources */,
 				B114F0C320359F76005D52F2 /* TableRow+Actions.swift in Sources */,
+				B8B37A6425F1AA05002B866A /* DeclarativeSection.swift in Sources */,
 				B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */,
 				B114F10E2035CA75005D52F2 /* InputPickerRow.swift in Sources */,
 				B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */,
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
 				B1B5C6D624FFCAAD00F05CE8 /* ScrollOffsetManager.swift in Sources */,
 				B1EC80FE1FDE85EA00C8EE72 /* DefaultTableViewCell.swift in Sources */,
+				B1689E6827C3F26500A53ACC /* IndexPath+SafeSection.swift in Sources */,
 				B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */,
 				B1E0883D1DA638CE00E45E47 /* ImageView.swift in Sources */,
+				B87F86B62672208A00D58320 /* DeclarativeTableViewController.swift in Sources */,
 				B114F1112035CC19005D52F2 /* InputPickerViewCell.swift in Sources */,
 				B17BAA561D8963BB00844421 /* TableViewController.swift in Sources */,
 				B19C53271D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift in Sources */,
@@ -637,9 +648,9 @@
 				DEVELOPMENT_TEAM = 25H7BM6YWK;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ThunderTableDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.3sidedcube.ThunderTableDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -660,9 +671,9 @@
 				DEVELOPMENT_TEAM = 25H7BM6YWK;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ThunderTableDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.3sidedcube.ThunderTableDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -674,6 +685,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -694,6 +706,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -720,7 +733,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -736,6 +749,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -756,6 +770,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -776,7 +791,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -791,7 +806,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -800,9 +815,9 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = ThunderTable/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -816,7 +831,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -825,9 +840,9 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = ThunderTable/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -847,7 +862,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable.ThunderTableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -862,7 +877,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable.ThunderTableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
