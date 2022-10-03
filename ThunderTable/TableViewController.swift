@@ -413,24 +413,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 			sectionEditHandler(row, editingStyle, indexPath, tableView)
 		}
 	}
-	
-	open override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-		
-		guard let (section, row) = self[indexPath] else { return [] }
-		
-		guard let configuration = row.trailingSwipeActionsConfiguration ?? section.rowTrailingSwipeActionsConfiguration else {
-            
-            // Returning nil gives us the default "delete" item, so we only return nil if we don't have an editHandler
-            if section.editHandler == nil && row.editHandler == nil {
-                return []
-            }
-            return nil
-        }
-		
-		return configuration.rowActionsFor(row: row, in: tableView)
-	}
-	
-	@available(iOS 11.0, *)
+
 	override open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		
         guard let (section, row) = self[indexPath] else { return nil }
@@ -440,7 +423,6 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 		return configuration.configurationFor(row: row, at: indexPath, in: tableView)
 	}
 	
-	@available(iOS 11.0, *)
 	override open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		
 		guard let (section, row) = self[indexPath] else { return nil }

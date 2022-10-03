@@ -60,7 +60,7 @@ open class Theme: NSObject {
     
     /// The colour of backgrounds throughout the app, particularly in table views
     open var backgroundColor: UIColor {
-        return .groupTableViewBackground
+        return .systemGroupedBackground
     }
     
     /// The standard colour for free text
@@ -218,7 +218,6 @@ open class Theme: NSObject {
     ///   - textStyle: The text style that should be used to apply dynamic scaling to the font
     ///   - weight: The weight of the desired font
     /// - Returns: A dynamically scaling font adhering to the provided constraints
-    @available(iOS 11.0, *)
     open func dynamicFont(ofSize size: CGFloat, textStyle: UIFont.TextStyle, weight: UIFont.Weight = .regular) -> UIFont {
         let baseFont = UIFont.systemFont(ofSize: size, weight: weight)
         let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
@@ -267,20 +266,12 @@ open class Theme: NSObject {
     
     /// The font for UILabel's throughout the app
     open var primaryLabelFont: UIFont {
-        if #available(iOS 11.0, *) {
-            return dynamicFont(ofSize: UIFont.systemFontSize, textStyle: .body)
-        } else {
-            return font(ofSize: UIFont.systemFontSize)
-        }
+        return dynamicFont(ofSize: UIFont.systemFontSize, textStyle: .body)
     }
     
     /// The font for alternative style UILabel's throught the app
     open var secondaryLabelFont: UIFont {
-        if #available(iOS 11.0, *) {
-            return dynamicFont(ofSize: UIFont.systemFontSize, textStyle: .body)
-        } else {
-            return font(ofSize: UIFont.systemFontSize)
-        }
+        return dynamicFont(ofSize: UIFont.systemFontSize, textStyle: .body)
     }
     
     /// The font for the title label of cells throughout the app

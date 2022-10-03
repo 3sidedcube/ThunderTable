@@ -18,7 +18,7 @@ public class ApplicationLoadingIndicatorManager: NSObject {
         objc_sync_enter(self)
         if activityCount == 0 {
             OperationQueue.main.addOperation({
-                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//                UIApplication.shared.isNetworkActivityIndicatorVisible = true
             })
         }
         activityCount += 1
@@ -31,7 +31,7 @@ public class ApplicationLoadingIndicatorManager: NSObject {
         activityCount -= 1
         if activityCount <= 0 {
             OperationQueue.main.addOperation({
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//                UIApplication.shared.isNetworkActivityIndicatorVisible = false
             })
         }
         objc_sync_exit(self)

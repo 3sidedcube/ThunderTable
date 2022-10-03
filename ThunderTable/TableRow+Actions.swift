@@ -17,24 +17,12 @@ public enum RowActionableStyle {
     case `default`
     case destructive
     case normal
-    
-    @available(iOS 11.0, *)
+
     var _UIContextualActionStyle: UIContextualAction.Style {
         switch self {
         case .destructive:
             return .destructive
         default:
-            return .normal
-        }
-    }
-    
-    var _UITableViewRowActionStyle: UITableViewRowAction.Style {
-        switch self {
-        case .destructive:
-            return .destructive
-        case .default:
-            return .default
-        case .normal:
             return .normal
         }
     }
@@ -106,8 +94,7 @@ open class RowAction: RowActionable {
 }
 
 extension RowActionable {
-    
-    @available(iOS 11.0, *)
+
     /// Creates a `UIContextualAction` to be used in a `UISwipeActionsConfiguration` with the provided handler.
     ///
     /// - Parameter handler: The handler to be called.
@@ -122,22 +109,7 @@ extension RowActionable {
         action.image = image
         return action
     }
-    
-    /// Creates a `UITableViewRowAction` to be used in the delegate method of `UITableViewController` with the provided handler.
-    ///
-    /// - Parameter handler: The handler to be called.
-    /// - Returns: A `UIContextualAction`.
-    func rowAction(with handler: @escaping (UITableViewRowAction, IndexPath) -> Void) -> UITableViewRowAction {
-        
-        let rowAction = UITableViewRowAction(style: style._UITableViewRowActionStyle, title: title, handler: handler)
-        // Only set this if non-nil otherwise we end up with no default colouring and a transparent background to the button
-        if backgroundColor != nil {
-            rowAction.backgroundColor = backgroundColor
-        }
-        rowAction.backgroundEffect = backgroundEffect
-        return rowAction
-    }
-    
+
     var backgroundColor: UIColor? { get { return nil } }
     
     var backgroundEffect: UIVisualEffect? { get { return nil } }
@@ -165,7 +137,6 @@ extension SwipeActionsConfigurable {
     ///   - indexPath: The indexPath that this configurable was triggered at.
     ///   - tableView: The table view the configuration will be used in.
     /// - Returns: A `UISwipeActionsConfiguration` to be used in the table view.
-    @available(iOS 11.0, *)
     func configurationFor(row: Row, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration {
         
         let contextualActions = actions.map { (actionable) -> UIContextualAction in
@@ -178,19 +149,6 @@ extension SwipeActionsConfigurable {
         let configuration = UISwipeActionsConfiguration(actions: contextualActions)
         configuration.performsFirstActionWithFullSwipe = performsFirstActionWithFullSwipe
         return configuration
-    }
-    
-    func rowActionsFor(row: Row, in tableView: UITableView) -> [UITableViewRowAction] {
-        
-        let rowActions = actions.map { (actionable) -> UITableViewRowAction in
-            
-            let rowAction = actionable.rowAction(with: { (action, indexPath) in
-                actionable.handler(actionable, nil, nil, row, indexPath, tableView)
-            })
-            return rowAction
-        }
-        
-        return rowActions
     }
 }
 
