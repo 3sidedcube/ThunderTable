@@ -125,6 +125,9 @@ open class InputDatePickerRow: InputTableRow {
 		case .countDownTimer:
 			dateFormatter.dateFormat = "'Every' HH 'hours' mm 'minutes'"
 			break
+        case .yearAndMonth:
+            dateFormatter.dateFormat = "MM/yyyy"
+            break
         @unknown default:
             fatalError("Unknown `UIDatePicker.Mode` encountered in `InputDatePickerRow` please add support for this new enum value")
         }
