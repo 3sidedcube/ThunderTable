@@ -24,29 +24,17 @@ open class Theme: NSObject {
     
     /// The background colour for all table view cells throughout the app
     open var cellBackgroundColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .secondarySystemGroupedBackground
-        } else {
-            return .white
-        }
+        return .secondarySystemGroupedBackground
     }
     
     /// The title colour to be used for all table view cells throughout the app
     open var cellTitleColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .label
-        } else {
-            return .black
-        }
+        return .label
     }
     
     /// The detail colour to be used for all table view cells throughout the app
     open var cellDetailColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .secondaryLabel
-        } else {
-            return .darkText
-        }
+        return .secondaryLabel
     }
     
     /// The paragraph style for cell title label
@@ -70,11 +58,7 @@ open class Theme: NSObject {
     
     /// The colour of header text in the app
     open var headerTextColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .label
-        } else {
-            return .black
-        }
+        return .label
     }
     
     /// The colour of UITableViewCell seperators
@@ -84,20 +68,12 @@ open class Theme: NSObject {
     
     /// The colour of the text for UILabel's throughout the app
     open var primaryLabelColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .label
-        } else {
-            return .black
-        }
+        return .label
     }
     
     /// The colour of the text for alternative UILabel's throughout the app
     open var secondaryLabelColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .secondaryLabel
-        } else {
-            return .darkGray
-        }
+        return .secondaryLabel
     }
     
     /// The colour to be used for title text in a UINavigationBar
@@ -224,46 +200,6 @@ open class Theme: NSObject {
         return fontMetrics.scaledFont(for: baseFont)
     }
     
-    /// Where a lighter font is required, this method will return a light font with the given size
-    ///
-    /// - parameter ofSize: The required font size
-    ///
-    /// - returns:  A light font in the requested size
-    @available(iOS, introduced: 10.0, deprecated: 11.0, obsoleted: 13.0, message: "lightFont(ofSize:) is deprecated, please use dynamicFont(ofSize:textStyle:weight:) instead")
-    open func lightFont(ofSize: CGFloat) -> UIFont {
-        return .systemFont(ofSize: ofSize, weight: .light)
-    }
-    
-    /// Returns a font of a required size
-    ///
-    /// - parameter ofSize: The required font size
-    ///
-    /// - returns: A font in the requested size
-    @available(iOS, introduced: 10.0, deprecated: 11.0, obsoleted: 13.0, message: "font(ofSize:) is deprecated, please use dynamicFont(ofSize:textStyle:weight:) instead")
-    open func font(ofSize: CGFloat) -> UIFont {
-        return .systemFont(ofSize: ofSize, weight: .regular)
-    }
-    
-    /// Returns a medium font of a required size
-    ///
-    /// - parameter ofSize: The required font size
-    ///
-    /// - returns: A medium font in the requested size
-    @available(iOS, introduced: 10.0, deprecated: 11.0, obsoleted: 13.0, message: "mediumFont(ofSize:) is deprecated, please use dynamicFont(ofSize:textStyle:weight:) instead")
-    open func mediumFont(ofSize: CGFloat) -> UIFont {
-        return .systemFont(ofSize: ofSize, weight: .medium)
-    }
-    
-    /// Returns a bold font of a required size
-    ///
-    /// - parameter ofSize: The required font size
-    ///
-    /// - returns: A bold font in the requested size
-    @available(iOS, introduced: 10.0, deprecated: 11.0, obsoleted: 13.0, message: "boldFont(ofSize:) is deprecated, please use dynamicFont(ofSize:textStyle:weight:) instead")
-    open func boldFont(ofSize: CGFloat) -> UIFont {
-        return UIFont.systemFont(ofSize: ofSize, weight: .bold)
-    }
-    
     /// The font for UILabel's throughout the app
     open var primaryLabelFont: UIFont {
         return dynamicFont(ofSize: UIFont.systemFontSize, textStyle: .body)
@@ -276,20 +212,12 @@ open class Theme: NSObject {
     
     /// The font for the title label of cells throughout the app
     open var cellTitleFont: UIFont {
-        if #available(iOS 11.0, *) {
-            return dynamicFont(ofSize: 17, textStyle: .body)
-        } else {
-            return .preferredFont(forTextStyle: .body)
-        }
+        return dynamicFont(ofSize: 17, textStyle: .body)
     }
     
     /// The font for the detail label of cells throughout the app
     open var cellDetailFont: UIFont {
-        if #available(iOS 11.0, *) {
-            return dynamicFont(ofSize: 15, textStyle: .subheadline)
-        } else {
-            return .preferredFont(forTextStyle: .subheadline)
-        }
+        return dynamicFont(ofSize: 15, textStyle: .subheadline)
     }
     
 }

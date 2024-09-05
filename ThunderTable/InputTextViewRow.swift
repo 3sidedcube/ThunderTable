@@ -70,11 +70,7 @@ open class InputTextViewRow: InputTableRow {
         } else {
             
             textCell.textView.text = placeholder
-            if #available(iOS 13.0, *) {
-                textCell.textView.textColor = .placeholderText
-            } else {
-                textCell.textView.textColor = .lightGray
-            }
+            textCell.textView.textColor = .placeholderText
         }
     }
 }
@@ -104,11 +100,7 @@ extension InputTextViewRow: UITextViewDelegate {
         
         if textView.text.isEmpty {
             textView.text = placeholder
-            if #available(iOS 13.0, *) {
-                textView.textColor = .placeholderText
-            } else {
-                textView.textColor = .lightGray
-            }
+            textView.textColor = .placeholderText
         }
     }
     

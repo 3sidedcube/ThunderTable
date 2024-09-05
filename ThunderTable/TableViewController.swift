@@ -188,9 +188,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         // Note that these differ from `self.accessibilityRedrawNotificationNames`. It is easier, and not too
         // expensive to manage which notifications trigger a refresh at the point of receiving the notification
         // rather than risking double-adding or double-removing the observers!
-        if #available(iOS 11.0, *) {
-            accessibilityNotifications.append(UIAccessibility.voiceOverStatusDidChangeNotification)
-        }
+        accessibilityNotifications.append(UIAccessibility.voiceOverStatusDidChangeNotification)
         
         accessibilityObservers = accessibilityNotifications.map({ (notificationName) -> Any in
             return NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: .main, using: { [weak self] (notification) in

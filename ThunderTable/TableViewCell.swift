@@ -76,10 +76,6 @@ open class TableViewCell: UITableViewCell {
     private func sharedSetup() {
         
         backgroundColor = ThemeManager.shared.theme.cellBackgroundColor
-        // Don't do this on iOS 13 because it causes a rendering issue with highlighted/selected state
-        if #available(iOS 13, *) { } else {
-            contentView.backgroundColor = ThemeManager.shared.theme.cellBackgroundColor
-        }
     }
     
     override open func layoutSubviews() {
