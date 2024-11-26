@@ -24,29 +24,17 @@ open class Theme: NSObject {
     
     /// The background colour for all table view cells throughout the app
     open var cellBackgroundColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .secondarySystemGroupedBackground
-        } else {
-            return .white
-        }
+        .secondarySystemGroupedBackground
     }
     
     /// The title colour to be used for all table view cells throughout the app
     open var cellTitleColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .label
-        } else {
-            return .black
-        }
+        .label
     }
     
     /// The detail colour to be used for all table view cells throughout the app
     open var cellDetailColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .secondaryLabel
-        } else {
-            return .darkText
-        }
+        .secondaryLabel
     }
     
     /// The paragraph style for cell title label
@@ -70,11 +58,7 @@ open class Theme: NSObject {
     
     /// The colour of header text in the app
     open var headerTextColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .label
-        } else {
-            return .black
-        }
+        .label
     }
     
     /// The colour of UITableViewCell seperators
@@ -84,20 +68,12 @@ open class Theme: NSObject {
     
     /// The colour of the text for UILabel's throughout the app
     open var primaryLabelColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .label
-        } else {
-            return .black
-        }
+        .label
     }
     
     /// The colour of the text for alternative UILabel's throughout the app
     open var secondaryLabelColor: UIColor {
-        if #available(iOS 13.0, *) {
-            return .secondaryLabel
-        } else {
-            return .darkGray
-        }
+        .secondaryLabel
     }
     
     /// The colour to be used for title text in a UINavigationBar
@@ -276,20 +252,12 @@ open class Theme: NSObject {
     
     /// The font for the title label of cells throughout the app
     open var cellTitleFont: UIFont {
-        if #available(iOS 11.0, *) {
-            return dynamicFont(ofSize: 17, textStyle: .body)
-        } else {
-            return .preferredFont(forTextStyle: .body)
-        }
+        dynamicFont(ofSize: 17, textStyle: .body)
     }
     
     /// The font for the detail label of cells throughout the app
     open var cellDetailFont: UIFont {
-        if #available(iOS 11.0, *) {
-            return dynamicFont(ofSize: 15, textStyle: .subheadline)
-        } else {
-            return .preferredFont(forTextStyle: .subheadline)
-        }
+        dynamicFont(ofSize: 15, textStyle: .subheadline)
     }
     
 }

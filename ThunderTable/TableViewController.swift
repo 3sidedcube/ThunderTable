@@ -185,13 +185,11 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         ]
             
         // Notification names that it makes sense to redraw on.
-        // Note that these differ from `self.accessibilityRedrawNotificationNames`. It is easier, and not too
+        // Note that these differ from `self.accessibilityRedrawNotificationNames`. It is easier, and not tooThunderTable.xcodeproj/project.pbxproj
         // expensive to manage which notifications trigger a refresh at the point of receiving the notification
         // rather than risking double-adding or double-removing the observers!
-        if #available(iOS 11.0, *) {
-            accessibilityNotifications.append(UIAccessibility.voiceOverStatusDidChangeNotification)
-        }
-        
+        accessibilityNotifications.append(UIAccessibility.voiceOverStatusDidChangeNotification)
+
         accessibilityObservers = accessibilityNotifications.map({ (notificationName) -> Any in
             return NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: .main, using: { [weak self] (notification) in
                 guard let strongSelf = self, strongSelf.accessibilityRedrawNotificationNames.contains(notification.name) else {

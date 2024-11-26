@@ -27,8 +27,7 @@ open class InputDatePickerRow: InputTableRow {
 
         /// Use a style for the date picker that allows editing in place.
         case inline = 3
-        
-        @available (iOS 13.4, *)
+
         var datePickerStyle: UIDatePickerStyle {
             switch self {
             case .automatic:
@@ -36,11 +35,7 @@ open class InputDatePickerRow: InputTableRow {
             case .compact:
                 return .compact
             case .inline:
-                if #available(iOS 14.0, *) {
-                    return .inline
-                } else {
-                    return .automatic
-                }
+                return .inline
             case .wheels:
                 return .wheels
             }
@@ -55,11 +50,6 @@ open class InputDatePickerRow: InputTableRow {
             if self == .inline {
                 // Return new class
                 return InputInlineDatePickerViewCell.self
-            }
-            
-            // New `inline` and `compact` date pickers are only available on iOS 14
-            guard #available(iOS 14, *) else {
-                return InputDatePickerViewCell.self
             }
             
             switch mode {
@@ -164,11 +154,8 @@ open class InputDatePickerRow: InputTableRow {
 		datePickerCell.datePicker?.minimumDate = minimumDate
 		datePickerCell.datePicker?.maximumDate = maximumDate
 		datePickerCell.datePicker?.datePickerMode = mode
-        
-        if #available(iOS 13.4, *) {
-            datePickerCell.datePicker?.preferredDatePickerStyle = preferredDatePickerStyle.datePickerStyle
-        }
-		
+        datePickerCell.datePicker?.preferredDatePickerStyle = preferredDatePickerStyle.datePickerStyle
+
         if let textField = datePickerCell.inputTextField {
             
             if let dateValue = value as? Date {
