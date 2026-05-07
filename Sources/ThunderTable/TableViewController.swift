@@ -65,25 +65,26 @@ extension Row {
             var classString = String(describing: cellClass)
             guard var nibName = classString.components(separatedBy: ".").last else { return nil }
 						
-            var bundle = Bundle(for: cellClass)
+            var bundle = Bundle.thunderTableNibBundle(for: cellClass, nibName: nibName)
 			var nibPath = bundle.path(forResource: nibName, ofType: "nib")
-			
+
 			// Only look for nib superclasses if we're told to by Row protocol
 			if useNibSuperclass {
-				
+
 				// Sometimes a cell may have subclassed without providing it's own nib file
 				// In this case always use it's superclass!
 				while nibPath == nil, let superClass = cellClass.superclass() as? UITableViewCell.Type {
-					
-					// Make sure we're still looking in the correct bundle
-					bundle = Bundle(for: superClass)
+
 					// Find the new class name
 					classString = String(describing: superClass)
 					// Get the new nib name for the classes superClass
-					if let superNibName = classString.components(separatedBy: ".").last, let path = bundle.path(forResource: superNibName, ofType: "nib") {
-						// Update nibPath and nibName
-						nibPath = path
-						nibName = superNibName
+					if let superNibName = classString.components(separatedBy: ".").last {
+						bundle = Bundle.thunderTableNibBundle(for: superClass, nibName: superNibName)
+						if let path = bundle.path(forResource: superNibName, ofType: "nib") {
+							// Update nibPath and nibName
+							nibPath = path
+							nibName = superNibName
+						}
 					}
 					cellClass = superClass
 				}
@@ -143,7 +144,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     override open func viewDidLoad() {
         
         super.viewDidLoad()
-        let defaultNib = UINib(nibName: "TableViewCell", bundle: Bundle(for: TableViewController.self))
+        let defaultNib = UINib(nibName: "TableViewCell", bundle: .module)
         tableView.register(defaultNib, forCellReuseIdentifier: "Cell")
     }
 	
