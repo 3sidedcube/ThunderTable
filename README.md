@@ -18,21 +18,13 @@ Table sections are objects that conform to the `Section` protocol, most of the t
 
 # Installation
 
-Setting up your app to use ThunderTable is a simple and quick process. You can choose between a manual installation, or use Carthage.
+Add the package with Swift Package Manager, either in Xcode (File › Add Package Dependencies…) or in a `Package.swift`:
 
-## Carthage
+```swift
+.package(url: "https://github.com/3sidedcube/ThunderTable.git", branch: "feature/spm-v27")
+```
 
-- Add `github "3sidedcube/ThunderTable" == 2.0.0` to your Cartfile.
-- Run `carthage update --platform ios --use-xcframeworks` to fetch the framework.
-- Drag `ThunderTable` into your project's _Frameworks and Libraries_ section from the `Carthage/Build` folder (Embed).
-- Add the Build Phases script step as defined [here](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos).
-
-## Manual
-
-- Clone as a submodule, or download this repo
-- Import ThunderTable.xcproject into your project
-- Add ThunderTable.framework to your Embedded Binaries.
-- Wherever you want to use ThunderTable use `import ThunderTable`.
+`ThunderTable` is a dynamic library product. Add it to your app target with **Embed & Sign**; other targets that use it (frameworks, app extensions, test bundles) link it without embedding, so the app loads a single copy.
 
 # Code Example
 ## A Simple Table View Controller
