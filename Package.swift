@@ -4,11 +4,12 @@ import PackageDescription
 let package = Package(
     name: "ThunderTable",
     platforms: [
-        .iOS(.v16)
+        .iOS("18.0")
     ],
     products: [
         .library(
             name: "ThunderTable",
+            type: .dynamic,
             targets: ["ThunderTable"]
         )
     ],
