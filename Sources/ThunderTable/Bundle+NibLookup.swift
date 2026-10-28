@@ -26,24 +26,28 @@ extension Bundle {
     }
 
     /// Returns the bundle that should be used to locate a given nib for a cell
-    /// class. We try ThunderTable's own module bundle first so the built-in
-    /// cells keep working, then any bundle registered by a downstream package,
-    /// then the class's own bundle (the app, or a dynamic framework), then the
-    /// SPM resource bundle of the module that declares the class.
+    /// class. The class's own bundle comes first (the app, or a dynamic
+    /// framework), then the SPM resource bundle of the module that declares the
+    /// class, so a nib is always taken from the cell's own module before any
+    /// other: an app cell named like a ThunderTable cell (`DefaultTableViewCell`)
+    /// must get the app's xib, not ThunderTable's. Registered bundles and
+    /// ThunderTable's own bundle are fallbacks.
     static func thunderTableNibBundle(for cellClass: AnyClass, nibName: String) -> Bundle {
-        if Bundle.module.path(forResource: nibName, ofType: "nib") != nil {
-            return .module
+        let classBundle = Bundle(for: cellClass)
+        if classBundle.path(forResource: nibName, ofType: "nib") != nil {
+            return classBundle
+        }
+        if let moduleBundle = resourceBundle(forModuleOf: cellClass),
+           moduleBundle.path(forResource: nibName, ofType: "nib") != nil {
+            return moduleBundle
         }
         for bundle in registeredThunderTableBundles {
             if bundle.path(forResource: nibName, ofType: "nib") != nil {
                 return bundle
             }
         }
-        let classBundle = Bundle(for: cellClass)
-        if classBundle.path(forResource: nibName, ofType: "nib") == nil,
-           let moduleBundle = resourceBundle(forModuleOf: cellClass),
-           moduleBundle.path(forResource: nibName, ofType: "nib") != nil {
-            return moduleBundle
+        if Bundle.module.path(forResource: nibName, ofType: "nib") != nil {
+            return .module
         }
         return classBundle
     }
